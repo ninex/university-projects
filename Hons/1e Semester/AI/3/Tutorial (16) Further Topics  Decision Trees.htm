@@ -1,0 +1,448 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0032)http://decisiontrees.net/node/39 -->
+<HTML lang=en xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>Tutorial (16): Further Topics | Decision Trees</TITLE>
+<META http-equiv=Content-Style-Type content=text/css>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<STYLE type=text/css media=all>@import url( misc/drupal.css );
+</STYLE>
+
+<STYLE type=text/css media=all>@import url( themes/friendselectric/style.css );
+</STYLE>
+
+<SCRIPT type=text/javascript> </SCRIPT>
+
+<META content="MSHTML 6.00.2900.2873" name=GENERATOR></HEAD>
+<BODY>
+<DIV class=bw1>
+<DIV class=bw2>
+<DIV id=body-wrap>
+<DIV id=header>
+<DIV class=hw1>
+<DIV class=hw2><A title="Index Page" href="http://decisiontrees.net/"><IMG 
+id=site-logo alt=Logo 
+src="Tutorial (16) Further Topics  Decision Trees_files/logo.png"></A> 
+<H1 class=without-slogan id=site-name><A title="Index Page" 
+href="http://decisiontrees.net/">Decision Trees</A></H1>
+<DIV id=top-nav>
+<UL id=primary>
+  <LI><A title="Interactive tutorial" 
+  href="http://decisiontrees.net/node/16"><SPAN class=lw1><SPAN 
+  class=lw2>Tutorial</SPAN></SPAN></A> </LI>
+  <LI><A title=Books href="http://decisiontrees.net/node/19"><SPAN 
+  class=lw1><SPAN class=lw2>Books</SPAN></SPAN></A> </LI>
+  <LI><A title=Software href="http://decisiontrees.net/node/22"><SPAN 
+  class=lw1><SPAN class=lw2>Software</SPAN></SPAN></A> </LI>
+  <LI><A title=Sites href="http://decisiontrees.net/node/23"><SPAN 
+  class=lw1><SPAN class=lw2>Sites</SPAN></SPAN></A> </LI>
+  <LI><A title=Papers href="http://decisiontrees.net/node/45"><SPAN 
+  class=lw1><SPAN class=lw2>Papers</SPAN></SPAN></A> </LI>
+  <LI><A title=Forums href="http://decisiontrees.net/forum"><SPAN 
+  class=lw1><SPAN class=lw2>Forums</SPAN></SPAN></A> </LI>
+  <LI><A title=About href="http://decisiontrees.net/node/42"><SPAN 
+  class=lw1><SPAN class=lw2>About</SPAN></SPAN></A> 
+</LI></UL></DIV></DIV></DIV></DIV>
+<DIV class=content-both id=content>
+<DIV class=cw1>
+<DIV class=cw2>
+<DIV class=cw3>
+<DIV class=cw4>
+<DIV class=cw5>
+<DIV class=cw6>
+<DIV class=cw7>
+<DIV class=cw8>
+<DIV class=content-wrap-both id=content-wrap>
+<DIV class=sidebar id=sidebar-left>
+<DIV class="block block-user" id=block-user-0>
+<H2 class=first>User login</H2>
+<DIV class=content>
+<FORM action=user/login?destination=node%2F39 method=post>
+<DIV class=user-login-block>
+<DIV class=form-item><LABEL for=edit-name>Username:</LABEL><BR><INPUT 
+class=form-text id=edit-name maxLength=64 size=15 name=edit[name]> </DIV>
+<DIV class=form-item><LABEL for=edit-pass>Password:</LABEL><BR><INPUT 
+class=form-password id=edit-pass type=password maxLength=64 size=15 
+name=edit[pass]> </DIV><INPUT class=form-submit type=submit value="Log in" name=op> </DIV></FORM>
+<DIV class=item-list>
+<UL>
+  <LI><A title="Create a new user account." 
+  href="http://decisiontrees.net/user/register">Create new account</A>
+  <LI><A title="Request new password via e-mail." 
+  href="http://decisiontrees.net/user/password">Request new 
+password</A></LI></UL></DIV></DIV></DIV>
+<DIV class="block block-book" id=block-book-0>
+<H2>Tutorial</H2>
+<DIV class=content>
+<DIV class=menu>
+<UL>
+  <LI class=leaf><A href="http://decisiontrees.net/node/21">Tutorial (1): A 
+  simple decision tree</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/25">Tutorial (2): 
+  Exercise 1</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/26">Tutorial (3): 
+  Occam's Razor</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/27">Tutorial (4): 
+ID3</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/28">Tutorial (5): 
+  Exercise 2</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/29">Tutorial (6): 
+  Entropy Bias</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/31">Tutorial (7): 
+  Exercise 3</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/32">Tutorial (8): Other 
+  Splitting Criteria</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/33">Tutorial (9): 
+  Exercise 4</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/34">Tutorial (10): 
+  Advanced Topics</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/35">Tutorial (11): 
+  Evaluating Decision Trees</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/36">Tutorial (12): 
+  Exercise 5</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/37">Tutorial (13): 
+  Overfitting</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/44">Tutorial (14): 
+  Pruning</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/38">Tutorial (15): 
+  Exercise 6</A>
+  <LI class=leaf><A class=active 
+  href="http://decisiontrees.net/node/39">Tutorial (16): Further Topics</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/40">Tutorial (17): 
+  Conclusion</A></LI></UL></DIV></DIV></DIV>
+<DIV class="block block-user" id=block-user-1>
+<H2>Navigation</H2>
+<DIV class=content>
+<DIV class=menu>
+<UL>
+  <LI class=collapsed><A href="http://decisiontrees.net/node/add"><SPAN 
+  class=lw1>create content</SPAN></A> </LI></UL></DIV></DIV></DIV>
+<DIV class="block block-forum" id=block-forum-0>
+<H2>Active forum topics</H2>
+<DIV class=content>
+<DIV class=item-list>
+<UL>
+  <LI><A href="http://decisiontrees.net/node/47">Machine Learning Data 
+  Sets</A></LI></UL></DIV>
+<DIV class=more-link><A title="Read the latest forum topics." 
+href="http://decisiontrees.net/forum">more</A></DIV></DIV></DIV>
+<DIV class="block block-comment" id=block-comment-0>
+<H2>Recent comments</H2>
+<DIV class=content>
+<DIV class=item-list>
+<UL>
+  <LI><A href="http://decisiontrees.net/node/20#comment-17">automatic 
+  interaction detection</A><BR>8 weeks 3 days ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-16">Data sets</A><BR>8 
+  weeks 6 days ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-15">CHAID AND 
+  AID</A><BR>9 weeks 1 hour ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-14">re: CHAID and 
+  AID</A><BR>9 weeks 2 hours ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-13">CHAID and 
+  AID</A><BR>9 weeks 5 hours ago
+  <LI><A href="http://decisiontrees.net/node/45#comment-12">Large database 
+  decision tree classifiers</A><BR>9 weeks 3 days ago
+  <LI><A href="http://decisiontrees.net/node/22#comment-9">Re:See5</A><BR>10 
+  weeks 15 hours ago
+  <LI><A href="http://decisiontrees.net/node/45#comment-8">Need papers about 
+  data mining</A><BR>10 weeks 22 hours ago
+  <LI><A href="http://decisiontrees.net/node/22#comment-7">See5</A><BR>10 weeks 
+  22 hours ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-6">Access 
+  problems?</A><BR>10 weeks 22 hours ago</LI></UL></DIV></DIV></DIV>
+<DIV class="block block-user" id=block-user-3>
+<H2>Who's online</H2>
+<DIV class=content>There are currently 0 users and 12 guests 
+online.</DIV></DIV></DIV>
+<DIV class=main-both id=main>
+<DIV class=main-wrap-both id=main-wrap>
+<DIV class=mw1>
+<DIV class=breadcrumb><A href="http://decisiontrees.net/">Home</A> » <A 
+href="http://decisiontrees.net/node/16"><SPAN 
+class=lw1>Tutorial</SPAN></A></DIV>
+<H2 class=main-title>Tutorial (16): Further Topics</H2><!-- begin content -->
+<DIV class=node>
+<DIV class=content><BR>
+<STYLE>TABLE {
+	BORDER-COLLAPSE: separate
+}
+TH {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+TR {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; BORDER-BOTTOM-STYLE: none
+}
+TBODY {
+	TEXT-ALIGN: center
+}
+TABLE TD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+TABLE {
+	MARGIN: 0.5em 0px 1em
+}
+TBODY {
+	MARGIN-LEFT: 3px; TEXT-ALIGN: center
+}
+#tree {
+	
+}
+#popupMenu {
+	BORDER-RIGHT: #ccc 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ccc 1px solid; PADDING-LEFT: 2px; FONT-WEIGHT: bold; VISIBILITY: hidden; PADDING-BOTTOM: 2px; BORDER-LEFT: #ccc 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #ccc 1px solid; POSITION: absolute; BACKGROUND-COLOR: #fafafa
+}
+.headers {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; WIDTH: 50%; PADDING-TOP: 2px; BACKGROUND-COLOR: #dbe8f0
+}
+.subheaders {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; MARGIN-LEFT: 3px; WIDTH: 75%; PADDING-TOP: 2px
+}
+.build {
+	BACKGROUND-COLOR: #6699ff
+}
+.prune {
+	BACKGROUND-COLOR: #ff3300
+}
+.correctColor {
+	BACKGROUND-COLOR: #a0c0d6
+}
+.wrongColor {
+	BACKGROUND-COLOR: #fbaac5
+}
+.exNode {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; BACKGROUND-COLOR: #e7cc9a
+}
+.exNode:hover {
+	BACKGROUND-COLOR: #b49967
+}
+.normalNode {
+	BORDER-RIGHT: #ffffff 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ffffff 1px solid; PADDING-LEFT: 2px; FONT-WEIGHT: normal; PADDING-BOTTOM: 2px; BORDER-LEFT: #ffffff 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #a0c0d6
+}
+.normalNode:hover {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; BACKGROUND-COLOR: #dbe8f0
+}
+.leafNode {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: normal; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; BACKGROUND-COLOR: #92f986
+}
+.leafNode:hover {
+	BACKGROUND-COLOR: #68c652
+}
+.branchNode {
+	
+}
+.normalNode1 {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: normal; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; BACKGROUND-COLOR: #cc99cc
+}
+.correctStat {
+	COLOR: #00cc66
+}
+.wrongStat {
+	COLOR: #f8341f
+}
+#dataTable {
+	CURSOR: pointer
+}
+#validTable {
+	CURSOR: pointer
+}
+</STYLE>
+
+<H1>Decision Trees Tutorial &gt; Further topics </H1>
+<H2>Combing Multiple Models </H2>
+<P>The inherent instability of top-down decision tree induction means that 
+different training datasets from a given problem domain will produce quite 
+different trees. One of the main directions in decision tree learning in the 
+late 1990s was to combine multiple trees, or committees of trees in order to 
+obtain better results than those that can be obtained from a single model. This 
+is an approach not just restricted to decision tree learning but one that has 
+been applied to most other Machine Learning methods. <BR>One technique, known as 
+<SPAN class=titles>Bagging</SPAN>, or <SPAN 
+class=titles>Boostrap-Aggregating</SPAN>, involves producing different trees 
+from a different sample of the problem domain (or from the training set itself) 
+and then aggregating the results on a set of test instances. This helps to 
+reduce the instability and variance in the decison tree learning process by 
+combining mutlitple models. Similarly to Boostrapping, Bagging usually involves 
+sampling (with replacement) the training data in order to produce test data 
+which can be used to evaluate each model. Several of the other methods described 
+previously, such as <A class=normallink 
+href="http://decisiontrees.net/node/35">cross-validation</A> for example, can 
+also be used in bagging however.<BR><SPAN class=titles>Boosting</SPAN> is 
+another relatively new technique that involves generating a sequence of decision 
+trees from the same dataset whereby attention in is paid to the 
+misclassifications of the previous tree. This results in a fixed number of 
+decision trees which can then be used to classify new instances more accurately 
+by aggregating all the different tree's predictions and choosing the target 
+class that occurs most often. Freund et al (1996) have developed the widely used 
+<STRONG>AdaBoost.M1</STRONG> which weights instances depending whether or not 
+they were misclassified by previous trees. This allows attention to be directed 
+to the instances that have caused errors in previous iterations. Although trees 
+that use boosting are more accurate on new instances of data, they have been 
+shown to overfit in some situations. Friedman99 has developed a way of reducing 
+this aspect of its performance. Most high-performance modern decision tree 
+learners use some form of boosting to generate more accurate trees. Studies have 
+shown that Bagging and boosting can improve performance significantly 
+(Quinlan96, Bauer99, Dietterich99 etc).</P>
+<H2>Hybrid Approaches</H2>
+<P>Several approaches have been examined which attempt to hybridise decision 
+tree-learners with some other type of learner or technique. For instance, 
+Carvalho (2000) has shown how a hybrid <STRONG>genetic algorithm</STRONG> 
+decision tree learner can be used to find rules that are small disjuncts more 
+effectively than a decision tree alone. This involves using Quinlan's C4.5 
+learner to produce an initial tree which is then decomposed into rules which act 
+as chromosomes in a genetic algorithm. Other researchers have also looked at 
+this type of hybridisation. Work has also been done on combing <STRONG>fuzzy 
+classifiers</STRONG> and <STRONG>neural networks</STRONG> with decision trees 
+(e.g. Sethi90, Leow99, Ping02). This usually involves building a tree using one 
+of the greedy induction algorithms, and then refining it to be as close to 
+optimal as possible using another technique. This method may be beneficial in 
+certain problem domains where a weighted consideration of rules is necessary, 
+such as with medical diagnosis. Neural networks trained with back-propagation 
+can represent a larger number of concepts than a decision tree. A decision tree 
+though, with it's greedy heuristics has the advantage of being able to quickly 
+map out the general form of the concept space. A lot of the work in this area 
+has of course been concerned with how to map the representations of decision 
+trees to the necessary neural network representations. More recently, hybrid 
+systems combining several different techniques have been developed such as the 
+Neuro-fuzzy ICART algorithm (Li03). </P>
+<H2>Comparison with other machine learning methods</H2>
+<P>Decision Tree Induction is just one method in the field of machine learning. 
+Comparisons with other techniques such as Neural Networks have been done 
+(Atlas90, Brown93, Talmon94), but it has been shown that the accuracy of the 
+techniques is similar. Why then use decision trees? Two main reasons can be 
+explained for it's popularity:</P>
+<UL>
+  <LI>It produces understandable tree-structures which elucidate the reasoning 
+  of the method (many other techniques lack this and are harder to interpret) 
+  <LI>It can be used to produce a disjunction of hypotheses for a problem. 
+</LI></UL>
+<P class=titles>References</P>
+<P><STRONG>Freund, Y., Schapire, R. E., 1996. Experiments with a new boosting 
+algorithm.</STRONG><BR>In: Proceedings of International Conference on Machine 
+Learning, 148–156.<BR>URL: <A class=normallink 
+href="http://citeseer.nj.nec.com/freund96experiments.html">http://citeseer.nj.nec.com/freund96experiments.html</A></P>
+<P><STRONG>Friedman, J., 1999. Greedy function approximation: A gradient 
+boosting machine.</STRONG> <BR>Technical Report, Stanford University, Department 
+of Statistics, Palo Alto, CA.</P>
+<P><STRONG>Quinlan, J., 1996. Bagging, boosting, and C4.5.</STRONG> <BR>In: 
+Proceedings of the Thirteenth National Conference on Artificial Intelliegnce, 
+725–730.</P>
+<P><STRONG>Bauer, E., Kohavi, R., 1999. An empirical comparison of voting 
+classification algorithms: Bagging, boosting, and variants.</STRONG> <BR>Machine 
+Learning 36 (1/2), 105–139</P>
+<P><STRONG>Dietterich, T. G., 1999. An experimental comparison of three methods 
+for constructing ensembles of decision trees: Bagging, boosting, and 
+randomization.</STRONG><BR>Machine Learning 40 (2), 1–22.<BR>URL <A 
+class=normallink 
+href="http://citeseer.nj.nec.com/dietterich98experimental.html">http://citeseer.nj.nec.com/dietterich98experimental.html</A></P>
+<P><STRONG>Sethi, I., 1990. Entropy nets: from decision trees to neural 
+networks.</STRONG> <BR>In: Proceedings of the IEEE. Vol. 78, 1605–1613.</P>
+<P><STRONG>Leow, W., Setiono, R., 1999. On mapping decision trees and neural 
+networks.</STRONG> <BR>Knowledge Based Systems 12, 95–99.</P>
+<P><STRONG>Ping, Z., Lihui, C., January 2002. A novel feature extraction method 
+and hybrid tree classification for handwritten numeral recognition.</STRONG> 
+<BR>Pattern Recognition Letters 23, 45.</P>
+<P><STRONG>Li, J., Li, E. and Yu, J. 2003. Designing neurofuzzy system based on 
+ICART algorithm and its application for modeling jet fuel endpoint of 
+hydrocracking process.</STRONG> <BR>Engineering Applications of Artificial 
+Intelligence 16, 11–19</P>
+<P><STRONG>Atlas, L., Cole, R., Muthuswarmy, Y., Lipman, A., Connor, J., Park, 
+D., El-Sharkawi, M., Marks II, R., 1990. A performance comparison of trained 
+multilayer perceptrons and trained classification trees.</STRONG><BR><BR>In: 
+Proceedings of the IEEE 78 (10), 1614–1619.</P>
+<P><STRONG>Brown.D.E., Corruble, V., Pittard, C., 1993. A comparison of decision 
+tree classifiers with backpropagation neural networks for multimodal 
+classification problems.</STRONG> <BR>Pattern Recognition 26 (6), 953–961.</P>
+<P><STRONG>Talmon, J., Dassen, R., Karthaus, V., 1994. Neural nets and 
+classification trees: A comparison in the domain of ecg analysis.</STRONG> 
+<BR>In: Gelsema, E., Kanal, L. (Eds.), Pattern Recognition in Practice IV: 
+Multiple paradigms, Comparative studies and hybrid systems. Vol. 16 of Machine 
+Intelligence and Pattern Recognition, 415–423.</P>
+<P><STRONG>Other Recommended Reading</STRONG></P>
+<P><STRONG>Dietterich, T. G., 1998. Machine-learning research: Four current 
+directions.</STRONG> <BR>The AI Magazine 18 (4), 97–136.<BR>URL: <A 
+class=normallink 
+href="http://citeseer.nj.nec.com/dietterich97machine.html">http://citeseer.nj.nec.com/dietterich97machine.html</A></P>
+<P><STRONG>Fleischer, R., June 1999. Decision trees: old and new 
+results.</STRONG> <BR>Information and Computation 152, 44. </P>
+<SCRIPT type=text/javascript><!--
+google_ad_client = "pub-5329483376432160";
+google_ad_width = 728;
+google_ad_height = 90;
+google_ad_format = "728x90_as";
+google_ad_type = "text_image";
+google_ad_channel ="1175000984";
+google_color_border = "336699";
+google_color_bg = "FFFFFF";
+google_color_link = "0000FF";
+google_color_url = "008000";
+google_color_text = "000000";
+//--></SCRIPT>
+<BR>
+<SCRIPT src="Tutorial (16) Further Topics  Decision Trees_files/show_ads.js" 
+type=text/javascript>
+</SCRIPT>
+<BR>
+<DIV class=book>
+<DIV class=nav>
+<DIV class=links>
+<DIV class=prev><A title="View the previous page." 
+href="http://decisiontrees.net/node/38">previous</A></DIV>
+<DIV class=next><A title="View the next page." 
+href="http://decisiontrees.net/node/40">next</A></DIV>
+<DIV class=up><A title="View this page's parent section." 
+href="http://decisiontrees.net/node/16">up</A></DIV></DIV>
+<DIV class=titles>
+<DIV class=prev>Tutorial (15): Exercise 6</DIV>
+<DIV class=next>Tutorial (17): Conclusion</DIV></DIV></DIV></DIV></DIV>
+<DIV class=links><A 
+title="Show a printer-friendly version of this book page and its sub-pages." 
+href="http://decisiontrees.net/book/print/39">printer-friendly version</A> – <A 
+title="Share your thoughts and opinions related to this posting." 
+href="http://decisiontrees.net/comment/reply/39#comment">add new 
+comment</A></DIV></DIV><A id=comment></A>
+<FORM action=comment method=post>
+<DIV><INPUT type=hidden value=39 name=edit[nid]> </DIV></FORM><!-- end content -->
+<DIV class=footer-both id=footer>
+<P>
+<SCRIPT type=text/javascript><!--
+google_ad_client = "pub-5329483376432160";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "text";
+google_ad_channel ="";
+google_color_border = "336699";
+google_color_bg = "FFFFFF";
+google_color_link = "CF094A";
+google_color_url = "8BAEC9";
+google_color_text = "000000";
+//--></SCRIPT>
+
+<SCRIPT src="Tutorial (16) Further Topics  Decision Trees_files/show_ads.js" 
+type=text/javascript>
+</SCRIPT>
+</P></DIV></DIV></DIV></DIV></DIV>
+<DIV class=sidebar id=sidebar-right>
+<DIV class="block block-block" id=block-block-1>
+<H2 class=first>Adverts</H2>
+<DIV class=content><BR>
+<SCRIPT type=text/javascript><!--
+google_ad_client = "pub-5329483376432160";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "text_image";
+google_ad_channel ="8309837109";
+google_color_border = "336699";
+google_color_bg = "FFFFFF";
+google_color_link = "CF094A";
+google_color_url = "8BAEC9";
+google_color_text = "000000";
+//--></SCRIPT>
+<BR>
+<SCRIPT src="Tutorial (16) Further Topics  Decision Trees_files/show_ads.js" 
+type=text/javascript>
+</SCRIPT>
+<BR></DIV></DIV></DIV><SPAN 
+class=clear></SPAN></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class=end-both id=end>
+<DIV class=ew1>
+<DIV class=ew2></DIV></DIV></DIV></BODY></HTML>

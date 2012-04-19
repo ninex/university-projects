@@ -1,0 +1,148 @@
+USING GROUP BY WITH ALIASES
+
+This illustrates the correct use of the GROUP BY clause and table aliases in SQL Server.
+
+The following SQL statement will work in SQL Server:
+
+select vendor.v_code, vendor.v_name, count(product.p_code)
+   from vendor, product
+   where vendor.v_code = product.v_code
+   group by vendor.v_code, vendor.v_name
+
+When we add aliases to the tables (FROM clause), the code will be like this:
+
+select vendor.v_code, vendor.v_name, count(product.p_code)
+   from vendor v, product p
+   where vendor.v_code = product.v_code
+   group by vendor.v_code, vendor.v_name
+
+Server: Msg 107, Level 16, State 3, Line 1
+The column prefix 'vendor' does not match with a table name or alias name used in the query.
+
+Notice how it doesn't work. Why? The error message says there is a problem with the group by clause. Let's change "vendor.v_name" to "v.v_name" and run it again:
+
+Server: Msg 107, Level 16, State 3, Line 1
+The column prefix 'vendor' does not match with a table name or alias name used in the query.
+
+Still gives an error. Let's now change "vendor.v_code" to "v.v_code" and run it again:
+
+select vendor.v_code, vendor.v_name, count(prodcut.p_code)
+   from vendor v, product p
+   where vendor.v_code = product.v_code
+   group by v.v_code, v.v_name
+
+Server: Msg 107, Level 16, State 3, Line 1
+The column prefix 'vendor' does not match with a table name or alias name used in the query.
+
+Still gives an error. Let's now change "product.v_code" to "p.v_code" and run it again:
+
+select vendor.v_code, vendor.v_name, count(prodcut.p_code)
+   from vendor v, product p
+   where vendor.v_code = p.v_code
+   group by v.v_code, v.v_name
+
+Server: Msg 107, Level 16, State 3, Line 1
+The column prefix 'vendor' does not match with a table name or alias name used in the query.
+
+Still gives an error. SQL Server is going to ask us to change all references to use the alias. Let's do it:
+
+select v.v_code, v.v_name, count(p.p_code)
+   from vendor v, product p
+   where v.v_code = p.v_code
+   group by v.v_code, v.v_name
+
+21225	Bryson, Inc.	2
+21231	D&E Supply	1
+21344	Gomez Bros.	3
+23119	Randsets Ltd.	2
+24288	ORDVA, Inc.	3
+25595	Rubicon Systems	3
+
+It runs! If we use an alias, we need to change all our references to the alias.
+Can we still do some base table references in the columns? Let's try:
+
+select vendor.v_code, vendor.v_name, count(product.p_code)
+   from vendor v, product p
+   where v.v_code = p.v_code
+   group by v.v_code, v.v_name
+
+Server: Msg 107, Level 16, State 3, Line 1
+The column prefix 'vendor' does not match with a table name or alias name used in the query.
+
+Not this way. Let fix this error and see if it works:
+
+select vendor.v_code, vendor.v_name, count(p.p_code)
+   from vendor v, product p
+   where v.v_code = p.v_code
+   group by v.v_code, v.v_name
+
+Server: Msg 107, Level 16, State 3, Line 1
+The column prefix 'vendor' does not match with a table name or alias name used in the query.
+
+Not this way either. 
+
+We know that the GROUP BY attributes and the non-aggregate attributes in the SELECT statement must match. But, if we use table aliases, we need to use them in the GROUP BY and in the attribute list in the SELECT statement when I have ambiguous attributes (attributes that are named the same in more than one table in my query).
+
+The following is also valid, because "v_name" is not an ambigous attribute (there is only one "v_name" and it is in the VENDOR table):
+
+select v.v_code, v_name, count(p.p_code)
+   from vendor v, product p
+   where v.v_code = p.v_code
+   group by v.v_code, v_name
+
+21225	Bryson, Inc.	2
+21231	D&E Supply	1
+21344	Gomez Bros.	3
+23119	Randsets Ltd.	2
+24288	ORDVA, Inc.	3
+25595	Rubicon Systems	3
+
+So, We need to use "alias" in all occurrences of ambiguous attributes (v_code) only, let's try:
+
+select v.v_code, v_name, count(p_code)
+   from vendor v, product p
+   where v.v_code = p.v_code
+   group by v.v_code, v_name
+
+21225	Bryson, Inc.	2
+21231	D&E Supply	1
+21344	Gomez Bros.	3
+23119	Randsets Ltd.	2
+24288	ORDVA, Inc.	3
+25595	Rubicon Systems	3
+
+YES - Notice that the following will work because VENDOR does not have an alias and PRODUCT does, but we are using it in the statement.
+
+select vendor.v_code, v_name, count(p_code)
+   from vendor, product p
+   where vendor.v_code = p.v_code
+   group by vendor.v_code, v_name
+
+21225	Bryson, Inc.	2
+21231	D&E Supply	1
+21344	Gomez Bros.	3
+23119	Randsets Ltd.	2
+24288	ORDVA, Inc.	3
+25595	Rubicon Systems	3
+
+If we try to use "product.v_code" instead of "p.v_code" in the WHERE clause, it will give an error because we defined an alias and SQL Server expects it.
+
+select vendor.v_code, v_name, count(p_code)
+   from vendor, product p
+   where vendor.v_code = product.v_code
+   group by vendor.v_code, v_name
+
+ Server: Msg 107, Level 16, State 3, Line 1
+The column prefix 'product' does not match with a table name or alias name used in the query.
+
+
+Conclusions:
+
+1) If you have ONLY aggregate functions in the SELECT statement, you don't need a GROUP BY clause. You can still group by any attribute in the tables joined although the values won't display.
+
+2) If you list base table attributes other than the ones in an aggregate function in the SELECT statement, you need the GROUP BY clause. And, the attributes listed in the GROUP BY should match the base table attributes listed in the SELECT statement.
+
+3) When you have ambiguous attributes (attributes named the same in two or more tables)
+use the table name to differentiate them.
+
+EXCEPT If you declare an alias in the FROM clause then you MUST use the alias

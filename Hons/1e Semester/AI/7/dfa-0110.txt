@@ -1,0 +1,21 @@
+Start state: state 1
+
+state 1: REJECT
+ on 0 - goto state 2
+ on 1 - goto state 3
+
+state 2: REJECT
+ on 0 - goto state 2
+ on 1 - goto state 4
+
+state 3: REJECT
+ on 0 - goto state 5
+ on 1 - goto state 3
+
+state 4: ACCEPT
+ on 0 - goto state 5
+ on 1 - goto state 3
+
+state 5: ACCEPT
+ on 0 - goto state 4
+ on 1 - goto state 2

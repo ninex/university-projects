@@ -1,0 +1,89 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+x                   0x8000            ipc6client.o
+buffer              0x400             crt.o
+handle              0x4               ipc6client.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD ipc6client.o
+LOAD crt.o
+LOAD ipc.o
+                0x0000000002000000                _link_base = 0x2000000
+
+.text           0x0000000002000000      0x9aa
+                0x0000000002000000        0x1 BYTE 0xe8
+                0x0000000002000001        0x4 LONG 0x125 _main_offset
+                0x0000000002000005                _main_call = .
+                0x0000000002000005        0x1 BYTE 0x43
+                0x0000000002000006        0x1 BYTE 0x53
+                0x0000000002000007        0x1 BYTE 0x33
+                0x0000000002000008                . = ALIGN (0x4)
+                0x0000000002000008        0x4 LONG 0x2000000 _link_base
+                0x000000000200000c        0x4 LONG 0x2008f28 _heap_base
+                0x0000000002000010                . = ALIGN (0x4)
+ *(.text)
+ .text          0x0000000002000010      0x211 ipc6client.o
+                0x0000000002000052                fill
+                0x0000000002000089                verify
+                0x000000000200002c                f2
+                0x000000000200012a                main
+                0x0000000002000048                f0
+                0x0000000002000010                f1
+ *fill*         0x0000000002000221 0x21100000003 00
+ .text          0x0000000002000224      0x6ba crt.o
+                0x000000000200089a                crt_key_available
+                0x0000000002000511                crt_clear_display
+                0x0000000002000489                crt_open
+                0x00000000020004c6                crt_set_attribute
+                0x0000000002000224                int2string
+                0x0000000002000522                crt_printf
+                0x00000000020008bc                crt_read_key
+                0x000000000200049e                crt_close
+                0x00000000020004af                crt_gotoxy
+                0x00000000020004ef                crt_get_attribute
+ *fill*         0x00000000020008de 0x6ba00000002 00
+ .text          0x00000000020008e0       0xca ipc.o
+                0x00000000020008e0                ipc_lookup_port
+                0x000000000200096a                ipc_reply
+                0x000000000200098d                ipc_close_port
+                0x0000000002000947                ipc_receive
+                0x000000000200091a                ipc_send
+                0x00000000020008fd                ipc_create_port
+                0x00000000020009ac                . = ALIGN (0x4)
+
+.data           0x00000000020009ac       0x24
+ *(.data)
+ .data          0x00000000020009ac       0x22 crt.o
+                0x00000000020009ac                small_digits
+                0x00000000020009bd                large_digits
+ *fill*         0x00000000020009ce 0x2200000002 00
+
+.bss            0x00000000020009e0     0x8420
+ *(.bss)
+ COMMON         0x00000000020009e0     0x8004 ipc6client.o
+                                          0x0 (size before relaxing)
+                0x00000000020009e0                x
+                0x00000000020089e0                handle
+ *fill*         0x00000000020089e4 0x80040000001c 00
+ COMMON         0x0000000002008a00      0x400 crt.o
+                                          0x0 (size before relaxing)
+                0x0000000002008a00                buffer
+
+.rodata         0x0000000002008e00      0x128
+ *(.rodata)
+ .rodata        0x0000000002008e00       0xa4 ipc6client.o
+ .rodata        0x0000000002008ea4       0x84 crt.o
+                0x0000000002008f28                _heap_base = .
+                0x0000000000000125                _main_offset = (main - _main_call)
+
+/DISCARD/
+ *(.*)
+OUTPUT(ipc6client binary)

@@ -1,0 +1,10 @@
+Abrie
+
+Ek het die mem ding uitgesort (hoop ek). Kan nog nie alles toets nie omdat die unsigned nog wrap maar dit lyk vir my reg. As jy wil kyk check compile tt.pl. Dis waarmee ek getoets het.
+
+Verder ekt begin met die procedure calls. ek kort van jou af:
+Die size (in words) van die grootte van die global variables op die stack sodat ek die
+stack pointer can initialize. (SP = total_mem - global_var_size). intiCodeGen het verander na initCodeGen(int size). Jy sal dit dalk nou in parser moet roep.. ???
+kyk maar jy ken jou kode beter.
+
+Ok ek hier net na een. Het nou orkes. Cheers.

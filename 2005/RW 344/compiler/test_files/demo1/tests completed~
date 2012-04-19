@@ -1,0 +1,25 @@
+
+***** [Date : 13 october] *****
+
+test1: Passed. 
+test2: Passed.
+test3: Failed.
+test4: Passed.
+test5: Failed.
+test6: Passed.
+test7: Passed.
+test8: Passed.
+test9: Passed.  //the project specification has a typing error in it.
+test10: Passed.
+
+//similar but repetiitive tests
+
+1test1: Passed.
+1test2: redundant...
+1test3: Passed.
+1test4: redundant...
+1test5: Passed.
+
+Tested by: Andrew
+
+please keep up to date. 

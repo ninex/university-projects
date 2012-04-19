@@ -1,0 +1,8 @@
+begin (* should display 10 20 *)
+  integer x, y;
+
+  x := 10;
+  y := 20;
+  write x;
+  write y;
+end.

@@ -1,0 +1,5 @@
+make all
+dd if=proc6 of=/dev/fd0 bs=512 seek=400
+dd if=proc7 of=/dev/fd0 bs=512 seek=500
+dd if=proc7 of=/dev/fd0 bs=512 seek=600
+#dd if=proc4 of=/dev/fd0 bs=512 seek=700

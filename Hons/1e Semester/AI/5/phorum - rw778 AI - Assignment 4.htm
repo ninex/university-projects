@@ -1,0 +1,424 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0052)http://www.cs.sun.ac.za/phorum/read.php?f=10&i=6&t=6 -->
+<HTML><HEAD><TITLE>phorum - rw778 AI - Assignment 4</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content=3.4.8a name=PhorumVersion>
+<META content=mysql name=PhorumDB>
+<META content=4.3.3 name=PHPVersion><LINK 
+href="phorum - rw778 AI - Assignment 4_files/phorum.css" type=text/css 
+rel=STYLESHEET>
+<META content="MSHTML 6.00.2900.2873" name=GENERATOR></HEAD>
+<BODY vLink=#330000 aLink=#ff0000 link=#0000ff bgColor=#ffffff>
+<DIV class=PhorumForumTitle><STRONG>rw778 AI</STRONG></DIV><BR>
+<SCRIPT language=JavaScript type=text/javascript>
+
+function delmsg(url){
+ans=window.confirm("You are about to delete this\nmessage and all it's children.\n Do you want to continue?");
+  if(ans){
+    window.location.replace(url);
+  }
+}
+</SCRIPT>
+
+<TABLE cellSpacing=0 cellPadding=3 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD noWrap align=left bgColor=#ffffff><FONT class=PhorumNav 
+      color=#000000>&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/post.php?f=10"><FONT class=PhorumNav 
+      color=#000000>New Topic</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/list.php?f=10"><FONT class=PhorumNav 
+      color=#000000>Go to Top</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/list.php?f=10&amp;t=1149166206&amp;a=3"><FONT 
+      class=PhorumNav color=#000000>Go to 
+      Topic</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/search.php?f=10"><FONT 
+      class=PhorumNav color=#000000>Search</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/login.php?f=10"><FONT class=PhorumNav 
+      color=#000000>Log In</FONT></A>&nbsp;</FONT></TD>
+    <TD noWrap align=right bgColor=#ffffff><FONT class=PhorumNav 
+      color=#000000>&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;t=6&amp;a=1"><FONT 
+      class=PhorumNav color=#000000>Newer 
+      Topic</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;t=6&amp;a=2"><FONT 
+      class=PhorumNav color=#000000>Older 
+  Topic</FONT></A>&nbsp;</FONT></TD></TR></TBODY></TABLE><A name=reply_6></A>
+<TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 width="100%" 
+  border=0><TBODY>
+  <TR>
+    <TD bgColor=#003366><FONT class=PhorumTableHeader 
+      color=#ffffff>&nbsp;Assignment 4</FONT></TD></TR>
+  <TR>
+    <TD vAlign=top bgColor=#cccc99>
+      <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="100%" bgColor=#cccc99><FONT 
+            class=PhorumMessage color=#000000>Author:&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/profile.php?f=10&amp;id=47">Wolfe</A>&nbsp;(---.narga.sun.ac.za)<BR>Date:&nbsp;&nbsp;&nbsp;05-02-06 
+            09:21<BR><BR>In assignment 4, I'm assuming that we need two input 
+            nodes (one for the x- and y-coordinates) and one output node (to 
+            specify whether or not we are in the circle). <BR><BR>Firstly, I 
+            would like to know if this is correct, and secondly, I would like to 
+            know how we are to determine whether each of these input node 
+            'fires' or not. Maybe this is not the correct way to think about it, 
+            but after reading all the articles, I am still of the impression 
+            that each node 'fires' or not (including the input nodes) and then 
+            each of the nodes on the 'next level' calculated the weighted 
+            average of the nodes which fire (If a node fires its value is 1 and 
+            0 if it doesn't).<BR><BR>I know what to do for first hidden level 
+            upwards, but I'm not sure how to evaluate the input nodes. Also, 
+            there has been much mention of a bias term added to the weighted 
+            average - what is this for? Please 
+            help.<BR><BR>Thanks.<BR><BR></FONT>
+            <P></P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=top align=right width="100%" bgColor=#cccc99><A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;i=6&amp;t=6#REPLY"><FONT 
+      class=PhorumNav color=#000000>Reply To This Message</A></FONT> 
+  <BR></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width="100%"><FONT class=PhorumNav 
+  color=#000000>&nbsp;</FONT></TD></TR></TBODY></TABLE><A name=reply_9></A>
+<TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 width="100%" 
+  border=0><TBODY>
+  <TR>
+    <TD bgColor=#003366><FONT class=PhorumTableHeader color=#ffffff>&nbsp;Re: 
+      Assignment 4</FONT></TD></TR>
+  <TR>
+    <TD vAlign=top bgColor=#cccc99>
+      <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="100%" bgColor=#cccc99><FONT 
+            class=PhorumMessage color=#000000>Author:&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/profile.php?f=10&amp;id=34">ai</A>&nbsp;(---.cs.sun.ac.za)<BR>Date:&nbsp;&nbsp;&nbsp;05-04-06 
+            10:39<BR><BR>2 input nodes and 1 output node is correct, 
+            yes.<BR><BR>All nodes receive a number of inputs, which are the 
+            weighted inputs from the previous layer, or the inputs at the bottom 
+            of the network. The node then adds these inputs together, and pushes 
+            the result through a modified (continuous) step-function, to 
+            generate an output. This output is then sent on to another node or 
+            to the output, after being weighted.<BR><BR>Thus, each node sends an 
+            output - you can consider the node as firing if the output is close 
+            to 1, and not firing if it is close to 0, but all nodes contribute 
+            to the inputs of the next layer of the network.<BR><BR>Between the 
+            inputs and the first nodes, there are a set of weights. These 
+            weights can be eliminated by scaling the data if you wish, but 
+            leaving the weights is probably better as it is more 
+            flexible.<BR><BR>The bias term refers to the idea of attaching an 
+            input with a value of 1 to each node in the network. This allows you 
+            to effectively add a linear shift to your node's step function, by 
+            adjusting the weight between this input and the node. You do NOT 
+            have to implement the bias term in your networks, and if you do, you 
+            should include it as a flag that is OFF by default.<BR><BR>I hope 
+            that helps.<BR>Steve<BR><BR></FONT>
+            <P></P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=top align=right width="100%" bgColor=#cccc99><A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;i=9&amp;t=6#REPLY"><FONT 
+      class=PhorumNav color=#000000>Reply To This Message</A></FONT> 
+  <BR></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width="100%"><FONT class=PhorumNav 
+  color=#000000>&nbsp;</FONT></TD></TR></TBODY></TABLE><A name=reply_14></A>
+<TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 width="100%" 
+  border=0><TBODY>
+  <TR>
+    <TD bgColor=#003366><FONT class=PhorumTableHeader color=#ffffff>&nbsp;Re: 
+      Assignment 4</FONT></TD></TR>
+  <TR>
+    <TD vAlign=top bgColor=#cccc99>
+      <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="100%" bgColor=#cccc99><FONT 
+            class=PhorumMessage color=#000000>Author:&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/profile.php?f=10&amp;id=58">Genaamd 
+            Kool</A>&nbsp;(---.wilgenhof.sun.ac.za)<BR>Date:&nbsp;&nbsp;&nbsp;05-29-06 
+            16:29<BR><BR>How do you go by getting your output.Am I correct if I 
+            say it works as follows;<BR><BR>1) put input into first layer 
+            nodes<BR>2) go through the feed forward process<BR>3) calculate 
+            error<BR>---- from here I am not sure<BR>4) add error to previously 
+            saved errors<BR>5) goto step 1 again and repeat this process until I 
+            have gone through my whole set of training data.<BR><BR>now I have 
+            completed one epoch and I must use the average of the summed error 
+            values that I have saved,to propagate the error 
+            backwards.<BR><BR>Once the error backpropagation has finished,the 
+            weights have been altered and I go through the whole process 
+            again.<BR><BR>Ok then I am also uncertain about the 
+            following:<BR><BR>Do u aply the sigmoid function to the input and 
+            output node values as well.or only onto the hidden layers.<BR><BR>I 
+            still have to look at backpropagation more but it looks like u are 
+            going to need the sigmoid values of each neuron in the back prop 
+            calculation,so do u have to save the neuron values in each step 
+            forward phase,and then use the average of these saved values when u 
+            propagate the error backwards?<BR><BR>Thnx<BR>Kool<BR><BR></FONT>
+            <P></P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=top align=right width="100%" bgColor=#cccc99><A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;i=14&amp;t=6#REPLY"><FONT 
+      class=PhorumNav color=#000000>Reply To This Message</A></FONT> 
+  <BR></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width="100%"><FONT class=PhorumNav 
+  color=#000000>&nbsp;</FONT></TD></TR></TBODY></TABLE><A name=reply_15></A>
+<TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 width="100%" 
+  border=0><TBODY>
+  <TR>
+    <TD bgColor=#003366><FONT class=PhorumTableHeader color=#ffffff>&nbsp;Re: 
+      Assignment 4</FONT></TD></TR>
+  <TR>
+    <TD vAlign=top bgColor=#cccc99>
+      <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="100%" bgColor=#cccc99><FONT 
+            class=PhorumMessage color=#000000>Author:&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/profile.php?f=10&amp;id=34">ai</A>&nbsp;(---.cs.sun.ac.za)<BR>Date:&nbsp;&nbsp;&nbsp;05-30-06 
+            10:11<BR><BR>* You're right until step 3. You need to perform the 
+            back-propagation then after each example presented to the network. 
+            You can then store the proposed weight modifications and just update 
+            the weights with the average weight change calculated at the end of 
+            the epoch, or preferably update the weights after each training 
+            example.<BR><BR>* Whether you should apply sigmoids to input and 
+            output is up to you - you should consider your problem and your 
+            input and decide how you'd go forward. Typically, the inputs are 
+            scaled between 0 and 1, (or -1 and 1, depending on the activation 
+            function), though. Since you wish to predict a 0 or a 1 in binary 
+            classification, you would often like to add a activation function in 
+            your output node. If you implement a bias term in your network, 
+            adding such terms to your hidden layers and output may improve the 
+            performance a bit, but you don't need to do that to get a decent 
+            mark for the assignment.<BR><BR>* No, you don't need to store the 
+            output values of each node in your network for the backpropagation 
+            algorithm. We can't compare that output to any "desired" value for 
+            the node, so it won't help you. The whole idea of the 
+            backpropagation algorithm is that it takes the total error of the 
+            network, and splits it up, allocating portions to each node, 
+            according to the weights in the network. Based on these error 
+            portions, weights are updated to try reduce that apportioned 
+            error.<BR><BR></FONT>
+            <P></P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=top align=right width="100%" bgColor=#cccc99><A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;i=15&amp;t=6#REPLY"><FONT 
+      class=PhorumNav color=#000000>Reply To This Message</A></FONT> 
+  <BR></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width="100%"><FONT class=PhorumNav 
+  color=#000000>&nbsp;</FONT></TD></TR></TBODY></TABLE><A name=reply_17></A>
+<TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 width="100%" 
+  border=0><TBODY>
+  <TR>
+    <TD bgColor=#003366><FONT class=PhorumTableHeader color=#ffffff>&nbsp;Re: 
+      Assignment 4</FONT></TD></TR>
+  <TR>
+    <TD vAlign=top bgColor=#cccc99>
+      <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="100%" bgColor=#cccc99><FONT 
+            class=PhorumMessage color=#000000>Author:&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/profile.php?f=10&amp;id=47">Wolfe</A>&nbsp;(---.narga.sun.ac.za)<BR>Date:&nbsp;&nbsp;&nbsp;06-01-06 
+            11:10<BR><BR>Okay, here I go again. The following is how I 
+            understand the back propagation algorithm, and I would like to know 
+            if I am correct, because I'm really confused at the 
+            moment.<BR><BR>First, the forward propagation:<BR><BR>Assign the 
+            input node values (yes, I store the values in the nodes). 
+            Then,<BR>for each of the ten first hidden layer nodes - multiply 
+            each of the input<BR>node values (activated) with the associated 
+            weight (each hidden node in this layer has two weights - one for 
+            each input node) for that hidden node, then sum these together (this 
+            forms net_j for this node). Once net_j for each node has been 
+            determined, do the same for the next layer of hidden nodes, and 
+            finally the output layer. Note that the value propagated by each 
+            node is the activated net_j, that is<BR>f(net_j).<BR><BR>Secondly, 
+            output interpretation:<BR><BR>So far, I'm pretty confident, I've 
+            done the calculation by hand, and it seems I<BR>get the correct 
+            output, but how do I interpret this? Should I determine a 
+            threshold<BR>(say 0.7), and if the NN classifies as a value above 
+            this, should I say it is `correct', and below 'incorrect'. The other 
+            option is to simply subtract the output value from the actual value 
+            and use this error. But then it seems we will never get even close 
+            to good performance. Anyway... I'm not sure what to do here, but for 
+            the moment, I'm simply subtracting the output value from the 
+            expected value to get the output_error.<BR><BR>Thirdly (and most 
+            hardcore), the back propagation:<BR><BR>Firstly, I assume it is 
+            first necessary to propagate the error right back<BR>the first FIRST 
+            hidden layer before ANY of the weights are changed. This 
+            will<BR>provide a sort of `instantaneus' update of all the weights. 
+            Anyway, we now<BR>have the output_error, and want to propagate this 
+            back. So, this is what I<BR>understand from texts - For each of the 
+            four, second hidden layer nodes, do the following: For all the 
+            posterior nodes (nodes closer to the output node, which have a 
+            weight assigned to the current node) summate the products of the 
+            weight between this node and the posterior node, and the error at 
+            the posterior node.<BR>Then multiply this sum, by the derivative of 
+            the sigmoid function of the net_j of THIS (hidden) node. Okay... 
+            this should give us the error for this node.<BR><BR>This process is 
+            repeated for each hidden node in each layer. We thus now have the 
+            error signal for all nodes with associated weights to nodes above. I 
+            hope this is correct, because it was a mission.<BR><BR>Fourthly, and 
+            lastly, actually CHANGING the weights:<BR><BR>According to the 
+            Willamette University article, we must calculate at delta_w<BR>using 
+            the formulat dw_{ij} = &lt;error_i&gt; * y_j. Then, the problem is, 
+            I'm not sure<BR>what to do with this dw. I assume its an additive 
+            term, so we just add it to<BR>the the current weight for node j 
+            (with respect to node i). Also, what I did, was first multiply the 
+            dw by LEARNING_RATE, before adding it the weight... is this correct 
+            ?<BR><BR>Okay, so thats what I'm doing so far... It seems to work 
+            okay.. the generalized error (which I'm calculating by summing of 
+            the square of the classification errors (expected-expected).. which 
+            is almost NEVER 0.. and then dividing by the number of points 
+            classified) starts at about 0.4 and decreases to about 0.2 
+            (sometimes, depening on whether the randomized weights start close 
+            to this global minimum, or some other local minimum). But, I noticed 
+            after training for like 100000 epochs, that this error starts to 
+            steadily increase again asymptotically reaching some value from the 
+            BOTTOM... is this normal? argh.<BR><BR>Any help would be 
+            appreciated.<BR><BR></FONT>
+            <P></P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=top align=right width="100%" bgColor=#cccc99><A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;i=17&amp;t=6#REPLY"><FONT 
+      class=PhorumNav color=#000000>Reply To This Message</A></FONT> 
+  <BR></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width="100%"><FONT class=PhorumNav 
+  color=#000000>&nbsp;</FONT></TD></TR></TBODY></TABLE><A name=reply_18></A>
+<TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 width="100%" 
+  border=0><TBODY>
+  <TR>
+    <TD bgColor=#003366><FONT class=PhorumTableHeader color=#ffffff>&nbsp;Re: 
+      Assignment 4</FONT></TD></TR>
+  <TR>
+    <TD vAlign=top bgColor=#cccc99>
+      <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="100%" bgColor=#cccc99><FONT 
+            class=PhorumMessage color=#000000>Author:&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/profile.php?f=10&amp;id=34">ai</A>&nbsp;(---.cs.sun.ac.za)<BR>Date:&nbsp;&nbsp;&nbsp;06-01-06 
+            14:50<BR><BR>Hi Wolfe.<BR><BR>Forward propagation looks 
+            right.<BR><BR>As for output interpretation - your target values are 
+            1 and 0 (1 and -1?) - while your network will output a continuous 
+            value. When you are training, the error for the forward propagation 
+            is the difference. When you later use the network to predict, you'll 
+            have to identify a threshold value (I suggest 0.5).<BR><BR>Your 
+            understanding of the back-propagation also sounds right to 
+            me.<BR><BR>dw_{ij} is the change you need to make to w_{ij}, indeed 
+            - and multiplying these weight changes first by the learning rate is 
+            exactly the right thing to do.<BR><BR>To determine the number of 
+            epochs, you want to look at the error rate on the test set - this is 
+            not the error of the neural network for classification, so you'll 
+            want to simply calculate the proportion of incorrect classifications 
+            using your threshold. In any case, this should decrease as the 
+            epochs increase until your network starts to overfit - then your 
+            test error will start to increase again. The point where the test 
+            error reaches is a minimum is the final network you should choose. 
+            Note that this means you should store the network weights at the end 
+            of each epoch (or at least the weights of the network with the best 
+            test error so far).<BR><BR>Hope this helps<BR><BR></FONT>
+            <P></P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=top align=right width="100%" bgColor=#cccc99><A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;i=18&amp;t=6#REPLY"><FONT 
+      class=PhorumNav color=#000000>Reply To This Message</A></FONT> 
+  <BR></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=3 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD align=left width="100%" bgColor=#ffffff><FONT class=PhorumNav 
+      color=#000000>&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/index.php?f=0"><FONT class=PhorumNav 
+      color=#000000>Forum List</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;i=6&amp;t=6&amp;v=t"><FONT 
+      class=PhorumNav color=#000000>Threaded View</FONT></A>&nbsp;</FONT></TD>
+    <TD noWrap align=right bgColor=#ffffff><FONT class=PhorumNav 
+      color=#000000>&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;t=6&amp;a=1"><FONT 
+      class=PhorumNav color=#000000>Newer 
+      Topic</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;t=6&amp;a=2"><FONT 
+      class=PhorumNav color=#000000>Older 
+  Topic</FONT></A>&nbsp;</FONT></TD></TR></TBODY></TABLE><A 
+name=REPLY></A><BR><BR>
+<DIV>
+<FORM action=login.php method=post><INPUT type=hidden value=10 name=f> <INPUT 
+type=hidden value=http://www.cs.sun.ac.za/phorum/list.php?f=10 name=target> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD bgColor=#ffffff>
+      <TABLE cellSpacing=0 cellPadding=2 border=0>
+        <TBODY>
+        <TR>
+          <TD><FONT class=PhorumNav color=#000000>&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/index.php?f=0"><FONT 
+            class=PhorumNav color=#000000>Forum 
+            List</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/register.php?f=10&amp;target=http://www.cs.sun.ac.za/phorum/list.php?f=10"><FONT 
+            class=PhorumNav color=#000000>Need a Login? Register 
+            Here</FONT></A>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD bgColor=#ffffff>
+      <TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 border=0>
+        <TBODY>
+        <TR>
+          <TD class=PhorumTableHeader bgColor=#003366 colSpan=2 
+            height=21><FONT color=#ffffff>&nbsp;User Login</FONT></TD></TR>
+        <TR>
+          <TD noWrap bgColor=#ffffcc><FONT color=#000000>&nbsp;User 
+            Name:</FONT></TD>
+          <TD bgColor=#ffffcc><INPUT maxLength=50 size=30 name=username></TD></TR>
+        <TR>
+          <TD noWrap bgColor=#ffffcc><FONT 
+          color=#000000>&nbsp;Password:</FONT></TD>
+          <TD bgColor=#ffffcc><INPUT type=password maxLength=20 size=30 
+            name=password></TD></TR>
+        <TR>
+          <TD noWrap bgColor=#ffffcc><FONT color=#000000>&nbsp;Remember my 
+            login:</FONT></TD>
+          <TD bgColor=#ffffcc><INPUT type=checkbox CHECKED value=1 
+            name=remember_login></TD></TR>
+        <TR>
+          <TD noWrap bgColor=#ffffcc>&nbsp;</TD>
+          <TD bgColor=#ffffcc><INPUT type=submit value=Login>&nbsp;<BR><IMG 
+            height=3 src="phorum - rw778 AI - Assignment 4_files/trans.gif" 
+            width=3 border=0></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM>
+<FORM action=login.php method=post><INPUT type=hidden value=10 name=f> <INPUT 
+type=hidden value=http://www.cs.sun.ac.za/phorum/list.php?f=10 name=target> 
+<INPUT type=hidden value=1 name=forgotpass> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD bgColor=#ffffff>
+      <TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 width=400 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD class=PhorumTableHeader bgColor=#003366 height=21><FONT 
+            color=#ffffff>&nbsp;Forgot Your Password?</FONT></TD></TR>
+        <TR>
+          <TD bgColor=#ffffcc><FONT color=#000000>Enter your email address or 
+            user name below and a new password will be sent to the email address 
+            associated with your profile.</FONT></TD></TR>
+        <TR>
+          <TD align=middle bgColor=#ffffcc><INPUT maxLength=50 size=30 
+            name=lookup> 
+  <INPUT type=submit value=Submit></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM></DIV><BR>
+<DIV align=center><A href="http://phorum.org/"><IMG height=30 alt=phorum.org 
+src="phorum - rw778 AI - Assignment 4_files/button.gif" width=90 
+border=0></A></DIV></BODY></HTML>

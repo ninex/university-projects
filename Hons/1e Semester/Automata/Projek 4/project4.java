@@ -1,0 +1,380 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferStrategy;
+import java.util.*;
+import javax.swing.*;
+
+public class project4 implements MouseListener, KeyListener{
+	
+	private static final double INITIAL = 20;
+	private static final double THRESHOLD = 21.0;
+	private static final double ALPHA = 0.3;
+	
+	Frame mainFrame;
+	BufferStrategy bufferStrategy;
+	Rectangle bounds;
+	GraphicsDevice device;
+	
+	int rowInc,colInc,kx,ky,pbx,pby,pex,pey,limit,bx,by,dim;
+	boolean mouseIn = false,pressed = false,running = false,havePlate = false,haveClay = false;
+	
+	double[][] clay;
+
+	public project4(GraphicsDevice device,int dim) {
+		this.dim = dim;
+		this.device = device;
+		clay = new double[dim][dim];
+		//initiate the fullscreen graphics
+		try {
+			GraphicsConfiguration gc = device.getDefaultConfiguration();
+			mainFrame = new Frame(gc);
+			mainFrame.addMouseListener(this);
+			mainFrame.addKeyListener(this);
+			mainFrame.setUndecorated(true);
+			mainFrame.setIgnoreRepaint(false);
+			device.setFullScreenWindow(mainFrame);
+
+			bounds = mainFrame.getBounds();
+			mainFrame.createBufferStrategy(2);
+			bufferStrategy = mainFrame.getBufferStrategy();
+			
+			rowInc = bounds.height / dim;
+			colInc = bounds.width / dim;
+		} catch (Exception e) {
+			System.out.println("Problem entering fullscreen mode");
+			System.exit(1);
+		}
+	}
+
+
+
+	//keyboard events
+	public void keyPressed(KeyEvent e){
+		//the space key is being held down
+		if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+			pressed = true;
+		}
+		//the user wants to quit and pressed escape
+		if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+			device.setFullScreenWindow(null);
+			System.exit(0);
+		}
+		//the user wants to run the system and pressed enter
+		if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+			if (havePlate && haveClay){
+				running = true;
+			}else{
+				JOptionPane.showMessageDialog(null,"Clay and Plate areas must be defined before running system");
+			}
+		}
+	}
+	public void keyReleased(KeyEvent e){
+		//a key is being held down
+		pressed = false;
+	}
+	public void keyTyped(KeyEvent e){}
+	
+
+
+	//mouse events
+	public void mouseReleased(MouseEvent e){
+		//left button
+		if (e.getButton() == MouseEvent.BUTTON1){
+			//is a button being released
+			if (pressed) {
+				int ex = e.getX();
+				int ey = e.getY();
+				//the coordinates of the plate
+				pex = Math.round((ex) / colInc)-1;
+				pey = Math.round((ey-1) / rowInc);
+				pbx = Math.round(kx / colInc);
+				pby = Math.round(ky / rowInc);
+				havePlate = true;
+			}else{
+				int ex = e.getX();
+				int ey = e.getY();
+				//fill the clay
+				for (int i=bx;i<ex;i=i+colInc) {
+					for (int j=by;j<ey;j=j+rowInc){
+						try{
+							clay[Math.round(i/colInc)][Math.round(j/rowInc)] = INITIAL;
+						}catch (Exception exp){}
+					}
+				}
+				haveClay = true;
+				limit = Math.round((ey-1)/rowInc) ;
+			}
+			mouseIn = false;
+		}
+	}
+	public void mouseExited(MouseEvent e){}
+	public void mouseEntered(MouseEvent e){}
+	public void mousePressed(MouseEvent e){
+		//are we running
+		if (!running){
+			//the user want to create the plate
+			if ((e.getButton() == MouseEvent.BUTTON1) && (!pressed)) {
+				for (int i=0;i<dim;i++) {
+					for (int j=0;j<dim;j++){
+						clay[i][j] = 0;
+					}
+				}
+				bx = e.getX();
+				by = e.getY();
+				mouseIn = true;
+			}else{
+				//the user wants to create the clay
+				if ((e.getButton() == MouseEvent.BUTTON1) && (pressed)) {
+					kx = e.getX();
+					ky = e.getY();
+					mouseIn = true;
+				}
+			}
+		}
+	}
+	
+	public void mouseClicked(MouseEvent e){}
+	
+	//this draws the area as it's being selected
+	public void select(Graphics g){
+		int x = MouseInfo.getPointerInfo().getLocation().x;
+		int y = MouseInfo.getPointerInfo().getLocation().y;
+		//plate
+		if (pressed) {
+			g.setColor(Color.red);
+			g.fillRect(kx,ky,x-kx,y-ky);
+		//clay
+		}else{
+			g.setColor(Color.black);
+			g.fillRect(bx,by,x-bx,y-by);
+		}
+	}
+	
+	public boolean mouseIn() {
+		return mouseIn;
+	}
+	public boolean running(){
+		return running;
+	}
+	
+	//draws the grid
+	public void drawGrid(Graphics g) {
+		g.setColor(Color.black);
+		for (int i=0;i<bounds.width;i=i+colInc) {
+			g.drawLine(i,0,i,bounds.height);
+		}
+		for (int i=0;i<bounds.height;i=i+rowInc) {
+			g.drawLine(0,i,bounds.width,i);
+		}
+	}
+	
+	
+	//this draws the whole system
+	public void drawSystem(Graphics g){
+		
+		for (int i=0;i<dim;i++) {
+			for (int j=0;j<dim;j++) {
+				//does the cell contain clay?
+				if (clay[i][j] > 0.0){
+					//set color according to its intensity
+					try{
+						g.setColor(new Color(0.0f,(new Float(clay[i][j]/(2*THRESHOLD))).floatValue(),0.0f));
+					}catch (Exception e){}
+				}else{
+					g.setColor(Color.white);
+				}
+				
+				g.fillRect(i*colInc,j*rowInc,i+colInc,j+rowInc);
+			}
+		}
+		//draw the plate
+		g.setColor(Color.red);
+		g.fillRect(pbx*colInc,pby*rowInc,pex*colInc - pbx*colInc,(pey+1)*rowInc - pby*rowInc);
+	}
+	
+	//is this cell the plate
+	public boolean isObstacle(int x, int y){
+		return ((x >= pbx) && (y >= pby) && (x <= pex) && (y <= pey));
+	}
+	
+	//this computes the amount of neighbours in the Margolus neighbourhood that can have excess clay distributed to
+	//them as well as those that want to distribute clay and does it
+	public void Margolus(int x1, int y1) {
+		double[] dm = new double[4];
+		double sumdm = 0;
+		int col, row;
+		int count = 0;
+		double under = 0;
+		//get the amount that can possibly be distributed
+		for (row = y1; row <= (y1+1); row++) {
+			for (col = x1; col <= (x1+1); col++) {
+				//is this cell over the threshold
+				if (clay[col][row] > THRESHOLD) {
+					dm[count] = clay[col][row]*ALPHA;
+				}else{
+					//then we add one to the number under the threshold
+					if (!isObstacle(col,row)){
+						under++;
+					}
+				}
+				count++;
+			}
+		}
+		//adds all the clay that is to be distributed
+		for (count = 0; count < 4; count++) {
+			sumdm += dm[count];
+		}
+		count = 0;
+		//if there is somewhere to distribute to
+		if (under > 0) {
+			for (row = y1; row <= (y1+1); row++) {
+				for (col = x1; col <= (x1+1); col++) {
+					//add clay to cell under the threshold
+					if ((dm[count] == 0) && (!isObstacle(col,row))) {
+						clay[col][row] += sumdm/under; 
+					}else{
+						//only subtract excess clay now that we know its going somewhere
+						if (!isObstacle(col,row)) {
+							clay[col][row] -= dm[count];
+						}
+					}
+					count++;
+				}
+			}
+		}
+	}
+	
+	//this moves the plate down if it can
+	public void movePlate(){
+		if (pey < limit-1){
+			pby++;
+			pey++;
+			
+			for (int i=pbx;i<pex;i++){
+				//is there clay is being pressed down?
+				if (clay[i][pey] > 0){
+					//then press it
+					clay[i][pey+1] = clay[i][pey+1] + clay[i][pey];
+					clay[i][pey] = 0;
+				}
+			}
+		}
+	}
+	
+	//this runs the whole system
+	public void runTheSystem(){
+		boolean odd,notDone = false;
+		double[][] old = new double[dim][dim];
+		Graphics g;
+		
+		//move the plate
+		movePlate();
+		//check if there is cells over the threshold
+		for (int row=0;row<dim;row++){
+			for (int col=0;col<dim;col++){
+				if (clay[col][row] > THRESHOLD){
+					notDone = true;
+				}
+			}
+		}
+		
+		//while there is cells over the threshold
+		while (notDone){
+			
+			notDone = false;
+			
+			//draw the system
+			g = bufferStrategy.getDrawGraphics();
+			drawSystem(g);
+			drawGrid(g);
+			bufferStrategy.show();
+			g.dispose();
+			
+			//even step
+			for (int row=0;row<limit;row+=2){
+				for (int col=0;col<dim-1;col+=2){
+					Margolus(col,row);
+				}
+			}
+			
+			//draw the system
+			g = bufferStrategy.getDrawGraphics();
+			drawSystem(g);
+			drawGrid(g);
+			bufferStrategy.show();
+			g.dispose();
+			
+			//odd step
+			for (int row=1;row<limit;row+=2){
+				for (int col=1;col<dim-1;col+=2){
+					Margolus(col,row);
+				}
+			}
+			
+			//check if there is cells over the threshold
+			for (int row=0;row<limit;row++){
+				for (int col=0;col<dim;col++){
+					if (clay[col][row] > THRESHOLD){
+						notDone = true;
+					}
+				}
+			}
+		}
+	}
+	
+	//get the buffer strategy for drawing
+	public BufferStrategy getStrategy() {
+		return bufferStrategy;
+	}
+	
+	//the main calling function
+	public static void main (String[] args){
+		String temp;
+		boolean input = true;
+		int dim = 0;
+		//get the dimension the user wants
+		while (input){
+			temp = JOptionPane.showInputDialog(null,"What is the vertical dimension of the model?","Dimensions",JOptionPane.QUESTION_MESSAGE);
+			try{
+				dim = Integer.parseInt(temp);
+				input = false;
+			}catch (Exception e){}
+		}
+		//setup initial graphics variables
+		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice device = env.getDefaultScreenDevice();
+		Graphics g;
+		
+		//create the system
+		project4 gui = new project4(device,dim);
+		
+		//now we are running forever!
+		while (true) {
+		
+			//some more drawing setup
+			g = gui.getStrategy().getDrawGraphics();
+			gui.drawSystem(g);
+			
+			//we are currently selecting
+			if (gui.mouseIn()){
+				gui.select(g);
+				}
+			
+			gui.drawGrid(g);
+			
+			//is the system running?
+			if (gui.running()){
+				//well then run it then
+				gui.runTheSystem();
+			}
+			
+			gui.getStrategy().show();
+			g.dispose();
+			
+			//the thread needs to sleep a bit so that the listeners picks up events effectively
+			try {
+				Thread.sleep(1);
+			}catch(Exception e){}
+		}
+	}
+}

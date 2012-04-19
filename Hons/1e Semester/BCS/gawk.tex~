@@ -1,0 +1,102 @@
+\documentclass[a4paper,11pt,titlepage]{article}
+\author{Abrie Greeff\\B.Sc Hons (Rekenaarwetenskap)\\Departement Rekenaarwetenskap\\Universiteit van Stellenbosch}
+\date{24 April 2006}
+\title{Generiese Vaardighede: gawk oefening}
+\begin{document}
+\maketitle
+\part{Genomedata}
+\paragraph{Vraag 1}
+\begin{verbatim}
+Soek vir die patroon GGTTAA en vertoon die DE lyn van die 
+groepe waar die patroon gevind is.
+\end{verbatim}
+Om dit te doen moet die volgende uitgevoer word.
+\begin{verbatim}
+gawk -f ../q0.awk genomedata.txt
+\end{verbatim}
+
+\part{Test data}
+\paragraph{Vraag 2}
+\begin{verbatim}
+Orals waar "start" gevind word vervang dit met "START".
+\end{verbatim}
+Om dit te doen moet die volgende uitgevoer word.
+\begin{verbatim}
+ls | gawk -f ../q1.awk | csh
+\end{verbatim}
+Die \emph{directory} waar dit uitgevoer word is een vlak laer as waar die awk script l\^e.
+Die awk script lyk soos volg:
+\begin{verbatim}
+{for (i = 0;i < NF;i++) {
+	print "sed -e 's/start/START/g' -i " $i
+	}}
+\end{verbatim}
+\paragraph{Vraag 3}
+\begin{verbatim}
+Tel hoeveel kere die woord "FINAL" voorkom.
+\end{verbatim}
+Om dit te doen moet die volgende uitgevoer word.
+\begin{verbatim}
+cat * | gawk -f ../q2.awk
+\end{verbatim}
+
+Die awk script lyk soos volg:
+\begin{verbatim}
+BEGIN {count = 0}
+/FINAL/ {count = count + 1}
+END {print count}
+\end{verbatim}
+
+\paragraph{Vraag 4}
+\begin{verbatim}
+Tel hoeveel files bevat minder as vyf lyne teks.
+\end{verbatim}
+Om dit te doen moet die volgende uitgevoer word.
+\begin{verbatim}
+ls | gawk -f ../q3.awk | csh | gawk -f q2.awk
+\end{verbatim}
+
+Die awk scripts lyk soos volg:
+\begin{verbatim}
+# q3.awk
+{for (i = 0;i < NF;i++) {
+	print "gawk -f q3_2.awk " $i
+	}}
+\end{verbatim}
+en
+\begin{verbatim}
+# q3_2.awk
+END { if (NR < 5) print NR "FINAL" }
+\end{verbatim}
+
+\paragraph{Vraag 5}
+\begin{verbatim}
+Verander al die toets files sodat die lyne wat die
+woord "FINAL" bevat voorkom net na die lyn wat "START" bevat.
+\end{verbatim}
+Om dit te doen moet die volgende uitgevoer word.
+\begin{verbatim}
+ls | gawk -f ../q4.awk | csh
+\end{verbatim}
+
+Die awk scripts lyk soos volg:
+\begin{verbatim}
+# q4.awk
+{for (i = 0;i < NF;i++) {
+	print "echo Changing " $i
+	print "gawk -f ../q4_2.awk " $i " > temp"
+	print "cat temp > " $i
+	}
+	print "rm -f temp"}
+
+\end{verbatim}
+en
+\begin{verbatim}
+# q4_2.awk
+{n=0}
+/START/ {teks = $0; n = 1}
+/FINAL/ {teks = teks "\n" $0; n = 1}
+n==0 {teks2 = teks2 "\n" $0;n=0}
+END {print teks,teks2}
+\end{verbatim}
+\end{document}

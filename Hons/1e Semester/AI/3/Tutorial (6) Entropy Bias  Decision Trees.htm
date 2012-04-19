@@ -1,0 +1,710 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0032)http://decisiontrees.net/node/29 -->
+<HTML lang=en xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>Tutorial (6): Entropy Bias | Decision Trees</TITLE>
+<META http-equiv=Content-Style-Type content=text/css>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<STYLE type=text/css media=all>@import url( misc/drupal.css );
+</STYLE>
+
+<STYLE type=text/css media=all>@import url( themes/friendselectric/style.css );
+</STYLE>
+
+<SCRIPT type=text/javascript> </SCRIPT>
+
+<META content="MSHTML 6.00.2900.2873" name=GENERATOR></HEAD>
+<BODY>
+<DIV class=bw1>
+<DIV class=bw2>
+<DIV id=body-wrap>
+<DIV id=header>
+<DIV class=hw1>
+<DIV class=hw2><A title="Index Page" href="http://decisiontrees.net/"><IMG 
+id=site-logo alt=Logo 
+src="Tutorial (6) Entropy Bias  Decision Trees_files/logo.png"></A> 
+<H1 class=without-slogan id=site-name><A title="Index Page" 
+href="http://decisiontrees.net/">Decision Trees</A></H1>
+<DIV id=top-nav>
+<UL id=primary>
+  <LI><A title="Interactive tutorial" 
+  href="http://decisiontrees.net/node/16"><SPAN class=lw1><SPAN 
+  class=lw2>Tutorial</SPAN></SPAN></A> </LI>
+  <LI><A title=Books href="http://decisiontrees.net/node/19"><SPAN 
+  class=lw1><SPAN class=lw2>Books</SPAN></SPAN></A> </LI>
+  <LI><A title=Software href="http://decisiontrees.net/node/22"><SPAN 
+  class=lw1><SPAN class=lw2>Software</SPAN></SPAN></A> </LI>
+  <LI><A title=Sites href="http://decisiontrees.net/node/23"><SPAN 
+  class=lw1><SPAN class=lw2>Sites</SPAN></SPAN></A> </LI>
+  <LI><A title=Papers href="http://decisiontrees.net/node/45"><SPAN 
+  class=lw1><SPAN class=lw2>Papers</SPAN></SPAN></A> </LI>
+  <LI><A title=Forums href="http://decisiontrees.net/forum"><SPAN 
+  class=lw1><SPAN class=lw2>Forums</SPAN></SPAN></A> </LI>
+  <LI><A title=About href="http://decisiontrees.net/node/42"><SPAN 
+  class=lw1><SPAN class=lw2>About</SPAN></SPAN></A> 
+</LI></UL></DIV></DIV></DIV></DIV>
+<DIV class=content-left id=content>
+<DIV class=cw1>
+<DIV class=cw2>
+<DIV class=cw3>
+<DIV class=cw4>
+<DIV class=cw5>
+<DIV class=cw6>
+<DIV class=cw7>
+<DIV class=cw8>
+<DIV class=content-wrap-left id=content-wrap>
+<DIV class=sidebar id=sidebar-left>
+<DIV class="block block-user" id=block-user-0>
+<H2 class=first>User login</H2>
+<DIV class=content>
+<FORM action=user/login?destination=node%2F29 method=post>
+<DIV class=user-login-block>
+<DIV class=form-item><LABEL for=edit-name>Username:</LABEL><BR><INPUT 
+class=form-text id=edit-name maxLength=64 size=15 name=edit[name]> </DIV>
+<DIV class=form-item><LABEL for=edit-pass>Password:</LABEL><BR><INPUT 
+class=form-password id=edit-pass type=password maxLength=64 size=15 
+name=edit[pass]> </DIV><INPUT class=form-submit type=submit value="Log in" name=op> </DIV></FORM>
+<DIV class=item-list>
+<UL>
+  <LI><A title="Create a new user account." 
+  href="http://decisiontrees.net/user/register">Create new account</A>
+  <LI><A title="Request new password via e-mail." 
+  href="http://decisiontrees.net/user/password">Request new 
+password</A></LI></UL></DIV></DIV></DIV>
+<DIV class="block block-book" id=block-book-0>
+<H2>Tutorial</H2>
+<DIV class=content>
+<DIV class=menu>
+<UL>
+  <LI class=leaf><A href="http://decisiontrees.net/node/21">Tutorial (1): A 
+  simple decision tree</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/25">Tutorial (2): 
+  Exercise 1</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/26">Tutorial (3): 
+  Occam's Razor</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/27">Tutorial (4): 
+ID3</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/28">Tutorial (5): 
+  Exercise 2</A>
+  <LI class=leaf><A class=active 
+  href="http://decisiontrees.net/node/29">Tutorial (6): Entropy Bias</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/31">Tutorial (7): 
+  Exercise 3</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/32">Tutorial (8): Other 
+  Splitting Criteria</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/33">Tutorial (9): 
+  Exercise 4</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/34">Tutorial (10): 
+  Advanced Topics</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/35">Tutorial (11): 
+  Evaluating Decision Trees</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/36">Tutorial (12): 
+  Exercise 5</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/37">Tutorial (13): 
+  Overfitting</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/44">Tutorial (14): 
+  Pruning</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/38">Tutorial (15): 
+  Exercise 6</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/39">Tutorial (16): 
+  Further Topics</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/40">Tutorial (17): 
+  Conclusion</A></LI></UL></DIV></DIV></DIV>
+<DIV class="block block-user" id=block-user-1>
+<H2>Navigation</H2>
+<DIV class=content>
+<DIV class=menu>
+<UL>
+  <LI class=collapsed><A href="http://decisiontrees.net/node/add"><SPAN 
+  class=lw1>create content</SPAN></A> </LI></UL></DIV></DIV></DIV>
+<DIV class="block block-forum" id=block-forum-0>
+<H2>Active forum topics</H2>
+<DIV class=content>
+<DIV class=item-list>
+<UL>
+  <LI><A href="http://decisiontrees.net/node/47">Machine Learning Data 
+  Sets</A></LI></UL></DIV>
+<DIV class=more-link><A title="Read the latest forum topics." 
+href="http://decisiontrees.net/forum">more</A></DIV></DIV></DIV>
+<DIV class="block block-comment" id=block-comment-0>
+<H2>Recent comments</H2>
+<DIV class=content>
+<DIV class=item-list>
+<UL>
+  <LI><A href="http://decisiontrees.net/node/20#comment-17">automatic 
+  interaction detection</A><BR>8 weeks 3 days ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-16">Data sets</A><BR>8 
+  weeks 6 days ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-15">CHAID AND 
+  AID</A><BR>9 weeks 1 hour ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-14">re: CHAID and 
+  AID</A><BR>9 weeks 1 hour ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-13">CHAID and 
+  AID</A><BR>9 weeks 5 hours ago
+  <LI><A href="http://decisiontrees.net/node/45#comment-12">Large database 
+  decision tree classifiers</A><BR>9 weeks 3 days ago
+  <LI><A href="http://decisiontrees.net/node/22#comment-9">Re:See5</A><BR>10 
+  weeks 15 hours ago
+  <LI><A href="http://decisiontrees.net/node/45#comment-8">Need papers about 
+  data mining</A><BR>10 weeks 22 hours ago
+  <LI><A href="http://decisiontrees.net/node/22#comment-7">See5</A><BR>10 weeks 
+  22 hours ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-6">Access 
+  problems?</A><BR>10 weeks 22 hours ago</LI></UL></DIV></DIV></DIV>
+<DIV class="block block-user" id=block-user-3>
+<H2>Who's online</H2>
+<DIV class=content>There are currently 0 users and 14 guests 
+online.</DIV></DIV></DIV>
+<DIV class=main-left id=main>
+<DIV class=main-wrap-left id=main-wrap>
+<DIV class=mw1>
+<DIV class=breadcrumb><A href="http://decisiontrees.net/">Home</A> » <A 
+href="http://decisiontrees.net/node/16"><SPAN 
+class=lw1>Tutorial</SPAN></A></DIV>
+<H2 class=main-title>Tutorial (6): Entropy Bias</H2><!-- begin content -->
+<DIV class=node>
+<DIV class=content><BR>
+<STYLE>TABLE {
+	BORDER-COLLAPSE: separate
+}
+TH {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; BORDER-TOP-STYLE: none; PADDING-TOP: 0px; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+TR {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; BORDER-BOTTOM-STYLE: none
+}
+TBODY {
+	TEXT-ALIGN: center
+}
+TABLE TD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+TABLE {
+	MARGIN: 0.5em 0px 1em
+}
+TBODY {
+	MARGIN-LEFT: 3px; TEXT-ALIGN: center
+}
+#tree {
+	
+}
+#popupMenu {
+	BORDER-RIGHT: #ccc 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ccc 1px solid; PADDING-LEFT: 2px; FONT-WEIGHT: bold; VISIBILITY: hidden; PADDING-BOTTOM: 2px; BORDER-LEFT: #ccc 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #ccc 1px solid; POSITION: absolute; BACKGROUND-COLOR: #fafafa
+}
+.headers {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; WIDTH: 50%; PADDING-TOP: 2px; BACKGROUND-COLOR: #dbe8f0
+}
+.subheaders {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; MARGIN-LEFT: 3px; WIDTH: 75%; PADDING-TOP: 2px
+}
+.build {
+	BACKGROUND-COLOR: #6699ff
+}
+.prune {
+	BACKGROUND-COLOR: #ff3300
+}
+.correctColor {
+	BACKGROUND-COLOR: #a0c0d6
+}
+.wrongColor {
+	BACKGROUND-COLOR: #fbaac5
+}
+.exNode {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: bold; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; BACKGROUND-COLOR: #e7cc9a
+}
+.exNode:hover {
+	BACKGROUND-COLOR: #b49967
+}
+.normalNode {
+	BORDER-RIGHT: #ffffff 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ffffff 1px solid; PADDING-LEFT: 2px; FONT-WEIGHT: normal; PADDING-BOTTOM: 2px; BORDER-LEFT: #ffffff 1px solid; PADDING-TOP: 2px; BORDER-BOTTOM: #ffffff 1px solid; BACKGROUND-COLOR: #a0c0d6
+}
+.normalNode:hover {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; BACKGROUND-COLOR: #dbe8f0
+}
+.leafNode {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: normal; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; BACKGROUND-COLOR: #92f986
+}
+.leafNode:hover {
+	BACKGROUND-COLOR: #68c652
+}
+.branchNode {
+	
+}
+.normalNode1 {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: normal; PADDING-BOTTOM: 2px; PADDING-TOP: 2px; BACKGROUND-COLOR: #cc99cc
+}
+.correctStat {
+	COLOR: #00cc66
+}
+.wrongStat {
+	COLOR: #f8341f
+}
+#dataTable {
+	CURSOR: pointer
+}
+#validTable {
+	CURSOR: pointer
+}
+</STYLE>
+
+<H1>Entropy Bias</H1>
+<P>In the <A class=normallink href="http://decisiontrees.net/node/28">previous 
+exercise</A> and in <A class=normallink 
+href="http://decisiontrees.net/node/27">the page before that</A> we have seen 
+how a simple entropy measure can be used to recursively build a decision tree. 
+This technique is flawed though because it favours attributes that have many 
+possible values over those that have few. Why is this a problem? Why does this 
+matter? </P>
+<H3>An Example</H3>
+<P>Take an example where we have a new attribute Date, that records the date 
+when we sent out the promotion. Our modified dataset might look something like 
+this:</P>
+<TABLE id=dataTable width="70%" border=1>
+  <TBODY>
+  <TR>
+    <TD class=titles>Date</TD>
+    <TD class=titles>District</TD>
+    <TD class=titles>House Type</TD>
+    <TD class=titles>Income</TD>
+    <TD class=titles>Previous <BR>Customer </TD>
+    <TD class=titles>Outcome</TD></TR>
+  <TR id=d_0>
+    <TD>3/10/03</TD>
+    <TD>Suburban</TD>
+    <TD>Detached</TD>
+    <TD>High</TD>
+    <TD>No</TD>
+    <TD>Nothing</TD></TR>
+  <TR id=d_1>
+    <TD>14/9/03</TD>
+    <TD>Suburban</TD>
+    <TD>Detached</TD>
+    <TD>High</TD>
+    <TD>Responded</TD>
+    <TD>Nothing</TD></TR>
+  <TR id=d_2>
+    <TD>2/4/02</TD>
+    <TD>Rural</TD>
+    <TD>Detached</TD>
+    <TD>High</TD>
+    <TD>No</TD>
+    <TD>Responded</TD></TR>
+  <TR id=d_3>
+    <TD>18/1/03</TD>
+    <TD>Urban</TD>
+    <TD>Semi-detached</TD>
+    <TD>High</TD>
+    <TD>No</TD>
+    <TD>Responded</TD></TR>
+  <TR id=d_4>
+    <TD>3/4/03</TD>
+    <TD>Urban</TD>
+    <TD>Semi-detached</TD>
+    <TD>Low</TD>
+    <TD>No</TD>
+    <TD>Responded</TD></TR>
+  <TR id=d_5>
+    <TD id=yeah>15/10/02</TD>
+    <TD id=yeah>Urban</TD>
+    <TD>Semi-detached</TD>
+    <TD>Low</TD>
+    <TD>Responded</TD>
+    <TD>Nothing</TD></TR>
+  <TR id=d_6>
+    <TD>15/10/02</TD>
+    <TD>Rural</TD>
+    <TD>Semi-detached</TD>
+    <TD>Low</TD>
+    <TD>Responded</TD>
+    <TD>Responded</TD></TR>
+  <TR id=d_7>
+    <TD>2/3/01</TD>
+    <TD>Suburban</TD>
+    <TD>Terrace</TD>
+    <TD>High</TD>
+    <TD>No</TD>
+    <TD>Nothing</TD></TR>
+  <TR id=d_8>
+    <TD>4/5/03</TD>
+    <TD>Suburban</TD>
+    <TD>Semi-detached</TD>
+    <TD>Low</TD>
+    <TD>No</TD>
+    <TD>Responded</TD></TR>
+  <TR id=d_9>
+    <TD>2/1/03</TD>
+    <TD>Urban</TD>
+    <TD>Terrace</TD>
+    <TD>Low</TD>
+    <TD>No</TD>
+    <TD>Responded</TD></TR>
+  <TR id=d_10>
+    <TD>3/10/03</TD>
+    <TD>Suburban</TD>
+    <TD>Terrace</TD>
+    <TD>Low</TD>
+    <TD>Responded</TD>
+    <TD>Responded</TD></TR>
+  <TR id=d_11>
+    <TD>3/10/03</TD>
+    <TD>Rural</TD>
+    <TD>Terrace</TD>
+    <TD>High</TD>
+    <TD>Responded</TD>
+    <TD>Responded</TD></TR>
+  <TR id=d_12>
+    <TD>8/4/03</TD>
+    <TD>Rural</TD>
+    <TD>Detached</TD>
+    <TD>Low</TD>
+    <TD>No</TD>
+    <TD>Responded</TD></TR>
+  <TR id=d_13>
+    <TD>6/5/02</TD>
+    <TD>Urban</TD>
+    <TD>Terrace</TD>
+    <TD>High</TD>
+    <TD>Responded</TD>
+    <TD>Nothing</TD></TR></TBODY></TABLE>
+<P>This attribute will be given a high Information Gain value in our tree 
+construction algorithm. And so it will seem like a good idea to use this at the 
+root node. A tree built using the Information Gain measure on the above dataset 
+will look like this:</P>
+<TABLE id=tree width="75%">
+  <TBODY><BR>
+  <TR>
+    <TD id=-1-1><A class=exNode title="Root Node" 
+      href="javascript:nodeOptions([],'-1-1')">Date</A></TD></TR>
+  <TR>
+    <TD align=middle>
+      <TABLE>
+        <TBODY><BR>
+        <TR>
+          <TD style="BORDER-BOTTOM: #000000 1px solid" colSpan=11>|</TD></TR>
+        <TR>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>3/10/03<BR>2/3<BR>|</TD></TR>
+              <TR>
+                <TD id=00><A class=exNode 
+                  href="javascript:nodeOptions([0,0],'00')">House Type</A></TD></TR>
+              <TR>
+                <TD align=middle>
+                  <TABLE>
+                    <TBODY><BR>
+                    <TR>
+                      <TD style="BORDER-BOTTOM: #000000 1px solid" 
+                      colSpan=3>|</TD></TR>
+                    <TR>
+                      <TD vAlign=top>
+                        <TABLE>
+                          <TBODY><BR>
+                          <TR>
+                            <TD>|<BR>Detached<BR>1/1<BR>|</TD></TR>
+                          <TR>
+                            <TD id=0020><SPAN class=leafNode><A 
+                              href="javascript:checkPaths([0,0,2,0,5,0],1,1)">Nothing</A></SPAN></TD></TR></TBODY></TABLE></TD>
+                      <TD vAlign=top>
+                        <TABLE>
+                          <TBODY><BR>
+                          <TR>
+                            <TD>|<BR>Semi-detached<BR>2/2<BR>|</TD></TR>
+                          <TR>
+                            <TD id=0021><SPAN class=leafNode><A 
+                              href="javascript:checkPaths([0,0,2,1,5,1],1,1)">Responded</A></SPAN></TD></TR></TBODY></TABLE></TD>
+                      <TD vAlign=top>
+                        <TABLE>
+                          <TBODY><BR>
+                          <TR>
+                            <TD>|<BR>Terrace<BR>0/0<BR>|</TD></TR>
+                          <TR>
+                            <TD id=0022><SPAN 
+                          class=leafNode>null</SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>14/9/03<BR>1/1<BR>|</TD></TR>
+              <TR>
+                <TD id=01><SPAN class=leafNode><A 
+                  href="javascript:checkPaths([0,1,5,0],1,1)">Nothing</A></SPAN></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>2/4/03<BR>1/1<BR>|</TD></TR>
+              <TR>
+                <TD id=02><SPAN class=leafNode><A 
+                  href="javascript:checkPaths([0,2,5,1],1,1)">Responded</A></SPAN></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>18/1/03<BR>1/1<BR>|</TD></TR>
+              <TR>
+                <TD id=03><SPAN class=leafNode><A 
+                  href="javascript:checkPaths([0,3,5,1],1,1)">Responded</A></SPAN></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>3/4/03<BR>1/1<BR>|</TD></TR>
+              <TR>
+                <TD id=04><SPAN class=leafNode><A 
+                  href="javascript:checkPaths([0,4,5,1],1,1)">Responded</A></SPAN></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>15/10/02<BR>1/2<BR>|</TD></TR>
+              <TR>
+                <TD id=05><A class=exNode 
+                  href="javascript:nodeOptions([0,5],'05')">District</A></TD></TR>
+              <TR>
+                <TD align=middle>
+                  <TABLE>
+                    <TBODY><BR>
+                    <TR>
+                      <TD style="BORDER-BOTTOM: #000000 1px solid" 
+                      colSpan=3>|</TD></TR>
+                    <TR>
+                      <TD vAlign=top>
+                        <TABLE>
+                          <TBODY><BR>
+                          <TR>
+                            <TD>|<BR>Suburban<BR>0/0<BR>|</TD></TR>
+                          <TR>
+                            <TD id=0510><SPAN 
+                          class=leafNode>null</SPAN></TD></TR></TBODY></TABLE></TD>
+                      <TD vAlign=top>
+                        <TABLE>
+                          <TBODY><BR>
+                          <TR>
+                            <TD>|<BR>Rural<BR>1/1<BR>|</TD></TR>
+                          <TR>
+                            <TD id=0511><SPAN class=leafNode><A 
+                              href="javascript:checkPaths([0,5,1,1,5,1],1,1)">Responded</A></SPAN></TD></TR></TBODY></TABLE></TD>
+                      <TD vAlign=top>
+                        <TABLE>
+                          <TBODY><BR>
+                          <TR>
+                            <TD>|<BR>Urban<BR>1/1<BR>|</TD></TR>
+                          <TR>
+                            <TD id=0512><SPAN class=leafNode><A 
+                              href="javascript:checkPaths([0,5,1,2,5,0],1,1)">Nothing</A></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>2/3/01<BR>1/1<BR>|</TD></TR>
+              <TR>
+                <TD id=06><SPAN class=leafNode><A 
+                  href="javascript:checkPaths([0,6,5,0],1,1)">Nothing</A></SPAN></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>4/5/03<BR>1/1<BR>|</TD></TR>
+              <TR>
+                <TD id=07><SPAN class=leafNode><A 
+                  href="javascript:checkPaths([0,7,5,1],1,1)">Responded</A></SPAN></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>2/1/03<BR>1/1<BR>|</TD></TR>
+              <TR>
+                <TD id=08><SPAN class=leafNode><A 
+                  href="javascript:checkPaths([0,8,5,1],1,1)">Responded</A></SPAN></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>8/4/03<BR>1/1<BR>|</TD></TR>
+              <TR>
+                <TD id=09><SPAN class=leafNode><A 
+                  href="javascript:checkPaths([0,9,5,1],1,1)">Responded</A></SPAN></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>6/5/02<BR>1/1<BR>|</TD></TR>
+              <TR>
+                <TD id=010><SPAN class=leafNode><A 
+                  href="javascript:checkPaths([0,10,5,0],1,1)">Nothing</A></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<P>What a monster!</P>
+<P>Now this tree might classify the training data which we used to build it, but 
+as well as being complex, it won't be much good for predicting new instances. 
+The date attribute will be the first thing the tree filters for when we want a 
+new prediction for some new instance. It will try to base it's predications on 
+this just because the training data was split nicely with a lot of instances 
+being classified just from their Date. It should be obvious that this attribute 
+is not a good predictor in reality for the Outcome. It has only been selected 
+because of the way the entropy calculations work. Why prefer a tree like the 
+above, when we could build the following tree from the same data:</P>
+<TABLE id=tree width="75%">
+  <TBODY><BR>
+  <TR>
+    <TD id=-1-1><A class=exNode title="Root Node" 
+      href="javascript:nodeOptions([],'-1-1')">District</A></TD></TR>
+  <TR>
+    <TD align=middle>
+      <TABLE>
+        <TBODY><BR>
+        <TR>
+          <TD style="BORDER-BOTTOM: #000000 1px solid" colSpan=3>|</TD></TR>
+        <TR>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>Suburban<BR>3/5<BR>|</TD></TR>
+              <TR>
+                <TD id=10><A class=exNode 
+                  href="javascript:nodeOptions([1,0],'10')">House Type</A></TD></TR>
+              <TR>
+                <TD align=middle>
+                  <TABLE>
+                    <TBODY><BR>
+                    <TR>
+                      <TD style="BORDER-BOTTOM: #000000 1px solid" 
+                      colSpan=3>|</TD></TR>
+                    <TR>
+                      <TD vAlign=top>
+                        <TABLE>
+                          <TBODY><BR>
+                          <TR>
+                            <TD>|<BR>Detached<BR>2/2<BR>|</TD></TR>
+                          <TR>
+                            <TD id=1020><SPAN class=leafNode><A 
+                              href="javascript:checkPaths([1,0,2,0,5,0],1,1)">Nothing</A></SPAN></TD></TR></TBODY></TABLE></TD>
+                      <TD vAlign=top>
+                        <TABLE>
+                          <TBODY><BR>
+                          <TR>
+                            <TD>|<BR>Semi-detached<BR>1/2<BR>|</TD></TR>
+                          <TR>
+                            <TD id=1021><A class=exNode 
+                              href="javascript:nodeOptions([1,0,2,1],'1021')">Income</A></TD></TR>
+                          <TR>
+                            <TD align=middle>
+                              <TABLE>
+                                <TBODY><BR>
+                                <TR>
+                                <TD style="BORDER-BOTTOM: #000000 1px solid" 
+                                colSpan=2>|</TD></TR>
+                                <TR>
+                                <TD vAlign=top>
+                                <TABLE>
+                                <TBODY><BR>
+                                <TR>
+                                <TD>|<BR>High<BR>1/1<BR>|</TD></TR>
+                                <TR>
+                                <TD id=102130><SPAN class=leafNode><A 
+                                href="javascript:checkPaths([1,0,2,1,3,0,5,0],1,1)">Nothing</A></SPAN></TD></TR></TBODY></TABLE></TD>
+                                <TD vAlign=top>
+                                <TABLE>
+                                <TBODY><BR>
+                                <TR>
+                                <TD>|<BR>Low<BR>1/1<BR>|</TD></TR>
+                                <TR>
+                                <TD id=102131><SPAN class=leafNode><A 
+                                href="javascript:checkPaths([1,0,2,1,3,1,5,1],1,1)">Responded</A></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
+                      <TD vAlign=top>
+                        <TABLE>
+                          <TBODY><BR>
+                          <TR>
+                            <TD>|<BR>Terrace<BR>1/1<BR>|</TD></TR>
+                          <TR>
+                            <TD id=1022><SPAN class=leafNode><A 
+                              href="javascript:checkPaths([1,0,2,2,5,1],1,1)">Responded</A></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>Rural<BR>4/4<BR>|</TD></TR>
+              <TR>
+                <TD id=11><SPAN class=leafNode><A 
+                  href="javascript:checkPaths([1,1,5,1],1,1)">Responded</A></SPAN></TD></TR></TBODY></TABLE></TD>
+          <TD vAlign=top>
+            <TABLE>
+              <TBODY><BR>
+              <TR>
+                <TD>|<BR>Urban<BR>3/5<BR>|</TD></TR>
+              <TR>
+                <TD id=12><A class=exNode 
+                  href="javascript:nodeOptions([1,2],'12')">Previous 
+                Customer</A></TD></TR>
+              <TR>
+                <TD align=middle>
+                  <TABLE>
+                    <TBODY><BR>
+                    <TR>
+                      <TD style="BORDER-BOTTOM: #000000 1px solid" 
+                      colSpan=2>|</TD></TR>
+                    <TR>
+                      <TD vAlign=top>
+                        <TABLE>
+                          <TBODY><BR>
+                          <TR>
+                            <TD>|<BR>No<BR>3/3<BR>|</TD></TR>
+                          <TR>
+                            <TD id=1240><SPAN class=leafNode><A 
+                              href="javascript:checkPaths([1,2,4,0,5,1],1,1)">Responded</A></SPAN></TD></TR></TBODY></TABLE></TD>
+                      <TD vAlign=top>
+                        <TABLE>
+                          <TBODY><BR>
+                          <TR>
+                            <TD>|<BR>Yes<BR>2/2<BR>|</TD></TR>
+                          <TR>
+                            <TD id=1241><SPAN class=leafNode><A 
+                              href="javascript:checkPaths([1,2,4,1,5,0],1,1)">Nothing</A></SPAN></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+<P>This is not even the shortest tree! Clearly, in some cases it would be better 
+to have a different method of splitting the data in our algorithm. Have a go on 
+the next page at building some trees with the modified dataset. See how the 
+Information Gain measure always favours the Date attribute. </P></DIV>
+<DIV class=book>
+<DIV class=nav>
+<DIV class=links>
+<DIV class=prev><A title="View the previous page." 
+href="http://decisiontrees.net/node/28">previous</A></DIV>
+<DIV class=next><A title="View the next page." 
+href="http://decisiontrees.net/node/31">next</A></DIV>
+<DIV class=up><A title="View this page's parent section." 
+href="http://decisiontrees.net/node/16">up</A></DIV></DIV>
+<DIV class=titles>
+<DIV class=prev>Tutorial (5): Exercise 2</DIV>
+<DIV class=next>Tutorial (7): Exercise 3</DIV></DIV></DIV></DIV></DIV>
+<DIV class=links><A 
+title="Show a printer-friendly version of this book page and its sub-pages." 
+href="http://decisiontrees.net/book/print/29">printer-friendly version</A> – <A 
+title="Share your thoughts and opinions related to this posting." 
+href="http://decisiontrees.net/comment/reply/29#comment">add new 
+comment</A></DIV></DIV><A id=comment></A>
+<FORM action=comment method=post>
+<DIV><INPUT type=hidden value=29 name=edit[nid]> </DIV></FORM><!-- end content -->
+<DIV class=footer-left id=footer>
+<P>
+<SCRIPT type=text/javascript><!--
+google_ad_client = "pub-5329483376432160";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "text";
+google_ad_channel ="";
+google_color_border = "336699";
+google_color_bg = "FFFFFF";
+google_color_link = "CF094A";
+google_color_url = "8BAEC9";
+google_color_text = "000000";
+//--></SCRIPT>
+
+<SCRIPT src="Tutorial (6) Entropy Bias  Decision Trees_files/show_ads.js" 
+type=text/javascript>
+</SCRIPT>
+</P></DIV></DIV></DIV></DIV></DIV><SPAN 
+class=clear></SPAN></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV></DIV>
+<DIV class=end-left id=end>
+<DIV class=ew1>
+<DIV class=ew2></DIV></DIV></DIV></BODY></HTML>

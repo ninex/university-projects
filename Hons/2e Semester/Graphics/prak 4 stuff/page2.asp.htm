@@ -1,0 +1,433 @@
+<html><head><title>GameDev.net -- Cel-Shading</title>
+
+  
+
+
+
+
+
+
+
+<meta name="Keywords" content="game development, game programming, game jobs, video game jobs, games jobs, graphics programming, OpenGL, DirectX, Direct3D, AI, artificial intelligence, game design, game, gamedev, development, programming, c++, games, program, create, design, gouraud, shading, tutorial, art, gdnet">
+<meta name="Description" content="Gamedev.net is the leading resource for game developers, featuring daily news updates, over 1500 featured articles and tutorials, and the most active game development forums anywhere!"> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+<link rel="stylesheet" type="text/css" href="page2.asp_files/theme.css">
+
+<link rel="stylesheet" type="text/css" href="page2.asp_files/source.css">
+<link rel="alternate" type="application/rss+xml" title="GameDev.net Feed" href="http://www.gamedev.net/xml">
+	
+<script type="text/javascript" src="page2.asp_files/menu.js"></script>
+
+<style type="text/css">
+.iTt{
+    FONT-FAMILY:       Verdana, Arial, Helvetica;
+    FONT-SIZE:         11px;
+    FONT-STYLE:        normal;
+    FONT-WEIGHT:       normal;
+    COLOR:             black;
+    BACKGROUND-COLOR:  lightyellow;
+    BORDER:            black 1px solid;
+    PADDING:           2px;
+}
+.iTt a {
+    COLOR:             0000CC;
+}
+.iTt a:visited {
+    COLOR:             0000CC;
+}
+.iTt a:hover {
+    COLOR:             6666CC;
+}
+.iTt TD {
+   COLOR:              999999;
+}
+</style></head><body>
+
+<div id="header"><!-- style="width: 800px">-->
+<!--<div class="hdrtoplinks">
+<a href="">advertise</a> | <a href="">write</a> | <a href="">about us</a>&nbsp;&nbsp;</span>
+</div>-->
+<table style="table-layout: fixed;" border="0" cellpadding="0" cellspacing="0" width="100%">
+	<tbody><tr valign="top">
+		<td id="CM_Logo" rowspan="4"><a href="http://www.gamedev.net/"><img src="page2.asp_files/clear.gif" alt="" border="0" height="100%" width="100%"></a></td>
+		<td id="CM_AdSpace">
+			<div id="CM_AdContainer">
+			
+<!-- Begin -  Site: GameDev.net Zone: GameDev.net Main 468x60 -->
+<script language="javascript" type="text/javascript">
+<!--
+var browName = navigator.appName;
+var SiteID = 1;
+var browDateTime = (new Date()).getTime();
+if (browName=='Netscape')
+{
+document.write('<s'+'cript lang' + 'uage="jav' + 'ascript" src="http://www.gamedev.net/banman/a.aspx?ZoneID=1&amp;Task=Get&amp;IFR=False&amp;Browser=NETSCAPE4&amp;PageID=15898&amp;SiteID=' + SiteID + '&amp;Random=' + browDateTime + '">'); document.write('</'+'scr'+'ipt>');
+}
+if (browName!='Netscape')
+{
+document.write('<s'+'cript lang' + 'uage="jav' + 'ascript" src="http://www.gamedev.net/banman/a.aspx?ZoneID=1&amp;Task=Get&amp;IFR=False&amp;PageID=15898&amp;SiteID=' + SiteID + '&amp;Random=' + browDateTime + '">'); document.write('</'+'scr'+'ipt>');
+}
+// --> 
+</script><script language="javascript" src="page2.asp_files/a.js"></script><!-- ValueClick Media 468x60 Banner v1.4 for gamedev.net -->
+<script language="Javascript"><!--
+var i=j=p=t=u=x=z=dc='';var id=f=0;var f=Math.floor(Math.random()*7777);
+id=2342; dc=document;u='ht'+'tp://media.fastclick.net/w'; x='/get.media?t=s';
+z=' width=468 height=60 border=0 ';t=z+'marginheight=0 marginwidth=';
+i=u+x+'&sid='+id+'&m=1&tp=1&f=b&v=1.4&c='+f+'&r='+escape(dc.referrer);
+u='<a  hr'+'ef="'+u+'/click.here?sid='+id+'&m=1&c='+f+'"  target="_top">';
+dc.writeln('<ifr'+'ame src="'+i+'&d=f"'+t+'0 hspace=0 vspace=0 frameborder=0 scrolling=no>');
+if(navigator.appName.indexOf('Mic')<=0){dc.writeln(u+'<img src="'+i+'&d=n"'+z+'></a>');}
+dc.writeln('</iframe>'); // --></script><iframe src="page2.asp_files/get.htm" border="0" marginheight="0" marginwidth="0" hspace="0" vspace="0" frameborder="0" height="60" scrolling="no" width="468">
+&lt;a
+href="http://media.fastclick.net/w/click.here?sid=2342&amp;m=1&amp;c=2481"
+target="_top"&gt;&lt;img
+src="http://media.fastclick.net/w/get.media?t=s&amp;sid=2342&amp;m=1&amp;tp=1&amp;f=b&amp;v=1.4&amp;c=2481&amp;r=http%3A//www.gamedev.net/reference/programming/features/celshading/&amp;d=n"
+width=468 height=60 border=0 &gt;&lt;/a&gt;
+</iframe>
+<noscript>
+<a href="http://media.fastclick.net/w/click.here?sid=2342&m=1&c=1"  target="_top">
+<img src="http://media.fastclick.net/w/get.media?sid=2342&m=1&tp=1&d=s&c=1&f=b&v=1.4"
+width=468 height=60 border=1></a></noscript>
+<!-- ValueClick Media 468x60 Banner v1.4 for gamedev.net -->
+<noscript> <a
+href="http://www.gamedev.net/banman/a.aspx?ZoneID=1&amp;Task=Click&amp;Mode=HTML&amp;SiteID=1&amp;PageID=67513"
+target="_blank"> <img
+src="http://www.gamedev.net/banman/a.aspx?ZoneID=1&amp;Task=Get&amp;Mode=HTML&amp;SiteID=1&amp;PageID=67513"
+width="468" height="60" border="0" alt=""></a>
+</noscript>
+<!-- End -  Site: GameDev.net Zone: GameDev.net Main 468x60 -->
+			</div>
+		</td>
+		<td id="CM_AdSpaceTrailer"><img src="page2.asp_files/clear.gif" alt="" height="100%" width="100%"></td>
+	</tr>
+	<tr>
+		<td id="CM_MidSpace"><img src="page2.asp_files/clear.gif" alt="" height="100%" width="100%"></td>
+		<td id="CM_MidSpaceTrailer"><img src="page2.asp_files/clear.gif" alt="" height="100%" width="100%"></td>
+	</tr>
+	<tr>
+		<td id="CM_NavSpace">
+			<ul id="lw_menu">
+				<li style="width: 0pt;">&nbsp;</li>
+				<li id="l1f">Features
+					<ul>
+						<li id="l2fa"><img src="page2.asp_files/jobs.gif" align="middle"> <a href="http://www.gamedev.net/gamejobs/">Game Jobs</a></li>
+						<li id="l2fb"><img src="page2.asp_files/prodreview.gif" align="middle"> <a href="http://www.gamedev.net/features/reviews/">Product Reviews</a></li>
+						<li id="l2fc"><img src="page2.asp_files/users.gif" align="middle"> <a href="http://www.gamedev.net/community/contest/">Contests</a></li>
+			
+						<li id="l2fd"><img src="page2.asp_files/gds.gif" align="middle"> <a href="http://www.gamedev.net/community/gds/">GD Showcase</a></li>
+						<li id="l2fe"><img src="page2.asp_files/newsletter.gif" align="middle"> <a href="http://www.gamedev.net/info/newsletter.asp">Newsletter</a></li>
+					</ul>
+				</li>
+				<li id="l1r">Resources
+					<ul>
+						<li id="l2ra"><img src="page2.asp_files/articles.gif" align="middle"> <a href="http://www.gamedev.net/reference/">Articles &amp; Resources</a></li>
+			
+						<li id="l2rb"><img src="page2.asp_files/columns.gif" align="middle"> <a href="http://www.gamedev.net/columns/">Columns</a></li>
+						<li id="l2rc"><img src="page2.asp_files/books.gif" align="middle"> <a href="http://www.gamedev.net/columns/books/">Books</a></li>
+						<li id="l2rd"><img src="page2.asp_files/beginners.gif" align="middle"> <a href="http://www.gamedev.net/reference/start_here/">For Beginners</a></li>
+						<li id="l2re"><img src="page2.asp_files/gamedict.gif" align="middle"> <a href="http://www.gamedev.net/dict/">Game Dictionary</a></li>
+					</ul>
+			
+				</li>
+				<li id="l1c">Community
+					<ul>
+						<li id="l2ca"><img src="page2.asp_files/chat.gif" align="middle"> <a href="http://www.gamedev.net/community/forums/">Forums</a></li>
+						<li id="l2cb"><img src="page2.asp_files/users.gif" align="middle"> <a href="http://www.gamedev.net/community/gathering/">GD Gathering</a></li>
+						<li id="l2cc"><img src="page2.asp_files/ircchat.gif" align="middle"> <a href="http://www.gamedev.net/community/chat/">Online Chat</a></li>
+			
+					</ul>
+				</li>
+				<li id="l1m">Members
+					<ul>
+						<li id="l2ma"><img src="page2.asp_files/controlpanel.gif" align="middle"> <a href="http://www.gamedev.net/community/forums/cpanel.asp">Control Panel</a></li>
+						<li id="l2mb"><img src="page2.asp_files/new1-08.gif" align="middle"> <a href="http://www.gamedev.net/subscribe/">GDNet+ Signups</a></li>
+						<li id="l2mc"><img src="page2.asp_files/journals.gif" align="middle"> <a href="http://www.gamedev.net/community/journals/">Developer Journals</a></li>
+						<li id="l2md"><img src="page2.asp_files/membersearch.gif" align="middle"> <a href="http://www.gamedev.net/profile/">Member Search</a></li>
+					</ul>
+				</li>
+			</ul>
+		
+		</td>
+		<td id="CM_NavSpaceTrailer"><img src="page2.asp_files/clear.gif" alt="" height="100%" width="100%"></td>
+	</tr>
+	<tr>
+		<td id="CM_ExOptA"><img src="page2.asp_files/clear.gif" alt="" height="100%" width="100%"></td>
+		<td id="CM_ExOptB"><img src="page2.asp_files/clear.gif" alt="" height="100%" width="100%"></td>
+	</tr>
+</tbody></table>
+</div>
+
+<script language="Javascript">
+	startList();
+</script>
+<div class="leftcolumn">	
+			<div id="CMS_LogoAlt"><a href="http://www.gamedev.net/"><img src="page2.asp_files/clear.gif" alt="" style="z-index: 10000;" border="0" height="100%" width="100%"></a></div>
+			<div id="CMS_ExOptA"></div>
+			<div id="CMS_ExOptB"></div>
+			<div id="CMS_Options">
+				<div id="CMS_Features">
+				  <div class="boxContentHeadr_MM">
+				  	<div class="boxContentHeadr_Title">Features</div>
+				  </div>
+				  <img src="page2.asp_files/int_gdcirc.gif" class="boxCImgR">
+				  <img src="page2.asp_files/int_gdltcr.gif" class="boxCImgL">
+				  <div class="boxContent_MM">
+			          <a href="http://www.gamedev.net/gamejobs/">Game Jobs</a><br>
+			          <a href="http://www.gamedev.net/features/reviews/">Product Reviews</a><br>
+			          <a href="http://www.gamedev.net/community/contest/">Contests</a><br>
+			          <a href="http://www.gamedev.net/community/gds/">GD Showcase</a><br>
+			          <a href="http://www.gamedev.net/info/newsletter.asp">Newsletter</a><br>
+			          <a href="http://www.gamedev.net/info/media/">Advertise with Us</a><br>
+			          <a href="http://www.gamedev.net/info/about/">About Us</a>
+				  </div>
+				</div>	
+				<br class="CMS_Spacer">
+				<div id="CMS_Resources">
+				  <div class="boxContentHeadr_MM">
+				  	<div class="boxContentHeadr_Title">Resources</div>
+				  </div>
+				  <img src="page2.asp_files/int_gdcirc.gif" class="boxCImgR">
+				  <img src="page2.asp_files/int_gdltcr.gif" class="boxCImgL">			  
+				  <div class="boxContent_MM">
+			          <a href="http://www.gamedev.net/reference/">Articles &amp; Resources</a><br>
+			          <a href="http://www.gamedev.net/columns/">Columns</a><br>
+			          <a href="http://www.gamedev.net/columns/books/">Books</a><br>
+			          <a href="http://www.gamedev.net/reference/start_here/">For Beginners</a><br>
+			          <a href="http://www.gamedev.net/dict/">Game Dictionary</a>
+			          <a href="http://www.gamedev.net/info/writers.asp">Write For Us</a>
+				  </div>
+				</div>	
+				<br class="CMS_Spacer">
+				<div id="CMS_Community">
+				  <div class="boxContentHeadr_MM">
+				  	<div class="boxContentHeadr_Title">Community</div>
+				  </div>
+				  <img src="page2.asp_files/int_gdcirc.gif" class="boxCImgR">
+				  <img src="page2.asp_files/int_gdltcr.gif" class="boxCImgL">			  
+				  <div class="boxContent_MM">
+			          <a href="http://www.gamedev.net/community/forums/">Forums</a><br>
+			          <a href="http://www.gamedev.net/community/gathering/">GD Gathering</a><br>
+			          <a href="http://www.gamedev.net/community/chat/">Online Chat</a><br>
+				  </div>
+				</div>	
+				<br class="CMS_Spacer">
+				<div id="CMS_Members">
+				  <div class="boxContentHeadr_MM">
+				  	<div class="boxContentHeadr_Title">Members</div>
+				  </div>
+				  <img src="page2.asp_files/int_gdcirc.gif" class="boxCImgR">
+				  <img src="page2.asp_files/int_gdltcr.gif" class="boxCImgL">			  
+				  <div class="boxContent_MM">
+			          <a href="http://www.gamedev.net/community/forums/cpanel.asp">Control Panel</a><br>
+			          <a href="http://www.gamedev.net/subscribe/">GDNet+ Signups!</a><br>
+			          <a href="http://www.gamedev.net/community/journals/">Developer Journals</a><br>
+			          <a href="http://www.gamedev.net/profile/">Member Search</a><br>
+				  </div>
+				</div>	
+			</div>
+			
+			<br class="CMS_Spacer">
+			<br class="CMS_Spacer">
+			<br class="CMS_Spacer">
+			
+			<div id="FP_Events" class="roundedBox" style="width: 98%;">
+					<div class="boxCorners"><img src="page2.asp_files/int_rtcr.gif" class="boxLeft" height="8" width="7"><img src="page2.asp_files/int_ltcr.gif" height="8" width="7"></div>
+						<div class="boxContentHeadr"><a href="http://www.gamedev.net/directory/events/">Upcoming Events</a></div>
+						<div class="boxContent">
+<img src="page2.asp_files/dotsm-blue.gif" height="6" width="7"><a href="http://www.gamedev.net/directory/events/?method=se&amp;eid=149">Penny Arcade Expo</a><br><span class="events_date">8/25 - 8/27 @ Bellevue, WA</span><br><br><img src="page2.asp_files/dotsm-blue.gif" height="6" width="7"><a href="http://www.gamedev.net/directory/events/?method=se&amp;eid=181">Toronto Independent Games Conference</a><br><span class="events_date">8/31 - 9/2 @ Toronto, Canada</span><br><br><img src="page2.asp_files/dotsm-blue.gif" height="6" width="7"><a href="http://www.gamedev.net/directory/events/?method=se&amp;eid=183">Game Audio Conference</a><br><span class="events_date">9/6 - 9/7 @ Austin, TX</span><br><br><img src="page2.asp_files/dotsm-blue.gif" height="6" width="7"><a href="http://www.gamedev.net/directory/events/?method=se&amp;eid=116">Games Market Europe</a><br><span class="events_date">9/6 - 9/7 @ London, United Kingdom</span><br><br><a href="http://www.gamedev.net/directory/events/">More events...</a>
+						</div>
+			</div>		
+			
+			<br class="CMS_Spacer">
+			<br class="CMS_Spacer">
+	
+			<div id="FP_Stats" class="roundedBox" style="width: 98%;">
+					<div class="boxCorners"><img src="page2.asp_files/int_rtcr.gif" class="boxLeft" height="8" width="7"><img src="page2.asp_files/int_ltcr.gif" height="8" width="7"></div>
+						<div class="boxContentHeadr">Quick Stats</div>
+						<div class="boxContent">
+
+						<span class="stats_bold">3065</span> people currently visiting GDNet.<br>
+						<span class="stats_bold">1983</span> articles in the reference section.<br>
+						<br>
+						<a href="http://www.grid.org/services/teams/team.htm?id=FD181524-CCD8-4DAA-A4EC-499F0DB09AD2">Help us fight cancer!</a><br>
+						<a href="http://setiathome.berkeley.edu/team_display.php?teamid=31384">Join SETI Team GDNet!</a>
+						</div>
+
+			</div>			
+
+			<br class="CMS_Spacer">
+			<br class="CMS_Spacer">
+			<br class="CMS_Spacer">
+
+			<!-- MICROBUTTON ADVERT FOR PARTNER SITES -->		
+			<div id="FP_PartnerButton" align="center">
+<a href="http://www.gamedev.net/"><img src="page2.asp_files/gdnet-88x31.gif" alt="Link to us" border="0" height="31" width="88"></a><br class="CMS_Spacer"><br class="CMS_Spacer">
+<!-- Begin -  Site: GameDev.net Zone: Button Rotation -->
+<table border="0" cellpadding="0" cellspacing="0" width="88"><tbody><tr><td><script language="javascript" src="page2.asp_files/sequence2.js" type="text/javascript"></script><table mm_noconvert="TRUE" border="0" bordercolor="#ffffff" cellpadding="1" cellspacing="1" width="100%"><tbody><tr><td><a href="http://www.gamedev.net/banman/a.aspx?Task=Click&amp;ZoneID=34&amp;CampaignID=285&amp;AdvertiserID=11&amp;BannerID=425&amp;SiteID=1&amp;RandomNumber=80237" target="_Top"><img src="page2.asp_files/image-1507411-10357920.gif" alt="ThinkGeek" align="middle" border="0" height="31" width="88"></a><br><br></td></tr></tbody></table></td></tr></tbody></table>
+<!-- End -  Site: GameDev.net Zone: Button Rotation -->
+			</div>
+
+			<div id="CMS_ExOptC"></div>
+			<div id="CMS_ExOptD"></div>
+			
+</div>
+
+<div id="centercolumn_2col">
+<div class="centerpadding">
+
+
+<table class="contextNav" align="center" border="0" width="100%">
+	<tbody><tr>
+		<td valign="bottom" width="90%">
+			<div class="hdrbreadcrumbs">
+			<strong></strong>
+			</div>
+		</td>
+		<td class="hdrSearchBox" nowrap="nowrap" valign="middle" width="10%">
+			<form style="margin: 0pt; padding: 0pt;" action="/community/forums/search.asp">&nbsp;&nbsp;<strong>search:</strong>&nbsp;<input size="20" name="terms" class="searchinput" type="text">&nbsp;&nbsp;<input src="page2.asp_files/hdr3srchbtn.gif" class="searchbutton" type="image"><span class="mediumfont"><input name="area" value="site" type="hidden">
+		</span></form></td>
+	</tr>
+</tbody></table>
+
+
+
+<center><a href="http://www.gamedev.net/reference/programming/features/celshading"><img src="page2.asp_files/celshading.gif" alt="" border="0" height="94" width="266"></a>
+
+<br><table border="0" cellpadding="4" cellspacing="0" width="100%"><tbody><tr><td>
+
+<!-- ARTICLE MAIN BODY -->
+<p><!--=============== NAVIGATION BOX ==================-->
+<table align="right" border="0" cellpadding="2" cellspacing="0" width="170"><tbody><tr><td>
+
+<table border="0" cellpadding="4" cellspacing="2" width="100%">
+  <tbody><tr><td class="boxheadr" valign="top">
+    Contents
+  </td></tr>
+  <tr>
+    <td class="featmenu" valign="middle">
+      <img src="page2.asp_files/dotsm.gif" alt="" border="0" height="6" width="7">&nbsp;<a href="http://www.gamedev.net/reference/programming/features/celshading/default.asp"><font color="#ffffff">Introduction</font></a><br>
+      <img src="page2.asp_files/dotsm.gif" alt="" border="0" height="6" width="7">&nbsp;<a href="http://www.gamedev.net/reference/programming/features/celshading/page2.asp"><font color="#ffffff">Advanced Topics</font></a><br>
+      <img src="page2.asp_files/dotsm.gif" alt="" border="0" height="6" width="7">&nbsp;<a href="http://www.gamedev.net/reference/programming/features/celshading/page3.asp"><font color="#ffffff">Conclusion</font></a><br>
+      <hr size="1">
+      <img src="page2.asp_files/dotsm.gif" alt="" border="0" height="6" width="7">&nbsp;<a href="http://www.gamedev.net/reference/articles/article1438.asp"><font color="#ffffff">Printable version</font></a><br>
+      <img src="page2.asp_files/dotsm.gif" alt="" border="0" height="6" width="7">&nbsp;<a href="http://www.gamedev.net/community/forums/topic.asp?key=featart&amp;uid=1438&amp;forum_id=35&amp;Topic_Title=Cel%2DShading"><font color="#ffffff">Discuss this article<br><img src="page2.asp_files/clear.gif" border="0" height="6" width="7">&nbsp;in the forums</font></a><br>
+    </td>
+  </tr>
+</tbody></table>
+<br>
+</td></tr></tbody></table>
+
+
+</p><h1>Advanced Topics</h1>
+<p>Now things get difficult. Why? Because we're going to cel-shade
+textures - something that I have never actually seen done before (I've
+had to work out all the theory behind this section on my own). So, what
+you're getting now is 100% original.
+</p><h2>Cel-Shading Textures</h2>
+<p>Now, there are 2 ways of doing this - multiple texturing and my way. Seeing as not
+every graphics card supports it (almost), we're going to do it my way :-).
+First, though, we need to revisit the Sharp Lighting map.
+</p><p>In this method, we are actually switching the roles of the
+texture and vertex color. Instead of the texture shading the color, the
+color is going to shade the texture.
+</p><h3>Creating the Sharp Lighting Map</h3>
+<p>Remember that lovely little image featured previously in this article? If not, then here it is again:
+</p><p><img src="page2.asp_files/texmap.gif">
+</p><p>Previously, we uploaded this texture to whatever API we are
+using. Now, we keep the values ourselves. Once we've loaded the
+texture, we have to create an array of floating point values (if you're
+storing the
+texture in byte format then just divide each pixel component by 255)
+and copy over the values.
+For the object itself, we need to change how we store the data. Here is
+a list of the data required:
+</p><ul>
+  <li>Vertex positions.
+  </li><li>Vertex normals.
+  </li><li>Texture coordinates (proper ones, not the 1D Sharp Lighting map).
+  </li><li>Sharp Map value (per vertex). This can be stored as an integer.
+</li></ul>
+
+<p>The only thing we've changed is the vertex colors, which have been replaced with
+texture coordinates. Now we have a locally stored Sharp Lighting map with object data. Time to do some software lighting.
+
+</p><h3>Lighting Textures</h3>
+<p>This part hasn't changed much since the last time we discussed
+lighting. Directional and positional lighting still both work in
+exactly the same way, but the only difference is that when
+calculating the dot product of the directional vector and the vertex
+normal, we multiply it by however wide our Sharp Lighting map is (in
+this case 16) minus 1 (because the range is 0-15) and cast it into an
+integer. This integer represents an index in our light map, and will be
+turned into a color when rendering.
+</p><h3>Rendering Cel-Shaded Textures</h3>
+<p>In DirectX and OpenGL, if you specify the color of the vertex along with the
+texture coordinate, the color of the texture will be modified to match the color of that vertex. Now,
+since we're using grayscale values, specifying the color of the texture will
+brighten/darken the vertex, but combined with Sharp Lighting, it looks cel-shaded. Pretty clever, eh?
+</p><p>So, we specify the color of the vertex. This is done by
+retrieving the Sharp Lighting value from the vertex structure, and
+looking up the value in the index map. This gives us a single value.
+Now, because we're using RGB (if you're not then you can work this bit
+out on your own), we simply use this value for all components of the
+RGB triplet. For example, if the lighting value was 0.4, then red would
+be 0.4, green would be 0.4, and blue would also be 0.4.
+We then specify the proper texture coordinates of the vertex and
+finally the position of the vertex. Remember to disable blending and
+lighting and enable texturing.
+You should then have a cel-shaded texture drawn onto your screen. If
+you're using a simple quad it will probably look a bit odd - try
+tesselating it more (4x4 or something), and it will look better.
+Highlighting is
+performed the same way as we discussed before.
+</p><h3>Summary</h3>
+<p>Here's a brief summary:
+</p><ol>
+  <li>Load the Sharp Lighting map from file and store in an array (remember to convert values to a range of 0-1).
+  </li><li>Calculate
+the lighting as normal, but multiply the dot product by the width of
+the texture - 1 (remember 0-15), and cast it to an integer. </li><li>When drawing, lookup the color to use in the Sharp Lighting map array, using the lighting value as the index.
+  </li><li>Use this value for the red, green and blue values of the vertex color.
+  </li><li>Render
+the object like you would normally, but remember to update the color
+for each vertex. Don't forget to disable lighting, etc. </li><li>Draw the highlights (same as before).
+</li></ol>
+
+<p>
+
+<br><br><br>
+
+<!--=============== NEXT PAGE LINK ==================-->
+</p><p align="right"><b><a href="http://www.gamedev.net/reference/programming/features/celshading/page3.asp"><img src="page2.asp_files/pointernext.gif" alt="" align="right" border="0" height="35" width="62">
+<br>Next : <u>Conclusion</u></a></b></p>
+
+</td></tr></tbody></table></center>
+
+
+</div>
+</div>
+
+
+<div id="footer" class="footer">
+<br><br>
+	<a href="http://www.gamedev.net/info/about">About Us</a> | <a href="http://www.gamedev.net/info/media/">Advertise on GameDev.net</a> | <a href="http://www.gamedev.net/info/writers.asp">Write for us</a><br>
+	© 1999-2006 Gamedev.net. All rights reserved. <a href="http://www.gamedev.net/info/legal.asp#copyright"><u>Terms of Use</u></a> <a href="http://www.gamedev.net/info/legal.asp#privacy"><u>Privacy Policy</u></a>
+	<br><span class="maintext-1">Comments? Questions? Feedback? <a href="http://www.gamedev.net/info/faq.asp">Click here!</a>&nbsp;&nbsp;&nbsp;&nbsp;GameDev.net is Powered By <a href="http://www.nieropwebconsult.nl/asp_session_manager.htm">ISP Session</a></span>
+	<br><span class="maintext-2">GameDev.net&#8482;, the GameDev.net logo, and GDNet&#8482; are trademarks of GameDev.net, LLC</span><br><p></p>
+</div>
+
+<!-- start Vibrant Media IntelliTXT Tooltip style sheet -->
+
+<!-- end Vibrant Media IntelliTXT style sheet -->
+<!-- start Vibrant Media IntelliTXT script section -->
+<script type="text/javascript" src="page2.asp_files/front.js"></script><script language="javascript" src="page2.asp_files/door.js"></script>
+<!-- end Vibrant Media IntelliTXT script section -->
+
+<script src="page2.asp_files/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-279474-1";
+urchinTracker();
+</script>
+<script type="text/javascript" src="page2.asp_files/func_033.js"></script><script type="text/javascript" src="page2.asp_files/chunks_003.js"></script><script type="text/javascript" src="page2.asp_files/chunks_004.js"></script><script type="text/javascript" src="page2.asp_files/chunks_007.js"></script><script type="text/javascript" src="page2.asp_files/chunks_002.js"></script><script type="text/javascript" src="page2.asp_files/chunks.js"></script><script type="text/javascript" src="page2.asp_files/chunks_008.js"></script><script type="text/javascript" src="page2.asp_files/chunks_006.js"></script><script type="text/javascript" src="page2.asp_files/chunks_005.js"></script><script type="text/javascript" src="page2.asp_files/spit.js"></script><script type="text/javascript" src="page2.asp_files/al.htm"></script></body></html>

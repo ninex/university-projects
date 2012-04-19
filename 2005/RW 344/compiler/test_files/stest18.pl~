@@ -1,0 +1,6 @@
+(* Division by zero *)
+begin
+	integer x;
+	x:= 2 / 0;
+	x:= 0 \ 2;
+end.

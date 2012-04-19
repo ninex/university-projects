@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0052)http://www.cs.sun.ac.za/~eloff/rw314/doc_SYSTEM.html -->
+<HTML><HEAD><TITLE>Computer Science 314</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1"><LINK 
+media=screen href="oberon system_files/style.css" type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2800.1479" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff background="">
+<H1 align=left>The Oberon SYSTEM Module</H1>The <CODE>SYSTEM</CODE> module is a 
+machine dependent module that is often used when developing software that need 
+access to low level functions. The module provides a number of types, constants 
+and procedures, both function and proper, to perform tasks that would otherwise 
+require writing assembly language. 
+<H2>Types</H2>The <CODE>SYSTEM</CODE> module defines two additional types called 
+<B><CODE>BYTE</CODE></B> and <B><CODE>PTR</CODE></B>. Variables of type 
+<CODE>CHAR</CODE> or <CODE>SHORTINT</CODE> may be assigned to a variable of type 
+<CODE>BYTE</CODE>. Variables of type <CODE>BYTE</CODE> may be assigned to other 
+types using either the <CODE>ORD</CODE> or <CODE>SYSTEM.VAL</CODE> function. 
+Formal open array parameters of type <CODE>BYTE</CODE> may be assigned any 
+non-pointer type. For example, the following would be legal: <PRE>PROCEDURE P(a: ARRAY OF SYSTEM.BYTE);
+...
+PROCEDURE Q;
+VAR
+  r: RECORD
+    x, y, z: LONGINT
+  END;
+BEGIN
+  P(r)
+END Q;
+    </PRE>The <CODE>PTR</CODE> type is an anoymous pointer compatible with any 
+pointer type. The following would be legal: <PRE>PROCEDURE P(x: SYSTEM.PTR);
+...
+PROCEDURE Q;
+TYPE
+  Node = POINTER TO NodeDesc;
+  NodeDesc = RECORD
+    ...
+  END;
+VAR
+  y: Node;
+BEGIN
+...
+  P(y);
+...
+END Q;
+    </PRE>
+<H2>Constants</H2>The following constants can be used to access registers using 
+<CODE>SYSTEM.GETREG</CODE> and <CODE>SYSTEM.PUTREG</CODE>. 
+<TABLE cellSpacing=2 width="50%" border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>EAX</TD>
+    <TD align=middle bgColor=#ded5d3>8</TD>
+    <TD align=middle bgColor=#c0c0c0>ECX</TD>
+    <TD align=middle bgColor=#ded5d3>9</TD>
+    <TD align=middle bgColor=#c0c0c0>EDX</TD>
+    <TD align=middle bgColor=#ded5d3>10</TD>
+    <TD align=middle bgColor=#c0c0c0>EBX</TD>
+    <TD align=middle bgColor=#ded5d3>11</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>ESP</TD>
+    <TD align=middle bgColor=#ded5d3>12</TD>
+    <TD align=middle bgColor=#c0c0c0>EBP</TD>
+    <TD align=middle bgColor=#ded5d3>13</TD>
+    <TD align=middle bgColor=#c0c0c0>ESI</TD>
+    <TD align=middle bgColor=#ded5d3>14</TD>
+    <TD align=middle bgColor=#c0c0c0>EDI</TD>
+    <TD align=middle bgColor=#ded5d3>15</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>AX</TD>
+    <TD align=middle bgColor=#ded5d3>16</TD>
+    <TD align=middle bgColor=#c0c0c0>CX</TD>
+    <TD align=middle bgColor=#ded5d3>17</TD>
+    <TD align=middle bgColor=#c0c0c0>DX</TD>
+    <TD align=middle bgColor=#ded5d3>18</TD>
+    <TD align=middle bgColor=#c0c0c0>BX</TD>
+    <TD align=middle bgColor=#ded5d3>19</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>SP</TD>
+    <TD align=middle bgColor=#ded5d3>20</TD>
+    <TD align=middle bgColor=#c0c0c0>BP</TD>
+    <TD align=middle bgColor=#ded5d3>21</TD>
+    <TD align=middle bgColor=#c0c0c0>SI</TD>
+    <TD align=middle bgColor=#ded5d3>22</TD>
+    <TD align=middle bgColor=#c0c0c0>DI</TD>
+    <TD align=middle bgColor=#ded5d3>23</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>AL</TD>
+    <TD align=middle bgColor=#ded5d3>24</TD>
+    <TD align=middle bgColor=#c0c0c0>CL</TD>
+    <TD align=middle bgColor=#ded5d3>25</TD>
+    <TD align=middle bgColor=#c0c0c0>DL</TD>
+    <TD align=middle bgColor=#ded5d3>26</TD>
+    <TD align=middle bgColor=#c0c0c0>BL</TD>
+    <TD align=middle bgColor=#ded5d3>27</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>AH</TD>
+    <TD align=middle bgColor=#ded5d3>28</TD>
+    <TD align=middle bgColor=#c0c0c0>CH</TD>
+    <TD align=middle bgColor=#ded5d3>29</TD>
+    <TD align=middle bgColor=#c0c0c0>DH</TD>
+    <TD align=middle bgColor=#ded5d3>30</TD>
+    <TD align=middle bgColor=#c0c0c0>BH</TD>
+    <TD align=middle bgColor=#ded5d3>31</TD></TR></TBODY></TABLE>
+<H2>Function Procedures</H2>
+<UL>
+  <LI><B><CODE>PROCEDURE ADR(v: AnyType): LONGINT;</CODE></B><BR>Returns the 
+  address of the specified parameter <I>v</I>. Be careful when using 
+  <CODE>ADR</CODE> with pointers. 
+  <H3>Example</H3><PRE>VAR
+  a: ARRAY 10 OF LONGINT;
+...
+  SYSTEM.PUT(SYSTEM.ADR(a[0], 0);
+	     </PRE>
+  <LI><B><CODE>PROCEDURE BIT(adr: Address; n: LONGINT): 
+  BOOLEAN;</CODE></B><BR>Returns <CODE>TRUE</CODE> if bit <I>n</I> at address 
+  <I>adr</I> is set. 
+  <H3>Example</H3><PRE>VAR
+  x: LONGINT;
+...
+  IF SYSTEM.BIT(SYSTEM.ADR(x), 6) THEN Out.Char("1") ELSE Out.Char("0") END;
+	     </PRE>
+  <LI><B><CODE>PROCEDURE LSH(x: IntegerValue; n: LONGINT): 
+  LONGINT</CODE></B><BR>Shifts <I>x</I> by <I>n</I> bit positions to the left. A 
+  negative value for <I>n</I> performs a right shift. Note that <I>x</I> is 
+  unaffected by the shift operation since <CODE>LSH</CODE> is a function. 
+  Arithmetic shifts can be performed using the built-in function 
+  <CODE>ASH</CODE>. 
+  <H3>Example</H3><PRE>VAR
+  x: LONGINT;
+...
+  x := SYSTEM.LSH(x, -1); (* Divide x by 2 *)
+	     </PRE>
+  <LI><B><CODE>PROCEDURE ROT(x: IntegerValue; n: LONGINT): 
+  LONGINT</CODE></B><BR>Rotates <I>x</I> by <I>n</I> bit positions to the left. 
+  A negative value for <I>n</I> performs a right rotation. 
+  <H3>Example</H3><PRE>VAR
+  x: LONGINT;
+  c: CHAR;
+...
+  c := SYSTEM.VAL(CHAR, SYSTEM.ROT(x, 8)); (* Rotate bits 31..24 of x into c *) 
+	     </PRE>
+  <LI><B><CODE>PROCEDURE VAL(T: TypeName; x: AnyType): T</CODE></B><BR>The type 
+  of <I>x</I> is interpreted as <I>T</I>. This function can be used to override 
+  the type rules imposed by the language and should be used with care. 
+  <H3>Example</H3><PRE>VAR
+  x: LONGINT;
+...
+  IF 4 IN SYSTEM.VAL(SET, x) THEN
+    (* Bit 4 of "x" is set *)
+  END   
+	     </PRE></LI></UL>
+<H2>Proper Procedures</H2>
+<UL>
+  <LI><B><CODE>PROCEDURE GET(adr: Address; VAR v: Any basic 
+  type)</CODE></B><BR>Reads a value <I>v</I> from the address in memory 
+  specified in <I>adr</I>. The number of bytes read from memory depend on the 
+  type of <I>v</I>. 
+  <H3>Example</H3><PRE>VAR
+  x, y: LONGINT;
+...
+  SYSTEM.GET(SYSTEM.ADR(x), y); (* y := x *)
+	     </PRE>
+  <LI><B><CODE>PROCEDURE PUT(adr: Address; v: Any basic 
+  type)</CODE></B><BR>Writes the value <I>v</I> into the memory location 
+  specified in <I>adr</I>. The number of bytes written to memory depend on the 
+  type of <I>v</I>. 
+  <H3>Example</H3><PRE>VAR
+  x, y: LONGINT;
+...
+  SYSTEM.PUT(SYSTEM.ADR(x), y); (* x := y *) 
+	     </PRE>
+  <LI><B><CODE>PROCEDURE MOVE(src, des: Address; n: 
+  LONGINT);</CODE></B><BR>Copies <I>n</I> bytes from the memory location 
+  specified in <I>src</I> to the memory location specified in <I>des</I>. 
+  <H3>Example</H3><PRE>VAR
+  a, b: ARRAY 20 OF CHAR;
+...
+  SYSTEM.MOVE(SYSTEM.ADR(a), SYSTEM.ADR(b), 20); (* Copy data in "a" to "b" *)
+	     </PRE>
+  <LI><B><CODE>PROCEDURE GETREG(r: RegisterNumber; VAR v: Any basic 
+  type);</CODE></B><BR>Read the contents of the specified register into 
+  <I>v</I>. 
+  <H3>Example</H3><PRE>VAR
+  edx: LONGINT;
+...
+  SYSTEM.GETREG(10, edx);
+             </PRE>
+  <LI><B><CODE>PROCEDURE PUTREG(r: RegisterNumber; v: Any basic 
+  type);</CODE></B><BR>Write the contents of <I>v</I> to specified register. 
+  <H3>Example</H3><PRE>VAR
+  eax: LONGINT;
+...
+  eax := 10;
+  SYSTEM.PUTREG(8, eax);
+	     </PRE>
+  <LI><B><CODE>PROCEDURE PORTOUT(adr: LONGINT; x: Any basic 
+  type);</CODE></B><BR>Writes the value in <I>x</I> to the I/O port specified in 
+  <I>adr</I>. 
+  <H3>Example</H3><PRE>  SYSTEM.PORTOUT(20H, 20H);  
+	     </PRE>
+  <LI><B><CODE>PROCEDURE PORTIN(adr: LONGINT; VAR x: Any basic 
+  type)</CODE></B><BR>Reads a value from the I/O port specified in <I>adr</I> 
+  into <I>x</I>. 
+  <H3>Example</H3><PRE>VAR
+  ch: CHAR;
+...
+  SYSTEM.PORTIN(40H, ch);
+	     </PRE>
+  <LI><B><CODE>PROCEDURE CLI();</CODE></B><BR>Disable interrupts by executing a 
+  <CODE>CLI</CODE> machine instruction. 
+  <LI><B><CODE>PROCEDURE STI();</CODE></B><BR>Enable interrupts by executing a 
+  <CODE>STI</CODE> machine instruction. </LI></UL>
+<HR>
+
+<ADDRESS>Page developed by <A href="mailto:eloff@cs.sun.ac.za">Jacques 
+Eloff</A><BR>Last updated: 10.02.2004 </ADDRESS></BODY></HTML>

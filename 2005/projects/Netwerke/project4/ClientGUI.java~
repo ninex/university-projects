@@ -1,0 +1,129 @@
+package project3;
+
+
+import javax.swing.*;
+import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.net.*;
+ 
+public class ClientGUI extends JFrame implements ActionListener
+{	
+	
+	JTextField ip = new JTextField(12);
+	JTextField len = new JTextField(2);
+	JTextField tport = new JTextField(3);
+	JTextField dest = new JTextField(3);
+	JTextArea Debug = new JTextArea(10,8);
+
+	JList list = new JList();
+
+	Container main_pane = null;
+
+	Timer timer;
+	
+	public ClientGUI() 
+	{
+		super("Router");
+		
+        setSize(600, 500);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		this.addWindowListener(new WindowListener()
+		{
+			public void windowOpened(WindowEvent a){}
+			public void windowClosing(WindowEvent a)
+			{
+			//	ClientGUI.lookthread.crash(broad);
+			//	ClientGUI.lookthread.shutdown();
+			//	try
+			//	{
+			//		ClientGUI.connection.close();
+			//	}catch (Exception e){e.printStackTrace();}
+
+			System.out.println("exiting:");
+				
+			}
+			public void windowActivated(WindowEvent a){}
+			public void windowDeactivated(WindowEvent a){}
+			public void windowIconified(WindowEvent a){}
+			public void windowDeiconified(WindowEvent a){}
+			public void windowClosed(WindowEvent a){}});
+
+		JScrollPane scrollPane = new JScrollPane(list);
+
+		JButton send = new JButton("Connect");
+		JButton Route = new JButton("Route");
+		
+		JPanel pane1 = new JPanel();
+		pane1.setLayout(new BorderLayout());
+		pane1.add(scrollPane,BorderLayout.EAST);
+		
+		JPanel pane2 = new JPanel();
+		JPanel pane3 = new JPanel();
+		JPanel pane4 = new JPanel();
+		JPanel pane5 = new JPanel();
+		JPanel pane6 = new JPanel();
+		
+		pane3.add(ip,BorderLayout.NORTH);
+		pane3.add(len,BorderLayout.NORTH);
+		pane3.add(tport,BorderLayout.NORTH);
+		pane3.add(send,BorderLayout.SOUTH);
+
+		pane4.add(dest,BorderLayout.NORTH);
+		pane4.add(Route,BorderLayout.SOUTH);
+		
+		pane6.setLayout(new BorderLayout());
+		pane6.add(Debug,BorderLayout.CENTER);
+		
+		pane5.setLayout(new BorderLayout());
+		pane5.add(pane4,BorderLayout.SOUTH);
+		pane5.add(pane6,BorderLayout.NORTH);
+		
+		pane2.setLayout(new BorderLayout());
+		pane2.add(pane3,BorderLayout.NORTH);
+		pane2.add(pane5,BorderLayout.SOUTH);
+		
+		JPanel main_panel = new JPanel();
+		main_panel.setLayout(new BorderLayout());
+		main_panel.add(pane1,BorderLayout.WEST);
+		main_panel.add(pane2,BorderLayout.EAST);
+		
+		main_pane = getContentPane();
+		getContentPane().setLayout( new BorderLayout());
+		main_pane.add(main_panel,BorderLayout.CENTER);
+		
+		send.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent a)
+			{
+					
+		;}});
+		
+		Route.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent a)
+			{
+		;}});
+	}
+		
+	public void actionPerformed(ActionEvent e)
+	{
+		System.out.println("some action performed thingy...thanks for the crap abrie");
+	}
+	
+	private void getPacket(byte[] ip, byte[] shorty,int s)
+	{
+		for (int i = 0;i<4;i++)
+		{
+			if (i < ip.length)
+			{
+				shorty[s+i] = ip[i];
+			}else
+			{
+				shorty[s+i] = 0;
+			}
+		}
+	}
+}

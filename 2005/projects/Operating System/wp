@@ -1,0 +1,11 @@
+cd processes
+make all
+cd ..
+./build image process ./processes/ipc6server 400
+./build image process ./processes/ipc6client 500
+./build image process ./processes/ipc6client 600
+#./build image process ./processes/proc6 400
+#./build image process ./processes/proc7 500
+#./build image process ./processes/proc7 600
+#./build image process ./processes/proc7 700
+./build bochs

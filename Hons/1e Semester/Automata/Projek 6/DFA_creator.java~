@@ -1,0 +1,166 @@
+import java.util.*;
+
+public class DFA_creator{
+
+	ArrayList defs = null;
+	int[][] rules;
+	int[] halfcycles;
+	private static final int bits = 8;
+	int powbits = new Double(Math.pow(2,bits)).intValue();
+	
+	public DFA_creator(ArrayList defs){
+		this.defs = defs;
+		rules = new int[defs.size()][];
+		halfcycles = new int[defs.size()];
+	}
+	
+	public int enc(int text){
+		for (int i=0;i<halfcycles.length;i++){
+			for (int j=0;j<halfcycles[i];j++){
+				text = rules[i][text];
+			}
+		}
+		return text;
+	}
+	
+	public int dec(int text){
+		for (int i=halfcycles.length-1;i>=0;i--){
+			for (int j=0;j<halfcycles[i];j++){
+				text = rules[i][text];
+			}
+		}
+		return text;
+	}
+	
+	public void create(){
+		String[] temp;
+		int init=0,offset=0,count=0;
+		
+		while (!defs.isEmpty()){
+			count++;
+			
+			temp = ((String)defs.remove(0)).split(":");
+			try{
+				init = Integer.parseInt(temp[0]);
+				offset = Integer.parseInt(temp[1]);
+			}catch (Exception e){
+				System.out.println("Invalid rule");
+				System.exit(1);
+			}
+			if (offset < init){
+				int temporary = offset;
+				offset = init;
+				init = temporary;
+			}
+			
+			int[] nfa = new int[bits];
+			BitSet bitRep = new BitSet();
+			//create the NFA
+			
+			for (int i=0;i<bits;i++){
+				bitRep.clear();
+				if ((i+init >= 0) && (i+init < bits)){
+					bitRep.set(i + init);
+				}
+				if ((i+offset >= 0) && (i+offset < bits)){
+					bitRep.set(i + offset);
+				}
+				nfa[i] = bit2int(bitRep,bits);
+			}
+			
+			//printNfa(nfa,count);
+			
+			//create the DFA
+			int[] dfa = new int[powbits];
+			String bitstr;
+			double d_bit;
+			for (int i=0;i<powbits;i++){
+				bitstr = bitString(i);
+				dfa[i] = 0;
+				for (int j=0;j<bits;j++){
+					if (bitstr.charAt(j) == '1'){
+						dfa[i] = dfa[i] ^ nfa[j];
+					}
+				}
+				bitstr = bitString(dfa[i]);
+				d_bit=0;
+				for (int j=0;j<bits;j++){
+					if (bitstr.charAt(j) == '0'){
+						d_bit = d_bit + Math.pow(2,bits-1-j);
+					}
+				}
+				dfa[i] = new Double(d_bit).intValue();
+				System.out.println(bitstr+","+bitString(dfa[i]));
+			}
+			
+			//printDfa(dfa,count);
+			
+			
+			//save the dfas and the cycles
+			rules[count-1] = dfa;
+			halfcycles[count-1] = checkCycles(dfa,count) / 2;
+		}
+	}
+	
+	private int checkCycles(int[] nfa,int count){
+		int max=-1,min=-1,cycle=0,trav;
+		for (int i=0;i<powbits;i++){
+			cycle = 0;
+			trav = nfa[i];
+			do{
+				trav = nfa[trav];
+				cycle++;
+			}while (trav != nfa[i]);
+			if (min == -1){
+				min = cycle;
+				max = cycle;
+			}else{
+				min = Math.min(min,cycle);
+				max = Math.max(max,cycle);
+			}
+		}
+		if (min != max){
+			System.out.println("Rule "+count+" doesn't have equal cycles: "+min+","+max);
+			System.exit(1);
+		}
+		if ((min % 2) == 1){
+			System.out.println("Rule "+count+" doesn't have even cycles: "+min);
+			System.exit(1);
+		}
+		return min;
+	}
+	
+	private void printNfa(int[] nfa,int count){
+		System.out.println("NFA for rule "+count);
+		for (int i=0;i<bits;i++){
+			System.out.print(i);
+			System.out.println(" | "+bitString(nfa[i]));
+		}
+	}
+	private void printDfa(int[] dfa,int count){
+		System.out.println("DFA for rule "+count);
+		for (int i=0;i<powbits;i++){
+			System.out.print(bitString(i));
+			System.out.println(" | "+bitString(dfa[i]));
+		}
+	}
+	
+	private int bit2int(BitSet set,int limit){
+		double count = 0;
+		for (int i=0;i<limit;i++){
+			if (set.get(i)){
+				count = count + Math.pow(2,limit-1-i);
+			}
+		}
+		return new Double(count).intValue();
+	}
+	private String bitString(int i){
+		String bitstr = Integer.toBinaryString(i);
+		if (bitstr.length() < bits){
+			while (bitstr.length() < bits){
+				bitstr = "0"+bitstr;
+			}
+		}
+		return bitstr;
+	}
+}

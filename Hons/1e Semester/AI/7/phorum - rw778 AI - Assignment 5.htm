@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0054)http://www.cs.sun.ac.za/phorum/read.php?f=10&i=21&t=21 -->
+<HTML><HEAD><TITLE>phorum - rw778 AI - Assignment 5</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content=3.4.8a name=PhorumVersion>
+<META content=mysql name=PhorumDB>
+<META content=4.3.3 name=PHPVersion><LINK 
+href="phorum - rw778 AI - Assignment 5_files/phorum.css" type=text/css 
+rel=STYLESHEET>
+<META content="MSHTML 6.00.2900.2912" name=GENERATOR></HEAD>
+<BODY vLink=#330000 aLink=#ff0000 link=#0000ff bgColor=#ffffff>
+<DIV class=PhorumForumTitle><STRONG>rw778 AI</STRONG></DIV><BR>
+<SCRIPT language=JavaScript type=text/javascript>
+
+function delmsg(url){
+ans=window.confirm("You are about to delete this\nmessage and all it's children.\n Do you want to continue?");
+  if(ans){
+    window.location.replace(url);
+  }
+}
+</SCRIPT>
+
+<TABLE cellSpacing=0 cellPadding=3 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD noWrap align=left bgColor=#ffffff><FONT class=PhorumNav 
+      color=#000000>&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/post.php?f=10"><FONT class=PhorumNav 
+      color=#000000>New Topic</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/list.php?f=10"><FONT class=PhorumNav 
+      color=#000000>Go to Top</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/list.php?f=10&amp;t=1150624639&amp;a=3"><FONT 
+      class=PhorumNav color=#000000>Go to 
+      Topic</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/search.php?f=10"><FONT 
+      class=PhorumNav color=#000000>Search</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/login.php?f=10"><FONT class=PhorumNav 
+      color=#000000>Log In</FONT></A>&nbsp;</FONT></TD>
+    <TD noWrap align=right bgColor=#ffffff><FONT class=PhorumNav 
+      color=#000000>&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;t=21&amp;a=1"><FONT 
+      class=PhorumNav color=#000000>Newer 
+      Topic</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;t=21&amp;a=2"><FONT 
+      class=PhorumNav color=#000000>Older 
+  Topic</FONT></A>&nbsp;</FONT></TD></TR></TBODY></TABLE><A name=reply_21></A>
+<TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 width="100%" 
+  border=0><TBODY>
+  <TR>
+    <TD bgColor=#003366><FONT class=PhorumTableHeader 
+      color=#ffffff>&nbsp;Assignment 5</FONT></TD></TR>
+  <TR>
+    <TD vAlign=top bgColor=#cccc99>
+      <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="100%" bgColor=#cccc99><FONT 
+            class=PhorumMessage color=#000000>Author:&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/profile.php?f=10&amp;id=58">Genaamd 
+            Kool</A>&nbsp;(---.wilgenhof.sun.ac.za)<BR>Date:&nbsp;&nbsp;&nbsp;06-13-06 
+            11:17<BR><BR>As I understood,the blue frindge control strat should 
+            eliminate conflicting labels after a merge,I see now that in some 
+            case (has to do with when a node goes to itself on a 0 or 1) the 
+            situation is different from when you just calculated the score (and 
+            the validity of the merge),which makes it possible to get a 
+            conflicting label during the merge.<BR><BR>Is this right?<BR>Should 
+            one check for these during a merge? and if so roll back the tree to 
+            the state it was before the merge?<BR>Note that one would not have 
+            to roll back more than one merge,as the conflict only comes because 
+            the tree changed between calculating the score and 
+            merging<BR><BR></FONT>
+            <P></P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=top align=right width="100%" bgColor=#cccc99><A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;i=21&amp;t=21#REPLY"><FONT 
+      class=PhorumNav color=#000000>Reply To This Message</A></FONT> 
+  <BR></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width="100%"><FONT class=PhorumNav 
+  color=#000000>&nbsp;</FONT></TD></TR></TBODY></TABLE><A name=reply_25></A>
+<TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 width="100%" 
+  border=0><TBODY>
+  <TR>
+    <TD bgColor=#003366><FONT class=PhorumTableHeader color=#ffffff>&nbsp;Re: 
+      Assignment 5</FONT></TD></TR>
+  <TR>
+    <TD vAlign=top bgColor=#cccc99>
+      <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="100%" bgColor=#cccc99><FONT 
+            class=PhorumMessage color=#000000>Author:&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/profile.php?f=10&amp;id=34">ai</A>&nbsp;(---.cs.sun.ac.za)<BR>Date:&nbsp;&nbsp;&nbsp;06-13-06 
+            14:01<BR><BR>No - the blue fringe strategy takes care of the problem 
+            of conflicting labels for you, so you don't need to rollback merges 
+            if you use the blue-fringe control strategy.<BR><BR></FONT>
+            <P></P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=top align=right width="100%" bgColor=#cccc99><A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;i=25&amp;t=21#REPLY"><FONT 
+      class=PhorumNav color=#000000>Reply To This Message</A></FONT> 
+  <BR></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width="100%"><FONT class=PhorumNav 
+  color=#000000>&nbsp;</FONT></TD></TR></TBODY></TABLE><A name=reply_29></A>
+<TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 width="100%" 
+  border=0><TBODY>
+  <TR>
+    <TD bgColor=#003366><FONT class=PhorumTableHeader color=#ffffff>&nbsp;Re: 
+      Assignment 5</FONT></TD></TR>
+  <TR>
+    <TD vAlign=top bgColor=#cccc99>
+      <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="100%" bgColor=#cccc99><FONT 
+            class=PhorumMessage color=#000000>Author:&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/profile.php?f=10&amp;id=39">superwalter</A>&nbsp;(196.211.6.---)<BR>Date:&nbsp;&nbsp;&nbsp;06-17-06 
+            21:47<BR><BR>What is distinguishability?<BR><BR>AIhomework() throws 
+            HolidayException<BR><BR></FONT>
+            <P></P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=top align=right width="100%" bgColor=#cccc99><A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;i=29&amp;t=21#REPLY"><FONT 
+      class=PhorumNav color=#000000>Reply To This Message</A></FONT> 
+  <BR></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD width="100%"><FONT class=PhorumNav 
+  color=#000000>&nbsp;</FONT></TD></TR></TBODY></TABLE><A name=reply_30></A>
+<TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 width="100%" 
+  border=0><TBODY>
+  <TR>
+    <TD bgColor=#003366><FONT class=PhorumTableHeader color=#ffffff>&nbsp;Re: 
+      Assignment 5</FONT></TD></TR>
+  <TR>
+    <TD vAlign=top bgColor=#cccc99>
+      <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="100%" bgColor=#cccc99><FONT 
+            class=PhorumMessage color=#000000>Author:&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/profile.php?f=10&amp;id=39">superwalter</A>&nbsp;(196.211.6.---)<BR>Date:&nbsp;&nbsp;&nbsp;06-18-06 
+            11:57<BR><BR>En hoe werk die trakhtenbrot algoritme: Is dit basies 
+            soos die blue fringe metode behalwe sonder die rooi en blou 
+            stuff?<BR><BR>AIhomework() throws HolidayException<BR><BR></FONT>
+            <P></P></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD vAlign=top align=right width="100%" bgColor=#cccc99><A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;i=30&amp;t=21#REPLY"><FONT 
+      class=PhorumNav color=#000000>Reply To This Message</A></FONT> 
+  <BR></TD></TR></TBODY></TABLE>
+<TABLE cellSpacing=0 cellPadding=3 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD align=left width="100%" bgColor=#ffffff><FONT class=PhorumNav 
+      color=#000000>&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/index.php?f=0"><FONT class=PhorumNav 
+      color=#000000>Forum List</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;i=21&amp;t=21&amp;v=t"><FONT 
+      class=PhorumNav color=#000000>Threaded View</FONT></A>&nbsp;</FONT></TD>
+    <TD noWrap align=right bgColor=#ffffff><FONT class=PhorumNav 
+      color=#000000>&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;t=21&amp;a=1"><FONT 
+      class=PhorumNav color=#000000>Newer 
+      Topic</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+      href="http://www.cs.sun.ac.za/phorum/read.php?f=10&amp;t=21&amp;a=2"><FONT 
+      class=PhorumNav color=#000000>Older 
+  Topic</FONT></A>&nbsp;</FONT></TD></TR></TBODY></TABLE><A 
+name=REPLY></A><BR><BR>
+<DIV>
+<FORM action=login.php method=post><INPUT type=hidden value=10 name=f> <INPUT 
+type=hidden value=http://www.cs.sun.ac.za/phorum/list.php?f=10 name=target> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD bgColor=#ffffff>
+      <TABLE cellSpacing=0 cellPadding=2 border=0>
+        <TBODY>
+        <TR>
+          <TD><FONT class=PhorumNav color=#000000>&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/index.php?f=0"><FONT 
+            class=PhorumNav color=#000000>Forum 
+            List</FONT></A>&nbsp;&nbsp;|&nbsp;&nbsp;<A 
+            href="http://www.cs.sun.ac.za/phorum/register.php?f=10&amp;target=http://www.cs.sun.ac.za/phorum/list.php?f=10"><FONT 
+            class=PhorumNav color=#000000>Need a Login? Register 
+            Here</FONT></A>&nbsp;</FONT></TD></TR></TBODY></TABLE></TD></TR>
+  <TR>
+    <TD bgColor=#ffffff>
+      <TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 border=0>
+        <TBODY>
+        <TR>
+          <TD class=PhorumTableHeader bgColor=#003366 colSpan=2 
+            height=21><FONT color=#ffffff>&nbsp;User Login</FONT></TD></TR>
+        <TR>
+          <TD noWrap bgColor=#ffffcc><FONT color=#000000>&nbsp;User 
+            Name:</FONT></TD>
+          <TD bgColor=#ffffcc><INPUT maxLength=50 size=30 name=username></TD></TR>
+        <TR>
+          <TD noWrap bgColor=#ffffcc><FONT 
+          color=#000000>&nbsp;Password:</FONT></TD>
+          <TD bgColor=#ffffcc><INPUT type=password maxLength=20 size=30 
+            name=password></TD></TR>
+        <TR>
+          <TD noWrap bgColor=#ffffcc><FONT color=#000000>&nbsp;Remember my 
+            login:</FONT></TD>
+          <TD bgColor=#ffffcc><INPUT type=checkbox CHECKED value=1 
+            name=remember_login></TD></TR>
+        <TR>
+          <TD noWrap bgColor=#ffffcc>&nbsp;</TD>
+          <TD bgColor=#ffffcc><INPUT type=submit value=Login>&nbsp;<BR><IMG 
+            height=3 src="phorum - rw778 AI - Assignment 5_files/trans.gif" 
+            width=3 border=0></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM>
+<FORM action=login.php method=post><INPUT type=hidden value=10 name=f> <INPUT 
+type=hidden value=http://www.cs.sun.ac.za/phorum/list.php?f=10 name=target> 
+<INPUT type=hidden value=1 name=forgotpass> 
+<TABLE cellSpacing=0 cellPadding=0 border=0>
+  <TBODY>
+  <TR>
+    <TD bgColor=#ffffff>
+      <TABLE class=PhorumListTable cellSpacing=0 cellPadding=2 width=400 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD class=PhorumTableHeader bgColor=#003366 height=21><FONT 
+            color=#ffffff>&nbsp;Forgot Your Password?</FONT></TD></TR>
+        <TR>
+          <TD bgColor=#ffffcc><FONT color=#000000>Enter your email address or 
+            user name below and a new password will be sent to the email address 
+            associated with your profile.</FONT></TD></TR>
+        <TR>
+          <TD align=middle bgColor=#ffffcc><INPUT maxLength=50 size=30 
+            name=lookup> 
+  <INPUT type=submit value=Submit></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></FORM></DIV><BR>
+<DIV align=center><A href="http://phorum.org/"><IMG height=30 alt=phorum.org 
+src="phorum - rw778 AI - Assignment 5_files/button.gif" width=90 
+border=0></A></DIV></BODY></HTML>

@@ -1,0 +1,5 @@
+The dependant CA is executed by running java project3a
+Dependencies is set in defs.txt
+
+The robot CA is executed by running java project3b
+Configuration is set in defs.txt 

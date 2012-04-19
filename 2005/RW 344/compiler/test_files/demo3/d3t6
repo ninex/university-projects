@@ -1,0 +1,14 @@
+begin
+  (* should display 3 *)
+  integer x;
+  proc P
+  begin
+    integer x;
+
+    x := 3;
+    write x;
+  end;
+
+  x := 2;
+  P;
+end.

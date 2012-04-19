@@ -1,0 +1,14 @@
+begin
+	
+proc proc11
+begin
+integer y;
+x:=10;
+y:=3;
+end
+   integer x,y;
+   x:=3;
+   y:=4;
+   proc11;   
+   write x;
+end.

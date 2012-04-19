@@ -1,0 +1,77 @@
+\documentclass[a4paper,11pt,titlepage]{article}
+\author{Abrie Greeff\\B.Sc Hons (Rekenaarwetenskap)\\Departement Rekenaarwetenskap\\Universiteit van Stellenbosch}
+\date{17 April 2006}
+\title{Generiese Vaardighede: Linux Oefening}
+\begin{document}
+\maketitle
+\section{Inleiding}
+Die doel van hierdie oefening was om 'n persoon met 'n sterk kennis van linux en 'n persoon met 'n swak kennis saam te groepeer. Die ervare persoon moes deur middel van 'n verduideliking oor linux en 'n stel vrae die minder ervare persoon meer vertroud maak daarmee. Vir die oefening is ek gegroepeer saam met Mnr. W. Schulze. In die groep dien as ek die ervare persoon en hy as die minder ervare persoon. Saam het ons in [1] die volgende hoofstukke behandel: 1, 4, 5, 7-9, 25 en 44. Die tien vrae wat ek vir hom moes opstel het gekom uit: 8, 9, 25 en 44. In die volgende afdelings volg al die vrae en 'n verduideliking van hoekom ek hulle gekies het.
+\section{Vraag 1}
+\begin{verbatim}
+Hoe sal jy kyk of 'n sekere ip adres op jou netwerk is?
+\end{verbatim}
+Hierdie vraag is gekies, want dis belangrik dat enige persoon weet hoe om 'n ander rekenaar te \emph{ping}. Dit laat jou toe om te agter te kom of hy jou kan sien en jy hom kan sien.
+\section{Vraag 2}
+\begin{verbatim}
+Skryf 'n eenvoudige script wat 'n program as parameter kry
+en die uitvoer van die program na die tweede parameter
+('n teks leer) toe skryf.
+\end{verbatim}
+Dit is 'n baie eenvoudige voorbeeld om aan te toon hoe \emph{piping} werk en ook op dieselfde tyd hoe \emph{command line} parameters in 'n linux \emph{script} werk. Dit is gekies omdat ek beide sien as 'n belangrike gedeelte van \emph{bash scripts}.
+\section{Vraag 3}
+\begin{verbatim}
+Doen die volgende.
+Voer uit 'n eenvoudige program wat oneindig itereer.
+Verander sy priority na +10.
+Beeindig die program sonder om <Ctrl-C> te gebruik.
+\end{verbatim}
+Wanneer enige een van ons 'n program uitvoer wat ons wil h\^e moet 'n groter of kleiner prioriteit h\^e as ander programme dan moet ons weet hoe om dit te verander. 
+Ons wil ook partykeer weet hoe om 'n program te be\"eindig wat buite ons beheer geraak het. Hierdie oefening dek beide hierdie probleme.
+\section{Vraag 4}
+\begin{verbatim}
+Stel die veranderlike X gelyk aan die PATH en die 
+"current directory". 
+Onderskei die twee waardes met 'n komma.
+Wys die waarde van X op die skerm
+\end{verbatim}
+Linux bevat 'n hele aantal \emph{enviroment variables} wat die verbruiker toelaat om meer van die sisteem te leer. Dit is veral handig wanneer dit in \emph{scripts} gebruik word op rekenaars anders as die een waarop die \emph{script} geskryf is. Deur te leer hoe om hierdie \emph{variables} te gebruik kan \emph{scripts} baie meer onafhanklik gemaak word. Hierdie oefening maak ook 'n nuwe veranderlike en leer ons hoe om dit op die skerm te vertoon.
+\section{Vraag 5}
+\begin{verbatim}
+Wat is 'n "Denial of Service" aanval op 'n sisteem?
+\end{verbatim}
+Dit is baie belangrik om te weet hoe jou rekenaar se sekuriteit gebreek kan word. Een voorbeeld van 'n aanval is die \emph{Denial of Service} aanval. Deur bewus te raak van hierdie swak plekke in jou sisteem kan 'n persoon sy rekenaar beter leer verstaan.
+\section{Vraag 6}
+\begin{verbatim}
+Hoe kan jy uitvind watter ports is oop op jou rekenaar?
+Waarom is dit belangrik om te weet?
+\end{verbatim}
+Hierdie vraag sluit aan by die vorige vraag. Deur \emph{netstat -nlp} te hardloop kan 'n persoon baie uitvind van moontlike oop poorte op sy/haar sisteem.
+\section{Vraag 7}
+\begin{verbatim}
+Begin 'n program dadelik in die background van die shell.
+Bring die program na die shell en stop dit.
+\end{verbatim}
+Dikwels is dit nodig dat 'n program baie lank moet uitvoer om bv. sy berekeninge te doen. Deur te weet hoe om 'n program in die agtergrond te hardloop kan so 'n program weg gesteek word en toegelaat word om te doen wat hy wil doen sonder om die gebruiker te pla.
+\section{Vraag 8}
+\begin{verbatim}
+Vat alle c leers in 'n directory en skryf al die lyne wat 
+die woord "printf" bevat na 'n teks leer "output".
+\end{verbatim}
+Deur verskillende programme wat data tussen mekaar voer saam uit te voer kan 'n tydsame taak baie vereenvoudig word. Hierdie vraag soek so 'n moontlike antwoord. Dit is nog 'n voorbeeld van hoe \emph{piping} gebruik kan word.
+\section{Vraag 9}
+\begin{verbatim}
+Vat 'n c leer en met behulp van "sed" verwyder alle 
+enkel lyn comments 
+bv. "//ek is 'n comment" en skryf dit na 'n teks leer
+\end{verbatim}
+Om teks in 'n groot le\^er of selfs 'n aantal le\^ers te vervang kan 'n lang proses wees. As hierdie proses geoutomatiseer word kan die probleem baie eenvoudiger gemaak word. 'n Program wat hierdie vir ons kan doen is \emph{sed}. Die oefening is 'n voorbeeld van hoe dit gedoen kan word deur middel van \emph{regular expressions} en \emph{sed}.
+\section{Vraag 10}
+\begin{verbatim}
+Wat is 'n buffer overflow attack?
+\end{verbatim}
+Dit is belangrik om te weet hoe 'n program wat die gebruiker niks kennis het van nie sy sisteem kan aanval. 'n \emph{Buffer overflow attack} is 'n baie algemene manier om dit te doen en dit is dus nodig om te weet hoe dit werk.
+\section{Verwysings}
+\begin{enumerate}
+\item Rute
+\end{enumerate}
+\end{document}

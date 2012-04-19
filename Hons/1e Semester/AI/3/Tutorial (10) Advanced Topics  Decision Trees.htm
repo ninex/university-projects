@@ -1,0 +1,303 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0032)http://decisiontrees.net/node/34 -->
+<HTML lang=en xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>Tutorial (10): Advanced Topics | Decision Trees</TITLE>
+<META http-equiv=Content-Style-Type content=text/css>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<STYLE type=text/css media=all>@import url( misc/drupal.css );
+</STYLE>
+
+<STYLE type=text/css media=all>@import url( themes/friendselectric/style.css );
+</STYLE>
+
+<SCRIPT type=text/javascript> </SCRIPT>
+
+<META content="MSHTML 6.00.2900.2873" name=GENERATOR></HEAD>
+<BODY>
+<DIV class=bw1>
+<DIV class=bw2>
+<DIV id=body-wrap>
+<DIV id=header>
+<DIV class=hw1>
+<DIV class=hw2><A title="Index Page" href="http://decisiontrees.net/"><IMG 
+id=site-logo alt=Logo 
+src="Tutorial (10) Advanced Topics  Decision Trees_files/logo.png"></A> 
+<H1 class=without-slogan id=site-name><A title="Index Page" 
+href="http://decisiontrees.net/">Decision Trees</A></H1>
+<DIV id=top-nav>
+<UL id=primary>
+  <LI><A title="Interactive tutorial" 
+  href="http://decisiontrees.net/node/16"><SPAN class=lw1><SPAN 
+  class=lw2>Tutorial</SPAN></SPAN></A> </LI>
+  <LI><A title=Books href="http://decisiontrees.net/node/19"><SPAN 
+  class=lw1><SPAN class=lw2>Books</SPAN></SPAN></A> </LI>
+  <LI><A title=Software href="http://decisiontrees.net/node/22"><SPAN 
+  class=lw1><SPAN class=lw2>Software</SPAN></SPAN></A> </LI>
+  <LI><A title=Sites href="http://decisiontrees.net/node/23"><SPAN 
+  class=lw1><SPAN class=lw2>Sites</SPAN></SPAN></A> </LI>
+  <LI><A title=Papers href="http://decisiontrees.net/node/45"><SPAN 
+  class=lw1><SPAN class=lw2>Papers</SPAN></SPAN></A> </LI>
+  <LI><A title=Forums href="http://decisiontrees.net/forum"><SPAN 
+  class=lw1><SPAN class=lw2>Forums</SPAN></SPAN></A> </LI>
+  <LI><A title=About href="http://decisiontrees.net/node/42"><SPAN 
+  class=lw1><SPAN class=lw2>About</SPAN></SPAN></A> 
+</LI></UL></DIV></DIV></DIV></DIV>
+<DIV class=content-both id=content>
+<DIV class=cw1>
+<DIV class=cw2>
+<DIV class=cw3>
+<DIV class=cw4>
+<DIV class=cw5>
+<DIV class=cw6>
+<DIV class=cw7>
+<DIV class=cw8>
+<DIV class=content-wrap-both id=content-wrap>
+<DIV class=sidebar id=sidebar-left>
+<DIV class="block block-user" id=block-user-0>
+<H2 class=first>User login</H2>
+<DIV class=content>
+<FORM action=user/login?destination=node%2F34 method=post>
+<DIV class=user-login-block>
+<DIV class=form-item><LABEL for=edit-name>Username:</LABEL><BR><INPUT 
+class=form-text id=edit-name maxLength=64 size=15 name=edit[name]> </DIV>
+<DIV class=form-item><LABEL for=edit-pass>Password:</LABEL><BR><INPUT 
+class=form-password id=edit-pass type=password maxLength=64 size=15 
+name=edit[pass]> </DIV><INPUT class=form-submit type=submit value="Log in" name=op> </DIV></FORM>
+<DIV class=item-list>
+<UL>
+  <LI><A title="Create a new user account." 
+  href="http://decisiontrees.net/user/register">Create new account</A>
+  <LI><A title="Request new password via e-mail." 
+  href="http://decisiontrees.net/user/password">Request new 
+password</A></LI></UL></DIV></DIV></DIV>
+<DIV class="block block-book" id=block-book-0>
+<H2>Tutorial</H2>
+<DIV class=content>
+<DIV class=menu>
+<UL>
+  <LI class=leaf><A href="http://decisiontrees.net/node/21">Tutorial (1): A 
+  simple decision tree</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/25">Tutorial (2): 
+  Exercise 1</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/26">Tutorial (3): 
+  Occam's Razor</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/27">Tutorial (4): 
+ID3</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/28">Tutorial (5): 
+  Exercise 2</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/29">Tutorial (6): 
+  Entropy Bias</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/31">Tutorial (7): 
+  Exercise 3</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/32">Tutorial (8): Other 
+  Splitting Criteria</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/33">Tutorial (9): 
+  Exercise 4</A>
+  <LI class=leaf><A class=active 
+  href="http://decisiontrees.net/node/34">Tutorial (10): Advanced Topics</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/35">Tutorial (11): 
+  Evaluating Decision Trees</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/36">Tutorial (12): 
+  Exercise 5</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/37">Tutorial (13): 
+  Overfitting</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/44">Tutorial (14): 
+  Pruning</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/38">Tutorial (15): 
+  Exercise 6</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/39">Tutorial (16): 
+  Further Topics</A>
+  <LI class=leaf><A href="http://decisiontrees.net/node/40">Tutorial (17): 
+  Conclusion</A></LI></UL></DIV></DIV></DIV>
+<DIV class="block block-user" id=block-user-1>
+<H2>Navigation</H2>
+<DIV class=content>
+<DIV class=menu>
+<UL>
+  <LI class=collapsed><A href="http://decisiontrees.net/node/add"><SPAN 
+  class=lw1>create content</SPAN></A> </LI></UL></DIV></DIV></DIV>
+<DIV class="block block-forum" id=block-forum-0>
+<H2>Active forum topics</H2>
+<DIV class=content>
+<DIV class=item-list>
+<UL>
+  <LI><A href="http://decisiontrees.net/node/47">Machine Learning Data 
+  Sets</A></LI></UL></DIV>
+<DIV class=more-link><A title="Read the latest forum topics." 
+href="http://decisiontrees.net/forum">more</A></DIV></DIV></DIV>
+<DIV class="block block-comment" id=block-comment-0>
+<H2>Recent comments</H2>
+<DIV class=content>
+<DIV class=item-list>
+<UL>
+  <LI><A href="http://decisiontrees.net/node/20#comment-17">automatic 
+  interaction detection</A><BR>8 weeks 3 days ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-16">Data sets</A><BR>8 
+  weeks 6 days ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-15">CHAID AND 
+  AID</A><BR>9 weeks 1 hour ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-14">re: CHAID and 
+  AID</A><BR>9 weeks 2 hours ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-13">CHAID and 
+  AID</A><BR>9 weeks 5 hours ago
+  <LI><A href="http://decisiontrees.net/node/45#comment-12">Large database 
+  decision tree classifiers</A><BR>9 weeks 3 days ago
+  <LI><A href="http://decisiontrees.net/node/22#comment-9">Re:See5</A><BR>10 
+  weeks 15 hours ago
+  <LI><A href="http://decisiontrees.net/node/45#comment-8">Need papers about 
+  data mining</A><BR>10 weeks 22 hours ago
+  <LI><A href="http://decisiontrees.net/node/22#comment-7">See5</A><BR>10 weeks 
+  22 hours ago
+  <LI><A href="http://decisiontrees.net/node/20#comment-6">Access 
+  problems?</A><BR>10 weeks 22 hours ago</LI></UL></DIV></DIV></DIV>
+<DIV class="block block-user" id=block-user-3>
+<H2>Who's online</H2>
+<DIV class=content>There are currently 0 users and 12 guests 
+online.</DIV></DIV></DIV>
+<DIV class=main-both id=main>
+<DIV class=main-wrap-both id=main-wrap>
+<DIV class=mw1>
+<DIV class=breadcrumb><A href="http://decisiontrees.net/">Home</A> » <A 
+href="http://decisiontrees.net/node/16"><SPAN 
+class=lw1>Tutorial</SPAN></A></DIV>
+<H2 class=main-title>Tutorial (10): Advanced Topics</H2><!-- begin content -->
+<DIV class=node>
+<DIV class=content>
+<H1>Advanced topics </H1>
+<P>So far we have considered simple approaches on basic datasets. The examples 
+have been quite contrived and basic. We need to look at more complex situations 
+that are dealt with in modern decision tree algorithms such as C4.5 and CART. 
+</P>
+<H3>Missing Attribute Values </H3>
+<P>In real-life datasets it is common to find that there are missing values here 
+and there. This may be because someone has forgot and not recorded the data 
+properly, or maybe even because there simply was no value for a particular 
+attribute. There are several different approaches that modern decision tree 
+algorithms take to deal with this: </P>
+<UL>
+  <LI>Simply have another possible value that an attribute can take - 'blank'. 
+  This is then treated as any other value, with branches in a tree being 
+  labelled by this if necessary. This is useful if some meaning can potentially 
+  be attached to missing atributes. 
+  <LI>Replace the black value with the value that occurs most frequently in a 
+  similar context. </LI></UL>
+<H3>Numeric Attributes </H3>
+<P>Our example dataset only including categorical attributes. More 
+realistically, we might have attributes which have numeric values from a 
+continuous domain. For example, we could include the income of the househld, not 
+simply as either High or Low, but as a numeric value. Splitting on this 
+attribute in the tree-building process then involves using inequalities to 
+partition the data, such that each branch follows some expression such as if 
+value of attribute, A, is less than or equal to X, where X is some interval 
+threshold that we have set (usually based on the range of values for the numeric 
+attribute). A lot of other methods also exist for dealing with numeric 
+attributes (see Fayyad &amp; Irani 92), but mainly algorithms that can deal with 
+them look to discretise them in some way. This means that they can then be 
+treated just as categorical attributes. </P>
+<H3>Numeric Prediction</H3>
+<P>So far we have detailed decision tree learning with respect to predicting 
+categories. In the case of predicting continuous numeric quantities, ie. where 
+the target attribute is from a continuous-valued domain, leaf nodes are 
+generated which correspond to the averages of instances from the training set 
+that correspond to the path down to the leaf node. When all the attributes are 
+numeric then the procedure is similar to that of classical regression in which a 
+linear weighted combination of values is used. Of course a number of other 
+machine learning tools such as <SPAN class=titles>Artificial Neural 
+Networks</SPAN> are adept at dealing with numeric datasets.</P>
+<H3>Incremental Decision Tree Induction</H3>
+<P>The method looked at so far involves batch learning. This means that we 
+obtain all our data and then build a decision tree that acts as a classifier. If 
+we get some more data after this, then we have to build the tree all over again 
+with our old dataset together with our new data. Utgoff(88,94) has developed an 
+ID4 algorithm which could modify a decision tree with new data dynamically, 
+without having to reconstruct the tree from scratch (also see Kalles &amp; 
+Morris 95). In a situation whereby it takes a long time to construct a tree 
+(e.g. if we had a massive dataset intially) then building the tree from scratch 
+again when just a few more data instances arrive, might not be a good idea. 
+Incremental deicison tree induction is a solution in such situations. </P>
+<H3>Costs</H3>
+<P>Future misclassifications that the tree might make, may have varying 
+consequences. One type of misclassification might be more serious than another. 
+It all depends on the problem and the data and the things we are trying to 
+predict. For example, in medical diagnosis some misclassifications may be more 
+serious in some way than others. Some approaches to decision tree induction 
+allow cost measures to be attached to certain outcomes. </P>
+<P><STRONG>References</STRONG> </P>
+<P><STRONG>Fayyad, U. M., Irani, K. B., 1992. On the handling of 
+continuous-valued attributes<BR>in decision tree generation.</STRONG> 
+<BR>Machine Learning 8, 87–102.</P>
+<P><STRONG>Utgoff, P., 1988. Id5: An incremental id3</STRONG>. <BR>In: 
+Proceedings of the 5th National Conference on Machine Learning. Ann Arbor,MI, 
+pp. 107–120.</P>
+<P><STRONG>Utgoff, P., 1994. An improved algorithm for incremental induction of 
+decision trees</STRONG>. <BR>In: Cohen, W., Hirsh, H. (Eds.), Proceedings of the 
+11th International Conference on Machine Learning. Morgan Kaufmann, New 
+Brunswick, NJ, pp. 318–325. </P>
+<P><STRONG>Kalles, D., Morris, T., 1995. Efficient incremental induction of 
+decision trees.</STRONG><BR>Machine Learning, 1–13.</P>
+<DIV class=book>
+<DIV class=nav>
+<DIV class=links>
+<DIV class=prev><A title="View the previous page." 
+href="http://decisiontrees.net/node/33">previous</A></DIV>
+<DIV class=next><A title="View the next page." 
+href="http://decisiontrees.net/node/35">next</A></DIV>
+<DIV class=up><A title="View this page's parent section." 
+href="http://decisiontrees.net/node/16">up</A></DIV></DIV>
+<DIV class=titles>
+<DIV class=prev>Tutorial (9): Exercise 4</DIV>
+<DIV class=next>Tutorial (11): Evaluating Decision 
+Trees</DIV></DIV></DIV></DIV></DIV>
+<DIV class=links><A 
+title="Show a printer-friendly version of this book page and its sub-pages." 
+href="http://decisiontrees.net/book/print/34">printer-friendly version</A> – <A 
+title="Share your thoughts and opinions related to this posting." 
+href="http://decisiontrees.net/comment/reply/34#comment">add new 
+comment</A></DIV></DIV><A id=comment></A>
+<FORM action=comment method=post>
+<DIV><INPUT type=hidden value=34 name=edit[nid]> </DIV></FORM><!-- end content -->
+<DIV class=footer-both id=footer>
+<P>
+<SCRIPT type=text/javascript><!--
+google_ad_client = "pub-5329483376432160";
+google_ad_width = 468;
+google_ad_height = 60;
+google_ad_format = "468x60_as";
+google_ad_type = "text";
+google_ad_channel ="";
+google_color_border = "336699";
+google_color_bg = "FFFFFF";
+google_color_link = "CF094A";
+google_color_url = "8BAEC9";
+google_color_text = "000000";
+//--></SCRIPT>
+
+<SCRIPT src="Tutorial (10) Advanced Topics  Decision Trees_files/show_ads.js" 
+type=text/javascript>
+</SCRIPT>
+</P></DIV></DIV></DIV></DIV></DIV>
+<DIV class=sidebar id=sidebar-right>
+<DIV class="block block-block" id=block-block-1>
+<H2 class=first>Adverts</H2>
+<DIV class=content><BR>
+<SCRIPT type=text/javascript><!--
+google_ad_client = "pub-5329483376432160";
+google_ad_width = 160;
+google_ad_height = 600;
+google_ad_format = "160x600_as";
+google_ad_type = "text_image";
+google_ad_channel ="8309837109";
+google_color_border = "336699";
+google_color_bg = "FFFFFF";
+google_color_link = "CF094A";
+google_color_url = "8BAEC9";
+google_color_text = "000000";
+//--></SCRIPT>
+<BR>
+<SCRIPT src="Tutorial (10) Advanced Topics  Decision Trees_files/show_ads.js" 
+type=text/javascript>
+</SCRIPT>
+<BR></DIV></DIV></DIV><SPAN 
+class=clear></SPAN></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV></DIV>
+<DIV class=end-both id=end>
+<DIV class=ew1>
+<DIV class=ew2></DIV></DIV></DIV></BODY></HTML>

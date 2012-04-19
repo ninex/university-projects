@@ -1,0 +1,93 @@
+import java.io.*;
+import java.util.*;
+public class parser{
+	String file;
+	ArrayList list = null;
+	HashMap hash = null;
+	String root;
+	
+	public parser(String file){
+		this.file = file;
+	}
+	
+	public String getRoot(){
+		return root;
+	}
+	
+	public void load(){
+		list = new ArrayList();
+		try {
+			//setup the file to be read token by token
+			FileInputStream f = new FileInputStream(file);
+			Reader input = new BufferedReader(new InputStreamReader(f));
+			StreamTokenizer stream = new StreamTokenizer(input);
+			stream.resetSyntax();
+			stream.wordChars(46,122);
+			
+			
+			//read the file to the end
+			while (stream.nextToken() != StreamTokenizer.TT_EOF) {
+				//is a word being read
+				if (stream.ttype == StreamTokenizer.TT_WORD) {
+					list.add(new String(stream.sval));
+					//System.out.println(stream.sval);
+				}
+				//is a number being read
+				/*if (stream.ttype == StreamTokenizer.TT_NUMBER) {
+					list.add(String.valueOf(stream.nval));
+					System.out.println(""+stream.nval);
+				}
+				System.out.println(stream.ttype);*/
+			}
+			//close the file
+			f.close();
+		}catch (Exception e) {
+			//any possible errors that may have occured
+			e.printStackTrace();
+			System.out.println("Error reading input file. Exiting...");
+			System.exit(1);
+		}
+		
+	}
+	
+	public HashMap run(){
+		hash = new HashMap();
+		String read,first,trans;
+		state node = null;
+		root = "-1";
+		while (!list.isEmpty()){
+			read = (String)list.remove(0);
+			if (read.compareTo("NODE") == 0){
+				read = (String)list.remove(0);
+				node = new state(read,hash);
+				hash.put(read,node);
+			}else{
+				if (read.compareTo("ROOT") == 0){
+					read = (String)list.remove(0);
+					root = read;
+				}else{
+					if (read.compareTo("START") == 0){
+						read = (String)list.remove(0);
+						node.addStart(read);
+					}else{
+						first = read;
+						read = (String)list.remove(0);
+						if (read.compareTo("FINAL") == 0){
+							node.addFinal(first);
+						}else{
+							trans = read;
+							read = (String)list.remove(0);
+							node.add(first,trans,read);
+						}
+					}
+				}
+			}
+			
+		}
+		if (root.compareTo("-1") == 0){
+			System.out.println("Error: No root state defined");
+			System.exit(1);
+		}
+		return hash;
+	}
+}

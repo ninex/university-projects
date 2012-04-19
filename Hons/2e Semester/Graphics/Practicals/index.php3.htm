@@ -1,0 +1,320 @@
+<html><head>
+   
+	<meta name="Author" content="Antonio Ramires Fernandes">
+	<meta name="Description" content="A tutorial on Terrain Generation for OpenGL. Create terrains from fractal algorithms or images">
+	<meta name="KeyWords" content="OpenGL, tutorial, Terrain, Fractal, Terrain Generation, TGA, Image Loader, smoothing">
+	<style type="text/css">
+		<!--PRE{font-family : "Arial";font-size : 10pt;} -->
+		<!--TD{font-family:"Arial";font-size:10pt;} -->
+	</style><title>OpenGL @ Lighthouse 3D - Terrain Tutorial</title>
+	
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></head><body bgcolor="#ffffff">
+
+<center>
+
+<table border="0" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="40"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="6"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="48"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="43"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="28"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="58"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="4"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="90"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="3"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="49"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="52"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="64"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="26"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="45"></td>
+		<td>
+			<img src="index.php3_files/spacer.gif" height="1" width="35"></td>
+	</tr>
+	<tr>
+		<td colspan="2" rowspan="2">
+			<img src="index.php3_files/openglyellow_01.gif" height="30" width="46"></td>
+		<td colspan="2">
+			<img src="index.php3_files/openglyellow_02.gif" border="0" height="27" width="91"></td>
+		<td colspan="3">
+			<a href="http://www.lighthouse3d.com/vrml/index.shtml"><img src="index.php3_files/openglyellow_03.gif" alt="VRML" border="0" height="27" width="90"></a></td>
+		<td>
+			<a href="http://www.lighthouse3d.com/w3d/index.shtml"><img src="index.php3_files/openglyellow_04.gif" alt="Shockwave 3D" border="0" height="27" width="90"></a></td>
+		<td colspan="7">
+			<img src="index.php3_files/openglyellow_05.gif" height="27" width="274"></td>
+	</tr>
+	<tr>
+		<td colspan="12">
+			<img src="index.php3_files/openglyellow_06.gif" height="3" width="510"></td>
+		<td rowspan="2">
+			<img src="index.php3_files/openglyellow_07.gif" height="26" width="35"></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="index.php3_files/openglyellow_08.gif" height="23" width="40"></td>
+		<td colspan="2">
+			<a href="http://www.lighthouse3d.com/opengl/index.shtml"><img src="index.php3_files/openglyellow_09.gif" alt="Home" border="0" height="23" width="54"></a></td>
+		<td colspan="2">
+ 			<img src="index.php3_files/openglwhite_10.gif" height="23" width="71"></td>
+		<td>
+			<a href="http://www.lighthouse3d.com/opengl/books.shtml"><img src="index.php3_files/openglyellow_11.gif" alt="Books" border="0" height="23" width="58"></a></td>
+		<td colspan="3">
+			<a href="http://www.lighthouse3d.com/opengl/apps.shtml"><img src="index.php3_files/openglyellow_12.gif" alt="Applications" border="0" height="23" width="97"></a></td>
+		<td>
+			<a href="http://www.lighthouse3d.com/opengl/tools.shtml"><img src="index.php3_files/openglyellow_13.gif" alt="Tools" border="0" height="23" width="49"></a></td>
+		<td>
+			<a href="http://www.lighthouse3d.com/opengl/docs.shtml"><img src="index.php3_files/openglyellow_14.gif" alt="Docs" border="0" height="23" width="52"></a></td>
+		<td>
+			<a href="http://www.lighthouse3d.com/opengl/models.shtml"><img src="index.php3_files/openglyellow_15.gif" alt="Models" border="0" height="23" width="64"></a></td>
+		<td colspan="2">
+			<a href="http://www.lighthouse3d.com/opengl/textures.shtml"><img src="index.php3_files/openglyellow_16.gif" alt="Textures" border="0" height="23" width="71"></a></td>
+	</tr>
+	<tr>
+		<td>
+			<img src="index.php3_files/openglyellow_17.gif" height="1" width="40"></td>
+		<td colspan="2">
+			<img src="index.php3_files/openglyellow_18.gif" height="1" width="54"></td>
+		<td colspan="2">
+			<img src="index.php3_files/openglyellow_19.gif" height="1" width="71"></td>
+		<td>
+			<img src="index.php3_files/openglyellow_20.gif" height="1" width="58"></td>
+		<td colspan="3">
+			<img src="index.php3_files/openglyellow_21.gif" height="1" width="97"></td>
+		<td colspan="4">
+			<img src="index.php3_files/openglyellow_22.gif" height="1" width="191"></td>
+		<td colspan="2">
+			<img src="index.php3_files/openglyellow_23.gif" height="1" width="80"></td>
+	</tr>
+</tbody></table>
+
+
+
+
+</center>
+
+<p>
+<!-- ? include("../../pub/pub.php3") ? -->
+</p><p>
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="95%">
+	<tbody><tr>
+		<td colspan="2">
+			<img src="index.php3_files/TUTORIAL2_03.gif" height="56" width="8"></td>
+		<td>
+			<img src="index.php3_files/TUTORIAL2_04.gif" height="56" width="20"></td>
+		<td>
+			<img src="index.php3_files/TUTORIAL2_05.gif" height="56" width="130"></td>
+		<td>
+			<img src="index.php3_files/TUTORIAL2_06.gif" height="56" width="17"></td>
+		<td>
+			<img src="index.php3_files/TUTORIAL2_08.gif" height="56" width="7"></td>
+		<td>
+			<img src="index.php3_files/TUTORIAL2_09.gif" height="56" width="23"></td>
+		<td background="index.php3_files/TUTORIAL2_10.gif" width="4000"><img src="index.php3_files/spacer_002.gif" height="1" width="1"></td>
+		<td>
+			<a href="mailto:antonio.ramires@lighthouse3d.com"><img src="index.php3_files/TUTORIAL2_11a.gif" alt="Please send me your comments" border="0" height="56" width="88"></a><img src="index.php3_files/TUTORIAL2_11.gif" height="56" width="260"></td>
+	</tr>
+	<tr>	<td width="1"><img src="index.php3_files/spacer_002.gif" height="1" width="1"></td>
+		<td background="index.php3_files/TUTORIAL2_14.gif" width="7"><img src="index.php3_files/spacer_002.gif" height="1" width="1"></td>
+		<td colspan="3" bgcolor="#cccccc" valign="top" width="167">
+		
+		
+		
+		<table border="0" width="95%"><tbody><tr><td>
+		<a href="http://www.lighthouse3d.com/opengl/tutorials.shtml">Tutorials List</a><br><p>
+
+<b>Terrain Tutorial</b></p><p>
+
+Index</p><p>
+
+
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?introduction">Introduction</a><br>
+</p><p>
+<b>A TGA Library</b><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?tgalib">A Simple TGA Library</a><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?tgasource">TGA lib Source</a><br>
+</p><p>
+<b>Height Maps</b><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?heightmap">Height Maps from Images</a><br>
+</p><p>
+<b>Lighting</b><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?normals">Computing Normals</a><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?light">Simulating Lighting</a><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?lightdetails">Implementation Details</a><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?lightimg">Screen Shots</a><br>
+</p><p>
+<a href="http://www.lighthouse3d.com/opengl/terrain/terrain1.zip">Source Code</a>
+</p><p>
+<b>Artificial Terrain Generation</b><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?fault">The Fault Algorithm</a><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?impdetails">Implementation Details</a><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?faultvar">Two Simple Variations</a><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?circles">The Circles Algorithm</a><br>
+</p><p>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?mpd">Mid Point Displacement</a><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?mpd2">The MPD Algorithm</a><br>
+</p><p>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?particle">Particle Deposition</a><br>
+</p><p>
+<b>Smoothing</b><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?smoothing">Smoothing</a><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?smoothingmatrix">Matrix filters</a><br>
+<a href="http://www.lighthouse3d.com/opengl/terrain/index.php3?smoothingapi">API details</a><br>
+</p><p>
+<a href="http://www.lighthouse3d.com/opengl/appstools/tg">Source (Linux and Win32)</a><br>
+
+		</p></td></tr></tbody></table>
+		
+		
+		
+		
+			</td>
+		<td colspan="1" background="index.php3_files/TUTORIAL2_17.gif" width="7"><img src="index.php3_files/spacer_002.gif" height="1" width="1"></td><td></td>
+		<td colspan="3">
+		
+		
+		
+<table border="0" width="100%">
+<tbody><tr>
+<td>
+ [<a href="http://www.lighthouse3d.com/opengl/terrain/index.php?circles">Previous: Circles Algorithm</a>]</td><td align="right">
+[<a href="http://www.lighthouse3d.com/opengl/terrain/index.php?mpd2">Next: The MPD Algorithm</a>]	
+</td></tr></tbody></table>
+<p>
+<table align="right" border="0" cellspacing="1" width="140">
+        <tbody><tr>
+          <td align="right" width="100%">
+          <script type="text/javascript"><!--
+google_ad_client = "pub-9129408611271156";
+google_ad_width = 120;
+google_ad_height = 600;
+google_ad_format = "120x600_as";
+google_ad_channel ="";
+google_color_border = "000060";
+google_color_bg = "FFFFFF";
+google_color_link = "000060";
+google_color_url = "008000";
+google_color_text = "000000";
+//--></script>
+<script type="text/javascript" src="index.php3_files/show_ads.js">
+</script><iframe name="google_ads_frame" src="index.php3_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" frameborder="0" height="600" scrolling="no" width="120"></iframe>
+</td>
+        </tr>
+      </tbody></table>
+
+
+
+
+</p><h1>
+    <center>Terrain Tutorial</center>
+</h1>
+<br>
+<h2>
+    <center>
+Mid Point Displacement
+</center>
+</h2>
+<br>
+The Mid Point Displacement, MPD hereafter, aka the Plasma Algorithm, is
+a subdivision algorithm. The terrain is built iteratively, in each
+iteration the level of detail increases. From a computational point of
+view this algorithm is very inexpensive when compared to the previous
+algorithms, and its results are quite impressive.
+<p>
+</p>
+This algorithm was conceived to generate square terrains with dimensions (2^n + 1) x (2^n + 1), where <i>n</i>
+stands for the number of iterations. This implies that with just 8
+iterations a good looking terrain with 257x257 grid points is
+generated. With 10 iterations we get 1025x1025 grid points. Just be
+ware of the memory and performance implications, a terrain with
+1025x1025 grid points takes a lot of memory, and unless there is some
+real time navigation algorithm implemented, performance will be lousy.
+<p>
+</p>The most important parameter of this algorithm is the roughness
+constant. This value determines the look of the final terrain, from
+extremelly smooth, to very rough. The most common value for this
+parameter is 1.0. The images bellow show examples of MDP with various
+roughness constants.<p>
+</p>
+<table align="center">
+    <tbody><tr>
+<td>
+r = 1.0
+</td>
+<td>
+<img src="index.php3_files/mpds10.jpg">
+</td>
+</tr>
+<tr>
+<td>
+r = 2.0
+</td>
+<td>
+<img src="index.php3_files/mpds05.jpg">
+</td>
+</tr>
+<tr>
+<td>
+r = 0.5
+</td>
+<td>
+<img src="index.php3_files/mpds20.jpg">
+</td>
+</tr>
+</tbody></table>
+<p>
+<table border="0" width="100%">
+<tbody><tr>
+<td>
+ [<a href="http://www.lighthouse3d.com/opengl/terrain/index.php?circles">Previous: Circles Algorithm</a>]</td><td align="right">
+ [<a href="http://www.lighthouse3d.com/opengl/terrain/index.php?mpd2">Next: The MPD Algorithm</a>]	
+</td></tr></tbody></table>		
+		
+		
+		
+		
+		
+			</p></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<img src="index.php3_files/TUTORIAL2_20.gif" height="25" width="8"></td>
+		<td>
+			<img src="index.php3_files/TUTORIAL2_21.gif" height="25" width="20"></td>
+		<td>
+			<img src="index.php3_files/TUTORIAL2_22.gif" height="25" width="130"></td>
+		<td>
+			<img src="index.php3_files/TUTORIAL2_23.gif" height="25" width="17"></td>
+		<td>
+			<img src="index.php3_files/TUTORIAL2_25.gif" height="25" width="7"></td>
+		<td>
+			<img src="index.php3_files/TUTORIAL2_26.gif" height="25" width="23"></td>
+		<td></td>
+		<td></td>
+	</tr>
+
+</tbody></table>
+ <br>
+<br>
+</p><center>
+<font color="#333333" size="-1">
+Site designed and maintained by <a href="mailto:antonio.ramires@lighthouse3d.com">António Ramires Fernandes</a><br>
+Your comments, suggestions and references to further material are welcome!
+</font><p><font color="#333333" size="-1"><a href="http://www.lighthouse3d.com/pub/privacy.shtml">Lighthouse 3D privacy statement</a>
+
+</font>
+</p></center></body></html>

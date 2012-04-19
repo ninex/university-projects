@@ -1,0 +1,25 @@
+<a href='all_inv.m'>display all inverses for m</a>
+<a href='brute_affine.m'>brute affine</a>
+<a href='brute_additive.m'>brute additive</a>
+<a href='dec_additive.m'>decrypt additive</a>
+<a href='dec_affine.m'>decrypt affine</a>
+<a href='dec_permutation.m'>decrypt permutation</a>
+<a href='enc_additive.m'>encrypt additivea</a>
+<a href='enc_affine.m'>encrypt affine</a>
+<a href='enc_permutation.m'>encrypt permutation</a>
+<a href='euler.m'>work out euler</a>
+<a href='fitness1.m'>work out first order measure of fitness</a>
+<a href='fluct.m'>work out fluctuation index and index of correspondence</a>
+<a href='let_freq.m'>expected letter frequency</a>
+<a href='lsfr.m'>get tap points from key</a>
+<a href='m_inv.m'>inverse of mod-2 matrix</a>
+<a href='mod_inv.m'>mod-m inverse</a>
+<a href='mZ.m'>needed a->0 b->1 etc</a>
+<a href='shift.m'>work out bitstream from initial condition</a>
+<a href='Zm.m'>0-> 1->b etc.</a><br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a href='square_multiply.m'>Square and Multiply</a>

@@ -1,0 +1,85 @@
+#include "global.h"
+/*
+ * store as PPM (PBMPLUS) or uncompressed Truevision TGA ('Targa') file
+ */
+static void store_uv(unsigned char *src[],int offset,int incr,int height){
+  int i, j;
+  int y, u, v, r, g, b;
+  int crv, cbu, cgu, cgv;
+  unsigned char *py, *pu, *pv;
+  static unsigned char tga24[14] = {0,0,2,0,0,0,0, 0,0,0,0,0,24,32};
+  
+  static unsigned char *u422, *v422, *u444, *v444;
+
+  if (chroma_format==CHROMA444)
+  {
+    u444 = src[1];
+    v444 = src[2];
+  }
+  else
+  {
+    if (!u444)
+    {
+      if (chroma_format==CHROMA420)
+      {
+        if (!(u422 = (unsigned char *)malloc((Coded_Picture_Width>>1)
+                                             *Coded_Picture_Height)))
+          Error("malloc failed");
+        if (!(v422 = (unsigned char *)malloc((Coded_Picture_Width>>1)
+                                             *Coded_Picture_Height)))
+          Error("malloc failed");
+      }
+
+      if (!(u444 = (unsigned char *)malloc(Coded_Picture_Width
+                                           *Coded_Picture_Height)))
+        Error("malloc failed");
+
+      if (!(v444 = (unsigned char *)malloc(Coded_Picture_Width
+                                           *Coded_Picture_Height)))
+        Error("malloc failed");
+    }
+
+    if (chroma_format==CHROMA420)
+    {
+      conv420to422(src[1],u422);
+      conv420to422(src[2],v422);
+      conv422to444(u422,u444);
+      conv422to444(v422,v444);
+    }
+    else
+    {
+      conv422to444(src[1],u444);
+      conv422to444(src[2],v444);
+    }
+  }
+
+  
+
+  optr = obfr;
+
+
+  /* matrix coefficients */
+  crv = Inverse_Table_6_9[matrix_coefficients][0];
+  cbu = Inverse_Table_6_9[matrix_coefficients][1];
+  cgu = Inverse_Table_6_9[matrix_coefficients][2];
+  cgv = Inverse_Table_6_9[matrix_coefficients][3];
+  
+  for (i=0; i<height; i++)
+  {
+    py = src[0] + offset + incr*i;
+    pu = u444 + offset + incr*i;
+    pv = v444 + offset + incr*i;
+
+    for (j=0; j<horizontal_size; j++)
+    {
+      u = *pu++ - 128;
+      v = *pv++ - 128;
+      y = 76309 * (*py++ - 16); /* (255/219)*65536 */
+      r = Clip[(y + crv*v + 32768)>>16];
+      g = Clip[(y - cgu*u - cgv*v + 32768)>>16];
+      b = Clip[(y + cbu*u + 32786)>>16];
+printf(" red = %d, green %d, blue %d\n",r,g,b);
+    }
+  }
+
+}

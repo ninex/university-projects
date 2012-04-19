@@ -1,0 +1,108 @@
+BODY {
+	FONT-SIZE: 9pt; FONT-FAMILY: Verdana, Arial, Geneva, Helvetica, sans-serif; BACKGROUND-COLOR: #ffffff
+}
+TABLE {
+	FONT-SIZE: 9pt
+}
+TD.banner {
+	BORDER-RIGHT: #c0c0c0 0px solid; PADDING-RIGHT: 9px; BORDER-TOP: #c0c0c0 0px solid; PADDING-LEFT: 9px; FONT-WEIGHT: bold; FONT-SIZE: 24pt; PADDING-BOTTOM: 9px; MARGIN: 0px 0px 9pt; BORDER-LEFT: #c0c0c0 0px solid; COLOR: maroon; PADDING-TOP: 9px; BORDER-BOTTOM: #c0c0c0 6px solid; BACKGROUND-COLOR: #ded5d3; TEXT-ALIGN: center
+}
+TD.navbar {
+	FONT-SIZE: 9pt; WIDTH: 170px
+}
+TD.main {
+	BORDER-RIGHT: #000000 2px solid; PADDING-RIGHT: 9pt; BORDER-TOP: #000000 2px solid; PADDING-LEFT: 9pt; FONT-SIZE: 9pt; PADDING-BOTTOM: 9pt; BORDER-LEFT: #000000 2px solid; PADDING-TOP: 9pt; BORDER-BOTTOM: #000000 2px solid; BACKGROUND-COLOR: #ffffff
+}
+TD.plain {
+	BORDER-RIGHT: #000000 2px solid; PADDING-RIGHT: 9pt; BORDER-TOP: #000000 2px solid; PADDING-LEFT: 9pt; FONT-SIZE: 9pt; PADDING-BOTTOM: 9pt; BORDER-LEFT: #000000 2px solid; PADDING-TOP: 9pt; BORDER-BOTTOM: #000000 2px solid; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: center
+}
+TD.newsbar {
+	FONT-SIZE: 9pt; WIDTH: 170px
+}
+DIV.navhead {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; FONT-WEIGHT: bold; BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-COLOR: #000000; PADDING-BOTTOM: 1px; COLOR: white; BORDER-TOP-COLOR: #000000; PADDING-TOP: 1px; BACKGROUND-COLOR: maroon; BORDER-RIGHT-COLOR: #000000
+}
+DIV.navtext {
+	BORDER-RIGHT: maroon 2px solid; BORDER-TOP: maroon 2px solid; MARGIN: 0px 0px 9pt; BORDER-LEFT: maroon 2px solid; BORDER-BOTTOM: maroon 2px solid; BACKGROUND-COLOR: #ded5d3
+}
+A.navref {
+	BORDER-RIGHT: #ded5d3 1px solid; PADDING-RIGHT: 3px; BORDER-TOP: #ded5d3 1px solid; DISPLAY: block; PADDING-LEFT: 3px; FONT-WEIGHT: bold; PADDING-BOTTOM: 1px; MARGIN: 2px; BORDER-LEFT: #ded5d3 1px solid; COLOR: maroon; PADDING-TOP: 1px; BORDER-BOTTOM: #ded5d3 1px solid
+}
+A.navref:hover {
+	BORDER-LEFT-COLOR: white; BORDER-BOTTOM-COLOR: white; COLOR: white; BORDER-TOP-COLOR: white; BACKGROUND-COLOR: maroon; BORDER-RIGHT-COLOR: white
+}
+DIV.newshead {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; FONT-WEIGHT: bold; BORDER-LEFT-COLOR: #000000; BORDER-BOTTOM-COLOR: #000000; PADDING-BOTTOM: 1px; COLOR: white; BORDER-TOP-COLOR: #000000; PADDING-TOP: 1px; BACKGROUND-COLOR: maroon; BORDER-RIGHT-COLOR: #000000
+}
+DIV.newstext {
+	BORDER-RIGHT: maroon 2px solid; PADDING-RIGHT: 4px; BORDER-TOP: maroon 2px solid; PADDING-LEFT: 4px; FONT-SIZE: 8pt; PADDING-BOTTOM: 4px; MARGIN: 0px 0px 9pt; BORDER-LEFT: maroon 2px solid; PADDING-TOP: 4px; BORDER-BOTTOM: maroon 2px solid; BACKGROUND-COLOR: #ded5d3
+}
+H1 {
+	COLOR: maroon
+}
+H2 {
+	COLOR: maroon
+}
+H3 {
+	COLOR: maroon
+}
+H4 {
+	COLOR: maroon
+}
+H5 {
+	COLOR: maroon
+}
+H6 {
+	COLOR: maroon
+}
+A {
+	FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: white; BACKGROUND-COLOR: maroon
+}
+#webpeagreen {
+	BACKGROUND-COLOR: #cccc99
+}
+#darkorange {
+	BACKGROUND-COLOR: #cc9900
+}
+#lightorange {
+	BACKGROUND-COLOR: #eda159
+}
+#darkpeagreen {
+	BACKGROUND-COLOR: #80b37f
+}
+#menuorange {
+	BACKGROUND-COLOR: #ffeeaa
+}
+#brownorange {
+	BACKGROUND-COLOR: #ccb37f
+}
+#bgorange {
+	BACKGROUND-COLOR: #ffeeaa
+}
+#font9 {
+	FONT-SIZE: 9pt
+}
+#textorangered {
+	COLOR: #ff4500
+}
+A.newsref {
+	FONT-WEIGHT: bold; COLOR: #59669e; TEXT-DECORATION: none
+}
+A.newsref:hover {
+	COLOR: #ffeeaa; BACKGROUND-COLOR: #59669e
+}
+THEAD.bookstyle {
+	FONT-WEIGHT: bold; BACKGROUND-COLOR: #ffeeaa
+}
+TBODY.bookstyle {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 2px; BORDER-RIGHT-WIDTH: 0px
+}
+PRE.term {
+	PADDING-RIGHT: 6px; PADDING-LEFT: 6px; PADDING-BOTTOM: 6px; COLOR: #ffffff; PADDING-TOP: 6px; BACKGROUND-COLOR: #000000
+}
+CODE {
+	FONT-WEIGHT: bold; FONT-SIZE: 9pt; COLOR: black
+}

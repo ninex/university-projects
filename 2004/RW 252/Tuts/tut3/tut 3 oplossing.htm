@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0055)http://www.cs.sun.ac.za/~eloff/rw252/tut3_solution.html -->
+<HTML><HEAD><TITLE>Computer Science 252</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1"><LINK 
+media=screen href="tut 3 oplossing_files/style.css" type=text/css 
+rel=stylesheet>
+<META content="MSHTML 6.00.2900.2180" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff background="">
+<TABLE cellSpacing=12 cellPadding=0 width="100%">
+  <TBODY><!-- Banner -->
+  <TR>
+    <TD class=banner colSpan=3>Computer Science 252 - Low Level Programming 
+  </TD></TR><!-- Navigation bar (left) -->
+  <TR>
+    <TD class=navbar vAlign=top>
+      <DIV class=navhead>CS252 </DIV>
+      <DIV class=navtext><A class=navref 
+      href="http://www.cs.sun.ac.za/~eloff/rw252/index.html">Home</A> <A 
+      class=navref href="http://www.cs.sun.ac.za/~eloff/rw252/exams.html">Tests 
+      and Examinations</A> <A class=navref 
+      href="http://www.cs.sun.ac.za/~eloff/rw252/schedule.html">Class 
+      Schedule</A> <A class=navref 
+      href="http://www.cs.sun.ac.za/~eloff/rw252/outline.html">Course 
+      Outline</A> <A class=navref 
+      href="http://www.cs.sun.ac.za/~eloff/rw252/doc.html">Documentation and 
+      Notes</A> <A class=navref 
+      href="http://www.cs.sun.ac.za/~eloff/rw252/tuts.html">Tutorials</A> <A 
+      class=navref 
+      href="http://www.cs.sun.ac.za/~eloff/rw252/reading.html">Further 
+      Reading</A> <A class=navref title=eloff@cs.sun.ac.za 
+      href="mailto:eloff@cs.sun.ac.za">E-mail the Lecturer</A> </DIV></TD><!-- main text: centre bar -->
+    <TD class=MAIN vAlign=top>
+      <H1>Solution - Tutorial 3</H1><PRE>;*****************************************************************************
+;* void binary_sort(item *list, int n)                                       *
+;*****************************************************************************
+%define list   [ebp+8]
+%define n      [ebp+12]
+%define temp   [ebp-36]
+%define top    [ebp-40]
+binary_sort:
+  push  ebp
+  mov   ebp, esp
+  sub   esp, 40
+
+  std
+  mov   edx, list
+  cmp   edx, 0                     ; if (list != NULL) {
+  jz    near .done   
+  mov   eax, 1                     ;   i = 1;
+  
+.while_0:
+  cmp   eax, n                     ;   while (i &lt; n) {
+  jge   near .done
+  
+  lea   esi, [eax*8+eax]
+  lea   edi, [ebp-4]
+  lea   esi, [esi*4+edx+32]
+  mov   ecx, 9
+  rep   movsd                      ;     temp = list[i];
+  xor   ebx, ebx                   ;     bottom = 0;
+  lea   ecx, [eax-1]               ;     top = i-1;
+
+.while_1:
+  cmp   ebx, ecx                   ;     while (bottom &lt;= top) {
+  jg    .continue_1
+  mov   top, ecx
+  add   ecx, ebx
+  sar   ecx, 1                     ;       middle = (bottom+top)/2;
+  
+  lea   edi, [ecx*8+ecx]
+  lea   esi, temp
+  lea   edi, [edi*4+edx]
+  cmpsd                            ;       if (temp.number &lt; list[middle].number)
+  jge   .else_1
+  dec   ecx                        ;         top = middle-1;
+  jmp   .while_1
+  
+.else_1:                           ;       else
+  lea   ebx, [ecx+1]               ;         bottom = middle+1;
+  mov   ecx, top
+  jmp   .while_1                   ;     }
+
+.continue_1:
+  lea   ecx, [eax-1]               ;     j = i-1;
+  cmp   ecx, ebx                   ;     while (j &gt;= bottom) {
+  jl    .continue_2
+  lea   edi, [ecx*8+ecx+9]
+  lea   edi, [edi*4+edx+32]
+  lea   esi, [edi-36]
+  sub   ecx, ebx
+  lea   ecx, [ecx*8+ecx+9]
+  rep   movsd                      ;       list[j+1] = list[j];
+                                   ;       j = j-1;
+				   ;     }
+.continue_2:
+  lea   esi, [ebp-4]
+  lea   edi, [ebx*8+ebx]
+  lea   edi, [edi*4+edx+32]
+  mov   ecx, 9
+  rep   movsd                      ;     list[bottom] = temp;
+  inc   eax                        ;     i = i+1;
+  jmp   .while_0                   ;   }
+  
+.done:  
+  mov   esp, ebp
+  pop   ebp
+  ret                              ; }
+  
+;*****************************************************************************
+;* void remove_max(node **root, node **max);                                 *
+;*****************************************************************************
+%define root [ebp+8]
+%define max  [ebp+12]
+remove_max:
+  push  ebp
+  mov   ebp, esp
+  
+  mov   esi, root
+  mov   edx, [esi]
+  cmp   dword [edx+36], 0          ; if ((*root)-&gt;right != NULL)
+  jz    .else
+  push  dword max 
+  lea   eax, [edx+36]
+  push  eax
+  call  remove_max                 ;   remove_max_c(&amp;(*root)-&gt;right, max);
+  add   esp, 8
+  jmp   .done
+  
+.else:                             ; else {
+  mov   edi, max
+  mov   eax, [esi]
+  mov   [edi], eax                 ;   *max = *root;
+  mov   edx, [edi]
+  mov   ebx, [edx+32]
+  mov   [esi], ebx                 ;   *root = (*max)-&gt;left;
+                                   ; }
+.done
+  mov   esp, ebp
+  pop   ebp
+  ret
+
+;*****************************************************************************
+;* void delete_node(node **root, char *name);                                *
+;*****************************************************************************
+%define root [ebp+8]
+%define name [ebp+12]
+%define n    [ebp-4]
+%define temp [ebp-8]
+delete_node:
+  push  ebp
+  mov   ebp, esp
+  sub   esp, 8
+  
+  mov   edx, root
+  mov   ebx, root
+  mov   edx, [edx]
+  cmp   edx, 0                     ; if (*root != NULL) {
+  jz    near .done
+                                   
+  cld
+  mov   ecx, 32
+  mov   esi, name
+  mov   edi, edx
+  
+.while:                            ;   if (strcmp(name, (*root)-&gt;name) &lt; 0)                              
+  lodsb
+  scasb
+  jl    .if                      
+  jg    .else_1
+  cmp   al, 0
+  jz    .else_2
+  dec   ecx
+  jnz   .while
+  jmp   .else_2
+
+.if:  
+  push  dword name
+  lea   ebx, [edx+32]
+  push  ebx
+  call  delete_node                ;     delete_node(&amp;(*root)-&gt;left, name);
+  add   esp, 8
+  jmp   .done
+  
+.else_1:                           ;   else {
+  push  dword name                 ;     if (strcmp(name, (*root-&gt;name) &gt; 0)
+  lea   ebx, [edx+36]
+  push  ebx
+  call  delete_node                ;       delete_node(&amp;(*root)-&gt;right, name);
+  add   esp, 8
+  jmp   .done
+
+.else_2:                           ;     else {
+  push  edx                        ;       temp = *root;
+  cmp   dword [edx+32], 0          ;       if ((*root)-&gt;left == NULL) {
+  jnz   .else_3
+  mov   ecx, [edx+36]
+  mov   [ebx], ecx                 ;         *root = (*root)-&gt;right;
+  jmp   .free                      ;       }
+  
+.else_3:                           ;       else {
+  cmp   dword [edx+36], 0          ;         if ((*root)-&gt;right == NULL) {
+  jnz   .else_4
+  mov   ecx, [edx+32]
+  mov   [ebx], ecx                 ;           *root = (*root)-&gt;left;
+  jmp   .free                      ;         }
+  
+.else_4:                           ;         else {
+  lea   ecx, n
+  push  ecx
+  lea   ecx, [edx+32]
+  push  ecx
+  call  remove_max                 ;           remove_max(&amp;(*root)-&gt;left, &amp;n);
+  add   esp, 8
+  
+  mov   edx, root
+  mov   esi, [edx]
+  mov   ebx, n
+  mov   ecx, [esi+32]
+  mov   [ebx+32], ecx              ;           n-&gt;left = (*root)-&gt;left;
+  mov   ecx, [esi+36]
+  mov   [ebx+36], ecx              ;           n-&gt;right = (*root)-&gt;right;
+  mov   [edx], ebx                 ;           *root = n;
+                                   ;         }
+.free:
+  call  free                       ;         free(temp);
+  add   esp, 4
+                                   ;       }
+                                   ;     }
+				   ;   }
+.done:                             ; }
+  mov   esp, ebp
+  pop   ebp
+  ret  
+  
+;*****************************************************************************
+;* void bin_to_string(int n, char *s);                                       *
+;*****************************************************************************
+%define n [ebp+8]
+%define s [ebp+12]
+bin_to_string:
+  push  ebp
+  mov   ebp, esp
+  
+  cld
+  mov   edi, s
+  mov   ecx, 32
+  
+.do:
+  rcl   dword n, 1
+  setc  al
+  add   al, 48
+  stosb
+  dec   ecx
+  jnz   .do
+  
+  mov   byte [edi], 0
+  
+  mov   esp, ebp
+  pop   ebp
+  ret 
+
+      </PRE></TD></TR></TBODY></TABLE></BODY></HTML>

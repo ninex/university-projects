@@ -1,0 +1,67 @@
+import java.util.*;
+import java.io.*;
+
+public class project6{
+	static DFA_creator dfa;
+	static String input = null,output = null;
+	static ArrayList rules = null;
+	static boolean encrypting = true;
+	
+	public static void Process_Params(String[] args){
+		if (args.length < 2){
+			System.out.println("\nUsage: java project6 [options] [rules] <input file>");
+			System.out.println("Options:\n-d\tdecrypt\t(default is encrypt)");
+			System.out.println("Rules:\n-r=<first state offset>:<offset to next>");
+			System.out.println("\nExample:\n\tjava project6 -d -r=0:1 -r=-1:0 test.txt");
+			System.exit(1);
+		}
+		
+		rules = new ArrayList();
+		
+		input = args[args.length-1];
+		output = input + ".enc";
+		for (int i=0;i<args.length-1;i++){
+			if (args[i].compareTo("-d") == 0){
+				output = input+".dec";
+				encrypting = false;
+			}else{
+				if (args[i].startsWith("-r=")){
+					rules.add(args[i].substring(3));
+				}else{
+					System.out.println("Invalid parameter: "+args[i]);
+					System.exit(1);
+				}
+			}
+		}
+		if (rules.isEmpty()){
+			System.out.println("Define at least one rule");
+			System.exit(1);
+		}
+		
+	}
+	
+	public static void main(String[] args){
+		int status;
+		Process_Params(args);
+		dfa = new DFA_creator(rules);
+		dfa.create();
+		try{
+			File f1 = new File(input);
+			File f2 = new File(output);
+			FileReader f_in = new FileReader(f1);
+			FileOutputStream f_out = new FileOutputStream(f2);
+			
+			while ((status = f_in.read()) != -1){
+				if (encrypting){
+					status = dfa.enc(status);
+				}else{
+					status = dfa.dec(status);
+				}
+				f_out.write(status);
+			}
+		}catch (Exception e){
+			System.out.println("Error processing files");
+		}
+		
+	}
+}

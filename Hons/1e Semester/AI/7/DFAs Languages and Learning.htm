@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0036)http://abbadingo.cs.unm.edu/dfa.html -->
+<HTML><HEAD><TITLE>DFAs: Languages and Learning</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content="MSHTML 6.00.2900.2912" name=GENERATOR></HEAD>
+<BODY text=black bgColor=white>
+<H1 align=center>DFAs: Languages and Learning</H1>
+<H2 align=center>DFAs: Deterministic Finite Automata</H2>To determine whether a 
+<EM>deterministic finite automaton</EM> or DFA accepts a given string, begin 
+with your finger on the <EM>start</EM> state. Then go through the symbols in the 
+string from left to right, moving your finger along the corresponding labeled 
+arrows. When you get to the end of the string, if your finger is on an 
+<EM>accept</EM> state then the string is in the language; if not, then it isn't. 
+
+<P><IMG height=256 alt="picture of a DFA" 
+src="DFAs Languages and Learning_files/dfa-0110.gif" width=380 align=left> <A 
+href="http://abbadingo.cs.unm.edu/dfa-0110.txt">This</A> DFA accepts strings of 
+0's and 1's which end with either <SAMP>"01"</SAMP> or <SAMP>"10"</SAMP>. For 
+instance, the strings <SAMP>"10"</SAMP>, <SAMP>"001"</SAMP>, <SAMP>"101"</SAMP>, 
+<SAMP>"110"</SAMP>, <SAMP>"01010"</SAMP>, <SAMP>"00110"</SAMP>, 
+<SAMP>"001001"</SAMP>, and <SAMP>"0000101"</SAMP> are accepted, while the 
+strings <SAMP>""</SAMP> (the empty string), <SAMP>"0"</SAMP>, <SAMP>"1"</SAMP>, 
+<SAMP>"00"</SAMP>, and <SAMP>"0011"</SAMP> are rejected. 
+<P>A computer scientist would say that this DFA accepts the <EM>language</EM> of 
+strings ending in <SAMP>"01"</SAMP> or <SAMP>"10"</SAMP>. Any language accepted 
+by some DFA is called a <EM>regular language.</EM> However, regular languages 
+can be described in many ways, and in some cases a short description in another 
+notation (eg a short regular expression) can lead to an immense corresponding 
+minimal DFA, and vice versa. <BR clear=left>
+<H2 align=center>Learning a DFA's Language</H2><IMG height=333 
+alt="picture of a DFA" src="DFAs Languages and Learning_files/dfa-five.gif" 
+width=344 align=left> <A 
+href="http://abbadingo.cs.unm.edu/dfa-five.txt">This</A> DFA accepts strings of 
+<SAMP>0</SAMP>'s and <SAMP>1</SAMP>'s in which the number of <SAMP>0</SAMP>'s 
+minus twice the number of <SAMP>1</SAMP>'s is either 1 or 3 more than a multiple 
+of 5. For instance, the strings <SAMP>"1000"</SAMP>, <SAMP>"0100"</SAMP>, 
+<SAMP>"0010"</SAMP>, <SAMP>"10111"</SAMP>, <SAMP>"111101"</SAMP>, 
+<SAMP>"010000"</SAMP>, <SAMP>"100000"</SAMP>, <SAMP>"0001101"</SAMP>, and 
+<SAMP>"0000101"</SAMP> are accepted, while the strings <SAMP>"101"</SAMP>, 
+<SAMP>"0000"</SAMP>, <SAMP>"1101"</SAMP>, <SAMP>"00000"</SAMP>, 
+<SAMP>"00101"</SAMP>, <SAMP>"010111"</SAMP>, and <SAMP>"1000111"</SAMP> are 
+rejected. 
+<P>In the problem of <EM>grammar induction</EM>, one is given a list (or 
+``corpus'') of strings labeled <STRONG>accepted</STRONG> or 
+<STRONG>rejected</STRONG>, and one's task is to figure out the underlying rule. 
+This is a ubiquitous problem: it crops up in computer translation, automatic 
+proofreading, database querying, linguistics, computer speech recognition, 
+cognitive psychology, and even computer vision and dynamic systems theory. 
+<P>Even for languages accepted by DFAs, grammar induction becomes extremely 
+difficult when there are not very many samples in the corpus relative to the 
+size of the underlying DFA. 
+<H2 align=center>Example with Files</H2>For the example strings mentioned above, 
+our training corpus file would read 
+<BLOCKQUOTE><PRE>16 2
+1 4 1 0 0 0
+1 4 0 1 0 0
+1 4 0 0 1 0
+1 5 1 0 1 1 1
+1 6 1 1 1 1 0 1
+1 6 0 1 0 0 0 0
+1 6 1 0 0 0 0 0
+1 7 0 0 0 1 1 0 1
+1 7 0 0 0 0 1 0 1
+0 3 1 0 1
+0 4 0 0 0 0
+0 4 1 1 0 1
+0 5 0 0 0 0 0
+0 5 0 0 1 0 1
+0 6 0 1 0 1 1 1
+0 7 1 0 0 0 1 1 1
+</PRE></BLOCKQUOTE>The first line is a header, giving the number of strings in 
+the file (sixteen) and the number of symbols (<SAMP>0</SAMP> and <SAMP>1</SAMP>, 
+which makes two). Each line after the header has the format ``label len 
+sym<SUB>1</SUB> ... sym<SUB>len</SUB>'' where len is the length of the string, 
+and sym<SUB>1</SUB> ... sym<SUB>len</SUB> are its symbols, separated by white 
+space. The label <SAMP>1</SAMP> means accepted, and the label <SAMP>0</SAMP> 
+means rejected. So the last line of the file indicates that the string 
+<SAMP>1000111</SAMP> is rejected. 
+<P>The <A href="http://abbadingo.cs.unm.edu/learn-dfa.tar.gz">sample 
+Trakhtenbrot-Barzdin DFA learning program</A>, when provided with this training 
+corpus file, prints out the following hypothesis DFA file. The first line is a 
+header giving the number of states and the number of symbols. Each line after 
+the header has the format ``state-number label 0-transition 1-transition.'' 
+<BLOCKQUOTE><PRE>5 2
+0 0 1 2
+1 1 3 4
+2 1 4 1
+3 0 2 0
+4 0 0 3
+</PRE></BLOCKQUOTE>Now that we have run a learning algorithm and generated a 
+hypothesis, we are in a position to propose a set of labels for the test set. 
+The testing file looks just like a training file, except that the labels are 
+<SAMP>-1</SAMP>, which means unknown. 
+<P>Suppose the testing file were this: 
+<BLOCKQUOTE><PRE>20 2
+-1 7 0 0 1 1 0 0 0
+-1 7 1 0 0 1 1 0 1
+-1 7 1 0 1 0 1 0 1
+-1 7 0 0 1 1 1 1 0
+-1 7 0 1 0 0 1 0 1
+-1 7 0 0 0 0 0 0 0
+-1 6 1 0 1 0 0 1
+-1 7 0 1 1 0 0 0 1
+-1 7 1 0 0 0 0 1 0
+-1 7 0 0 0 0 1 1 0
+-1 5 0 0 0 1 0
+-1 6 1 0 0 1 1 1
+-1 6 0 0 0 0 0 1
+-1 5 1 0 0 0 1
+-1 7 1 1 1 0 1 1 1
+-1 7 1 1 0 0 0 1 0
+-1 7 1 0 0 0 0 0 1
+-1 7 0 1 1 1 1 1 1
+-1 7 1 0 0 1 1 1 1
+-1 7 1 1 1 0 1 1 0
+</PRE></BLOCKQUOTE>By stepping through the file and printing out the label that 
+our hypothesis would assign to each of the 20 test strings, we would obtain the 
+following 20-character string, which would be in the right format for submission 
+to <A href="http://abbadingo.cs.unm.edu/abbadingo-oracle.html">the Abbadingo 
+Oracle</A>: <SAMP>10001001110010011000 </SAMP>
+<P>The testing set files for the real problems are much longer: each contains 
+1800 strings to be classified. To solve the problem and satisfy the Oracle, you 
+must misclassify at most 18 of them. </P>
+<HR>
+<A href="http://abbadingo.cs.unm.edu/home.html">Abbadingo home</A><BR>The <A 
+href="mailto:abbadingo-webmaster@cs.unm.edu">Abbadingo Webmaster</A> welcomes 
+your comments and complaints. </BODY></HTML>

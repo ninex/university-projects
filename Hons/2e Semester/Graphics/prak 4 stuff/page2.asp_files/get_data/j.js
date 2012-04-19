@@ -1,0 +1,1 @@
+document.write('<center><a target=_blank href="http://a.tribalfusion.com/l.click?clickID=DUJUKSLFJJPKOEENMLUQUJMGFUQLYNOLOWNLCNLGLSXQQQPBLIKGVEMGLDKBUPRETOKNHOQ&clickURL=http%3a%2f%2fwww%2eadoptuskids%2eorg"> <img src=http://cdn5.tribalfusion.com/media/553716.gif border=0 height=60 width=468 alt="Click Here!"></a></center>');

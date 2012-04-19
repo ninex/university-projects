@@ -1,0 +1,46 @@
+import java.util.*;
+
+public class state {
+	
+	BitSet st;
+	int count;
+	
+	public state() {
+			
+		st = new BitSet(3);
+		count = 0;
+	}
+
+	public int get() {
+		return count;
+	}
+
+	public void set(int count) {
+		this.count = count;
+	}
+
+	public void initial() {
+		st.set(1);
+	}
+
+	public boolean isInitial() {
+		return st.get(1);
+	}
+
+	public void goal() {
+		count = 1;
+		st.set(2);
+	}
+
+	public boolean isGoal() {
+		return st.get(2);
+	}
+
+	public void wall() {
+		st.set(0);
+	}
+
+	public boolean isWall() {
+		return st.get(0);
+	}
+}

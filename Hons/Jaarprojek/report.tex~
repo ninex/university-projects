@@ -1,0 +1,37 @@
+\documentclass[a4paper,11pt,titlepage]{article}
+\usepackage{graphicx}
+\author{Abrie Greeff\\B.Sc Hons (Computer Science)\\Department of Computer Science\\University of Stellenbosch\\Supervisor:\\Dr. L van Zijl}
+
+\title{Hand Motion Detection From Video Data}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Introduction}
+
+\section{Requirements Engineering and Specification}
+
+\subsection{Description of Requirements}
+This project is a part of the South African sign language (SASL) dictionary initiative. The purpose of this project is to obtain motion data from a set of videos and translate hand movements into rectangular coordinates.
+
+
+
+\subsection{Informal Specification}
+The user will provide a Mpeg 2 video file as input. This video will contain one or more gestures that is each related to a word in the SASL. The first application developed for this project will inspect this video data and split the data into smaller video files each corresponding to a different gesture.
+\subsection{Formal Specification}
+
+\section{Prototypes and Design}
+
+
+\begin{thebibliography}{9}
+\bibitem{Harel} D Harel,
+\emph{On Visual Formalisms}, 
+Communications of the ACM, Vol. 31 Nr. 5, 1988, pp 514-530
+\bibitem{Java} 3D Studio Max,
+\emph{Autodesk 3ds Max},	
+[Online], Available from \emph{http://www.autodesk.com/3dsmax }
+\bibitem{sipser} M Sipser,
+\emph{Introduction to the Theory of Computation},
+1997, p. 35
+\end{thebibliography}
+\end{document}

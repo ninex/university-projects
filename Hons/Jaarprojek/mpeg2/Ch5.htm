@@ -1,0 +1,442 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<TITLE>Untitled</TITLE>
+</HEAD>
+<BODY bgcolor="#FFFFFF">
+<H1>5 MOTION ESTIMATION AND COMPENSATION<BR>
+</H1>
+<P>
+To exploit temporal redundancy, motion estimation
+and compensation are used for prediction.<BR>
+
+<P>
+Prediction is called forward if reference is made
+to a frame in the past (in display order) and called backward
+if reference is made to a frame in the future. It is called interpolative
+if reference is made to both future and past. <BR>
+
+<P>
+For this TM the search range should be appropriate
+for each sequence, and therefore a vector search range per sequence
+is listed below:<BR>
+
+
+
+<CENTER>
+<TABLE border=1>
+<TR><td>Sequence    </td><td>Frame vertical range</td><td>Field vertical range</td><td>Horizontal range</td>
+<TR><td><b>Table Tennis</b></td><td>&#177 15 samples</td><td>&#177 3 samples</td><td>&#177 7 samples</td></tr>
+<TR><td><b>Flower Garden</b></td><td>&#177 15 samples</td><td>&#177 3 samples</td><td>&#177 7 samples</td></tr>
+<TR><td><b>Calendar</b></td><td>&#177 15 samples</td><td>&#177 3 samples</td><td>&#177 7 samples</td></tr>
+<TR><td><b>Popple</b></td><td>&#177 15 samples</td><td>&#177 3 samples</td><td>&#177 7 samples</td></tr>
+<TR><td><b>Football</b></td><td>&#177 31 samples</td><td>&#177 7 samples</td><td>&#177 15 samples</td></tr>
+<TR><td><b>PRL Car</b></td><td>&#177 63 samples</td><td>&#177 15 samples</td><td>&#177 31 samples</td></tr>
+</TABLE>
+</CENTER>
+
+<P>
+<P>
+A positive value of the horizontal or vertical component
+of the motion vector signifies that the prediction is formed from
+pixels in the referenced frame, which are spatially to the right
+or below the pixels being predicted.<BR>
+
+<H2>5.1 Motion Vector Estimation<BR>
+</H2>
+<P>
+For the P and B-frames, two types of motion vectors,
+Frame Motion Vectors and Field Motion Vectors, will be estimated
+for each macroblock. In the case of Frame Motion Vectors, one
+motion vector will be generated in each direction per macroblock,
+which corresponds to a 16x16 pels luminance area. For the case
+of Field Motion Vectors, two motion vectors per macroblock will
+be generated for each direction, one for each of the fields. Each
+vector corresponds to a 16x8 pels luminance area. <BR>
+
+<P>
+The algorithm uses two steps. First a full search
+algorithm is applied on original pictures with full pel accuracy.
+Second a half pel refinement is used, using the local decoded
+picture.<BR>
+
+<H3>5.1.1 Full Search<BR>
+</H3>
+<P>
+A simplified Frame and Field Motion Estimation routine
+is listed below. In this routine the following relation is used:
+<P>
+
+<PRE>
+
+  (AE of Frame) = (AE of FIELD1) + (AE of FIELD2)
+
+where AE represents a sum of absolute errors.
+
+With this routine three vectors are calculated, MV_FIELD1, MV_FIELD2 and MV_FRAME.
+
+  Min_FRAME  = MAXINT;
+
+  Min_FIELD1 = MAXINT;
+
+  Min_FIELD2 = MAXINT;
+
+  for (y = -YRange; y < YRange; y++)
+  {
+
+    for (x = -XRange; x < XRange; x++)
+    {
+      AE_FIELD1 = AE_Macroblock( prediction_mb(x,y), lines_of_FIELD1_of_current_mb );
+      AE_FIELD2 = AE_Macroblock( prediction_mb(x,y), lines_of_FIELD2_of_current_mb );
+
+      AE_FRAME = AE_FIELD1 + AE_FIELD2;
+
+      if (AE_FIELD1 < Min_FIELD1)
+      {
+        MV_FIELD1 = (x,y);
+        Min_FIELD1 = AE_FIELD1;
+      }
+
+      if (AE_FIELD2 < Min_FIELD2)
+      {
+        MV_FIELD2 = (x,y);
+        Min_FIELD2 = AE_FIELD2;
+      }
+
+      if (AE_FRAME < Min_FRAME)
+      {
+        MV_FRAME = (x,y);
+        Min_FRAME = AE_FRAME;
+      }
+    }
+  }
+</PRE>
+
+<P>
+The search is constrained to take place within the
+boundaries of the significant pel area. Motion vectors which refer
+to pixels outside the significant pel area are excluded. <BR>
+
+<H3>5.1.2 Half pel search<BR>
+</H3>
+<P>
+The half pel refinement uses the eight neighbouring
+half-pel positions in the referenced corresponding local decoded
+field or frame which are evaluated in the following order:<BR>
+
+<CENTER>
+<TABLE>
+<TR><TD WIDTH=24><CENTER>1</CENTER></TD><TD WIDTH=24><CENTER>2</CENTER>
+</TD><TD WIDTH=24><CENTER>3</CENTER></TD>
+</TR>
+<TR><TD WIDTH=24><CENTER>4</CENTER></TD><TD WIDTH=24><CENTER>0</CENTER>
+</TD><TD WIDTH=24><CENTER>5</CENTER></TD>
+</TR>
+<TR><TD WIDTH=24><CENTER>6</CENTER></TD><TD WIDTH=24><CENTER>7</CENTER>
+</TD><TD WIDTH=24><CENTER>8</CENTER></TD>
+</TR>
+</TABLE>
+</CENTER>
+
+<P>
+<P>
+where 0 represents the previously evaluated integer-pel
+position. The value of the spatially interpolated pels are calculated
+as follows:<BR>
+
+<CENTER>
+<TABLE>
+<TR><TD WIDTH=132>S(x+0.5,y )</TD><TD WIDTH=252> = (S(x,y)+S(x+1,y))//2,
+</TD></TR>
+<TR><TD WIDTH=132>S(x ,y+0.5) </TD><TD WIDTH=252>= (S(x,y)+S(x,y+1))//2,
+</TD></TR>
+<TR><TD WIDTH=132>S(x+0.5,y+0.5) </TD><TD WIDTH=252>= (S(x,y)+S(x+1,y)+S(x,y+1)+S(x+1,y+1))//4. 
+</TD></TR>
+</TABLE>
+</CENTER>
+<P>
+<P>
+where x, y are the integer-pel horizontal and vertical
+coordinates, and S is the pel value. If two or more positions
+have the same total absolute difference, the first is used for
+motion estimation.<BR>
+
+<P>
+NOTE: In field searches, the refence system is the
+correspondig field. In a field the line distance is 1.<BR>
+
+<H3>5.1.3 Motion estimation for Special prediction mode<BR>
+</H3>
+<P>
+The first step is to obtain four candidate motion
+vectors as follows : 
+<P>
+First, four field motion vectors with half-pel accuracy
+from reference field 1 / field 2 to predicted field 1 / field
+2 are searched by normal motion vector search defined in the Test
+Model. Then these vectors are appropriately scaled, if the parity
+of the predicted field is opposite to that of the predicted field.
+<P>
+The second step is to evaluate the prediction errors
+of Dual-prime prediction using possible combinations of four candidate
+motion vectors obtained by the first step, and 3Vx3H = 9 candidate
+differential motion vectors.
+<P>
+The prediction error is computed using the reconstructed
+pictures. The combination with the smallest MSE is selected. 
+<BR>
+
+<H2>5.2 Motion Compensation<BR>
+</H2>
+<P>
+Motion compensation is performed differently for
+field coding and for frame coding. General formulas for frame
+and field coding are listed below.<BR>
+
+<P>
+Forward motion compensation is performed as follows:
+<BR>
+
+<P>
+S(x, y) = S1(x + FMVx(x, y), y + FMVy(x, y))<BR>
+
+<P>
+Backward motion compensation is performed as follows:
+<BR>
+
+<P>
+S(x, y) = SM+1(x + BMVx(x,y), y + BMVy(x,y)) <BR>
+
+<P>
+Temporal interpolation is performed by averaging.
+<BR>
+
+<P>
+S(x,y) =  ( S1(x + FMVx(x,y) , y + FMVy(x,y)) + 
+SM+1(x + BMVx(x,y), y + BMVy(x,y)))//2<BR>
+
+<P>
+where FMV is the forward motion compensated macroblock,
+thus making reference to a 'previous picture', and BMV is the
+backward motion compensated macroblock, making reference to a
+'future picture'.<BR>
+
+<P>
+A displacement vector for the chrominance is derived
+by halving the component values of the corresponding MB vector,
+using the formula from CD 11172, section ......:
+<TABLE>
+<TR><TD WIDTH=149>right_for </TD><TD WIDTH=224>= (recon_right_for / 2) &gt;&gt; 1;
+</TD></TR>
+<TR><TD WIDTH=149>down_for</TD><TD WIDTH=224> = (recon_down_for / 2) &gt;&gt; 1;
+</TD></TR>
+<TR><TD WIDTH=149>right_half_for </TD><TD WIDTH=224>= recon_right_for/2 - 2*right_for;
+</TD></TR>
+<TR><TD WIDTH=149>down_half_for </TD><TD WIDTH=224>= recon_down_for/2 - 2*down_for;
+</TD></TR>
+<TR><TD WIDTH=149></TD><TD WIDTH=224></TD></TR>
+</TABLE>
+<P>
+<H3>5.2.1 Frame Motion Compensation<BR>
+</H3>
+<P>
+In frame prediction macroblocks there is one vector
+per macroblock. Vectors measure displacements on a frame sampling
+grid. Therefore an odd-valued vertical displacement causes a prediction
+from the fields of opposite parity. Vertical half pixel values
+are interpolated between samples from fields of opposite parity.
+Chrominance vectors are obtained directly by using the formulae
+above. The vertical motion compensation is illustrated in figure
+5.1.<BR>
+
+<P>
+<CENTER><IMG SRC="IMG00001.GIF"><BR>
+</CENTER>
+<P>
+<CENTER><B>Figure 5.1: Frame Motion Compensation
+<BR>
+</B></CENTER>
+<H3>5.2.2 Field Motion Compensation<BR>
+</H3>
+<P>
+Field-based MV is expressed in the very same way
+as frame-based vectors would be if the source (reference) field
+and the destination field were considered as &quot;frames&quot;
+(see Figure).<BR>
+
+<P>
+Considering that in each field, lines are numbers
+1.0, 2.0, 3.0, ... (1 is the top line of the field), if the pel
+located at line &quot;n&quot; of the destination field is predicted
+from line &quot;m&quot; of the reference field, the vertical coordinate
+of the field vector is &quot;n-m&quot;.
+<P>
+Note: when coding the motion vectors, &quot;m&quot;
+and &quot;n&quot; are expressed in units of one vertical half-pel
+in the field.
+<P>
+When necessary, <B>motion_vertical_field_select</B>
+(one bit) will be transmitted to identify the selected field.
+<BR>
+
+<P>
+<TABLE >
+<TR><TD WIDTH=312><CENTER><IMG SRC="IMG00002.GIF"><BR>
+</CENTER>
+<P>
+<CENTER><B>4:2:0 format</B></CENTER>
+</TD><TD WIDTH=312><CENTER><IMG SRC="IMG00003.GIF"> 
+<BR>
+</CENTER>
+<P>
+<CENTER><B>4:2:2 format and 4:4:4 format</B></CENTER>
+</TD></TR>
+</TABLE>
+<P>
+<H4>5.2.2.1. Chrominance Field-based MV<BR>
+</H4>
+<P>
+<B>In 4:2:0 sequences&nbsp;:</B>
+<P>
+The vertical coordinate of the chrominance Field-based
+MV is derived by dividing by 2 the vertical coordinate of the
+luminance Field-based MV, as done in MPEG-1.
+<P>
+The horizontal coordinate of the chrominance MV (Field-based
+or Frame-based) is derived by dividing by 2 the horizontal coordinate
+of the luminance MV, as done in MPEG-1.<BR>
+
+<P>
+<B>In 4:2:2 sequences&nbsp;:</B>
+<P>
+The vertical coordinate of the Field-based MV for
+chrominance is equal to the vertical coordinate of the luminanceField-based
+MV.
+<P>
+The horizontal coordinate of the chrominance MV (Field-based
+or Frame-based) is derived by dividing by 2 the horizontal coordinate
+of the luminance MV, as done in MPEG-1.<BR>
+
+<P>
+<B>In 4:4:4 sequences&nbsp;:</B>
+<P>
+The horizontal (resp. vertical) coordinate of MV
+for chrominance is equal to the horizontal (resp. vertical) coordinate
+of the luminance MV.<BR>
+
+<H2>5.3 Special prediction mode<BR>
+</H2>
+<H3>5.3.1. Overview of <I>Special</I> Prediction mode<BR>
+</H3>
+<P>
+There is only one <I>special</I> prediction mode
+(Dual-prime) remaining in this Test Model and this is based on
+Field-based prediction. <B>THIS IS ONLY USED FOR M=1 CODING (NO
+B_FRAMES) FOR THE MAIN PROFILE, MAIN LEVEL. FOR OTHER PROFILES
+AND LEVELS IT HAS NOT BEEN DECIDED. </B>This mode has been included
+in particular for low delay applications.<BR>
+
+<P>
+<B>Dual Prime prediction involves the averaging of
+two forward field based predictions from the last two nearest
+decoded fields (in time).<BR>
+</B>
+<P>
+In the syntax of the Special prediction mode, for
+forward prediction, one field motion vector is transmitted, followed
+by a differential motion vector. Each of the coordinates of the
+differential motion vector is limited to the values [-1, 0, +1]
+(half pixel values), and is transmitted with a 1-2 bit code.
+<P>
+Combinations of the transmitted field motion vector
+(possibly scaled according to the field temporal distance) and
+of the differential motion vector are used for the prediction,
+as described in the following sections. A separate section defines
+precisely how field motion vectors are scaled.<BR>
+
+<P>
+<CENTER><IMG SRC="IMG00004.GIF"> <BR>
+</CENTER>
+<P>
+<CENTER><B>Figure 1 : Special prediction mode (frame
+structure picture coding mode)<BR>
+<BR>
+</B></CENTER>
+<P>
+Plain arrows represent the transmitted field motion
+vector. Dashed arrows represent the scaled-up or scaled-down field
+motion vectors. Vertical arrows represent the transmitted differential
+motion vector.<BR>
+
+<H3>5.3.2. Specification of Dual-prime vectors<BR>
+</H3>
+<P>
+Motion vectors used for Dual-prime prediction are
+field motion vectors obtained as follows:<BR>
+
+<P>
+1. If the reference field and the predicted field
+are same parity, the field motion vector used is equal to the
+transmitted field motion vector.
+<P>
+2. If the reference field and the predicted field
+are different parity, the field motion vector used is obtained
+by adding the differential motion vector to the scaled transmitted
+motion vector.<BR>
+
+<P>
+<B>NOTE: that the same differential motion vector
+is used for the scaled-down and the scaled-up field motion vectors.
+<BR>
+</B>
+<H3>5.3.3. Temporal Scaling of the Field Motion Vector<BR>
+</H3>
+<P>
+The transmitted field motion vector (x, y) corresponds
+to the temporal distance between two fields of same parity. The
+horizontal and vertical coordinate are in 1/2-pel units.
+<P>
+The transmitted field motion vector is used for computing
+two scaled field motion vectors that serve in the Special prediction
+mode when reference field and predicted fields are opposite parity.
+One of the scaled field motion vectors is longer (&quot;scaled-up&quot;),
+the other one is shorter (&quot;scaled-down&quot;).
+<P>
+Scaling is done as follows :<BR>
+
+<P>
+<TABLE >
+<TR><TD WIDTH=540>If the same parity reference frame is at a distance of 2*k fields from the predicted field, the coordinates (x', y') of the scaled motion vector used for accessing the different-parity field is computed as follows:
+<P>
+x' = (x * K) // 32 (x and x' are integers)<BR>
+y' = ((y * K) // 32) + e (y and y' are integers)
+<P>
+K = (m * 16) // k (k is integer)
+<P>
+m = field-distance between the predicted field and the different-parity-field. NOTE: FURTHER APPROXIMATION OF SCALING SHALL BE REDEFINED(See MPEG93/227)
+<P>
+The &quot;e&quot; is an adjustment necessary to reflect the vertical shift between the lines of field 1 and field 2. To give an example, line 1 of field 2 is in fact located 1/2 line under line 1 of field 1.
+<P>
+e is defined as follows :
+<P>
+e = -1 if the reference field corresponding to the scaled vector is field 2<BR>
+e = +1 if the reference field corresponding to the scaled vector is field 1
+</TD><TD WIDTH=270><B><IMG SRC="IMG00005.GIF"></B></TD></TR>
+</TABLE>
+<P>
+<P>
+<B>[NOTE: The formula assumes frame based coding and will be updated]
+<BR>
+</B>
+<H3>5.3.4. Prediction of Chrominance Blocks<BR>
+</H3>
+<P>
+The motion vector used for chrominance is obtained
+from the luminance Dual-prime motion vector with precisely the
+same rule as in the case of field-based prediction (for 4:2:0
+: divide each coordinate by 2 as described section 5.2.2.1. of
+TM). The rules of prediction are same as for lumanance.<BR>
+<HR>
+<P><LI><A HREF="../index.html">Back</A> to Contents</P>
+</BODY>
+</HTML>

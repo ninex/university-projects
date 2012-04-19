@@ -1,0 +1,11 @@
+run: InfixAndPostfix.o StackLADT.o Item.o Calc.c
+	gcc -o run InfixAndPostfix.o StackLADT.o Item.o Calc.c
+
+InfixAndPostfix.o: Item.h StackLADT.h InfixAndPostfix.h InfixAndPostfix.c
+	gcc -c InfixAndPostfix.c
+
+StackLADT.o: Item.h StackLADT.h StackLADT.c
+	gcc -c StackLADT.c
+
+Item.o: Item.h Item.c
+	gcc -c Item.c

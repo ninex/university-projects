@@ -1,0 +1,51 @@
+(*
+Just tests calling multiple un-nested procedures.
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+
+Expected output:
+111
+222
+-222
+444
+10
+-444
+333
+-333
+444
+20
+-444
+-111
+
+*)
+
+begin
+	integer x;
+	proc func1
+	begin
+		write 222;
+		x := 10;
+		write -222;
+	end;
+	
+	proc func2
+	begin
+		write 333;
+		x := 20;
+		write -333;
+	end;
+
+	proc writex
+	begin
+		write 444;
+		write x;
+		write -444;
+	end;
+
+	write 111;
+	func1;
+	writex;
+	func2;
+	writex;
+	write -111;
+end.

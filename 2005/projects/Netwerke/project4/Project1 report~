@@ -1,0 +1,69 @@
+
+                      Computer Science 354 - Networking Project 1
+                      
+Date : 8th August 2005
+Programmers : Abrie Greef(13557343) & Andrew Mori(14111594)
+
+1) To view our code please see the following files:
+              - server.java
+              - client.java
+              - serverThread.java
+              - REP_MSG.java
+              - REQ_MSG.java
+              - makefile (if neccessary)
+            
+2) We have used 5 classes up until this point in the project:
+
+    Server class : This class only consists of a main() funtion which is primarily there 
+                   to "listen" for a client which is attempting to make a connection and 
+                   ultimately send a message to the server. The main function attempts to 
+                   create a "listening" socket on port number 3000.
+                   
+                   Once the Serversocket has been created the server then proceeds poll the
+                   connection. If the connection is bound to an adress the server will
+                   then create a thread to handle the request message so the server can
+                   continue polling for other client's attempting to send messages.
+                   
+    serverThread : This class extends class thread and implements runnable. It's constructor
+                   recieves a socket passed from the server class and assigns this socket to
+                   a client socket in its own class.
+                   
+                   The "main" function in this class is the run function. It is invoked when 
+                   the thread is started. An input/output stream is now needed to communicate
+                   between server and client. In/Out messages are created to send and recieve
+                   messages between the two as well ( the message protocol has been defined 
+                   in the respective message classes ). 
+                   
+                   The thread then proceeds to check if the client is connected. If true, then
+                   the message is recieved in the form of a request message. At this point the
+                   thread simply prints out the message. Perhaps later on in the project the 
+                   message will have to be validated at this point by means of a data base 
+                   perhaps, but for now I assume this will suffice.
+                   
+                   A reply message is now sent. The way in which the message protocol is 
+                   defined will be discussed later.The replied message is then written to the
+                   ObjectOutputStream and is so handled by the client(i think!!!!). From here 
+                   the client socket is closed and finnally the thread should terminate.(does 
+                   it do this abrie????)
+                   
+   Client Class :  The Client class has its main function which
+                      
+   
+   Request msg  :  Both message classes implent serializable. The constructor for this class
+                   creates the message. The constructor recieves 5 parameters, namely an id,
+                   a type, a password, a message content which is an Object and a request
+                   resource. The message is constructed here and recieves a date from java's
+                   date class and methods. A simple printing function to display the message
+                   is also included.
+   
+   Reply msg    :  Similarily to the Request message class, the constructor of the Reply 
+                   message class is used in constructing the message. The constructor 
+                   recieves 2 parameters, an id and a message response which is also of
+                   an Object type. The parameters in both cases seem redundant but there
+                   uses will become obvious as the project gains momentum.
+                   
+                   Once again the message is "time stamped", if you will, by java's date
+                   class and methods. The class also has a simple printing procedure
+   
+   
+   /* Any understanding of client - server and socket programming must go here. abrie!!!!! */

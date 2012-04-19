@@ -1,0 +1,492 @@
+FIELDSET {
+	PADDING-RIGHT: 0.5em; PADDING-LEFT: 0.5em; MARGIN-BOTTOM: 1em; PADDING-BOTTOM: 0.5em; PADDING-TOP: 0.5em
+}
+FORM {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+HR {
+	BORDER-RIGHT: gray 1px solid; BORDER-TOP: gray 1px solid; BORDER-LEFT: gray 1px solid; BORDER-BOTTOM: gray 1px solid; HEIGHT: 1px
+}
+IMG {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+TABLE {
+	BORDER-COLLAPSE: collapse
+}
+TH {
+	PADDING-RIGHT: 1em; BORDER-BOTTOM: #ccc 3px solid; WHITE-SPACE: nowrap; TEXT-ALIGN: left
+}
+TH.active IMG {
+	DISPLAY: inline
+}
+TR.dark {
+	BORDER-BOTTOM: #ccc 1px solid; BACKGROUND-COLOR: #eee
+}
+TR.light {
+	BORDER-BOTTOM: #ccc 1px solid; BACKGROUND-COLOR: #eee
+}
+TR.dark {
+	PADDING-RIGHT: 0.6em; PADDING-LEFT: 0.6em; PADDING-BOTTOM: 0.1em; PADDING-TOP: 0.1em
+}
+TR.light {
+	PADDING-RIGHT: 0.6em; PADDING-LEFT: 0.6em; PADDING-BOTTOM: 0.1em; PADDING-TOP: 0.1em
+}
+TD.active {
+	BACKGROUND-COLOR: #ddd
+}
+.menu {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0.5em; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.menu UL {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; LIST-STYLE-TYPE: none; TEXT-ALIGN: left; BORDER-BOTTOM-STYLE: none
+}
+.menu LI A {
+	WIDTH: 100%; TEXT-DECORATION: none
+}
+LI.expanded {
+	PADDING-RIGHT: 0.5em; PADDING-LEFT: 0px; LIST-STYLE-IMAGE: url(menu-expanded.png); PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0.2em; LIST-STYLE-TYPE: circle
+}
+LI.collapsed {
+	PADDING-RIGHT: 0.5em; PADDING-LEFT: 0px; LIST-STYLE-IMAGE: url(menu-collapsed.png); PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0.2em; LIST-STYLE-TYPE: disc
+}
+LI.leaf {
+	PADDING-RIGHT: 0.5em; PADDING-LEFT: 0px; LIST-STYLE-IMAGE: url(menu-leaf.png); PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0.2em; LIST-STYLE-TYPE: square
+}
+LI A.active {
+	COLOR: #000
+}
+TD.menu-disabled {
+	BACKGROUND: #ccc
+}
+.breadcrumb {
+	PADDING-BOTTOM: 0.5em
+}
+.block UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 1em; PADDING-BOTTOM: 0.25em; MARGIN: 0px; PADDING-TOP: 0px
+}
+BR.clear {
+	CLEAR: both; HEIGHT: 0px
+}
+.container-inline DIV {
+	DISPLAY: inline
+}
+.container-inline .form-submit {
+	MARGIN: 0px
+}
+.error {
+	COLOR: red
+}
+.item-list .icon {
+	CLEAR: right; PADDING-LEFT: 0.25em; FLOAT: right; COLOR: #555
+}
+.item-list .icon A {
+	COLOR: #000; TEXT-DECORATION: none
+}
+.item-list .icon A:hover {
+	COLOR: #000; TEXT-DECORATION: none
+}
+.item-list .title {
+	FONT-WEIGHT: bold
+}
+.item-list UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0.75em; PADDING-TOP: 0px
+}
+.item-list UL LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0.25em 1.5em; PADDING-TOP: 0px; LIST-STYLE-TYPE: disc
+}
+.form-item {
+	MARGIN-TOP: 1em; MARGIN-BOTTOM: 1em
+}
+TR.light .form-item {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; WHITE-SPACE: nowrap
+}
+TR.dark .form-item {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px; WHITE-SPACE: nowrap
+}
+.form-item INPUT.error {
+	BORDER-RIGHT: red 2px solid; BORDER-TOP: red 2px solid; BORDER-LEFT: red 2px solid; BORDER-BOTTOM: red 2px solid
+}
+.form-item TEXTAREA.error {
+	BORDER-RIGHT: red 2px solid; BORDER-TOP: red 2px solid; BORDER-LEFT: red 2px solid; BORDER-BOTTOM: red 2px solid
+}
+.form-item .description {
+	FONT-SIZE: 0.85em
+}
+.form-item LABEL {
+	FONT-WEIGHT: bold
+}
+.form-item LABEL.option {
+	FONT-WEIGHT: normal
+}
+.form-submit {
+	MARGIN: 0.5em 0px
+}
+.marker {
+	COLOR: #f00
+}
+.form-required {
+	COLOR: #f00
+}
+.more-link {
+	TEXT-ALIGN: right
+}
+.node-form .form-text {
+	DISPLAY: block; WIDTH: 95%
+}
+.node-form .standard {
+	CLEAR: both
+}
+.node-form TEXTAREA {
+	DISPLAY: block; WIDTH: 95%
+}
+ HTML .node-form FIELDSET {
+	DISPLAY: inline
+}
+.node-form .admin .form-item .title {
+	MARGIN-TOP: 0px
+}
+.node-form .admin .authored .form-item {
+	MARGIN-BOTTOM: 1.1em
+}
+.node-form .admin .authored .form-text {
+	WIDTH: auto
+}
+.node-form .admin .authored {
+	FLOAT: left; MARGIN-BOTTOM: 1em; MARGIN-RIGHT: 2em
+}
+.node-form .admin .options {
+	FLOAT: left; MARGIN-BOTTOM: 1em; MARGIN-RIGHT: 2em
+}
+.node-form .admin .extra {
+	FLOAT: left; MARGIN-BOTTOM: 1em; MARGIN-RIGHT: 2em
+}
+.node-form .attachments FIELDSET {
+	DISPLAY: block; FLOAT: none
+}
+.ok {
+	COLOR: #080
+}
+#pager {
+	CLEAR: both; TEXT-ALIGN: center
+}
+#pager DIV {
+	PADDING-RIGHT: 0.5em; PADDING-LEFT: 0.5em; PADDING-BOTTOM: 0.5em; PADDING-TOP: 0.5em
+}
+.path {
+	FONT-SIZE: 1.1em; PADDING-BOTTOM: 0.7em
+}
+#aggregator .feed IMG {
+	FLOAT: right
+}
+#aggregator .news-item {
+	CLEAR: both; PADDING-BOTTOM: 1em
+}
+#aggregator .news-item .date {
+	FLOAT: left
+}
+#aggregator .news-item .body {
+	MARGIN-TOP: 1em; MARGIN-LEFT: 4em
+}
+#aggregator .news-item .body .feed {
+	FONT-SIZE: 0.9em
+}
+#aggregator .news-item .title {
+	FLOAT: left
+}
+#aggregator .news-item .description {
+	CLEAR: both
+}
+#aggregator TD {
+	VERTICAL-ALIGN: bottom
+}
+#aggregator TD.categorize-item {
+	WHITE-SPACE: nowrap
+}
+#aggregator .categorize-item .news-item .body {
+	MARGIN-TOP: 0px
+}
+#aggregator .categorize-item H3 {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 1em
+}
+.book {
+	MARGIN: 1em 0px
+}
+.book .title {
+	FONT-WEIGHT: bold; FONT-SIZE: 1.3em; MARGIN-BOTTOM: 1em
+}
+.book .tree {
+	BORDER-TOP: #888 1px solid; PADDING-BOTTOM: 1em; PADDING-TOP: 1em
+}
+.book .name {
+	FONT-WEIGHT: bold; FONT-SIZE: 1em; PADDING-TOP: 1em
+}
+.book .nav {
+	CLEAR: both; BORDER-TOP: #888 1px solid; PADDING-BOTTOM: 3em; PADDING-TOP: 1em; BORDER-BOTTOM: #888 1px solid
+}
+.book .nav .links {
+	CLEAR: both
+}
+.book .nav .titles {
+	CLEAR: both
+}
+.book .nav .prev {
+	FLOAT: left; WIDTH: 45%; TEXT-ALIGN: left
+}
+.book .nav .next {
+	FLOAT: right; WIDTH: 45%; TEXT-ALIGN: right
+}
+.book .nav .up {
+	TEXT-ALIGN: center
+}
+.calendar .row-week TD A {
+	DISPLAY: block
+}
+.calendar .row-week TD A:hover {
+	COLOR: #fff; BACKGROUND-COLOR: #888
+}
+.calendar A {
+	TEXT-DECORATION: none
+}
+.calendar A:hover {
+	TEXT-DECORATION: none
+}
+.calendar TABLE {
+	BORDER-RIGHT: #000 1px solid; BORDER-TOP: #000 1px solid; BORDER-LEFT: #000 1px solid; WIDTH: 100%; BORDER-BOTTOM: #000 1px solid; BORDER-COLLAPSE: collapse
+}
+.calendar TD {
+	BORDER-RIGHT: #000 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #000 1px solid; PADDING-LEFT: 1px; FONT-SIZE: 0.8em; PADDING-BOTTOM: 1px; MARGIN: 0px; BORDER-LEFT: #000 1px solid; PADDING-TOP: 1px; BORDER-BOTTOM: #000 1px solid; TEXT-ALIGN: center
+}
+.calendar TH {
+	BORDER-RIGHT: #000 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #000 1px solid; PADDING-LEFT: 1px; FONT-SIZE: 0.8em; PADDING-BOTTOM: 1px; MARGIN: 0px; BORDER-LEFT: #000 1px solid; PADDING-TOP: 1px; BORDER-BOTTOM: #000 1px solid; TEXT-ALIGN: center
+}
+.calendar TD.day-blank {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
+}
+.tips {
+	MARGIN-TOP: 0px; FONT-SIZE: 0.9em; MARGIN-BOTTOM: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+#forum .description {
+	FONT-SIZE: 0.9em; MARGIN: 0.5em
+}
+#forum TD.created {
+	WHITE-SPACE: nowrap
+}
+#forum TD.posts {
+	WHITE-SPACE: nowrap
+}
+#forum TD.topics {
+	WHITE-SPACE: nowrap
+}
+#forum TD.last-reply {
+	WHITE-SPACE: nowrap
+}
+#forum TD.replies {
+	WHITE-SPACE: nowrap
+}
+#forum TD.pager {
+	WHITE-SPACE: nowrap
+}
+#forum TD.posts {
+	TEXT-ALIGN: center
+}
+#forum TD.topics {
+	TEXT-ALIGN: center
+}
+#forum TD.replies {
+	TEXT-ALIGN: center
+}
+#forum TD.pager {
+	TEXT-ALIGN: center
+}
+#node-admin-filter UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 100%; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+#node-admin-buttons {
+	CLEAR: right; FLOAT: left; MARGIN-LEFT: 0.5em
+}
+DL.multiselect DD.b {
+	WIDTH: 14em; FONT-FAMILY: inherit
+}
+DL.multiselect DD.b .form-item {
+	WIDTH: 14em; FONT-FAMILY: inherit
+}
+DL.multiselect DD.b SELECT {
+	WIDTH: 14em; FONT-FAMILY: inherit
+}
+DL.multiselect DD.a {
+	WIDTH: 8em
+}
+DL.multiselect DD.a .form-item {
+	WIDTH: 8em
+}
+DL.multiselect DT {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px 1em 0px 0px; LINE-HEIGHT: 1.75em; PADDING-TOP: 0px
+}
+DL.multiselect DD {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px 1em 0px 0px; LINE-HEIGHT: 1.75em; PADDING-TOP: 0px
+}
+DL.multiselect .form-item {
+	MARGIN: 0px; HEIGHT: 1.75em
+}
+#permissions TD.module {
+	FONT-WEIGHT: bold
+}
+#blocks TD.region {
+	FONT-WEIGHT: bold
+}
+#permissions TD.permission {
+	PADDING-LEFT: 2em
+}
+#blocks TD.block {
+	PADDING-LEFT: 2em
+}
+#access-rules .access-type {
+	FLOAT: left; MARGIN-RIGHT: 1em
+}
+#access-rules .rule-type {
+	FLOAT: left; MARGIN-RIGHT: 1em
+}
+#access-rules .access-type .form-item {
+	MARGIN-TOP: 0px
+}
+#access-rules .rule-type .form-item {
+	MARGIN-TOP: 0px
+}
+#access-rules .mask {
+	CLEAR: both
+}
+.poll .bar {
+	MARGIN: 1px 0px; HEIGHT: 1em; BACKGROUND-COLOR: #ddd
+}
+.poll .bar .foreground {
+	CLEAR: left; FLOAT: left; HEIGHT: 1em; BACKGROUND-COLOR: #000
+}
+.poll .links {
+	TEXT-ALIGN: center
+}
+.poll .percent {
+	TEXT-ALIGN: right
+}
+.poll .total {
+	TEXT-ALIGN: center
+}
+.poll .vote-form {
+	TEXT-ALIGN: center
+}
+.poll .vote-form .choices {
+	MARGIN: 0px auto; TEXT-ALIGN: left
+}
+.profile {
+	CLEAR: both; MARGIN: 1em 0px
+}
+.profile .picture {
+	FLOAT: right; MARGIN: 0px 1em 1em 0px
+}
+.node-form .poll-form FIELDSET {
+	DISPLAY: block
+}
+IMG.screenshot {
+	BORDER-RIGHT: #808080 1px solid; BORDER-TOP: #808080 1px solid; DISPLAY: block; MARGIN: 2px; BORDER-LEFT: #808080 1px solid; BORDER-BOTTOM: #808080 1px solid
+}
+.search-form {
+	MARGIN-BOTTOM: 1em
+}
+.search-form P {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0.2em; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.search-form INPUT {
+	MARGIN-TOP: 0px; MARGIN-BOTTOM: 0px
+}
+.search-results P {
+	MARGIN-TOP: 0px
+}
+.search-results DT {
+	FONT-SIZE: 1.1em
+}
+.search-results DD {
+	MARGIN-BOTTOM: 1em
+}
+.search-results .search-info {
+	FONT-SIZE: 0.85em
+}
+.tips TABLE {
+	MARGIN-TOP: 1em; MARGIN-BOTTOM: 1em
+}
+#tracker TD.replies {
+	TEXT-ALIGN: center
+}
+#tracker TABLE {
+	WIDTH: 100%
+}
+.user-login-block {
+	TEXT-ALIGN: center
+}
+.more-help-link {
+	FONT-SIZE: 0.85em; TEXT-ALIGN: right
+}
+TR.watchdog-user {
+	BACKGROUND: #ffd
+}
+TR.watchdog-user .active {
+	BACKGROUND: #eed
+}
+TR.watchdog-content {
+	BACKGROUND: #ddf
+}
+TR.watchdog-content .active {
+	BACKGROUND: #cce
+}
+TR.watchdog-page-not-found {
+	BACKGROUND: #dfd
+}
+TR.watchdog-access-denied {
+	BACKGROUND: #dfd
+}
+TR.watchdog-page-not-found .active {
+	BACKGROUND: #cec
+}
+TR.watchdog-access-denied .active {
+	BACKGROUND: #cec
+}
+TR.watchdog-error {
+	BACKGROUND: #ffc9c9
+}
+TR.watchdog-error .active {
+	BACKGROUND: #eeb9b9
+}
+.comment .links .form-item {
+	DISPLAY: inline; WHITE-SPACE: nowrap
+}
+.comment .links .form-item BR {
+	DISPLAY: none
+}
+#comment-moderation-button {
+	TEXT-ALIGN: center
+}
+UL.primary {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 1em; PADDING-BOTTOM: 0px; MARGIN: 5px; LINE-HEIGHT: normal; PADDING-TOP: 0px; BORDER-BOTTOM: #bbb 1px solid; WHITE-SPACE: nowrap; LIST-STYLE-TYPE: none; BORDER-COLLAPSE: collapse; HEIGHT: auto
+}
+UL.primary LI {
+	DISPLAY: inline
+}
+UL.primary LI A {
+	BORDER-RIGHT: #bbb 1px solid; PADDING-RIGHT: 1em; BORDER-TOP: #bbb 1px solid; PADDING-LEFT: 1em; PADDING-BOTTOM: 0px; BORDER-LEFT: #bbb 1px solid; MARGIN-RIGHT: 0.5em; PADDING-TOP: 0px; BORDER-BOTTOM: #bbb 1px; HEIGHT: auto; BACKGROUND-COLOR: #ddd; TEXT-DECORATION: none
+}
+UL.primary LI.active A {
+	BORDER-RIGHT: #bbb 1px solid; BORDER-TOP: #bbb 1px solid; BORDER-LEFT: #bbb 1px solid; BORDER-BOTTOM: #fff 1px solid; BACKGROUND-COLOR: #fff
+}
+UL.primary LI A:hover {
+	BORDER-LEFT-COLOR: #ccc; BORDER-BOTTOM-COLOR: #eee; BORDER-TOP-COLOR: #ccc; BACKGROUND-COLOR: #eee; BORDER-RIGHT-COLOR: #ccc
+}
+UL.secondary {
+	PADDING-RIGHT: 1em; PADDING-LEFT: 1em; PADDING-BOTTOM: 0.5em; MARGIN: 5px; PADDING-TOP: 0.5em; BORDER-BOTTOM: #bbb 1px solid
+}
+UL.secondary LI {
+	BORDER-RIGHT: #ccc 1px solid; PADDING-RIGHT: 1em; DISPLAY: inline; PADDING-LEFT: 1em; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+UL.secondary A {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; TEXT-DECORATION: none
+}
+UL.secondary A.active {
+	BORDER-BOTTOM: #999 4px solid
+}

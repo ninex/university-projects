@@ -1,0 +1,125 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferStrategy;
+public class project3a implements MouseListener{
+	
+	Frame mainFrame;	
+	BufferStrategy bufferStrategy;
+	Rectangle bounds;
+	GraphicsDevice device;
+
+	int rows,cols,rowInc,colInc;
+	
+	public project3a(GraphicsDevice device,int rows,int cols) {
+		
+		this.rows = rows;
+		this.cols = cols;
+		this.device = device;
+
+		//set up the graphics in fullscreen
+		try {
+			GraphicsConfiguration gc = device.getDefaultConfiguration();
+			mainFrame = new Frame(gc);
+			mainFrame.addMouseListener(this);
+			mainFrame.setUndecorated(true);
+			mainFrame.setIgnoreRepaint(false);
+			device.setFullScreenWindow(mainFrame);
+
+			bounds = mainFrame.getBounds();
+			mainFrame.createBufferStrategy(2);
+			bufferStrategy = mainFrame.getBufferStrategy();
+			
+			rowInc = bounds.height / rows;
+			colInc = bounds.width / cols;
+			
+			Graphics g = bufferStrategy.getDrawGraphics();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//mouse events
+	public void mouseReleased(MouseEvent e){}
+	public void mouseExited(MouseEvent e){}
+	public void mouseEntered(MouseEvent e){}
+	public void mousePressed(MouseEvent e){}
+	public void mouseClicked(MouseEvent e){
+		device.setFullScreenWindow(null);
+		System.exit(0);
+	}
+
+	public BufferStrategy getStrategy() {
+		return bufferStrategy;
+	}
+	
+	//draws the grid
+	public void drawGrid(Graphics g) {
+		g.setColor(Color.black);
+		for (int i=0;i<bounds.width;i=i+colInc) {
+			g.drawLine(i,0,i,bounds.height);
+		}
+		for (int i=0;i<bounds.height;i=i+rowInc) {
+			g.drawLine(0,i,bounds.width,i);
+		}
+	}
+	//draws a active cell
+	public void set(Graphics g,int row,int col) {
+		g.setColor(Color.black);
+		g.fillRect(col*colInc,row*rowInc,col+colInc,row+rowInc);
+	}
+	//draws an inactive cell
+	public void clear(Graphics g,int row,int col) {
+		g.setColor(Color.white);
+		g.fillRect(col*colInc,row*rowInc,col+colInc,row+rowInc);
+	}
+
+	public static void main (String[] args){
+	
+		//get all the states/cells
+		state[][] ca = input.parse("defs.txt");
+		int rows = ca.length;
+		int cols = ca[0].length;
+		
+		
+		System.out.println("Running system");
+		
+		//let the user know what's going on
+		JOptionPane.showMessageDialog(null,"To exit left-click on the screen.\nA black block represents a set state\nA white block represents a clear state","System is running.",JOptionPane.INFORMATION_MESSAGE);
+		
+		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice device = env.getDefaultScreenDevice();
+		
+		project3a gui = new project3a(device,rows,cols);
+		
+		Graphics g;
+		
+		while (true) {
+			//traverse CA and draw
+			g = gui.getStrategy().getDrawGraphics();
+			
+			for (int row=0; row < rows;row++) {
+				for (int col=0; col < cols;col++) {
+					if (ca[row][col] != null) {
+						
+						ca[row][col].run();
+						
+						if ( (ca[row][col].get()).isEmpty()) {
+							gui.set(g,row,col);
+						}else {
+							gui.clear(g,row,col);
+						}
+					}else {
+						gui.clear(g,row,col);
+					}
+				}
+			}
+			gui.drawGrid(g);
+			gui.getStrategy().show();
+			g.dispose();
+			try {
+				Thread.sleep(100);
+			}catch(Exception e){}
+		}
+	}
+}

@@ -1,0 +1,22 @@
+\documentclass[a4paper,11pt,titlepage]{article}
+\usepackage{graphicx}
+\author{Abrie Greeff\\B.Sc Hons (Computer Science)\\Department of Computer Science\\University of Stellenbosch}
+\title{Visualizing Dynamic Architectural Environments}
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Introduction}
+Consumer graphics technology have increased dramatically over the last few years. These advancements have made it possible to create extremely complex 3D environments and traverse these environments. Most computer games that can bought today have a complex graphics engine and together with the latest graphics cards enable us to traverse increasingly detailed 3D worlds. Architects also use these immensely powerful graphic cards to build detailed 3D computer-aided-design (CAD) models of buildings to visualize their internal spaces as well as their external structures.
+
+There is not many applications that are able to simultaneously display the internal space of an environment as well as the external structure. There are two similar types of interfaces available, ArcBall which uses different perspectives of the environment and allows rotation, scaling and zooming of the environment, and walk through interfaces which are used in most first-person shooter (FPS) style games. The ArcBall interface can be found in most 3D model viewing applications such as 3D Studio Max and MilkShape. This interface is very useful when understanding an environment's external structure. The walk through interface is the same as when an actual person would have walked through the environment and is much more useful when trying to understand a structure's internal space but because of the view point occlusion occur. Thus problem is that neither of these interfaces allows us to simultaneously view the internal space and the external structure of the enivironment.
+
+Architects and technical illustrators use techniques such as cutaways, transparency and exploded views to reduce or eliminate the occlusion to expose the overall structure of environments. This report will focus on a system as discussed in [1] for automatically generating interactive exploded views of any architectural environment.
+
+
+\section {}
+\section{References}
+\begin{enumerate}
+\item Dr. L Van Zijl
+\emph{$\oplus$-NFAs as Block Cipher Systems}, CS778:Course notes.
+\end{enumerate}
+\end{document}

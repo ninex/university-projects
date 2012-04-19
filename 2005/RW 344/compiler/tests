@@ -1,0 +1,120 @@
+(* Duplicate declaration of constant *)
+begin
+ const n = 10; const n =5;  
+end.
+
+(* Duplicate declaration of array *)
+begin
+  integer array n[10]; integer array n[10];  
+end.
+
+(* Array index out of bounds*)
+begin
+  integer array n[10];integer x;
+  (*cases tested*)
+  x := n[-1];
+  x := n[-1+1];
+  x := n[-1+1-1];
+  x := n[10];
+  x := n[(10+1)*2-11];
+end.
+
+(* Duplicate identifier*)
+begin
+  integer x,x;  
+end.
+
+(* Procedure already declared*)
+begin
+  proc search
+  begin end;
+  proc search
+  begin end;
+end.
+
+(* Procedure already declared on higher level of scope*)
+begin
+  proc search
+  begin
+	proc search
+  	begin end;
+  end;  
+end.
+
+(* Procedure not declared*)
+begin
+	call search
+end.
+
+(* Variable not declared*)
+begin
+	x := 10;
+end.
+
+(* Variable expected not constant*)
+begin
+	const n = 10;
+	n := 10;
+end.
+
+(* Too many variables in assignment*)
+begin
+	integer x,y,z;
+	x := y,z;
+end.
+
+(* Incompatible types in assignment*)
+begin
+	integer x;boolean b;
+	x := b;
+end.
+
+(* Too few variables in assignment*)
+begin
+	integer x,y,z;
+	x,y := z;
+end.
+
+(* Must index array with an integer*)
+begin
+	integer array x[10];boolean b;
+	write x[b];
+end.
+
+(* Unable to perform arithmetic operations on a boolean*)
+begin
+	boolean b;
+	write -b;
+	write b-b;
+	write b/b;
+end.
+
+(* Unable to perform logical operations on a integer *)
+begin
+	integer x,y;
+	write ~x;
+	write x&y;
+end.
+
+(* Unable to perform logical operations on different types *)
+begin
+	integer x;boolean y;
+	write x < y;
+	write x & y;
+end.
+
+(* Boolean expression expected *)
+begin
+	integer x;
+	if x-3 -> 
+		write x;
+	fi;
+end.
+
+(* Division by zero *)
+begin
+	integer x;
+	x:= 2 / 0;
+	x:= 0 \ 2;
+end.
+

@@ -1,0 +1,3 @@
+function [key] = gen_key(key)
+
+key = bin2dec(num2str(key));

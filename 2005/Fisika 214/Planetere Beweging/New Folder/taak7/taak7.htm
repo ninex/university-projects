@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0061)http://academic.sun.ac.za/physics/f214/Hfstk4/taak7/taak7.htm -->
+<HTML><HEAD><TITLE>Taak 7</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2900.2627" name=GENERATOR>
+<META content="arcs 111, default" name="Microsoft Theme">
+<META content="tb, default" name="Microsoft Border"></HEAD>
+<BODY text=#000000 vLink=#999933 aLink=#ff9900 link=#3399ff bgColor=#ffffcc 
+background=taak7_files/arctile.jpg><!--msnavigation-->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD><!--mstheme--><FONT face="Verdana, Arial, Helvetica">
+      <P align=center><FONT size=6><STRONG></STRONG></FONT><BR></P><!--mstheme--></FONT></TD></TR><!--msnavigation--></TBODY></TABLE><!--msnavigation-->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR><!--msnavigation-->
+    <TD vAlign=top><!--mstheme--><FONT face="Verdana, Arial, Helvetica"><FONT 
+      face=Arial size=5><B>
+      <H1 align=center><!--mstheme--><FONT 
+      face="Times New Roman, Times New Roman, Times" color=#3399ff>Taak 7. p 88 
+      Giordano</B></FONT><!--mstheme--></FONT></H1>
+      <P><BIG><EM>Simuleer die beweging van ‘n twee liggaamsisteem met 
+      gravitasie as interaksiekrag en waar die liggame van vergelykbare massa 
+      is, sodat beide relatief t.o.v. mekaar sal beweeg. Begin met gelyke massas 
+      en daarna verskillende massas. Begin met kondisies waarin die totale 
+      lineêre momentum zero is. Verklaar ook die gedrag van die bane wanneer die 
+      totale lineêre momentum nie-zero is nie.</EM></BIG></P>
+      <P>Gestel ons beskryf die twee liggame met massas m<SUB>1</SUB> en 
+      m<SUB>2</SUB> se beweging in ‘n inersiaal koördinaatstelsel (waarin die 
+      massa van die sisteem as geheel nie versnel word nie) en om die model 
+      eenvoudig te hou, beskou ons die probleem in ‘n plat vlak. M.a.w. sê ons 
+      kies die xy vlak om gedefinieer te word deur die vlak waarin die 
+      verbindingslyn tussen die twee voorwerpe en die snelheidskomponent van een 
+      van die voorwerpe lê, en ons beperk die snelheid van die ander voorwerp om 
+      ook in hierdie vlak te wees. Grafies lyk dit as volg:</P>
+      <P align=center><IMG height=390 alt="fig1.png (6751 bytes)" 
+      src="taak7_files/fig1.gif" width=670></P>
+      <P>Die krag waarmee m<SUB>2</SUB> aangetrek word is</P>
+      <P align=center><IMG height=126 src="taak7_files/Image145.gif" 
+      width=244></P>
+      <P>terwyl m<SUB>1</SUB> ‘n gelyke grootte maar teenoorgesteld gerigte krag 
+      ondervind. Vir elke partikel kan ons vier gekoppelde eerste orde 
+      differensiaalvergelykings opstel. </P>
+      <P align=center><IMG height=168 src="taak7_files/Image146.gif" 
+      width=244></P>
+      <P>Hierdie eerste orde differensiaalvergelykings kan ons vir die numeriese 
+      simulasie omskryf na vergelykings van eindige verskille soortgelyk as wat 
+      ons dit vir die Euler, die Euler-Cromer, die tweede orde Runge-Kutta of 
+      die vierde orde Runge-Kutta tegniek gedoen het. Bv. vir die Euler-Cromer 
+      benadering kan ons dit skryf as</P>
+      <P align=center><IMG height=280 src="taak7_files/Image157.gif" width=218> 
+      </P>
+      <P>As beginkondisie moet ons nou vir die twee partikels ‘n twee-D 
+      koördinaat posisie en snelheid spesifiseer. D.w.s. ag skalare waardes 
+      altesaam, nl. (x1_0, y1_0, vx1_0, vy1_0) vir massa m<SUB>1</SUB> en (x2_0, 
+      y2_0, vx2_0, vy2_0) vir massa m<SUB>2</SUB>. As ons die keuse van hierdie 
+      waardes arbitrêr en onafhanklik van mekaar sou laat, dan kan dit impliseer 
+      dat die tweeliggaamsisteem ‘n netto lineêre momentum <IMG height=21 
+      src="taak7_files/Image148.gif" width=133 align=absMiddle>kan besit t.o.v. 
+      ons keuse van oorsprong. Dan sal die massamiddelpunt van die sisteem ‘n 
+      konstante snelheid <IMG height=45 src="taak7_files/Image149.gif" width=100 
+      align=absMiddle> besit en met verloop van tyd weg vanaf ons gekose 
+      ruimtelike oorsprong en dus uit die gesigsveld van ons geplotte grafiek 
+      beweeg. Om hierdie rede is dit beter om aanvanklik die snelheidskomponente 
+      sodanig te kies dat die sisteem zero lineêre momentum besit, want dan 
+      beskou ons die relatiewe beweging van die twee massas soos gesien uit ‘n 
+      verwysingsraamwerk wat staties t.o.v. die massamiddelpunt is. Die beweging 
+      van die sisteem kan dan geskei word in ‘n eenvoudige translasie beweging 
+      van die massamiddelpunt (waarin ons tans nie so erg belangstel nie) en die 
+      relatiewe beweging van die massas soos gesien uit ‘n 
+      massamiddelpuntraamwerk of enige ander raamwerk wat staties t.o.v. die 
+      massamiddelpuntraamwerk bly. Hieruit kan ons ook transformeer hoedanig die 
+      beweging sal lyk uit die raamwerk van enige van die massas.</P>
+      <P>Eerstens is die beweging van die aarde-son sisteem gesimuleer m.b.v. ‘n 
+      vierde orde Runge-Kutta tegniek wat die beweging van beide voorwerpe 
+      toelaat en ‘n vaste tydinkrement van 0.001 JR is gebruik. <A 
+      href="http://academic.sun.ac.za/physics/f214/Hfstk4/taak7/fig1_1a.htm">Die 
+      trajekte</A> vir een omwenteling lyk as volg. Dit is interessant om daarop 
+      te let dat die son se sirkelbaan om die sisteem se massamiddelpunt ‘n 
+      radius van 3x10<SUP>-6</SUP> AE besit terwyl die son as sferiese liggaam 
+      se radius self 4.6x10<SUP>-3</SUP> AE is. Dit impliseer dat die 
+      massasmiddelpunt van die sisteem dus binne die son se volume self lê.</P>
+      <P>Vervolgens is die simulasie gedoen vir ‘n sisteem van twee gelyk 
+      grootte massas van 1 AM elk, op ‘n direkte afstand van 1AE en 
+      teenoorgestelde aanvangsnelhede, sodat die totale lineêre momentum van die 
+      sisteem zero is en sodanig dat elk ‘n <A 
+      href="http://academic.sun.ac.za/physics/f214/Hfstk4/taak7/fig2_a.htm">sirkelbaan 
+      om die massamiddelpunt</A> voer. Selfs vir ‘n tydstapgrootte van 0.0001 
+      van die omwentelingsperiode vind ek nogtans dat die numeriese tegniek die 
+      twee bane nie presies op mekaar laat val nie en dat elkeen stadig 
+      uitspiraal, m.a.w. behoud van totale meganiese energie word nie streng 
+      gehandhaaf deur die berekeningstegniek nie. Sien hierdie <A 
+      href="http://academic.sun.ac.za/physics/f214/Hfstk4/taak7/fig3_a.htm">voorbeeld 
+      vir 10 omwentelinge</A> en ‘n tydinkrement van 0.001 omwentelings-periode. 
+      Die baanspoed nodig om in ‘n sirkelbaan te kan beweeg, word gegee deur</P>
+      <P align=center><IMG height=104 src="taak7_files/Image150.gif" 
+      width=181></P>
+      <P>met rigting loodreg t.o.v. die oombliklike verbindingslyn tussen die 
+      twee massas. By <A 
+      href="http://academic.sun.ac.za/physics/f214/Hfstk4/taak7/fig4_a.htm">groter</A> 
+      (totdat die baan na ‘n parabool verander) asook <A 
+      href="http://academic.sun.ac.za/physics/f214/Hfstk4/taak7/fig5_a.htm">kleiner 
+      snelhede</A>, maar sodanig dat die totale lineêre momentum zero bly, 
+      beweeg die twee massas in ellipsvormige bane met die sisteem se 
+      massamiddelpunt by die <A 
+      href="http://academic.sun.ac.za/physics/f214/Hfstk4/taak7/fig4_a.htm">naaste</A> 
+      en <A 
+      href="http://academic.sun.ac.za/physics/f214/Hfstk4/taak7/fig5_a.htm">verste</A> 
+      fokaalpunt van die ellips respektiewelik. Die ellipse is spieëlbeelde van 
+      mekaar en die twee massas se oombliklike posisie- en snelheids-koördinate 
+      is komplementêr.<BR>In die voorgaande simulasies is die oorsprong telkens 
+      gekies om saam met die twee-liggaam sisteem se massamiddelpunt te val en 
+      die trajekte dan te toon soos gesien uit die massamiddelpunt- raamwerk. As 
+      ons egter ons oorsrong elders kies, maar nog steeds sorg dat die sisteem 
+      geen netto lineêre momentum besit nie, dan lyk die trajekte soortgelyk, 
+      slegs die oorsprong is verskuif en val nie meer saam met die 
+      massamiddelpunt nie. <A 
+      href="http://academic.sun.ac.za/physics/f214/Hfstk4/taak7/fig6_a.htm">Dit 
+      lyk as volg</A> vir die vorige voorbeeld met massamiddelpunt by die 
+      oorsprong en met massamiddelpunt by die punt (0.5; 1) [AE]. <BR>As ons die 
+      beginsnelhede sodanig kies dat die sisteem wel lineêre momentum besit, dan 
+      impliseer dit dat die massamiddelpunt daarvan teen ‘n uniforme snelheid 
+      t.o.v. die verwysingsraamwerk beweeg, terwyl die twee massas terselfde tyd 
+      hul baanbeweging om die bewegende massamiddelpunt uitvoer. Die trajekte is 
+      dan nie geslote in die verwysingsraamwerk nie, maar besit boonop ‘n 
+      translasie komponent as geheel. <A 
+      href="http://academic.sun.ac.za/physics/f214/Hfstk4/taak7/fig7_a.htm">Dit 
+      lyk as volg</A> vir die vorige voorbeeld met massamiddelpunt aanvanklik by 
+      die oorsprong en lineêre momentum gelyk aan 0.002 [AM AE/JR] in die 
+      positiewe x-rigting.</P>
+      <P>Indien die massas verskillend is, is die grootte (straal van die 
+      sirkels of halwe latus-rectum van die ellipse) in omgekeerde verhouding 
+      tot hul massas. In die volgende voorbeeld word die gesimuleerde trajek van 
+      ‘n sisteem bestaande uit massas van 1 en 2 AM beskou wat aanvanklik <A 
+      href="http://academic.sun.ac.za/physics/f214/Hfstk4/taak7/fig8_a.htm">sirkelbane</A> 
+      om hul massamiddelpunt volg en dan <A 
+      href="http://academic.sun.ac.za/physics/f214/Hfstk4/taak7/fig9_a.htm">ellipse</A>. 
+<!--mstheme--></FONT><!--msnavigation--></P></TD></TR><!--msnavigation--></TBODY></TABLE><!--msnavigation-->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+  <TBODY>
+  <TR>
+    <TD><!--mstheme--><FONT face="Verdana, Arial, Helvetica"><!--msthemeseparator-->
+      <P align=center><IMG height=10 src="taak7_files/arcsepa.gif" 
+width=600></P>
+      <P align=center><FONT face=Arial,Helvetica size=-1><B>Hierdie bladsy is 
+      laas opdateer op 08/03/01 12:43 </B></FONT></P>
+      <P align=center><IMG height=52 alt="mail.gif (14825 bytes)" 
+      src="taak7_files/mail.gif" width=45><FONT face=Arial,Helvetica 
+      size=-1><B>e-pos aan : <A href="mailto:kv@maties.sun.ac.za">K 
+      Visser</A></B></FONT></P>
+      <P>&nbsp;</P><!--mstheme--></FONT></TD></TR><!--msnavigation--></TBODY></TABLE></BODY></HTML>

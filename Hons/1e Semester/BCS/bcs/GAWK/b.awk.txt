@@ -1,0 +1,52 @@
+BEGIN {n = 0; id = ""; de = "";}
+{ 
+chars = $9
+id = $1
+if (id ~ /DE/) {
+	de = $0
+	#print de
+}
+if (chars == "") {
+	n = 0;
+}
+if (chars ~ /'G';/) {
+
+
+	if ((n != 0) && (n != 1)) 
+		n = 0
+	else
+		if (n == 1) 
+			n = 2
+		else
+			if (n == 0) 
+				n = 1
+	
+}
+if (chars ~ /'T';/) {
+	if ((n != 2) && (n != 3)) {
+		n = 0
+	}
+	if (n == 3) {
+		n = 4
+	}
+	if (n == 2) {
+		n = 3
+	}
+}
+if (chars ~ /'A';/) {
+	if ((n != 4) && (n != 5)) {
+		n = 0
+	}
+        if (n == 5) {
+		n = 0
+		print de 
+	}
+	if (n == 4) {
+		n = 5
+	}
+}
+if (chars ~ /'C';/) {
+	n = 0
+}
+	#print n, chars	
+}

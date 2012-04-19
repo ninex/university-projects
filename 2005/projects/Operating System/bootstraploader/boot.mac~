@@ -1,0 +1,45 @@
+;******************************************************************************************
+;* Bootstrap loader for CS314 runtime environment (macro include file), 26.06.2003        *
+;* University of Stellenbosch                                                             *
+;* Jacques Eloff (eloff@cs.sun.ac.za)                                                     *
+;******************************************************************************************
+
+%macro GotoXY 2
+   mov    bl, %1
+   mov    al, %2
+   call   GOTOXY
+%endmacro
+
+%macro WriteString 1
+   mov    si, %2
+   call   WRITE_STRING
+%endmacro
+
+%macro WriteHex 1
+   mov    eax, %1
+   call   WRITE_HEX
+%endmacro
+
+%macro ClearDisplay 1
+   mov    ah, %1
+   call   CLEAR_DISPLAY
+%endmacro
+
+%macro ReadBootTableEntry 1
+   xor    ax, ax
+   mov    es, ax
+   mov    di, %1
+   mov    eax, [es:di]    
+%endmacro
+
+%macro DebugDiskBuffer 2
+   pushad
+   xor    eax, eax
+   mov    ax, %1
+   call   WRITE_HEX
+   xor    eax, eax
+   mov    ax, %2
+   call   WRITE_HEX
+   call   WRITE_LN
+   popad
+%endmacro   

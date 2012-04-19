@@ -1,0 +1,10 @@
+Net om weer die volgende hw op te klaar:
+(1) U moet 'n sintaks ontwerp om statecharts te spesifiseer
+        (Grail-agtig)
+(2) U program moet dan 'n gespesifiseerde statechart inlees, en
+        reageer op gegewe toevoer.
+(3) U hoef slegs die afvoer-"sequences" te wys, en dit is nie
+        nodig om te probeer om die statecharts grafies voor
+        te stel nie.
+ 
+ 

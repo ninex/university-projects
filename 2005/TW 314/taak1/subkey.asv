@@ -1,0 +1,10 @@
+function subkey(di,key)
+k=0;
+bit = zeros(1,8)
+for i=1:(size(di,2)*4)
+    if bitget(key,i) == 1
+        bit(8-k) = bitget(di(mod(i,4)),mod(i,4))
+        k = k+1;
+    end
+end
+bit

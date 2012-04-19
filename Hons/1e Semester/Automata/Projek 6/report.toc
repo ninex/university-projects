@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {2}Constructing a cipher from a $\oplus $-NFA}{1}
+\contentsline {section}{\numberline {3}Implementation}{3}
+\contentsline {section}{\numberline {4}Testing}{3}
+\contentsline {section}{\numberline {5}Conclusion}{3}
+\contentsline {section}{\numberline {6}References}{4}

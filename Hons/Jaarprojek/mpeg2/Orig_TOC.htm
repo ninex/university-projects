@@ -1,0 +1,201 @@
+<HTML>
+<HEAD><TITLE>Original TM-5 Table of Contents</TITLE></HEAD>
+<BODY bgcolor="#FFFFFF">
+
+<H1>Original TM-5 Table of Contents</H1>
+<HR>
+<PRE>
+1 INTRODUCTION  6
+2 GENERAL CODEC OUTLINE 7
+2.1 Arithmetic Precision        7
+2.2 Coder block diagram 8
+2.3 Profiles    10
+2.3.1 MAIN profile      11
+2.3.2 Hierarchical profile      11
+2.3.3 Professional profile      12
+3 SOURCE FORMATS        13
+3.1 Input Formats       13
+3.2 Definition of fields and frames     14
+3.3 Conversion of CCIR 601 to the Input formats 15
+3.3.1 Conversion of CCIR 601 to the 4:2:0 format        15
+3.3.2 Conversion of CCIR 601 to SIF     16
+3.3.3. Conversion of CCIR 601 to SIF Odd and SIF Even   16
+3.3.4 Conversion of CCIR 601 to HHR     17
+3.3.5 Conversion of CCIR 601 to SIF Interlaced (SIF-I)  18
+3.4 Conversion of the Input Formats to CCIR 601 18
+3.4.1 Conversion of the 4:2:0 Format to CCIR 601        18
+3.4.2 Conversion of SIF to CCIR 601     19
+3.4.3 Conversion of SIF Odd and SIF Even to CCIR 601    20
+3.4.4 Conversion of HHR to CCIR 601     20
+3.4.5 Conversion of SIF interlaced to CCIR 601  21
+3.5 Down conversion from interlaced to interlaced       21
+3.6 Upconversion from interlaced to interlaced for display purposes     22
+4 LAYERED STRUCTURE OF VIDEO DATA       24
+4.1 Sequence    24
+4.2 Group of pictures   24
+4.3 Picture     24
+4.4 Macro block Slice   25
+4.5 Macroblock  25
+4.6 Block       26
+4.6.2 Block in harmonised scalable solution, for low level decoders     26
+<A HREF="Ch5/Ch5.html">5 MOTION ESTIMATION AND COMPENSATION</A>  27
+5.1 Motion Vector Estimation    27
+5.1.1 Full Search       27
+5.1.2 Half pel search   28
+5.1.3 Motion estimation for Special prediction mode     28
+5.2 Motion Compensation 29
+5.2.1 Frame Motion Compensation 30
+5.2.2 Field Motion Compensation 30
+5.3 Special prediction mode     31
+5.3.1. Overview of Special Prediction mode      31
+5.3.2.  Specification of Dual-prime vectors     32
+5.3.3.  Temporal Scaling of the Field Motion Vector     32
+5.3.4.  Prediction of Chrominance Blocks        33
+<A HREF="Ch6/Ch6.html">6 MODES AND MODE SELECTION</A>      34
+6.1 Picture types       34
+6.2 Macroblock type decision    34
+6.2.1 Modification of Decision for Field-based Prediction       34
+<A HREF="Ch7/Ch7.html">7 TRANSFORMATION AND QUANTIZATION</A>       36
+7.1 Quantization of Intra Macroblocks   36
+7.1.1 DC Coefficients   36
+7.1.2 AC Coefficients   36
+7.2 Quantization Non Intra Macroblocks  37
+7.3 Dequantization      37
+<A HREF="Ch8/Ch8.html">8 CODING</A>        38
+8.1 Macroblock Addressing       38
+8.2 Macroblock Type     39
+8.2.1 Compatible Prediction     39
+8.3 Motion Vectors      39
+8.3.1   Prediction of Motion Vectors for special prediction modes       41
+8.4 Coded Block Pattern 42
+8.5 Intra picture Coefficient Coding    42
+8.5.1 DC Prediction     42
+8.5.2 AC Coefficients   43
+8.6 Non-Intrapicture Coefficient Coding 43
+8.6.1 Intra blocks      43
+8.6.2 Non intra blocks  43
+8.7 Coding of Transform Coefficients    44
+9 VIDEO MULTIPLEX CODER 45
+9.1 Sequence Frequency Extension        45
+9.2 Sequence spatial extension  47
+9.3 Picture frequency extension 48
+9.4 Picture spatial extension   49
+9.5 Scaled Slice Layer  51
+9.6 Slave Macroblock Layer      52
+9.7 Scaled Macroblock Layer     53
+9.8 Spatial Macroblock layer    55
+9.8 CBP 57
+9.8 Scaled Block Layer  58
+9.9 Slave Block Layer   59
+9.10 SNR Block layer    60
+<A HREF="Ch10/Ch10.html">10 RATE CONTROL AND QUANTIZATION CONTROL</A>        61
+Step 1 - Bit Allocation 61
+Complexity estimation   61
+Picture Target Setting  61
+Step 2 - Rate Control   63
+Step 3 - Adaptive Quantization  64
+Known Limitations       65
+<A HREF="AppendixA/AppendixA.html">APPENDIX A</A>: DISCRETE COSINE TRANSFORM (DCT)     66
+APPENDIX B: VARIABLE LENGTH CODE TABLES 67
+Introduction    67
+B.1 Macroblock Addressing       67
+B.2 Macroblock Type and Compatible Macroblock Type      67
+B.3 Macroblock Pattern  69
+B.4 Motion Vectors      70
+B.5 DCT Coefficients    70
+APPENDIX C : VIDEO BUFFER VERIFIER      71
+APPENDIX D: FREQUENCY DOMAIN SCALABILITY EXTENSION      72
+D.1 INTRODUCTION        72
+D.2  LAYERED STRUCTURE OF VIDEO DATA AND MULTIPLEXING OF FREQUENCY SCALES       75
+D.3 MOTION ESTIMATION AND COMPENSATION  76
+D.4 MODES AND MODE SELECTION    77
+D.4.1 No Scalable Side Information      77
+D.4.2 Scalable Side Information 77
+D.4.3 Motion Refinement 78
+D.5 INTER-SCALE DCT COEFFICIENT PREDICTION      78
+D.6 TRANSFORMATION AND QUANTIZATION     78
+D.6.1 Transformation    78
+D.6.2 Upward Coefficient Prediction and Quantization    78
+D.6.3 BANDWIDTH CONTROL OF RESOLUTION LAYERS    79
+D.7 DCT COEFFICIENT CODING      79
+D.8 VIDEO MULTIPLEX CODER       79
+D.9. RATE CONT ROL AND QUANTIZATION CONTROL     79
+D.10 Drift Correction   80
+D.11 Interlaced quality on lower resolution layers      81
+APPENDIX F: CELL LOSS EXPERIMENTS       82
+F.1 Cell loss   82
+F.1.1 Bitstream specification   82
+F.1.2 Calculation of cell loss probabilities    82
+F.1.3 Calculation of mean cell loss rate        83
+F.1.4 Calculation of mean burst of consecutive cells lost       83
+F.1.5 Calculation of cell loss probabilities    84
+F.1.6 Simulation of cell loss   84
+F.1.7 Random number generation  85
+F.2 Parameters  85
+F.3 Concealment techniques      86
+F.4 AC-Leaky Prediction 86
+F.4.1 Description of AC Leak    86
+F.4.2 Core Experiments  87
+F.4.3 Syntax    88
+F.5 Data Partitioning versus 1-layer cell loss experiment       88
+APPENDIX G: COMPATIBILITY AND SPATIAL SCALABILITY       90
+G.1 Spatial/Temporal Prediction 90
+G.1.1 Introduction      90
+G.1.2 Detail    91
+G.2 Upsampling for Prediction   92
+G.2.1 Introduction      92
+G.2.2 Interlace to Interlace Up-sampling        92
+G.2.3 Progressive to Interlace Up-sampling      93
+G.3 Coding of spatial scalable/compatible macroblocks   93
+G.3.2  Summary of previous scalability results  94
+G.3.2  Remaining spatial scalability experiments.       94
+G.4 SNR Scalability     95
+G.4.1 Experiment on SNR-scalability:    97
+G.7 Chrominance scalability     98
+APPENDIX H: LOW DELAY CODING    101
+H.1 Simulation guidelines for low delay coding. 101
+H.1.1 Coding structure. 101
+H.1.2 Handling of scene change to maintain low delay.   101
+H.1.3 How to handle the first picture using forced intra slice  106
+H.1.4 Definition of intra slice/column coding.  106
+H.1.5 Rate control.     107
+H.1.6 Influence of leaky prediction on low delay coding.        108
+APPENDIX I : FREQUENCY DOMAIN SCALABILITY CORE EXPERIMENTS      109
+I.4: Scalable Side Information  109
+I.4.1. Application      109
+I.4.2. Experiment details       109
+I.4.3. Syntax extensions        109
+I.4.4. Coding   109
+I.12 Single loop decoder structure      109
+I.14 Comparison of different encoder filters for inter-layer prediction.        111
+APPENDIX J: HARMONISED HYBRID SCALABILITY       113
+J.1 Introduction        113
+J.2 Examples of the proposals currently on the table    113
+J.3 The concise generic decoder solution        114
+J.4 Decoder conclusion  116
+J.5 The encoder 117
+J.6 Encoder conclusion  119
+J.8 Upconversion prediction filter      120
+J.9 Harmonisation of syntax     120
+APPENDIX K: FAST FORWARD AND FAST REVERSE MODES 121
+K.1 Concept of FF/FR mode in DSMs       121
+K.2 Intra_slice approach        121
+K.3 Requirements for syntax extension   121
+K.4 Data Partitioning approach  122
+K.4.1 FF/FR Operation by use of data partition  122
+K.4.2 VCR FF/FR Bitstream Delivery      122
+K.4.3 Syntax for FF/FR by Data Partition        122
+APPENDIX L: DATA PARTITIONING   125
+L.1. Syntax for Data Partitioning       125
+L.1.1 Sequence Layer Syntax     125
+L.2 Description 125
+L.3 Rate control        127
+L.4 Experiments 127
+APPENDIX Q: QUANTISATION        128
+Q 5. EXPERIMENT OF NON-8 x 8 DCT (Revised at Sydney)    128
+</PRE>
+
+<HR>
+<P><LI><A HREF="index.html">Back</A> to Contents</P>
+</BODY>
+</HTML>

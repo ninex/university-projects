@@ -1,0 +1,8 @@
+echo flex
+flex calc.l
+echo bison
+bison -vd calc.y
+echo compiling
+gcc -lm calc.tab.c lex.yy.c sym.c -o calc
+echo running...
+calc

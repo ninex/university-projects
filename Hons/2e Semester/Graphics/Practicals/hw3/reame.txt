@@ -1,0 +1,10 @@
+Keys
+----
+T	switch views
+Space	generate new terrain
++	increase lod
+-	decrease lod
+left	rotate left
+right	rotate right
+home	zoom out, in top down view
+end	zoom in, in top down view

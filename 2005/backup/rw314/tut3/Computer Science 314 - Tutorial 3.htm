@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0046)http://www.cs.sun.ac.za/~eloff/rw314/tut3.html -->
+<HTML><HEAD><TITLE>Computer Science 314 - Tutorial 3</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1"><LINK 
+media=screen href="Computer Science 314 - Tutorial 3_files/style.css" 
+type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2800.1479" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff background="">
+<H1 align=left>Tutorial 3 - Interrupts and Device Drivers: The System Clock</H1>
+<H2 align=left>Motivation</H2>Device drivers are a necessity for any large 
+system that allows users to interact with hardware through software. The 
+complexity and size of device drivers are usually proportional to the amount of 
+functions they perform. A driver for the system clock or keyboard is relatively 
+simple compared to a driver for a network card. It is also important to 
+understand the concepts involved when working and managing hardware. An 
+understanding of how the various devices interact and communicate with one 
+another, and how program flow changes when responding to their requests will 
+allow one to design and implement efficient system software. 
+<H2 align=left>Outcome</H2>If you have successfully completed this tutorial, you 
+
+<UL>
+  <LI>should have a basic understanding of how to program the system clock 
+  <LI>should be able to describe what happens when an interrupt is received from 
+  the system clock and how the software manages this event </LI></UL>
+<H2 align=left>Background Information</H2>Before continuing with the tutorial, 
+make sure that you have familiarized yourself with the <A 
+href="http://www.cs.sun.ac.za/~eloff/rw314/doc_8253.html">8253 Timer</A> and the 
+<A 
+href="http://www.cs.sun.ac.za/~eloff/rw314/doc_SYSTEM.html"><CODE>SYSTEM</CODE></A> 
+module. Communication with the hardware through the various I/O ports can be 
+accomplished by using the built-in procedures <B><CODE>SYSTEM.PORTIN</CODE></B> 
+and <B><CODE>SYSTEM.PORTOUT</CODE></B>. The <B><CODE>osMachine</CODE></B> module 
+provides a number of primitives that will be helpful when writing interrupt 
+handler routines. 
+<H2 align=left>Instructions</H2>A skeleton <A 
+href="http://www.cs.sun.ac.za/~eloff/rw314/osTimer.Mod">module</A> is provided 
+and you must complete the following procedures: 
+<UL>
+  <LI><B><CODE>PROCEDURE InitializeClock;</CODE></B><BR>This procedure is 
+  responsible for initializing the system clock to generate an interrupt at the 
+  end of every time period (quantum). 
+  <LI><B><CODE>PROCEDURE Handler(n: LONGINT; state: osMachine.CPUState): 
+  BOOLEAN;</CODE></B><BR>The handler will be called whenever an interrupt is 
+  received through IRQ-0. The handler should always return TRUE to indicate to 
+  <CODE>FieldInterrupt</CODE> that the system must schedule a new process if 
+  there are any processes. 
+  <LI><B><CODE>PROCEDURE Initialize*;</CODE></B><BR>This procedure is 
+  responsible for initializing the clock and installing the interrupt handler 
+  </LI></UL>Once you have completed the procedures you may compile and link the 
+module into the system by performing the following tasks: 
+<UL>
+  <LI>Store the module as <B><CODE>osTimer.Mod</CODE></B>. 
+  <LI>Modify <CODE>osInit</CODE> to initialize the clock. 
+  <LI>Compile all the modules, then link them using the static linker. The 
+  command line for the linker should look as follows: <PRE>BootLinker.Link os314
+\list osModules.modules
+\mdesc osModules.ModuleDesc
+\expdesc osModules.ExportDesc
+\integrate 1000H
+osModules osBootTable osTrace osMachine os8259 osExceptions osTimer osInit ~
+	     </PRE>The <B><CODE>osExceptions</CODE></B> module is provided to help 
+  you debug your source code more efficiently. The module will trap exceptions 
+  when they occur, allowing you to view the machine state at the time of the 
+  exception. Furthermore, you can obtain the value of the program counter in the 
+  <B><CODE>EIP</CODE></B> register which will allow you to locate the module and 
+  position of the statement that caused the exception. Remember that the 
+  exception handlers make use of your <B><CODE>osTrace</CODE></B> module and any 
+  errors in the display routines will invalidate the information returned by 
+  <B><CODE>osExceptions</B></CODE>. 
+  <LI>Write the file to disk by using the command <B><CODE>dd if=os314 
+  of=/dev/fd0 seek=18 bs=512</CODE></B>. The <B><CODE>dd</CODE></B> command 
+  (Copy and Convert file) copies the file specified as input 
+  (<B><CODE>if</CODE></B> parameter) to the file specified as output 
+  (<B><CODE>of</CODE></B> parameter). The <B><CODE>seek</CODE></B> parameter 
+  instructs the command to skip the first 18 blocks before writing to the output 
+  file. The last parameter, <B><CODE>bs</CODE></B>, tells <B><CODE>dd</CODE></B> 
+  the size of a single block. The output file <B><CODE>/dev/fd0</CODE></B> 
+  refers to the first floppy disk device (Other systems such as Windows and 
+  MS-DOS refers to this device as <B><CODE>A:</CODE></B>). For more information 
+  on <B><CODE>dd</CODE></B>, refer to the man pages or info pages by executing 
+  the command <B><CODE>man dd</CODE></B> or <B><CODE>info dd</CODE></B> from the 
+  command prompt in Linux. </LI></UL>
+<ADDRESS></ADDRESS></BODY></HTML>

@@ -1,0 +1,11 @@
+HTTrack3.40+swf launched on Fri, 14 Apr 2006 05:34:52 at http://www.cs.sun.ac.za/courses/rw778/bc/linux-awk/ +*.png +*.gif +*.jpg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2006], %s -->" -P proxy.sun.ac.za:3128 -%l "en, en, *" http://www.cs.sun.ac.za/courses/rw778/bc/linux-awk/ -O1 E:\bcs +*.png +*.gif +*.jpg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+05:35:12	Info: 	Exit requested by shell or user
+05:35:12	Info: 	Exit requested by shell or user
+05:35:12	Info: 	No data seems to have been transfered during this session! : restoring previous one!

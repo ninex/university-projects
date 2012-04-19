@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0048)http://www.cis.hut.fi/ahonkela/dippa/node41.html -->
+<!--Converted with LaTeX2HTML 2K.1beta (1.55)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others --><HTML><HEAD><TITLE>Multilayer perceptrons</TITLE>
+<META content="Multilayer perceptrons" name=description>
+<META content=dippa name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content="MSHTML 6.00.2900.2873" name=GENERATOR>
+<META http-equiv=Content-Style-Type content=text/css><LINK 
+href="Multilayer perceptrons_files/dippa.css" rel=STYLESHEET><LINK 
+href="node42.html" rel=next><LINK href="node40.html" rel=previous><LINK 
+href="node38.html" rel=up><LINK href="node42.html" rel=next></HEAD>
+<BODY><!--Navigation Panel--><A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node42.html" name=tex2html743><IMG 
+height=24 alt=next src="Multilayer perceptrons_files/next.gif" width=37 
+align=bottom border=0></A> <A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node38.html" name=tex2html739><IMG 
+height=24 alt=up src="Multilayer perceptrons_files/up.gif" width=26 align=bottom 
+border=0></A> <A href="http://www.cis.hut.fi/ahonkela/dippa/node40.html" 
+name=tex2html733><IMG height=24 alt=previous 
+src="Multilayer perceptrons_files/prev.gif" width=63 align=bottom border=0></A> 
+<A href="http://www.cis.hut.fi/ahonkela/dippa/node1.html" name=tex2html741><IMG 
+height=24 alt=contents src="Multilayer perceptrons_files/contents.gif" width=65 
+align=bottom border=0></A> <BR><B>Next:</B> <A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node42.html" 
+name=tex2html744>Nonlinear factor analysis</A> <B>Up:</B> <A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node38.html" 
+name=tex2html740>Nonlinear state-space models</A> <B>Previous:</B> <A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node40.html" 
+name=tex2html734>Extension from linear to</A> &nbsp; <B><A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node1.html" 
+name=tex2html742>Contents</A></B> <BR><BR><!--End of Navigation Panel-->
+<H2><A name=SECTION00723000000000000000>Multilayer perceptrons</A> </H2>
+<P>An MLP is a network of simple <I>neurons</I> called <I>perceptrons</I>. The 
+basic concept of a single perceptron was introduced by Rosenblatt in 1958. The 
+perceptron computes a single <I>output</I> from multiple real-valued 
+<I>inputs</I> by forming a linear combination according to its input 
+<I>weights</I> and then possibly putting the output through some nonlinear 
+activation function. Mathematically this can be written as 
+<P></P>
+<DIV align=center><A name=eq:perceptron></A><!-- MATH
+ \begin{equation}
+y = \varphi( \sum\limits_{i=1}^n w_i x_i + b ) = \varphi( \mathbf{w}^T \mathbf{x}+ b )
+\end{equation}
+ -->
+<TABLE cellPadding=0 width="100%" align=center>
+  <TBODY>
+  <TR vAlign=center>
+    <TD noWrap align=middle><IMG height=70 
+      alt="$\displaystyle y = \varphi( \sum\limits_{i=1}^n w_i x_i + b ) = \varphi( \mathbf{w}^T \mathbf{x}+ b )$" 
+      src="Multilayer perceptrons_files/img183.gif" width=284 align=middle 
+      border=0></TD>
+    <TD noWrap align=right width=10>(4.14)</TD></TR></TBODY></TABLE></DIV><BR 
+clear=all>
+<P></P>where <!-- MATH
+ $\mathbf{w}$
+ --><IMG height=17 alt="$ \mathbf{w}$" 
+src="Multilayer perceptrons_files/img184.gif" width=21 align=bottom border=0> 
+denotes the vector of weights, <!-- MATH
+ $\mathbf{x}$
+ --><IMG height=17 
+alt="$ \mathbf{x}$" src="Multilayer perceptrons_files/img185.gif" width=16 
+align=bottom border=0> is the vector of inputs, <IMG height=18 alt="$ b$" 
+src="Multilayer perceptrons_files/img186.gif" width=13 align=bottom border=0> is 
+the bias and <IMG height=33 alt="$ \varphi$" 
+src="Multilayer perceptrons_files/img187.gif" width=17 align=middle border=0> is 
+the activation function. A signal-flow graph of this operation is shown in 
+Figure&nbsp;<A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node41.html#fig:perceptron">4.1</A>&nbsp;[<A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node97.html#Haykin">21</A>,<A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node97.html#Bishop">5</A>]. 
+<P>The original Rosenblatt's perceptron used a Heaviside step function as the 
+activation function <IMG height=33 alt="$ \varphi$" 
+src="Multilayer perceptrons_files/img187.gif" width=17 align=middle border=0>. 
+Nowadays, and especially in multilayer networks, the activation function is 
+often chosen to be the logistic sigmoid <!-- MATH
+ $1 / (1 + e^{-x})$
+ --><IMG 
+height=37 alt="$ 1 / (1 + e^{-x})$" 
+src="Multilayer perceptrons_files/img188.gif" width=98 align=middle border=0> or 
+the hyperbolic tangent <IMG height=37 alt="$ \tanh(x)$" 
+src="Multilayer perceptrons_files/img189.gif" width=67 align=middle border=0>. 
+They are related by <!-- MATH
+ $(\tanh(x) + 1)/2 = 1 / (1 +
+e^{-2x})$
+ --><IMG 
+height=38 alt="$ (\tanh(x) + 1)/2 = 1 / (1 +&#10;e^{-2x})$" 
+src="Multilayer perceptrons_files/img190.gif" width=258 align=middle border=0>. 
+These functions are used because they are mathematically convenient and are 
+close to linear near origin while saturating rather quickly when getting away 
+from the origin. This allows MLP networks to model well both strongly and mildly 
+nonlinear mappings. 
+<P>
+<P></P>
+<DIV align=center><A name=fig:perceptron></A><A name=2176></A>
+<TABLE>
+  <CAPTION align=bottom><STRONG>Figure 4.1:</STRONG> Signal-flow graph of the 
+  perceptron</CAPTION>
+  <TBODY>
+  <TR>
+    <TD>
+      <DIV align=center><IMG height=280 
+      alt=\includegraphics[width=.7\textwidth]{pics/perceptron} 
+      src="Multilayer perceptrons_files/img191.gif" width=389 align=bottom 
+      border=0> </DIV></TD></TR></TBODY></TABLE></DIV>
+<P></P>
+<P>A single perceptron is not very useful because of its limited mapping 
+ability. No matter what activation function is used, the perceptron is only able 
+to represent an oriented ridge-like function. The perceptrons can, however, be 
+used as building blocks of a larger, much more practical structure. A typical 
+<I>multilayer</I> perceptron (MLP) network consists of a set of source nodes 
+forming the <I>input layer</I>, one or more <I>hidden layers</I> of computation 
+nodes, and an <I>output layer</I> of nodes. The input signal propagates through 
+the network layer-by-layer. The signal-flow of such a network with one hidden 
+layer is shown in Figure&nbsp;<A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node41.html#fig:mlp">4.2</A>&nbsp;[<A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node97.html#Haykin">21</A>]. 
+<P>The computations performed by such a feedforward network with a single hidden 
+layer with nonlinear activation functions and a linear output layer can be 
+written mathematically as 
+<P></P>
+<DIV align=center><A name=eq:basicmlp></A><!-- MATH
+ \begin{equation}
+\mathbf{x}= \mathbf{f}(\mathbf{s}) = \mathbf{B}\boldsymbol{\varphi}( \mathbf{A}\mathbf{s}+ \mathbf{a} ) + \mathbf{b}
+\end{equation}
+ -->
+<TABLE cellPadding=0 width="100%" align=center>
+  <TBODY>
+  <TR vAlign=center>
+    <TD noWrap align=middle><IMG height=37 
+      alt="$\displaystyle \mathbf{x}= \mathbf{f}(\mathbf{s}) = \mathbf{B}\boldsymbol{\varphi}( \mathbf{A}\mathbf{s}+ \mathbf{a} ) + \mathbf{b}$" 
+      src="Multilayer perceptrons_files/img192.gif" width=235 align=middle 
+      border=0></TD>
+    <TD noWrap align=right width=10>(4.15)</TD></TR></TBODY></TABLE></DIV><BR 
+clear=all>
+<P></P>where <!-- MATH
+ $\mathbf{s}$
+ --><IMG height=17 alt="$ \mathbf{s}$" 
+src="Multilayer perceptrons_files/img193.gif" width=13 align=bottom border=0> is 
+a vector of inputs and <!-- MATH
+ $\mathbf{x}$
+ --><IMG height=17 
+alt="$ \mathbf{x}$" src="Multilayer perceptrons_files/img185.gif" width=16 
+align=bottom border=0> a vector of outputs. <!-- MATH
+ $\mathbf{A}$
+ --><IMG 
+height=17 alt="$ \mathbf{A}$" src="Multilayer perceptrons_files/img33.gif" 
+width=21 align=bottom border=0> is the matrix of weights of the first layer, <!-- MATH
+ $\mathbf{a}$
+ --><IMG height=17 alt="$ \mathbf{a}$" 
+src="Multilayer perceptrons_files/img194.gif" width=15 align=bottom border=0> is 
+the bias vector of the first layer. <!-- MATH
+ $\mathbf{B}$
+ --><IMG height=17 
+alt="$ \mathbf{B}$" src="Multilayer perceptrons_files/img145.gif" width=20 
+align=bottom border=0> and <!-- MATH
+ $\mathbf{b}$
+ --><IMG height=18 
+alt="$ \mathbf{b}$" src="Multilayer perceptrons_files/img195.gif" width=17 
+align=bottom border=0> are, respectively, the weight matrix and the bias vector 
+of the second layer. The function <!-- MATH
+ $\boldsymbol{\varphi}$
+ --><IMG 
+height=33 alt="$ \boldsymbol{\varphi}$" 
+src="Multilayer perceptrons_files/img196.gif" width=19 align=middle border=0> 
+denotes an elementwise nonlinearity. The generalisation of the model to more 
+hidden layers is obvious. 
+<P>
+<P></P>
+<DIV align=center><A name=fig:mlp></A><A name=2212></A>
+<TABLE>
+  <CAPTION align=bottom><STRONG>Figure 4.2:</STRONG> Signal-flow graph of an 
+  MLP</CAPTION>
+  <TBODY>
+  <TR>
+    <TD><IMG height=329 alt=\includegraphics[width=.9\textwidth]{pics/mlp} 
+      src="Multilayer perceptrons_files/img197.gif" width=502 align=bottom 
+      border=0></TD></TR></TBODY></TABLE></DIV>
+<P></P>
+<P>While single-layer networks composed of parallel perceptrons are rather 
+limited in what kind of mappings they can represent, the power of an MLP network 
+with only one hidden layer is surprisingly large. As Hornik et al. and Funahashi 
+showed in 1989&nbsp;[<A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node97.html#Hornik1989">26</A>,<A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node97.html#Funahashi1989">15</A>], 
+such networks, like the one in Equation&nbsp;(<A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node41.html#eq:basicmlp">4.15</A>), 
+are capable of approximating any continuous function <!-- MATH
+ $\mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^m$
+ --><IMG 
+height=18 alt="$ \mathbf{f}: \mathbb{R}^n \rightarrow \mathbb{R}^m$" 
+src="Multilayer perceptrons_files/img198.gif" width=108 align=bottom border=0> 
+to any given accuracy, provided that sufficiently many hidden units are 
+available. 
+<P>MLP networks are typically used in <I>supervised learning</I> problems. This 
+means that there is a training set of input-output pairs and the network must 
+learn to model the dependency between them. The training here means adapting all 
+the weights and biases (<!-- MATH
+ $\mathbf{A},
+\mathbf{B}, \mathbf{a}$
+ --> 
+<IMG height=34 alt="$ \mathbf{A},&#10;\mathbf{B}, \mathbf{a}$" 
+src="Multilayer perceptrons_files/img199.gif" width=63 align=middle border=0> 
+and <!-- MATH
+ $\mathbf{b}$
+ --><IMG height=18 alt="$ \mathbf{b}$" 
+src="Multilayer perceptrons_files/img195.gif" width=17 align=bottom border=0> in 
+Equation&nbsp;(<A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node41.html#eq:basicmlp">4.15</A>)) 
+to their optimal values for the given pairs <!-- MATH
+ $(\mathbf{s}(t), \mathbf{x}(t))$
+ --><IMG height=37 
+alt="$ (\mathbf{s}(t), \mathbf{x}(t))$" 
+src="Multilayer perceptrons_files/img200.gif" width=90 align=middle border=0>. 
+The criterion to be optimised is typically the squared reconstruction error <!-- MATH
+ $\sum_t ||\mathbf{f}(\mathbf{s}(t)) - \mathbf{x}(t)||^2$
+ --><IMG 
+height=38 
+alt="$ \sum_t \vert\vert\mathbf{f}(\mathbf{s}(t)) - \mathbf{x}(t)\vert\vert^2$" 
+src="Multilayer perceptrons_files/img201.gif" width=171 align=middle border=0>. 
+<P>The supervised learning problem of the MLP can be solved with the 
+<I>back-propagation algorithm</I>. The algorithm consists of two steps. In the 
+<I>forward pass</I>, the predicted outputs corresponding to the given inputs are 
+evaluated as in Equation&nbsp;(<A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node41.html#eq:basicmlp">4.15</A>). 
+In the <I>backward pass</I>, partial derivatives of the cost function with 
+respect to the different parameters are propagated back through the network. The 
+chain rule of differentiation gives very similar computational rules for the 
+backward pass as the ones in the forward pass. The network weights can then be 
+adapted using any gradient-based optimisation algorithm. The whole process is 
+iterated until the weights have converged&nbsp;[<A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node97.html#Haykin">21</A>]. 
+<P>The MLP network can also be used for unsupervised learning by using the so 
+called <I>auto-associative</I> structure. This is done by setting the same 
+values for both the inputs and the outputs of the network. The extracted sources 
+emerge from the values of the hidden neurons&nbsp;[<A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node97.html#Hochreiter1999">24</A>]. 
+This approach is computationally rather intensive. The MLP network has to have 
+at least three hidden layers for any reasonable representation and training such 
+a network is a time consuming process. 
+<P>
+<HR>
+<!--Navigation Panel--><A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node42.html" name=tex2html743><IMG 
+height=24 alt=next src="Multilayer perceptrons_files/next.gif" width=37 
+align=bottom border=0></A> <A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node38.html" name=tex2html739><IMG 
+height=24 alt=up src="Multilayer perceptrons_files/up.gif" width=26 align=bottom 
+border=0></A> <A href="http://www.cis.hut.fi/ahonkela/dippa/node40.html" 
+name=tex2html733><IMG height=24 alt=previous 
+src="Multilayer perceptrons_files/prev.gif" width=63 align=bottom border=0></A> 
+<A href="http://www.cis.hut.fi/ahonkela/dippa/node1.html" name=tex2html741><IMG 
+height=24 alt=contents src="Multilayer perceptrons_files/contents.gif" width=65 
+align=bottom border=0></A> <BR><B>Next:</B> <A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node42.html" 
+name=tex2html744>Nonlinear factor analysis</A> <B>Up:</B> <A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node38.html" 
+name=tex2html740>Nonlinear state-space models</A> <B>Previous:</B> <A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node40.html" 
+name=tex2html734>Extension from linear to</A> &nbsp; <B><A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node1.html" 
+name=tex2html742>Contents</A></B> <!--End of Navigation Panel-->
+<ADDRESS>Antti Honkela 2001-05-30 </ADDRESS></BODY></HTML>

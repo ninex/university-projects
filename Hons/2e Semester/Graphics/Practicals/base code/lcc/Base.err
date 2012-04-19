@@ -1,0 +1,38 @@
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1151  no type specified. Defaulting to int
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1151  Syntax error; missing semicolon before  `void'
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1151  Syntax error; missing semicolon before  `glAccum'
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1151  no type specified. Defaulting to int
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1152  no type specified. Defaulting to int
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1152  Syntax error; missing semicolon before  `void'
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1152  Syntax error; missing semicolon before  `glAlphaFunc'
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1152  no type specified. Defaulting to int
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1153  no type specified. Defaulting to int
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1153  Syntax error; missing semicolon before  `GLboolean'
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1153  redefinition of 'APIENTRY'
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1152  Previous definition of 'APIENTRY' here
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1153  Syntax error; missing semicolon before  `glAreTexturesResident'
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1153  no type specified. Defaulting to int
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1154  no type specified. Defaulting to int
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1154  Syntax error; missing semicolon before  `void'
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1154  redefinition of 'APIENTRY'
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1153  Previous definition of 'APIENTRY' here
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1154  Syntax error; missing semicolon before  `glArrayElement'
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1154  no type specified. Defaulting to int
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1155  no type specified. Defaulting to int
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1155  Syntax error; missing semicolon before  `void'
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1155  Syntax error; missing semicolon before  `glBegin'
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1155  no type specified. Defaulting to int
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1156  no type specified. Defaulting to int
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1156  Syntax error; missing semicolon before  `void'
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1156  Syntax error; missing semicolon before  `glBindTexture'
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1156  no type specified. Defaulting to int
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1157  no type specified. Defaulting to int
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1157  Syntax error; missing semicolon before  `void'
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1157  Syntax error; missing semicolon before  `glBitmap'
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1157  no type specified. Defaulting to int
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1158  no type specified. Defaulting to int
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1158  Syntax error; missing semicolon before  `void'
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1158  Syntax error; missing semicolon before  `glBlendFunc'
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1158  no type specified. Defaulting to int
+Warning f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1159  no type specified. Defaulting to int
+Error f:\hons\graphics\base code\lesson1.c: c:\lcc\include\gl\gl.h: 1159  too many errors

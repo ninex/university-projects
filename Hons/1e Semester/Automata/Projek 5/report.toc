@@ -1,0 +1,10 @@
+\contentsline {section}{\numberline {1}Introduction}{1}
+\contentsline {section}{\numberline {2}Tausworthe Pseudo Random Numbers}{2}
+\contentsline {section}{\numberline {3}Implementation}{2}
+\contentsline {subsection}{\numberline {3.1}Plotting program}{3}
+\contentsline {subsection}{\numberline {3.2}Runs up test program}{3}
+\contentsline {section}{\numberline {4}Testing}{3}
+\contentsline {subsection}{\numberline {4.1}8-bit Numbers}{4}
+\contentsline {subsection}{\numberline {4.2}16-bit Numbers}{7}
+\contentsline {section}{\numberline {5}Conclusion}{9}
+\contentsline {section}{\numberline {6}References}{9}

@@ -1,0 +1,13 @@
+a=boek waardes
+b=verander v
+c=verander k
+d=verander x
+
+a=boek
+b=x=0.5
+c=v=0.5
+d=k=0.1
+e=c=0.5
+f=f=0.9
+g=hoekfrek = 1
+h=hoekfrek= 0.9

@@ -1,0 +1,5 @@
+a=input('A=');
+y=input('Lambda=');
+w=input('daai w ding=');
+r=input('die hoek=');
+fplot(inline('-y/2*a*exp()'),[0 100]);

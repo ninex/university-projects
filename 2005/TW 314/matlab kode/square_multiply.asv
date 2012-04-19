@@ -1,0 +1,18 @@
+function [c] = square_multiply(a,b,n)
+%a = base
+%b = exponent
+%c = die ander een
+b = dec2bin(b);
+l = size(b,2) + 1;
+z(l) = 1; i = l;
+while i ~= 1
+y(i) = mod(z(i)^2,n);
+if b(i-1) == '1'
+    z(i-1) = mod(a*y(i),n);
+else
+    z(i-1) = y(i);
+end
+disp([num2str(i)'']);
+i = i-1;
+end
+c = z(1);

@@ -1,0 +1,77 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+buffer              0x400             crt.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD proc5.o
+LOAD crt.o
+LOAD ipc.o
+                0x0000000020000000                _link_base = 0x20000000
+
+.text           0x0000000020000000      0x87a
+                0x0000000020000000        0x1 BYTE 0xe8
+                0x0000000020000001        0x4 LONG 0xb _main_offset
+                0x0000000020000005                _main_call = .
+                0x0000000020000005        0x1 BYTE 0x43
+                0x0000000020000006        0x1 BYTE 0x53
+                0x0000000020000007        0x1 BYTE 0x33
+                0x0000000020000008                . = ALIGN (0x4)
+                0x0000000020000008        0x4 LONG 0x20000000 _link_base
+                0x000000002000000c        0x4 LONG 0x20000d68 _heap_base
+                0x0000000020000010                . = ALIGN (0x4)
+ *(.text)
+ .text          0x0000000020000010       0xe4 proc5.o
+                0x0000000020000010                main
+ .text          0x00000000200000f4      0x6ba crt.o
+                0x000000002000076a                crt_key_available
+                0x00000000200003e1                crt_clear_display
+                0x0000000020000359                crt_open
+                0x0000000020000396                crt_set_attribute
+                0x00000000200000f4                int2string
+                0x00000000200003f2                crt_printf
+                0x000000002000078c                crt_read_key
+                0x000000002000036e                crt_close
+                0x000000002000037f                crt_gotoxy
+                0x00000000200003bf                crt_get_attribute
+ *fill*         0x00000000200007ae 0x6ba00000002 00
+ .text          0x00000000200007b0       0xca ipc.o
+                0x00000000200007b0                ipc_lookup_port
+                0x000000002000083a                ipc_reply
+                0x000000002000085d                ipc_close_port
+                0x0000000020000817                ipc_receive
+                0x00000000200007ea                ipc_send
+                0x00000000200007cd                ipc_create_port
+                0x000000002000087c                . = ALIGN (0x4)
+
+.data           0x000000002000087c       0x24
+ *(.data)
+ .data          0x000000002000087c       0x22 crt.o
+                0x000000002000087c                small_digits
+                0x000000002000088d                large_digits
+ *fill*         0x000000002000089e 0x2200000002 00
+
+.bss            0x00000000200008a0      0x400
+ *(.bss)
+ COMMON         0x00000000200008a0      0x400 crt.o
+                                          0x0 (size before relaxing)
+                0x00000000200008a0                buffer
+
+.rodata         0x0000000020000ca0       0xc8
+ *(.rodata)
+ .rodata        0x0000000020000ca0       0x42 proc5.o
+ *fill*         0x0000000020000ce2 0x4200000002 00
+ .rodata        0x0000000020000ce4       0x84 crt.o
+                0x0000000020000d68                _heap_base = .
+                0x000000000000000b                _main_offset = (main - _main_call)
+
+/DISCARD/
+ *(.*)
+OUTPUT(proc5 binary)

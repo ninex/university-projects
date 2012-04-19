@@ -1,0 +1,26 @@
+import javax.swing.*;
+import java.io.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.net.*;
+ 
+public class Prompt extends JFrame implements ActionListener
+{	
+	// Do something of this sort if i want to use the JPassword field in order
+	// to place stars where i would normally see text. i dont want to see the password.
+	JPanel pane3 = new JPanel();
+	JPasswordField password = new JPasswordField();
+	JLabel msgLabel = new JLabel("Enter your password");
+	public GUI() 
+	{
+		pane3.add(msgLabel);
+		pane3.add(password);
+		setContentPane(pane3);
+		pane3.show();
+	}
+
+	
+
+	
+	
+}

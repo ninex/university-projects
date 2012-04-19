@@ -1,0 +1,8 @@
+#ifndef SYM_H
+#define SYM_H
+typedef struct node{
+	char* name;
+	double val;
+	struct node* next;
+}node;
+#endif

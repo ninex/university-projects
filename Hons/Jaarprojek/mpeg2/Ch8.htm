@@ -1,0 +1,611 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<TITLE>Untitled</TITLE>
+</HEAD>
+<BODY bgcolor=#FFFFFF>
+<H1>8 CODING<BR>
+</H1>
+<P>
+This section describes the coding methods used to code the macroblock
+header attributes (side information) and data in each macroblock.
+
+<P>
+For Main Profile, the test model assumes:
+ <LI>frame structured pictures</LI>
+ <LI>linear macroblock quantizer_scale (q_scale_type==0)</LI>
+ <LI>Zig-Zag scan (alt_scan==0)</LI>
+ <LI>frame_pred_frame_dct==0</LI>
+ 
+<P>
+The overall syntax and semantics of video decoding is described in
+the MPEG video standard document (IS 13818-2).  The encoder should produce
+bitstreams knowing the rules of reconstruction in the decoder.  Therefore,
+whenever possible, proceedures for encoding that can be easily derived
+as the <b>mirror of the decoding process</b> are not described here.
+
+<P>
+In light of the comprehensive and authoratitive manner in which the
+decoder document describes macroblock reconstruction rules, this
+section seems redundant.  You can almost know how to create a macroblock
+by following how the decoder unravels it.  But this section serves as
+a guide-by-the-hand walk through the coding process.<BR>
+
+<HR>
+<P>
+The relative horizontal spatial position of each macroblock is encoded
+by a variable length code, the <i>macroblock_address_increment</i> or
+as we shall call it by its abbreviation: MBA. The use of
+macroblock addressing is described in section 8.1 of this document and
+section 6.3.1.17 of IS 13818-2<BR>
+
+<P>
+Macroblocks may take on one of a number of different
+modes. The modes available depend on the picture type and other high-layer
+side information (e.g. progressive_sequence) found in the sequence and
+picture headers. Section 6 describes the procedures used by the encoder
+to decide on which mode to use. The mode selected is identified in the
+bitstream by a variable length code known as <i>macroblock_type</i>.
+The use of macroblock_type is described in section 8.2 of the Test Model
+document, and the general semantics are described in section 6.3.17.1 of
+IS 13818-2.<BR>
+
+<P>
+The coding of motion vectors is addressed in section
+8.3. The decoder counterpart is described in section 7.6.3 of IS 13818-2<BR>
+
+<P>
+Some blocks do not contain any DCT coefficient data.
+To transmit which blocks of a macroblock are coded and which are
+non-coded, the coded block pattern (CBP) variable length code
+is used (see section 8.4).<BR>
+
+<P>
+The coefficients in a block are coded with VLC tables
+as described in section 8.5, 8.6, and 8.7.  The VLC tables are formally
+given in Annex B of IS 13818-2.<BR>
+
+<P>
+For additional information about frequency and spatially
+scalable bitstreams, see to Annex D, G and I of the Test Model document.
+[many of the material is outdated]<BR>
+
+<H2>8.1 Macroblock Addressing<BR>
+</H2>
+<P>
+Relative addressing is used to code the position
+of all macroblocks in all pictures. Macroblocks for which no data
+is stored are run-length encoded using the MBA; these macroblocks
+are called <I>skipped macroblocks</I>.<BR>
+
+<P>
+See sections 6.3.1.7 and 7.6.6 of IS 13818-2.  Other subsections in
+IS 13818-2 section 7 describe the semantics of skipped macroblocks,
+since this mode has a distributed affect throughout the decoder stages
+(IDCT, motion vectors, DC prediction, etc.).
+
+
+<P>
+A macroblock address (MBA) is a variable length code
+word indicating the position of a macroblock within a MB-Slice.
+The order of macroblocks is top-left to bottom-right in raster-scan
+order and is shown in Figure 6-9 of IS 13818-2. For the first
+non-skipped macroblock in a macroblock slice, MBA is the
+macroblock count from the left side of the picture. For the Test Model
+this corresponds to the absolute address in figure 4.3. For subsequent
+macroblocks, MBA is the difference between the absolute addresses of
+the macroblock and the last non-skipped macroblock. The code table
+for MBA is given in Table B.1 of IS 13818-2<BR>
+
+<P>
+The <i>macroblock_escape</i> element is a fixed bit-string &quot;0000
+0001 000&quot; which is used when the difference macroblock_address_increment
+is greater then 33. It causes the value of macroblock_address_increment
+to be 33 greater than the value that will be decoded by subsequenct
+macroblock_escapes and the macroblock_address_increment codewords.
+<BR>
+
+<P>
+For example, if there are two macroblock_escape codewords
+preceding the macroblock_address_ increment, then 66 is added
+to the value indicated by macroblock_address_increment.<BR>
+
+<P>
+An extra code word is available in the table for
+bit stuffing immediately after a macroblock slice header or a
+coded macroblock (MBA Stuffing). This code word should be discarded
+by decoders.<BR>
+
+<H2>8.2 Macroblock Type<BR>
+</H2>
+<P>
+As described in Table 6-12 of IS 13818-2. each picture has one of the
+three <i>picture_coding_type</i> modes, each of which has a corresponding
+VLC tables for macroblock_type:<BR>
+<BR>
+<TABLE border=1>
+<TR><TD>picture_coding_type</TD><TD>picture type</TD><TD> IS 13818-2 table</TD></TR>
+<TR><TD>1</TD><TD>Intra (I-pictures)</TD><TD> B.2</TD></TR>
+<TR><TD>2</TD><TD>Predicted (P-pictures)</TD><TD>B.3</TD></TR>
+<TR><TD>3</TD><TD>Bi-Directional/Interpolated (B-pictures)</TD><TD>B.4</TD></TR>
+</TABLE>
+
+
+<P>
+Methods for mode decisions are described in section
+6. In macroblocks that modify the quantizer control parameter
+<i>quantizer_scale</i>, the macroblock_type code word is followed by
+a 5-bit number giving the new value of the quantization parameter denoted
+by the quantizer_scale_code in the range [1..31].<BR>
+
+<H3>8.2.1 Compatible Prediction<BR>
+</H3>
+<P>
+See Appendix G and J.<BR>
+[Appendex G and J no longer valid]
+
+<H2>8.3 Motion Vectors</H2>
+<BR>
+<P>
+Motion vectors for predicted and interpolated pictures
+are coded differentially within a macroblock slice, obeying the
+rules established in section 7.6.3 of IS 13818-2.  In particular, note that:<BR>
+
+<P>
+- Every forward or backward motion vector is coded
+relative to the last vector of the same type. Each component of
+the vector is coded independently, the horizontal component first
+and then the vertical component.<BR>
+
+<P>
+- The prediction motion vector is set to zero in
+the macroblocks at the start of a macroblock slice, or if the
+last macroblock was coded in the intra mode. (<B>Note</B>: that
+in P pictures a No MC, i.e. <i>macroblock_motion_forward</i>==0,
+macroblock_type decision corresponds to a reset to zero of the
+prediction motion vector.)<BR>
+
+<P>
+- In interpolative pictures, only vectors that are
+used for the selected prediction mode (MB type) are coded. Only
+vectors that have been coded are used as prediction motion vectors.
+<BR>
+
+<P>
+The VLC used to encode the differential motion vector
+data depends upon the range of the vectors. The maximum range
+that can be represented is determined by the <B>forward_f_code</B>
+and <B>backward_f_code</B> encoded in the picture header. (<B>Note</B>:
+in this Test Model the <B>full_pel_flag</B> is never set - all
+vectors have half-pel accuracy). [half-pel became hardwired in MPEG-2 anyway]<BR>
+
+<P>
+The differential motion vector component is calculated.
+Its range is compared with the values given in table 8.1 and is
+reduced to fall in the correct range by the following algorithm:
+<BR>
+
+<PRE>
+  if (diff_vector < -range)
+    diff_vector = diff_vector + 2*range;
+  else if (diff_vector> range-1)
+    diff_vector = diff_vector - 2*range;
+
+</PRE>
+
+
+<P>
+
+<CENTER><TABLE BORDER=1>
+<TR><TD WIDTH=125>forward_f_code 
+<P>
+or backward_f_code
+</TD><TD WIDTH=125>Range</TD></TR>
+<TR><TD WIDTH=125>1</TD><TD WIDTH=125>16</TD></TR>
+<TR><TD WIDTH=125>2</TD><TD WIDTH=125>32</TD></TR>
+<TR><TD WIDTH=125>3</TD><TD WIDTH=125>64</TD></TR>
+<TR><TD WIDTH=125>4</TD><TD WIDTH=125>128</TD></TR>
+<TR><TD WIDTH=125>5</TD><TD WIDTH=125>256</TD></TR>
+<TR><TD WIDTH=125>6</TD><TD WIDTH=125>512</TD></TR>
+<TR><TD WIDTH=125>7</TD><TD WIDTH=125>1024</TD></TR>
+</TABLE>
+</CENTER>
+<P>
+<CENTER><B>Table 8.1 Range for motion vectors<BR>
+</B></CENTER>
+<P>
+This value is scaled and coded in two parts by concatenating a
+VLC found from IS 13818-2 table B.10 and a fixed length part according to
+the following algorithm:<BR>
+<P>
+Let f_code be either the <B>forward_f_code</B> or <B>backward_f_code</B>
+as appropriate, and diff_vector be the differential motion vector
+reduced to the correct range.<BR>
+
+<PRE>
+
+  if (diff_vector == 0) 
+  {
+    residual = 0;
+    vlc_code_magnitude = 0;
+  }
+  else
+  {
+    scale_factor = 1 &lt;&lt; (f_code - 1);
+    residual = (abs(diff_vector) - 1) % scale_factor;
+    vlc_code_magnitude = (abs (diff_vector) - residual) / scale_factor;
+    if (scale_factor != 1)
+    vlc_code_magnitude += 1;
+  }
+
+</PRE>
+
+<P>
+The decoder mirror of this equation is given in section 7.6.3.1 of IS 13818-2,
+albiet with a different notation system.  In fact, at the time the Test Model was
+written (March 1992 - April 1993) before the MPEG-2 video document really gelled
+in November 1993, so the MPEG-1 style was used.<P>
+
+<P>
+<Table border=1>
+<TR><TD>Test Model/MPEG-1 style</TD><TD>MPEG-2 style</TD><TD>Reason</TD></TR>
+<TR><TD>forward_f_code</TD><TD>f_code[0][t]</TD><TD>concise generalization</TD></TR>
+<TR><TD>backward_f_code</TD><TD>f_code[1][t]</TD><TD>concise generalization</TD></TR>
+<TR><TD>residual</TD><TD>motion_residual[r][s][t]</TD><TD>concise generalization</TD></TR>
+<TR><TD>vlc_code_magnitude</TD><TD>motion_code[r][s][t]</TD><TD>concise generalization</TD></TR>
+<TR><TD>diff_vector</TD><TD>delta</TD><TD>more accurate</TD></TR>
+<TR><TD>scale_factor</TD><TD>f</TD><TD>no reason</TD></TR>
+<TR><TD>PMV1,PMV2,PMV3,PMV4</TD><TD>PMV[r][s][t]</TD><TD>New York meeting in July 1993 cleaned up the notation</TD></TR>
+
+</table>
+
+See IS 13818-2 table 7.8 for a description of f_code[s][t] and ranges.
+</P>
+
+<P>
+vlc_code_magnitude and the sign of diff_vector are encoded according
+to IS 13818-2 table B.10. The residual is encoded as a fixed length code using
+(f_code-1) bits.
+</P>
+                
+
+<P>
+For example to encode the following string of vector components
+(measured in half pel units)
+</P>
+
+<CENTER>3, 10, 30, 30, -14, -16, 27, 24<BR></CENTER>
+
+The range is such that an f value of 2 can be used. The initial
+prediction is zero, so the differential values are:<BR>
+<P>
+<CENTER>3, 7, 20, 0, -44, -2, 43, -3<BR>
+</CENTER>
+<P>
+The differential values are reduced to the range -32 to +31 by
+adding or subtracting the modulus 64 corresponding to the forward_f_code
+of 2:<BR>
+<P>
+<CENTER>3 7, 20, 0, 20, -2, -21, -3<BR>
+</CENTER>
+<P>
+These values are then scaled and coded in two parts (the table
+gives the pair of values to be encoded (vlc, residual)):<BR>
+<P>
+<CENTER>(2, 0) (4,0) (10, 1) (0, 0) (10, 1) (-1, 1) (-11, 0) (-2,
+0)<BR>
+</CENTER>
+<P>
+The order in a slice is in raster scan order, except for Macroblocks
+coded in Field prediction mode, where the upper two luminance
+blocks vector are predicted from the preceding Macroblock and the
+two lower luminance block vectors are predicted according to the
+rules stated in IS 13818-2 Table 7.9 and Table 7.10.
+</B>
+<P>
+In MBs that are field DCT coded, chrominance block structure is
+as follows&nbsp;:
+<P>
+o When the picture format is 4:2:2 and 4:4:4, the chrominance
+blocks structure is analogous to that of the luminance since the
+vertical resolution of the picture is the same for luminance and
+chrominance.
+<P>
+o When the picture format is 4:2:0, the chrominance blocks is
+structure is equal to that used for frame coded MBs. In other
+words, chrominance is always frame coded.<BR>
+<P>
+Rules for dct_type are stated in IS 13818-2 section 6.1.3
+<P>
+<TT><I>It was agreed that when frame-based prediction is used in
+non-progressive pictures, the reference field for chrominance
+prediction may not be the correct one.  This slight coding inefficiency
+is unfortunate, but it was decided for Implementation reasons that the
+fundamental DCT block size remain 8x8.  Other later standards such as
+Digital Video Cassette have an optional 8x4 DCT block shape.<BR>
+</I></TT>
+<P>
+There are four prediction motion vectors&nbsp;: PMV1,
+PMV2, PMV3 and PMV4. They are reset to zero at the start of a
+slice and at intra-coded MBs.<BR>
+
+<P>
+The prediction MVs (PMV1 to PMV4) <I>are always expressed
+in Frame MV coordinates</I> since the Test Model only uses frame
+structured pictures.  See IS 13818-2 section 7.6.3.1 for the
+influence of <i>mv_format</i> on motion vector scaling.
+<P>
+For the prediction of Field-based MVs (mv_format ==
+&quot;field&quot;), the following rules are used:
+<P>
+<B>On the decoder side&nbsp;:</B>
+<P>
+When a Field-based MV is derived, the vertical coordinate
+of the PMV is shifted right by 1 bit (with sign extension) before
+adding the vertical differential.
+<P>
+Then the Field-based MV is stored in the appropriate
+PMV(s) after shifting left by 1 bit its vertical coordinate.
+<P>
+<B>On the encoder side&nbsp;:</B>
+<P>
+When a Field-based MV is encoded, the vertical coordinate
+of the PMV is shifted right by 1 bit (with sign extension) before
+it is subtracted from the field MV vertical coordinate.
+<P>
+Then the Field-based MV is stored in the appropriate
+PMV(s) after shifting left by 1 bit its vertical coordinate.<BR>
+
+<P>
+1. mv_format == &quot;frame&quot; :<BR>
+
+<P>
+In P-Pictures or P-Fields, PMV1 is used. PMV2, PMV3
+and PMV4 are reset to PMV1<BR>
+
+<P>
+In B-Pictures or B-Fields, PMV1 is used for forward
+motion vector prediction, and PMV3 is used for backward motion
+vector prediction. PMV2 is reset to PMV1, and PMV4 is reset to
+PMV3.<BR>
+
+<P>
+2. mv_format == &quot;field&quot;&nbsp;:<BR>
+
+<P>
+In P-Frame-Pictures or P-Field-Pictures:
+<P>
+PMV1 is used for vectors used to predict FIELD1 from
+FIELD1
+<P>
+PMV2 is used for vectors used to predict FIELD1 from
+FIELD2
+<P>
+PMV3 is used for vectors used to predict FIELD2 from
+FIELD1
+<P>
+PMV4 is used for vectors used to predict FIELD2 from
+FIELD2<BR>
+
+<P>
+In B-Picture, PMV1 and PMV2 are used for forward
+motion vector prediction from field 1 and 2, and PMV3 and PMV4
+are used for backward motion vector prediction from fields 1 and
+2.<BR>
+
+<H3>8.3.1 Prediction of Motion Vectors for special prediction
+modes<BR>
+</H3>
+<P>
+When experiments are done involving the Special prediction
+modes:
+<P>
+<B>In P-Pictures:</B>
+<P>
+PMV1 is used for prediction of the Dual-prime motion
+vector.<BR>
+PMV4 is updated with the transmitted field motion vector .<BR>
+PMV2 is updated with the scaled motion vector from reference field
+2 to predicted field 1.<BR>
+PMV3 is updated with the scaled motion vector from reference field
+1 to predicted field 2.<BR>
+
+<P>See section 7.6.3.6 for Dual Prime motion vector arithmetic rules</P>
+
+<H2>8.4 Coded Block Pattern<BR>
+</H2>
+<P>
+See IS 13818-2 section 6.3.17.4<BR>
+
+<H2>8.5 Intra picture Coefficient Coding<BR>
+</H2>
+<H3>8.5.1 DC Prediction<BR>
+</H3>
+<P>
+Decoder rules for DC prediction is described in section 7.2.1 of
+IS 13818-2.
+<P>
+After the DC coefficient of a block has been quantized
+to 8 bits according to Test Model section 7.1.1, it is coded loss less by
+a DPCM technique. Coding of the luminance blocks within a macroblock
+follows the normal scan of figure 4.4. Thus the DC value of block
+4 becomes the DC predictor for block 1 of the following macroblock.
+Three independent predictors are used, one each for Y, Cr and
+Cb.<BR>
+
+<P>
+At the left edge of a macroblock slice, the DC predictor
+is set to 128, 256, 512 and 1024 according to the <i>intra_dc_precision</i>
+variable (for the first block (luminance) and the chrominance blocks).
+At the rest of a macroblock slice, the DC predictor is simply
+the previously coded DC value of the same type (Y, Cr, or Cb).
+<BR>
+
+<P>
+At the decoder the original quantized DC values are
+exactly recovered by following the inverse procedure.<BR>
+
+<P>
+The differential DC values thus generated are categorised
+according to their &quot;size&quot; as shown in the table below.
+<BR>
+
+<P>
+<CENTER><TABLE BORDER=1>
+<TR><TD WIDTH=149>DIFFERENTIAL DC</TD><TD WIDTH=60>SIZE
+</TD></TR>
+<TR><TD WIDTH=149>(absolute value)</TD><TD WIDTH=60></TD></TR>
+<TR><TD WIDTH=149>0</TD><TD WIDTH=60>0</TD></TR>
+<TR><TD WIDTH=149>1</TD><TD WIDTH=60>1</TD></TR>
+<TR><TD WIDTH=149>2 to 3</TD><TD WIDTH=60>2</TD></TR>
+<TR><TD WIDTH=149>4 to 7</TD><TD WIDTH=60>3</TD></TR>
+<TR><TD WIDTH=149>8 to 15</TD><TD WIDTH=60>4</TD></TR>
+<TR><TD WIDTH=149>16 to 31</TD><TD WIDTH=60>5</TD></TR>
+<TR><TD WIDTH=149>32 to 63</TD><TD WIDTH=60>6</TD></TR>
+<TR><TD WIDTH=149>64 to 127</TD><TD WIDTH=60>7</TD></TR>
+<TR><TD WIDTH=149>128 to 255</TD><TD WIDTH=60>8</TD></TR>
+<TR><TD WIDTH=149>256 to 511</TD><TD WIDTH=60>9</TD></TR>
+<TR><TD WIDTH=149>512 to 1023</TD><TD WIDTH=60>10</TD></TR>
+<TR><TD WIDTH=149>1024 to 2047</TD><TD WIDTH=60>11</TD></TR>
+</TABLE>
+</CENTER>
+<P>
+<CENTER><B>Table 8.2 Differential DC size and VLC<BR>
+</B></CENTER>
+<P>
+The size value is VLC coded according to IS 13818-2 table B.12 (luminance)
+and IS 13818-2 table B.13 (chrominance). <BR>
+<P>
+For each category enough additional bits are appended to the SIZE
+code to uniquely identify which difference in that category actually
+occurred (table 8.3). The additional bits thus define the signed
+amplitude of the difference data. The number of additional bits
+(sign included) is equal to the SIZE value.<BR>
+<P>
+<CENTER><TABLE BORDER=1>
+<TR><TD WIDTH=137>DIFFERENTIAL DC</TD><TD WIDTH=48>SIZE</TD><TD WIDTH=180>ADDITIONAL CODE
+</TD></TR>
+<TR><TD WIDTH=137>-2047 to -1024</TD><TD WIDTH=48>11</TD><TD WIDTH=180>00000000000 to 01111111111
+</TD></TR>
+<TR><TD WIDTH=137>-1023 to -512</TD><TD WIDTH=48>10</TD><TD WIDTH=180>0000000000 to 0111111111
+</TD></TR>
+<TR><TD WIDTH=137>-511 to -256</TD><TD WIDTH=48>9</TD><TD WIDTH=180>000000000 to 011111111
+</TD></TR>
+<TR><TD WIDTH=137>-255 to -128</TD><TD WIDTH=48>8</TD><TD WIDTH=180>00000000 to 01111111
+</TD></TR>
+<TR><TD WIDTH=137>-127 to -64</TD><TD WIDTH=48>7</TD><TD WIDTH=180>0000000 to 0111111
+</TD></TR>
+<TR><TD WIDTH=137>-63 to -32</TD><TD WIDTH=48>6</TD><TD WIDTH=180>000000 to 011111
+</TD></TR>
+<TR><TD WIDTH=137>-31 to -16</TD><TD WIDTH=48>5</TD><TD WIDTH=180>00000 to 01111
+</TD></TR>
+<TR><TD WIDTH=137>-15 to -8</TD><TD WIDTH=48>4</TD><TD WIDTH=180>0000 to 0111
+</TD></TR>
+<TR><TD WIDTH=137>-7 to -4</TD><TD WIDTH=48>3</TD><TD WIDTH=180>000 to 011
+</TD></TR>
+<TR><TD WIDTH=137>3 to -2 </TD><TD WIDTH=48>2</TD><TD WIDTH=180>00 to 01
+</TD></TR>
+<TR><TD WIDTH=137>-1</TD><TD WIDTH=48>1</TD><TD WIDTH=180>0</TD>
+</TR>
+<TR><TD WIDTH=137>0</TD><TD WIDTH=48>0</TD><TD WIDTH=180></TD>
+</TR>
+<TR><TD WIDTH=137>1</TD><TD WIDTH=48>1</TD><TD WIDTH=180>1</TD>
+</TR>
+<TR><TD WIDTH=137>2 to 3</TD><TD WIDTH=48>2</TD><TD WIDTH=180>10 to 11
+</TD></TR>
+<TR><TD WIDTH=137>4 to 7</TD><TD WIDTH=48>3</TD><TD WIDTH=180>100 to 111
+</TD></TR>
+<TR><TD WIDTH=137>8 to 15</TD><TD WIDTH=48>4</TD><TD WIDTH=180>1000 to 1111
+</TD></TR>
+<TR><TD WIDTH=137>16 to 31</TD><TD WIDTH=48>5</TD><TD WIDTH=180>10000 to 11111
+</TD></TR>
+<TR><TD WIDTH=137>32 to 63</TD><TD WIDTH=48>6</TD><TD WIDTH=180>100000 to 111111
+</TD></TR>
+<TR><TD WIDTH=137>64 to 127</TD><TD WIDTH=48>7</TD><TD WIDTH=180>1000000 to 1111111
+</TD></TR>
+<TR><TD WIDTH=137>128 to 255</TD><TD WIDTH=48>8 </TD><TD WIDTH=180>10000000 to 11111111
+</TD></TR>
+<TR><TD WIDTH=137>256 to 511</TD><TD WIDTH=48>9</TD><TD WIDTH=180>100000000 to 111111111
+</TD></TR>
+<TR><TD WIDTH=137>512 to 1023</TD><TD WIDTH=48>10</TD><TD WIDTH=180>1000000000 to 1111111111
+</TD></TR>
+<TR><TD WIDTH=137>1024 to 2047</TD><TD WIDTH=48>11</TD><TD WIDTH=180>10000000000 to 11111111111
+</TD></TR>
+</TABLE>
+</CENTER>
+<P>
+<CENTER><B>Table 8.3. Differential DC additional codes<BR>
+</B></CENTER>
+
+<H3>8.5.2 AC Coefficients<BR>
+</H3>
+<P>AC coefficients are coded as described in Test Model section 8.7.<BR>
+
+<H2>8.6 Non-Intrapicture Coefficient Coding<BR>
+</H2>
+<H3>8.6.1 Intra blocks<BR>
+</H3>
+<P>
+Intra blocks in non-intra pictures are coded as in
+intra pictures. At the start of the macroblock, the DC predictors
+for luminance and chrominance are reset to 128, 256, 512 and 1024
+according to the intra_dc_precision, unless the previous block
+was also intra; in this case, the predictors are obtained from
+the previous block as in intra pictures (section 8.5.1).<BR>
+
+<P>
+AC coefficients are coded as described in section 8.7.
+Transform coefficient data is always present for all 6 blocks
+in a macroblock when macroblock_type indicates <i>macroblock_intra</i>==1. <BR>
+
+<H3>8.6.2 Non intra blocks<BR>
+</H3>
+<P>
+In other cases macroblock_type and coded_block_pattern signal which blocks
+have coefficient data transmitted for them. The quantized transform
+coefficients are sequentially transmitted according to the zig-zag
+sequence given in IS 13818-2 Figure 7.2.  The Test Model does not use
+the alternate_scan pattern of IS 13818-2 Figure 7.3<BR>
+
+<H2>8.7 Coding of Transform Coefficients<BR>
+</H2>
+<P>
+First of all there are two VLC's, one for non intra
+macroblocks (IS 13818-2 Table B.14), and one for intra macroblocks
+(IS 13818-2 Table B.15). If the Test Model is applied to create MPEG-1
+sequences, only the non intra VLC table is used since MPEG-2's Table B.14
+is the same as MPEG-1's AC table. The two VLC differ in particular in the
+length of <i>end of block</i> (EOB) code (2 vs. 4 bits, respectively). The combinations of
+zero-run and the following value are encoded with variable length codes
+according to IS 13818-2 section 7.2.2. The last bit 's' denotes the sign of
+the level, '0' for positive '1' for negative.<BR>
+
+<P>
+Blocks with no coefficient data are indicated by
+the coded_block_pattern, and no EOB is required. Therefore EOB cannot occur as
+the first coefficient, and hence EOB does not appear in the VLC
+table for the first coefficient (see note 3 and 4 in IS 13818-2 table B.14).<BR>
+
+<P>
+This first coefficient duality is easiest to comprehend when modelling
+Table B.14 as really two different tables where only their 2nd entries
+differs.  The first table is used at the very beginning of the block,
+and then the decoder immediately switches to the second.  This kludge
+saves a considerable number of bits in efficiency.
+
+<P>
+The approximately 111 most commonly occurring combinations of successive
+zeros (RUN) and the following value (LEVEL) are encoded with variable
+length codes listed in the tables. Less common combinations of
+(RUN, LEVEL) are encoded with a 24-bit escape sequence consisting of a 6
+bit ESCAPE code, a 6 bit RUN and a 12 bit LEVEL. <BR>
+
+<P>
+In MPEG-1, the ESCAPE code is followed by a 6 bit run and either an 8 bit
+or 16 bit level (double escape) depending on the dynamic range of
+the coefficient.<BR>
+
+<HR>
+<P><LI><A HREF="../index.html">Back</A> to Contents</P>
+</BODY>
+</HTML>

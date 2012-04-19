@@ -1,0 +1,182 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<TITLE>Untitled</TITLE>
+</HEAD>
+<BODY bgcolor=#FFFFFF>
+<H1>7 TRANSFORMATION AND QUANTIZATION<BR>
+</H1>
+<P>
+While mode selection and local motion compensation
+are based on the macroblock structure, the transformation and
+quantization is based on 8*8 blocks.<BR>
+
+<P>
+Blocks are transformed with a 2-dimensional DCT as
+explained in Appendix A. Each block of 8*8 pixels thus results
+in a block of 8*8 transform coefficients. The DCT coefficients
+are quantized as described in sections 7.1 and 7.2.<BR>
+
+<H2>7.1 Quantization of Intra Macroblocks<BR>
+</H2>
+<P>
+Intra frame DCT coefficients are quantized with selected
+quantizers without a dead-zone.<BR>
+
+<H3>7.1.1 DC Coefficients<BR>
+</H3>
+<P>
+The quantizer step-size for the DC coefficient of
+the luminance and chrominance components is 8, 4, 2 and 1. Thus,
+the quantized DC value, QDC, is calculated as:<BR>
+
+<TABLE>
+<TR><TD WIDTH=78>QDC</TD><TD WIDTH=72>= dc // 8
+</TD></TR>
+<TR><TD WIDTH=78>QDC(9bit)</TD><TD WIDTH=72>= dc // 4
+</TD></TR>
+<TR><TD WIDTH=78>QDC(10bit)</TD><TD WIDTH=72>= dc // 2
+</TD></TR>
+</TABLE>
+<P>
+<P>
+where &quot;dc&quot; is the 11-bit unquantized value
+from the DCT.<BR>
+
+<H3>7.1.2 AC Coefficients<BR>
+</H3>
+<P>
+AC coefficients ac(i,j) are first quantised by individual
+quantisation factors, <BR>
+
+<P>
+ac~(i,j) = (16 * ac(i,j)) //wI(i,j) <BR>
+
+<P>
+where wI(i,j) is the (i,j)th element of the Intra
+quantizer matrix given in figure 7.1. ac~(i,j) is limited to the
+range [-2048, 2047]. 
+<P>
+<CENTER><TABLE BORDER=1>
+<TR><TD WIDTH=34>8</TD><TD WIDTH=33>16</TD>
+<TD WIDTH=33>19</TD><TD WIDTH=33>22</TD><TD WIDTH=33>26</TD><TD WIDTH=33>27
+</TD><TD WIDTH=33>29</TD><TD WIDTH=33>34</TD></TR>
+<TR><TD WIDTH=34>16</TD><TD WIDTH=33>16</TD><TD WIDTH=33>22</TD>
+<TD WIDTH=33>24</TD><TD WIDTH=33>27</TD><TD WIDTH=33>29</TD><TD WIDTH=33>34
+</TD><TD WIDTH=33>37</TD></TR>
+<TR><TD WIDTH=34>19</TD><TD WIDTH=33>22</TD><TD WIDTH=33>26</TD>
+<TD WIDTH=33>27</TD><TD WIDTH=33>29</TD><TD WIDTH=33>34</TD><TD WIDTH=33>34
+</TD><TD WIDTH=33>38</TD></TR>
+<TR><TD WIDTH=34>22</TD><TD WIDTH=33>22</TD><TD WIDTH=33>26</TD>
+<TD WIDTH=33>27</TD><TD WIDTH=33>29</TD><TD WIDTH=33>34</TD><TD WIDTH=33>37
+</TD><TD WIDTH=33>40</TD></TR>
+<TR><TD WIDTH=34>22</TD><TD WIDTH=33>26</TD><TD WIDTH=33>27</TD>
+<TD WIDTH=33>29</TD><TD WIDTH=33>32</TD><TD WIDTH=33>35</TD><TD WIDTH=33>40
+</TD><TD WIDTH=33>48</TD></TR>
+<TR><TD WIDTH=34>26</TD><TD WIDTH=33>27</TD><TD WIDTH=33>29</TD>
+<TD WIDTH=33>32</TD><TD WIDTH=33>35</TD><TD WIDTH=33>40</TD><TD WIDTH=33>48
+</TD><TD WIDTH=33>58</TD></TR>
+<TR><TD WIDTH=34>26</TD><TD WIDTH=33>27</TD><TD WIDTH=33>29</TD>
+<TD WIDTH=33>34</TD><TD WIDTH=33>38</TD><TD WIDTH=33>46</TD><TD WIDTH=33>56
+</TD><TD WIDTH=33>69</TD></TR>
+<TR><TD WIDTH=34>27</TD><TD WIDTH=33>29</TD><TD WIDTH=33>35</TD>
+<TD WIDTH=33>38</TD><TD WIDTH=33>46</TD><TD WIDTH=33>56</TD><TD WIDTH=33>69
+</TD><TD WIDTH=33>83</TD></TR>
+</TABLE>
+</CENTER>
+<P>
+<CENTER><B>Figure 7.1 - Intra quantizer matrix<BR>
+</B></CENTER>
+<P>
+The step-size for quantizing the scaled DCT coefficients, ac~(i,j),
+is derived from the quantization parameter, quantizer_scale.
+A quantizer_scale is calculated for each macroblock by the algorithm
+defined in Test Model Section 10 and is stored in the bitstream in the
+slice header and, optionally, in any macroblock.
+<P>
+The quantized level QAC(i,j) is given by:<BR>
+<P>
+QAC(i,j) = [ac~(i,j) + sign(ac~(i,j))*((p * quantizer_scale) // q)] / (2*quantizer_scale)
+<BR>
+<P>
+If the tcoef_escape_format flag is set to 0, QAC (i,j) is limited
+to the range [-255..255].
+<P>
+If the tcoef_escape_format flag is set to 1, QAC (i,j) is limited
+to the range [-2047 .. 2047].<BR>
+<P>
+For this TM p=3, and q = 4.<BR>
+<H2>7.2 Quantization Non Intra Macroblocks<BR>
+</H2>
+<P>
+Non-intra macroblocks in Predicted and Interpolated
+pictures are quantized with a uniform quantizer that has a dead-zone
+about zero. A non-intra quantizer matrix, given in figure 7.2,
+is used.<BR>
+
+<P>
+<CENTER><TABLE BORDER=1>
+<TR><TD WIDTH=34>16</TD><TD WIDTH=33>17</TD>
+<TD WIDTH=33>18</TD><TD WIDTH=33>19</TD><TD WIDTH=33>20</TD><TD WIDTH=33>21
+</TD><TD WIDTH=33>22</TD><TD WIDTH=33>23</TD></TR>
+<TR><TD WIDTH=34>17</TD><TD WIDTH=33>18</TD><TD WIDTH=33>19</TD>
+<TD WIDTH=33>20</TD><TD WIDTH=33>21</TD><TD WIDTH=33>22</TD><TD WIDTH=33>23
+</TD><TD WIDTH=33>24</TD></TR>
+<TR><TD WIDTH=34>18</TD><TD WIDTH=33>19</TD><TD WIDTH=33>20</TD>
+<TD WIDTH=33>21</TD><TD WIDTH=33>22</TD><TD WIDTH=33>23</TD><TD WIDTH=33>24
+</TD><TD WIDTH=33>25</TD></TR>
+<TR><TD WIDTH=34>19</TD><TD WIDTH=33>20</TD><TD WIDTH=33>21</TD>
+<TD WIDTH=33>22</TD><TD WIDTH=33>23</TD><TD WIDTH=33>24</TD><TD WIDTH=33>26
+</TD><TD WIDTH=33>27</TD></TR>
+<TR><TD WIDTH=34>20</TD><TD WIDTH=33>21</TD><TD WIDTH=33>22</TD>
+<TD WIDTH=33>23</TD><TD WIDTH=33>25</TD><TD WIDTH=33>26</TD><TD WIDTH=33>27
+</TD><TD WIDTH=33>28</TD></TR>
+<TR><TD WIDTH=34>21</TD><TD WIDTH=33>22</TD><TD WIDTH=33>23</TD>
+<TD WIDTH=33>24</TD><TD WIDTH=33>26</TD><TD WIDTH=33>27</TD><TD WIDTH=33>28
+</TD><TD WIDTH=33>30</TD></TR>
+<TR><TD WIDTH=34>22</TD><TD WIDTH=33>23</TD><TD WIDTH=33>24</TD>
+<TD WIDTH=33>26</TD><TD WIDTH=33>27</TD><TD WIDTH=33>28</TD><TD WIDTH=33>30
+</TD><TD WIDTH=33>31</TD></TR>
+<TR><TD WIDTH=34>23</TD><TD WIDTH=33>24</TD><TD WIDTH=33>25</TD>
+<TD WIDTH=33>27</TD><TD WIDTH=33>28</TD><TD WIDTH=33>30</TD><TD WIDTH=33>31
+</TD><TD WIDTH=33>33</TD></TR>
+</TABLE>
+</CENTER>
+<P>
+<CENTER><B>Figure 7.2 - Non-intra quantizer matrix<BR>
+</B></CENTER>
+<P>
+The step-size for quantizing both the scaled DC and AC coefficients
+is derived from the quantization parameter, quantizer_scale. quantizer_scale is
+calculated for each macroblock by the algorithm defined in Section
+10. The following formulae describe the quantization process.
+Note that INTRA type macroblocks in predicted and interpolated
+pictures are quantized in exactly the same manner as macroblocks
+in Intra-pictures (section 7.1) and not as described in this section.
+<BR>
+<P>
+ac~(i,j) = (16 * ac(i,j)) // wN(i,j) <BR>
+<P>
+where:
+<P>
+wN(i,j) is the non-intra quantizer matrix given in figure 7.2
+<BR>
+<P>
+QAC(i,j) = ac~(i,j) / (2*quantizer_scale)<BR>
+<P>
+If MPEG1 syntax applies, QAC (i,j) is limited to the range [-255..255].
+<P>
+If MPEG2 syntax applies, no clipping is necessary.<BR>
+<H2>7.3 Dequantization <BR>
+</H2>
+<P>
+An encoder is free to perform quantization in any way it wants (i.e.
+"guess", use a mirror of the decoder, or use a fuzzy quantum neural net
+quadratic maximum a posteri prediction estimator with entropy constrained
+trellis coded feedback).  However, the decoder is deterministic and
+the rules in IS 13818-2 section 7.4 must be followed.
+<BR>
+<HR>
+<P><LI><A HREF="../index.html">Back</A> to Contents</P>
+</BODY>
+</HTML>

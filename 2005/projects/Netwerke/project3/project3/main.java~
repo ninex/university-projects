@@ -1,0 +1,33 @@
+import project3.*;
+public class main
+{
+
+public static void main(String[] args) 
+{	
+
+	ipLookupTable lookthread = new ipLookupTable();
+	ClientGUI main_frame = new ClientGUI(lookthread);	
+		
+	lookthread.start();
+		
+		int port = Integer.parseInt(args[0]);
+		
+		
+		//Socket client = null;
+		try
+		{
+			connection = new ServerSocket(port);
+		}catch (Exception e){System.out.println("error: "+e.toString());System.exit(1);}
+		
+		main_frame.show();
+		while (!connection.isClosed())
+		{	
+			System.out.println("Listening for connections...");
+			try
+			{
+				new clientThread(connection.accept(),lookthread).start();				
+			}catch (Exception e){}
+		}*/
+		//main_frame.show()
+}
+}

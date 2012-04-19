@@ -1,0 +1,15 @@
+begin (* should display -1 2 *)
+  integer x;
+
+  proc P
+  begin
+    integer x;
+
+    x := 2;
+    write x;
+  end;
+
+  x := -1;
+  write x;
+  P;
+end.

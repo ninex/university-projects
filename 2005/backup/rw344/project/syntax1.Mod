@@ -1,0 +1,1 @@
+MODULE Error;(* Incomplete nested procedure *) PROCEDURE proc();	PROCEDURE nested();BEGINEND proc; (* identifier does not match procedure name, line 7 *)BEGIN	proc() END Error.

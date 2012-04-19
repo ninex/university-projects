@@ -1,0 +1,18 @@
+function [x, v, KE, PE, E] = Euler_Cromer(r,x0, v_x0, v_y0, t, dt);
+% Bereken die verplasing en snelheid m.b.v. die Euler-Cromer
+%benadering
+x(1)=x0;
+v_x(1)=v_x0;
+v_y(1)=v_y0;
+
+%faktor = -k/m*dt;
+
+for i=2:length(t)
+
+v_x(i) = v_x(i-1) - (4*pi^2 * x( * dt) / r^3;
+v_y(i) = v_y(i-1) - (4*pi^2 * y * dt) / r^3;
+
+%v(i)=v(i-1) + x(i-1)*faktor; % Euler-Cromer benadering
+x(i)=x(i-1) + v(i)*dt;
+end;
+[KE, PE, E]=energie(m, k, x, v);

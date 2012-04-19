@@ -1,0 +1,55 @@
+(*
+Tests correct implementation of local and global variables. 
+Includes an embeded function which tries to access the global scope.
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+
+Expected Output:
+1
+2
+10
+-99
+1
+50
+999
+88
+-99
+11
+50
+10
+
+*)
+
+begin
+	integer x,y,z;
+	proc func
+	begin
+		integer a,b;
+		proc func2
+		begin
+			write 999;
+			x := 11;
+		end;
+		a := x;
+		b := 50;
+		y := b;
+		write a,b;
+		func2;
+		write 88;
+	end;
+
+	x := 1;
+	y := 2;
+	z := 10;
+
+	write x;
+	write y;
+	write z;
+	write -99;
+
+	func;
+
+	write -99;
+	write x;
+	write y;
+	write z;
+end.

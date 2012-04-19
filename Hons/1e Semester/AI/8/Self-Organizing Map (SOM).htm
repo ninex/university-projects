@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0048)http://www.cis.hut.fi/~jhollmen/dippa/node9.html -->
+<!--Converted with LaTeX2HTML 96.1 (Feb 5, 1996) by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds --><HTML><HEAD><TITLE>Self-Organizing Map (SOM)</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content="Self-Organizing Map (SOM)" name=description>
+<META content=dippa name=keywords>
+<META content=document name=resource-type>
+<META content=global name=distribution><LINK 
+href="Self-Organizing Map (SOM)_files/dippa.css" rel=STYLESHEET>
+<META content="MSHTML 6.00.2900.2912" name=GENERATOR></HEAD>
+<BODY lang=EN><A href="http://www.cis.hut.fi/~jhollmen/dippa/node10.html" 
+name=tex2html239><IMG height=24 alt=next src="" width=37 align=bottom></A> <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node7.html" name=tex2html237><IMG 
+height=24 alt=up src="" width=26 align=bottom></A> <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node8.html" name=tex2html231><IMG 
+height=24 alt=previous src="" width=63 align=bottom></A> <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node1.html" name=tex2html241><IMG 
+height=24 alt=contents src="" width=65 align=bottom></A> <BR><B>Next:</B> <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node10.html" name=tex2html240>Data 
+preprocessing</A> <B>Up:</B> <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node7.html" 
+name=tex2html238>Self-Organizing Map</A> <B>Previous:</B> <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node8.html" 
+name=tex2html232>Artificial neural networks</A> <BR>
+<P>
+<H1><A name=SECTION00520000000000000000>Self-Organizing Map (SOM)</A></H1>
+<P>The Self-Organizing Map is one of the most popular neural network models. It 
+belongs to the category of competitive learning networks. The Self-Organizing 
+Map is based on unsupervised learning, which means that no human intervention is 
+needed during the learning and that little needs to be known about the 
+characteristics of the input data. We could, for example, use the SOM for 
+clustering data without knowing the class memberships of the input data. The SOM 
+can be used to detect features inherent to the problem and thus has also been 
+called SOFM, the Self-Organizing Feature Map. 
+<P>The Self-Organizing Map was developed by professor Kohonen [<A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node47.html#Kohonen95a">20</A>]. The 
+SOM has been proven useful in many applications [<A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node47.html#Kohonen95b">22</A>]. For 
+closer review of the applications published in the open literature, see section 
+<A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node28.html#applications">2.3</A>. 
+<P>The SOM algorithm is based on unsupervised, competitive learning. It provides 
+a topology preserving mapping from the high dimensional space to map units. Map 
+units, or neurons, usually form a two-dimensional lattice and thus the mapping 
+is a mapping from high dimensional space onto a plane. The property of topology 
+preserving means that the mapping preserves the relative distance between the 
+points. Points that are near each other in the input space are mapped to nearby 
+map units in the SOM. The SOM can thus serve as a cluster analyzing tool of 
+high-dimensional data. Also, the SOM has the capability to generalize. 
+Generalization capability means that the network can recognize or characterize 
+inputs it has never encountered before. A new input is assimilated with the map 
+unit it is mapped to. 
+<P>The Self-Organizing Map is a two-dimensional array of neurons: 
+<P><IMG height=21 alt=displaymath1935 
+src="Self-Organizing Map (SOM)_files/img6.gif" width=329 align=bottom> 
+<P>This is illustrated in Figure <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node9.html#fighilat">2.3</A>. One 
+neuron is a vector called the codebook vector 
+<P><IMG height=20 alt=displaymath1937 
+src="Self-Organizing Map (SOM)_files/img7.gif" width=323 align=bottom> 
+<P>This has the same dimension as the input vectors (<I>n</I> -dimensional). The 
+neurons are connected to adjacent neurons by a neighborhood relation. This 
+dictates the topology, or the structure, of the map. Usually, the neurons are 
+connected to each other via rectangular or hexagonal topology. In the Figure <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node9.html#fighilat">2.3</A> the 
+topological relations are shown by lines between the neurons. 
+<P>
+<P><A name=543>&nbsp;</A><A name=fighilat>&nbsp;</A> <IMG height=204 
+alt=figure283 src="Self-Organizing Map (SOM)_files/img8.gif" width=547 
+align=bottom> <BR><STRONG>Figure 2.3:</STRONG> Different topologies<BR>
+<P>
+<P>One can also define a distance between the map units according to their 
+topology relations. Immediate neighbors (the neurons that are adjacent) belong 
+to the neighborhood <IMG height=27 alt=tex2html_wrap_inline1941 
+src="Self-Organizing Map (SOM)_files/img9.gif" width=20 align=middle> of the 
+neuron <IMG height=18 alt=tex2html_wrap_inline1943 
+src="Self-Organizing Map (SOM)_files/img10.gif" width=23 align=middle> . The 
+neighborhood function should be a decreasing function of time: <IMG height=30 
+alt=tex2html_wrap_inline1945 src="Self-Organizing Map (SOM)_files/img11.gif" 
+width=87 align=middle> . Neighborhoods of different sizes in a hexagonal lattice 
+are illustrated in Figure <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node9.html#fighexahila">2.4</A>. In 
+the smallest hexagon, there are all the neighbors belonging to the smallest 
+neighborhood of the neuron in the middle belonging to a hexagonal lattice. The 
+topological relations between the neurons are left out for clarity. 
+<P>In the basic SOM algorithm, the topological relations and the number of 
+neurons are fixed from the beginning. This number of neurons determines the 
+scale or the granularity of the resulting model. Scale selection affects the 
+accuracy and the generalization capability of the model. It must be taken into 
+account that the generalization and accuracy are contradictory goals. By 
+improving the first, we lose on the second, and vice versa. 
+<P>
+<P><A name=554>&nbsp;</A><A name=fighexahila>&nbsp;</A> <IMG height=181 
+alt=figure550 src="Self-Organizing Map (SOM)_files/img12.gif" width=269 
+align=bottom> <BR><STRONG>Figure 2.4:</STRONG> Neighborhood of a given winner 
+unit<BR>
+<P><BR>
+<HR>
+
+<UL>
+  <LI><A 
+  href="http://www.cis.hut.fi/~jhollmen/dippa/node10.html#SECTION00521000000000000000" 
+  name=tex2html242>Data preprocessing</A> 
+  <UL>
+    <LI><A 
+    href="http://www.cis.hut.fi/~jhollmen/dippa/node11.html#SECTION00521100000000000000" 
+    name=tex2html243>Focusing on a subset of data</A> 
+    <LI><A 
+    href="http://www.cis.hut.fi/~jhollmen/dippa/node12.html#SECTION00521200000000000000" 
+    name=tex2html244>Removing erroneous data</A> 
+    <LI><A 
+    href="http://www.cis.hut.fi/~jhollmen/dippa/node13.html#SECTION00521300000000000000" 
+    name=tex2html245>Data encoding</A> 
+    <LI><A 
+    href="http://www.cis.hut.fi/~jhollmen/dippa/node14.html#SECTION00521400000000000000" 
+    name=tex2html246>Scaling</A> </LI></UL>
+  <LI><A 
+  href="http://www.cis.hut.fi/~jhollmen/dippa/node15.html#SECTION00522000000000000000" 
+  name=tex2html247>Initialization</A> 
+  <UL>
+    <LI><A 
+    href="http://www.cis.hut.fi/~jhollmen/dippa/node16.html#SECTION00522100000000000000" 
+    name=tex2html248>Random initialization</A> 
+    <LI><A 
+    href="http://www.cis.hut.fi/~jhollmen/dippa/node17.html#SECTION00522200000000000000" 
+    name=tex2html249>Initialization using initial samples</A> 
+    <LI><A 
+    href="http://www.cis.hut.fi/~jhollmen/dippa/node18.html#SECTION00522300000000000000" 
+    name=tex2html250>Linear initialization</A> </LI></UL>
+  <LI><A 
+  href="http://www.cis.hut.fi/~jhollmen/dippa/node19.html#SECTION00523000000000000000" 
+  name=tex2html251>Training</A> 
+  <UL>
+    <LI><A 
+    href="http://www.cis.hut.fi/~jhollmen/dippa/node20.html#SECTION00523100000000000000" 
+    name=tex2html252>Update rule</A> 
+    <LI><A 
+    href="http://www.cis.hut.fi/~jhollmen/dippa/node21.html#SECTION00523200000000000000" 
+    name=tex2html253>Neighborhood function</A> 
+    <LI><A 
+    href="http://www.cis.hut.fi/~jhollmen/dippa/node22.html#SECTION00523300000000000000" 
+    name=tex2html254>Learning rate</A> </LI></UL>
+  <LI><A 
+  href="http://www.cis.hut.fi/~jhollmen/dippa/node23.html#SECTION00524000000000000000" 
+  name=tex2html255>Visualization</A> 
+  <UL>
+    <LI><A 
+    href="http://www.cis.hut.fi/~jhollmen/dippa/node24.html#SECTION00524100000000000000" 
+    name=tex2html256>U-matrix</A> 
+    <LI><A 
+    href="http://www.cis.hut.fi/~jhollmen/dippa/node25.html#SECTION00524200000000000000" 
+    name=tex2html257>Sammon's mapping</A> 
+    <LI><A 
+    href="http://www.cis.hut.fi/~jhollmen/dippa/node26.html#SECTION00524300000000000000" 
+    name=tex2html258>Component plane representation</A> </LI></UL>
+  <LI><A 
+  href="http://www.cis.hut.fi/~jhollmen/dippa/node27.html#SECTION00525000000000000000" 
+  name=tex2html259>Validation</A> </LI></UL>
+<HR>
+<A href="http://www.cis.hut.fi/~jhollmen/dippa/node10.html" 
+name=tex2html239><IMG height=24 alt=next src="" width=37 align=bottom></A> <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node7.html" name=tex2html237><IMG 
+height=24 alt=up src="" width=26 align=bottom></A> <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node8.html" name=tex2html231><IMG 
+height=24 alt=previous src="" width=63 align=bottom></A> <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node1.html" name=tex2html241><IMG 
+height=24 alt=contents src="" width=65 align=bottom></A> <BR><B>Next:</B> <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node10.html" name=tex2html240>Data 
+preprocessing</A> <B>Up:</B> <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node7.html" 
+name=tex2html238>Self-Organizing Map</A> <B>Previous:</B> <A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node8.html" 
+name=tex2html232>Artificial neural networks</A> 
+<P>
+<ADDRESS><I>Jaakko Hollmen <BR>Fri Mar 8 13:44:32 EET 1996</I> 
+</ADDRESS></BODY></HTML>

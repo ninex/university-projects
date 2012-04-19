@@ -1,0 +1,90 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+x                   0x8000            ipc6server.o
+buffer              0x400             crt.o
+handle              0x4               ipc6server.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD ipc6server.o
+LOAD crt.o
+LOAD ipc.o
+                0x0000000002000000                _link_base = 0x2000000
+
+.text           0x0000000002000000      0xa46
+                0x0000000002000000        0x1 BYTE 0xe8
+                0x0000000002000001        0x4 LONG 0x125 _main_offset
+                0x0000000002000005                _main_call = .
+                0x0000000002000005        0x1 BYTE 0x43
+                0x0000000002000006        0x1 BYTE 0x53
+                0x0000000002000007        0x1 BYTE 0x33
+                0x0000000002000008                . = ALIGN (0x4)
+                0x0000000002000008        0x4 LONG 0x2000000 _link_base
+                0x000000000200000c        0x4 LONG 0x2009054 _heap_base
+                0x0000000002000010                . = ALIGN (0x4)
+ *(.text)
+ .text          0x0000000002000010      0x2ae ipc6server.o
+                0x0000000002000052                fill
+                0x0000000002000089                verify
+                0x000000000200002c                f2
+                0x000000000200012a                main
+                0x0000000002000048                f0
+                0x0000000002000010                f1
+ *fill*         0x00000000020002be 0x2ae00000002 00
+ .text          0x00000000020002c0      0x6ba crt.o
+                0x0000000002000936                crt_key_available
+                0x00000000020005ad                crt_clear_display
+                0x0000000002000525                crt_open
+                0x0000000002000562                crt_set_attribute
+                0x00000000020002c0                int2string
+                0x00000000020005be                crt_printf
+                0x0000000002000958                crt_read_key
+                0x000000000200053a                crt_close
+                0x000000000200054b                crt_gotoxy
+                0x000000000200058b                crt_get_attribute
+ *fill*         0x000000000200097a 0x6ba00000002 00
+ .text          0x000000000200097c       0xca ipc.o
+                0x000000000200097c                ipc_lookup_port
+                0x0000000002000a06                ipc_reply
+                0x0000000002000a29                ipc_close_port
+                0x00000000020009e3                ipc_receive
+                0x00000000020009b6                ipc_send
+                0x0000000002000999                ipc_create_port
+                0x0000000002000a48                . = ALIGN (0x4)
+
+.data           0x0000000002000a48       0x24
+ *(.data)
+ .data          0x0000000002000a48       0x22 crt.o
+                0x0000000002000a48                small_digits
+                0x0000000002000a59                large_digits
+ *fill*         0x0000000002000a6a 0x2200000002 00
+
+.bss            0x0000000002000a80     0x8420
+ *(.bss)
+ COMMON         0x0000000002000a80     0x8004 ipc6server.o
+                                          0x0 (size before relaxing)
+                0x0000000002000a80                x
+                0x0000000002008a80                handle
+ *fill*         0x0000000002008a84 0x80040000001c 00
+ COMMON         0x0000000002008aa0      0x400 crt.o
+                                          0x0 (size before relaxing)
+                0x0000000002008aa0                buffer
+
+.rodata         0x0000000002008ea0      0x1b4
+ *(.rodata)
+ .rodata        0x0000000002008ea0      0x12f ipc6server.o
+ *fill*         0x0000000002008fcf 0x12f00000001 00
+ .rodata        0x0000000002008fd0       0x84 crt.o
+                0x0000000002009054                _heap_base = .
+                0x0000000000000125                _main_offset = (main - _main_call)
+
+/DISCARD/
+ *(.*)
+OUTPUT(ipc6server binary)

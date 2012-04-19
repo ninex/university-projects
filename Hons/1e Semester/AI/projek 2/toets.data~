@@ -1,0 +1,15 @@
+district:cat,house-type:cat,income:cat,prev:cat,outcome:bool
+Suburban,Detached,High,No,Nothing
+Suburban,Detached,High,Yes,Nothing
+Rural,Detached,High,No,Responded
+Urban,Semi-detached,High,No,Responded
+Urban,Semi-detached,Low,No,Responded
+Urban,Semi-detached,Low,Yes,Nothing
+Rural,Semi-detached,Low,Yes,Responded
+Suburban,Terrace,High,No,Nothing
+Suburban,Semi-detached,Low,No,Responded
+Urban,Terrace,Low,No,Responded
+Suburban,Terrace,Low,Yes,Responded
+Rural,Terrace,High,Yes,Responded
+Rural,Detached,Low,No,Responded
+Urban,Terrace,High,Yes,Nothing

@@ -1,0 +1,443 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0068)http://www.cs.sun.ac.za/~skroon/courses/machine_learning/course.html -->
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>Artificial Intelligence and Machine Learning</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<META content="MSHTML 6.00.2900.2912" name=GENERATOR></HEAD>
+<BODY>
+<CENTER>
+<H1>Artificial Intelligence and Machine Learning</H1></CENTER><B>Lecturer</B>: 
+Steve Kroon (kroon@sun.ac.za)<BR><B>Duration</B>: 1st Semester, 2006<BR><B>Class 
+Times</B>: Mondays, 12h00<BR><B>Class Venue</B>: M203, Mechanical and Industrial 
+Engineering<BR><B><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/course.html#evaluation">Course 
+evaluation</A></B><BR><BR><A 
+href="http://www.cs.sun.ac.za/phorum/list.php?f=10">Visit the course's bulletin 
+board</A><BR><BR><B>Error in Assignment 6</B>: A new version of the assignment 
+is now available, addressing a small error.<BR><BR><B>NEWS: For admin reasons, I 
+must once again advertise to you that this course will not be subject to an exam 
+as indicated in the yearbook, but will be treated as a continual assessment 
+subject for the purposes of the administrative system. Details of evaluation 
+have, of course, already been available on the website for some time. (See link 
+above)</B><BR><BR><B>Final deadline for all assignments is 27 
+June.</B><BR><BR><B>The preliminary deadline for handing in assignment 1 to have 
+it marked for feedback has been shifted from 31 March to 2 April, to accomodate 
+the B. Ing. Wet. Engineering Test Week.</B><BR><BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/course.html#lecture1">Material 
+for lecture 1</A><BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/course.html#lecture2">Material 
+for lecture 2</A><BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/course.html#lecture3">Material 
+for lecture 3</A><BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/course.html#lecture4">Material 
+for lecture 4</A><BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/course.html#lecture5">Material 
+for lecture 5</A><BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/course.html#lecture7">Material 
+for lecture 7</A><BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/course.html#lecture8">Material 
+for lecture 8</A><BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/course.html#lecture9">Material 
+for lecture 9</A><BR><BR>If you're interested in this field, and want this 
+course to cover particular methods and techniques, please contact the lecturer 
+at the e-mail address above. Otherwise, this course will cover traditional and 
+cutting-edge techniques designed to allow machines to do work previously 
+reserved for humans only.<BR><BR>The techniques we will cover will mostly be 
+selected from the following list (others will be considered by request): support 
+vector machines, simple neural networks, nearest neighbour techniques, the 
+perceptron, classification and regression trees, parametric models, hidden 
+Markov models, Gaussian mixture models, genetic algorithms, simulated annealing, 
+clustering techniques for unsupervised learning, self-organizing maps, on-line 
+learning, reinforcement learning, E-M algorithms, novelty detection techniques, 
+bagging, boosting, and an introduction to statistical data mining techniques. We 
+will also consider various methods for evaluating techniques and reporting 
+results, and cover responsible use of data, a vital aspect in this field (eg. 
+training vs. test data, cross-validation, and hold-out sets)<BR><BR>The course 
+will be evaluated by a number of programming and data set investigation 
+assignments and reports, as well as a presentation at some time during the 
+semester.<BR><BR>
+<H2>Course material and lecture contents</H2><A name=lecture1></A>
+<H3>Lecture 1</H3>Introduction to the field; brief historical overview; types of 
+problems: supervised, unsupervised, classification, regression, density 
+estimation; main groups of techniques: metric, network-based, statistical, tree 
+methods; issues in machine learning: model selection, parameter selection, 
+complexity control, efficient implementation, handling noisy data, finding model 
+accuracy, encoding prior knowledge, extracting learnt knowledge; benchmarks and 
+typical applications.<BR><BR><B>Reading related to this lecture:</B><BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture1/chapter1.ps.gz">Mike 
+Alder - Principles of Pattern Classification, Chapter 1</A> - read the Preface 
+and everything until the end of Section 1.1 (on page 24).<BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture1/kroon2003support_for_lecture_1.ps">Steve 
+Kroon - <I>extracts from</I> Support Vector Machines, Generalization Bounds and 
+Transduction</A>.<BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture1/ratsch_machine.pdf">Gunnar 
+Ratsch - A Brief Introduction to Machine Learning</A> - read the whole 
+thing.<BR><BR>No assignment for this week.<BR><BR><A name=lecture2></A>
+<H3>Lecture 2</H3>Instance-based learning: The nearest neighbour algorithm and 
+variants. Similarity and dissimilarity measures. Test sets, training sets, 
+cross-validation and model selection. Confusion matrices.<BR><BR><B>Reading 
+related to this lecture:</B><BR><A 
+href="http://people.revoledu.com/kardi/tutorial/KNN/">Kardi Teknomo's web 
+tutorial on k-Nearest Neighbours</A> - work through the whole thing.<BR><A 
+href="http://people.revoledu.com/kardi/tutorial/Similarity/">Kardi Teknomo's web 
+tutorial on Similarity and Dissimilarity measures</A> - work through as much as 
+you can cope with. If you want to skip something, I'd suggest leaving out most 
+of the difference measures for ordinal and quantitative variables (but do look 
+at at least one for each type).<BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture2/martin_instance.pdf">Brent 
+Martin's 1995 Masters Thesis - Instance-Based Learning: Nearest Neighbour with 
+Generalisation</A> - read the beginning of Chapter 2, until the end of 
+2.1.<BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture2/ripley-why_do_NN.pdf">Brian 
+Ripley's slides on "Why do Nearest Neighbour Algorithms Do So Well?"</A> - 
+browse this to see the kinds of variants people try.<BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture2/kNN-intro_to_ML.pdf">Jerry 
+Zhu's introduction to Machine Learning through k-Nearest Neighbours</A> - slides 
+13-23.<BR><BR><B>Assignment 1</B>: <A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture2/corrected_assignment1.ps">Download 
+here</A> - preliminary deadline Sunday 2 April, 2006.<BR><BR><I>Error in 
+original version of assignment 1</I>: Please note that the URL's given in 
+Question 2 of the original Assignment 1 are incorrect. Both URL's should begin 
+with: <PRE>http://www.ics.uci.edu/~mlearn</PRE>rather than <PRE>http://www.ics.uci.edu/ mlearn</PRE><BR>The assignment document above has 
+been corrected.<BR><BR><A name=lecture3></A>
+<H3>Lecture 3</H3>Contingency tables, entropy, information gain, decision trees, 
+the ID3 algorithm, pruning trees, handling real-valued data, regression 
+trees.<BR><BR><B>Reading related to this lecture:</B><BR><A 
+href="http://decisiontrees.net/tutorial/1_intro.html">DecisionTrees.Net's 
+Tutorial on decision trees</A> - work through the whole thing.<BR><A 
+href="http://www.autonlab.org/tutorials/infogain.html">Andrew Moore's slides on 
+Information Gain</A> - click <A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture3/infogain11.pdf">here</A> 
+for a temporary local mirror of the slides. Do the whole thing.<BR><A 
+href="http://www.autonlab.org/tutorials/dtree.html">Andrew Moore's slides on 
+Decision Trees</A> - click <A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture3/dtree18.pdf">here</A> 
+for a temporary local mirror of the slides. Skip the part about Chi-squared 
+pruning unless you are familiar with the statistics of Chi-squared 
+tests.<BR><BR><B>Assignment 2</B>: <A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture3/assignment2.ps">Download 
+here</A>. Also download the <A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture3/adult.zip">adult 
+database</A> for the assignment here.<BR><BR><A name=lecture4></A>
+<H3>Lecture 4</H3>Re-sampling and the bootstrap, bagging, weighted re-sampling, 
+boosting<BR><BR><B>Reading related to this lecture:</B><BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture4/breiman96bagging.ps.gz">Bagging 
+predictors</A> - Leo Breiman presents his technique in a UCB Technical Report in 
+1996. The first 3 sections are the most important.<BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture4/Schapire99c.ps.gz">A 
+Brief Introduction to Boosting</A> - Robert Schapire, the person who found the 
+first polynomial-time boosting algorithm in 1989, gives an overview of AdaBoost, 
+which he co-designed in 1995, at IJCAI'99. Don't worry too much about the 
+section called "Generalization Error".<BR><BR><B>Assignment 3</B>: <A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture4/assignment3.ps">Download 
+here</A>.<BR><BR><A name=lecture5></A>
+<H3>Lecture 5</H3>Neural networks: biological origins, the perceptron, networks 
+of neurons, recurrent and feedforward networks, layered networks and multi-layer 
+perceptrons. Training neural networks and the backpropagation 
+algorithm.<BR><BR><B>Reading related to this lecture:</B><BR><A 
+href="http://www.qub.ac.uk/mgt/intsys/nnbiol.html">Neural networks in nature</A> 
+- notes by Dr. David Newman of the Queen's University Management School in 
+Belfast for their Intelligent Systems course.<BR><A 
+href="http://www.cis.hut.fi/ahonkela/dippa/node41.html">An introduction to 
+Multi-layer perceptrons</A> - from Antti Honkela's Master's thesis on Nonlinear 
+Switching State-Space Models.<BR><A 
+href="http://www.qub.ac.uk/mgt/intsys/backprop.html">An overview of feedforward 
+network learning and the backpropagation algorithm</A> - more notes by Dr. David 
+Newman of the Queen's University Management School in Belfast for their 
+Intelligent Systems course.<BR><A 
+href="http://www.willamette.edu/~gorr/classes/cs449/backprop.html">The 
+backpropagation algorithm</A> - notes from the Willamette University Neural 
+Networks course presented by Jenny Orr.<BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture5/mlp.pdf">Leonardo 
+Noriega's Multilayer Perceptron Tutorial</A> - Leonardo's at the Staffordshire 
+University School of Computing. This PDF file contains a suggested data 
+structure for implementing neural networks in C, and a possible multi-layer 
+perceptron implementation algorithm for you to use as a 
+guideline.<BR><BR><B>Assignment 4</B>: <A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture5/assignment4.ps">Download 
+here</A>.<BR>Here are the <A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture5/circletrain.dat">training 
+data</A> and <A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture5/circletest.dat">test 
+data</A> for the assignment.<BR><BR>
+<H3>3 April</H3>University holidays - no lecture.<BR><BR><A name=lecture6></A>
+<H3>Lecture 6</H3>Question and answer session - no new material.<BR><BR>
+<H3>17 April</H3>Easter Monday - no lecture.<BR><BR><A name=lecture7></A>
+<H3>Lecture 7: 24 April</H3>Grammar induction: the Trakhtenbrot-Barzdin 
+Algorithm (1973), Lang's breadth-first state merging (1992), the blue-fringe 
+strategy, evidence-driven state merging spawned by Abbadingo One (Price, Juille 
+and Pollack, 1997).<BR><BR><B>Reading related to this lecture:</B><BR><A 
+href="http://abbadingo.cs.unm.edu/dfa.html">Intro to DFA's and DFA Learning for 
+the Abbadingo One Competition</A> - this will be especially useful for people 
+who don't know what a DFA is.<BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture7/ml-abbadingo-one.ps.gz">Results 
+of the Abbadingo One DFA Learning Competition and a New Evidence-Driven State 
+Merging Algorithm</A> - Read sections 7, 9 and 10 in Part II. This discusses the 
+competition-winning algorithm in the 1997 Abbadingo One competition, which you 
+will be required to code as part of your assignment.<BR><BR><B>Assignment 5</B>: 
+<A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture7/assignment5.ps">Download 
+here</A>.<BR><BR>
+<H3>1 May</H3>Worker's day - no lecture.<BR><BR><A name=lecture8></A>
+<H3>Lecture 8: 8 May</H3>Self Organizing Maps: dimension reduction, vector 
+quantization, the Kohonen SOM algorithm<BR><BR><B>Reading related to this 
+lecture:</B><BR><A 
+href="http://en.wikipedia.org/wiki/Self-organizing_map">Wikipedia's short 
+description of SOMs</A> - note that technically the SOM training phase is 
+<I>not</I> vector quantization, although it is related.<BR><A 
+href="http://www.cis.hut.fi/~jhollmen/dippa/node9.html">Jaakko Hollmen on 
+SOMs</A> - extract from his Master's Thesis in Process Modelling (Computer 
+Science) at the Helsinki University of Technology.<BR><A 
+href="http://davis.wpi.edu/~matt/courses/soms/">Tom Germano on SOMs</A>.<BR><A 
+href="http://websom.hut.fi/websom/">WEBSOM</A> - an application of SOMs to 
+clustering newsgroup posts.<BR><BR><B>Assignment 6</B>: <A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture8/corrected_assignment6.ps">Download 
+here</A> (download facerec.zip <A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture8/facerec.zip">here</A>).<BR><BR><I>Error 
+in original version of assignment 6</I>: Please note that the number of faces 
+given in Question 4 of the original Assignment 6 are incorrect. There are 9, not 
+10, faces of each individual. You should only reserve 2 faces of each for 
+testing.<BR>The assignment document above has been corrected.<BR><BR><A 
+name=lecture9></A>
+<H3>Lecture 9: 15 May</H3>Support Vector Machines - topic presented by McElory 
+Hoffman<BR><BR><B>Reading related to this lecture:</B><BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture9/SVMIntroduction_handout.pdf">McElory's 
+slides for his talk</A>.<BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture9/kroon2004gettingtheory.ps">Getting 
+to grips with Support Vector Machines: Theory</A> - article by Steve Kroon from 
+the SA Statistics Journal.<BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture9/kroon2004gettingapplications.ps">Getting 
+to grips with Support Vector Machines: Applications</A> - article by Steve Kroon 
+from the SA Statistics Journal.<BR><A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture9/guide.pdf">A 
+practical guide to Support Vector Classification</A> - an article by Chih-Wei 
+Hsu, together with the authors of LIBSVM<BR><BR><B>Assignment 7</B>: No 
+assignment (But <A 
+href="http://www.cs.sun.ac.za/~skroon/courses/machine_learning/lecture9/libsvm-2.82.zip">click 
+here to download a local copy of libsvm</A> - version 2.82. Authors: Chih-Chung 
+Chang and Chih-Jen Lin).<BR><BR><A></A>
+<H3>Question and Answer Session: 12 June</H3><BR><A name=evaluation>
+<H3>Evaluation</H3>
+<UL>
+  <LI>Assignment 1 will be marked if delivered by the preliminary deadline 
+  indicated on the website, to give an indication of the standard required. 
+  <LI>There will be N assignments, N probably being between 6 and 8. 
+  <LI>Any student who has not handed in N-2 assignments by the end-of-semester 
+  deadline will be awarded a grade of zero. 
+  <LI>Of the N assignments, the 3 of which the least people have handed in shall 
+  be marked. Your mark for the course shall be your best mark of these 3 
+  assignments. 
+  <LI>If you have queries on the evaluation, contact me urgently. In general, if 
+  you want to see a change in the evaluation system, you must contact me before 
+  15 March. </LI></UL><BR><A name=classlist>
+<H3>Class list</H3>
+<TABLE border=1>
+  <TBODY>
+  <TR>
+    <TH>Name</TH>
+    <TH>Surname</TH>
+    <TH>Student Number</TH>
+    <TH>Course</TH>
+  <TR>
+    <TD>Atumbe</TD>
+    <TD>Baruani</TD>
+    <TD>14662248</TD>
+    <TD>M Sc</TD></TR>
+  <TR>
+    <TD>Stephan</TD>
+    <TD>Basson</TD>
+    <TD>14052555</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Deon</TD>
+    <TD>Borman</TD>
+    <TD>12400734</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Pascal</TD>
+    <TD>Brandt</TD>
+    <TD>14025892</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Heinrich</TD>
+    <TD>Brink</TD>
+    <TD>13887157</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Carl</TD>
+    <TD>Crous</TD>
+    <TD>14059967</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>John</TD>
+    <TD>Dalton</TD>
+    <TD>13903276</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Marius</TD>
+    <TD>De Wit</TD>
+    <TD>14046245</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Marianne</TD>
+    <TD>Du Preez</TD>
+    <TD>14042703</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Francois</TD>
+    <TD>Du Toit</TD>
+    <TD>14115875</TD>
+    <TD>B Sc Hons (OA)</TD></TR>
+  <TR>
+    <TD>Ezard</TD>
+    <TD>Esau</TD>
+    <TD>13868764</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Tayseer</TD>
+    <TD>Fathelrahman</TD>
+    <TD>14634783</TD>
+    <TD>M Sc</TD></TR>
+  <TR>
+    <TD>Jean</TD>
+    <TD>Fourie</TD>
+    <TD>13949977</TD>
+    <TD>M Sc</TD></TR>
+  <TR>
+    <TD>Christiaan</TD>
+    <TD>Gerber</TD>
+    <TD>13887491</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Abrie</TD>
+    <TD>Greeff</TD>
+    <TD>13557343</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Victoria</TD>
+    <TD>Hasheela</TD>
+    <TD>14953455</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Werner</TD>
+    <TD>Hattingh</TD>
+    <TD>14182386</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Nicolene</TD>
+    <TD>Heunis</TD>
+    <TD>14127091</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>William</TD>
+    <TD>Howard</TD>
+    <TD>14075555</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Basie</TD>
+    <TD>Kok</TD>
+    <TD>14063611</TD>
+    <TD>B Sc Hons (OA)</TD></TR>
+  <TR>
+    <TD>Andre</TD>
+    <TD>Kriek</TD>
+    <TD>14052903</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Philip</TD>
+    <TD>Louw</TD>
+    <TD>13825852</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Andre</TD>
+    <TD>Luus</TD>
+    <TD>14029316</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Sebastian</TD>
+    <TD>Maul</TD>
+    <TD>14734454</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Wu</TD>
+    <TD>Meng</TD>
+    <TD>14983850</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Du Toit</TD>
+    <TD>Minnaar</TD>
+    <TD>13812793</TD>
+    <TD>B Comm Hons</TD></TR>
+  <TR>
+    <TD>Campbell</TD>
+    <TD>Morrison</TD>
+    <TD>14067587</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>David</TD>
+    <TD>Mwakyusa</TD>
+    <TD>14702223</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Jaco</TD>
+    <TD>Myburg</TD>
+    <TD>14043378</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Jeong-hun</TD>
+    <TD>Park</TD>
+    <TD>14529130</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Wynand</TD>
+    <TD>Pieters</TD>
+    <TD>14182718</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Dirk</TD>
+    <TD>Potgieter</TD>
+    <TD>13953494</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Emile</TD>
+    <TD>Rossouw</TD>
+    <TD>14127768</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Derick</TD>
+    <TD>Schmidt</TD>
+    <TD>13816462</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Walter</TD>
+    <TD>Schulze</TD>
+    <TD>14073021</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Eugene</TD>
+    <TD>Smal</TD>
+    <TD>14056615</TD>
+    <TD>B Sc Hons</TD></TR>
+  <TR>
+    <TD>Ettienne</TD>
+    <TD>Steenkamp</TD>
+    <TD>13925881</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Riaan</TD>
+    <TD>Swart</TD>
+    <TD>13846531</TD>
+    <TD>B Ing Wet</TD></TR>
+  <TR>
+    <TD>Lin</TD>
+    <TD>Zicheng</TD>
+    <TD>14936356</TD>
+    <TD>B Sc Hons</TD></TR></TBODY></TABLE>
+<SCRIPT src="Artificial Intelligence and Machine Learning_files/urchin.js" 
+type=text/javascript>
+</SCRIPT>
+
+<SCRIPT type=text/javascript>
+_uacct = "UA-363932-2";
+urchinTracker();
+</SCRIPT>
+</A></BODY></HTML>

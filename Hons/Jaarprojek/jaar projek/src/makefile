@@ -1,0 +1,47 @@
+NAME = jaar
+CXX = g++
+CC = gcc
+RM = rm
+FLAGS = -Wall -W
+INCPATH = -I/usr/lib/qt3/mkspecs/default -I. -I. -I$(QTDIR)/include
+LIBS = -L$(QTDIR)/lib -L/usr/X11R6/lib -L. -lqt-mt -lXext -lX11 -lm
+UIC = $(QTDIR)/bin/uic
+MOC = $(QTDIR)/bin/moc 
+###### Files
+
+HEADERS = 
+SOURCES = main.cpp mpeg2dec.cpp display.cpp getbits.cpp getblk.cpp gethdr.cpp getpic.cpp getvlc.cpp idct.cpp idctref.cpp\
+ motion.cpp recon.cpp spatscal.cpp store.cpp subspic.cpp systems.cpp verify.cpp mywidget.cpp
+OBJS = 	main.o mpeg2dec.o display.o getbits.o getblk.o gethdr.o getpic.o getvlc.o idct.o idctref.o\
+ motion.o recon.o spatscal.o store.o subspic.o systems.o verify.o mywidget.o
+FORMS = interface.ui
+SRCMOC   = moc_mywidget.cpp
+OBJMOC = moc_mywidget.o
+DIST	   = qt.pro
+QMAKE_TARGET = qt
+DESTDIR  = 
+TARGET   = qt
+
+####### Implicit rules
+
+.SUFFIXES: .c .o .cpp .cc .cxx .C
+
+.cpp.o:
+	$(CXX) -c $(FLAGS) $(INCPATH) -o $@ $<
+.c.o:
+	$(CC) -c $(FLAGS)  $(INCPATH) -o $@ $<
+
+####### Compile
+all:$(NAME)
+
+$(NAME): $(UICDECLS) $(OBJMOC) $(OBJS)
+	$(CXX) $(LIBS) $(FLAGS) $(OBJS) $(OBJMOC) -o $(NAME)
+	
+moc_mywidget.o: moc_mywidget.cpp  include/mywidget.h 
+ 
+moc_mywidget.cpp: $(MOC) include/mywidget.h
+	$(MOC) include/mywidget.h -o moc_mywidget.cpp
+
+clean:
+	$(RM) *.o
+	$(RM) $(SRCMOC)

@@ -1,0 +1,14 @@
+NAME=PROJEK
+
+CC=gcc
+
+DEBUG_FLAGS=-DDEBUG
+
+FLAGS= $(DEBUG_FLAGS) -w -Wall
+
+LDFLAGS=pkg-config --cflags --libs gtk+-2.0
+
+OBJS = interface.o
+
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(LDFLAGS)

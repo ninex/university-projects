@@ -1,0 +1,403 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0050)http://www.cs.sun.ac.za/~eloff/rw314/doc_8237.html -->
+<HTML><HEAD><TITLE>Computer Science 314 - The 8237 DMA Controller</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1"><LINK 
+media=screen 
+href="Computer Science 314 - The 8237 DMA Controller_files/style.css" 
+type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2800.1479" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff background="">
+<H1 align=left>The 8237 DMA Controller</H1>
+<H2>Introduction</H2><I>Direct memory access</I> (DMA) facilitates data transfer 
+operations between main memory and I/O subsystems with limited CPU intervention. 
+The majority of I/O devices provide two methods for transferring data between a 
+device and memory. The first method, called <I>programmed I/O</I> (PIO), is 
+fairly easy to implement, but requires the processor to constantly read or write 
+a single memory word (8-bits, 16-bits or 32-bits, depending on the device 
+interface) until the data transfer is complete. Although PIO is not necessarily 
+slower than DMA, it does consume more processor cycles and can be detrimental in 
+a multi-processing environment. The second method, called DMA, allows a system 
+to issue an I/O command to a device, initiate a DMA transaction and then place 
+the process in a waiting queue. The system can now continue by selecting another 
+process for execution, thereby utilizing the CPU cycles typically lost when 
+using PIO. The DMA controller will inform the system when its current operation 
+has been completed by issuing an interrupt signal. Although the data is still 
+transferred 1 memory unit at a time from the device, the transfer to main memory 
+now circumvents the CPU because the DMA controller can directly access the 
+memory unit. 
+<H2>Programming the 8237</H2>The original IBM PC shipped with the Intel 8257 DMA 
+controller. This controller contained 4 independent 8-bit channels consisting of 
+both an address register and counter. The 8257 was later replaced by the 8237 
+DMA controller that extended the functionality of the 8257 by providing 4 
+additional 16-bit channels. Some of the channels are allocated to fixed devices 
+such as the floppy disk. Although the channels may be used with other devices, 
+it is best to avoid situations where devices can not receive their required DMA 
+channel. The channel assignments are presented in the following table: 
+<P>
+<TABLE cellSpacing=2 width="50%" border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>Channel</TD>
+    <TD align=middle bgColor=#c0c0c0>Size</TD>
+    <TD align=middle bgColor=#c0c0c0>Usage</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>0</TD>
+    <TD align=middle bgColor=#ded5d3>8-bit</TD>
+    <TD align=middle bgColor=#ded5d3>Free</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>1</TD>
+    <TD align=middle bgColor=#ded5d3>8-bit</TD>
+    <TD align=middle bgColor=#ded5d3>Free</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>2</TD>
+    <TD align=middle bgColor=#ded5d3>8-bit</TD>
+    <TD align=middle bgColor=#ded5d3>Floppy Disk Controller</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>3</TD>
+    <TD align=middle bgColor=#ded5d3>8-bit</TD>
+    <TD align=middle bgColor=#ded5d3>Free</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>4</TD>
+    <TD align=middle bgColor=#ded5d3>16-bit</TD>
+    <TD align=middle bgColor=#ded5d3>Cascading</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>5</TD>
+    <TD align=middle bgColor=#ded5d3>16-bit</TD>
+    <TD align=middle bgColor=#ded5d3>Free</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>6</TD>
+    <TD align=middle bgColor=#ded5d3>16-bit</TD>
+    <TD align=middle bgColor=#ded5d3>Free</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>7</TD>
+    <TD align=middle bgColor=#ded5d3>16-bit</TD>
+    <TD align=middle bgColor=#ded5d3>Free</TD></TR></TBODY></TABLE>
+<P>
+<H5>DMA Channel Registers</H5>
+<TABLE cellSpacing=2 width="90%" border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>Channel</TD>
+    <TD align=middle bgColor=#c0c0c0>I/O port</TD>
+    <TD align=middle bgColor=#c0c0c0>Access</TD>
+    <TD align=middle bgColor=#c0c0c0>Description</TD>
+    <TD align=middle bgColor=#c0c0c0>Channel</TD>
+    <TD align=middle bgColor=#c0c0c0>I/O port</TD>
+    <TD align=middle bgColor=#c0c0c0>Access</TD>
+    <TD align=middle bgColor=#c0c0c0>Description</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3 rowSpan=3>Channel 0 (8-bit)</TD>
+    <TD align=middle bgColor=#ded5d3>00H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Offset Register</TD>
+    <TD align=middle bgColor=#ded5d3 rowSpan=3>Channel 1 (8-bit)</TD>
+    <TD align=middle bgColor=#ded5d3>02H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Offset Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>01H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Block Size Register</TD>
+    <TD align=middle bgColor=#ded5d3>03H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Block Size Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>87H</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Page Register</TD>
+    <TD align=middle bgColor=#ded5d3>83H</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Page Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3 rowSpan=3>Channel 2 (8-bit)</TD>
+    <TD align=middle bgColor=#ded5d3>04H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Offset Register</TD>
+    <TD align=middle bgColor=#ded5d3 rowSpan=3>Channel 3 (8-bit)</TD>
+    <TD align=middle bgColor=#ded5d3>06H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Offset Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>05H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Block Size Register</TD>
+    <TD align=middle bgColor=#ded5d3>07H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Block Size Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>81H</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Page Register</TD>
+    <TD align=middle bgColor=#ded5d3>82H</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Page Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3 rowSpan=3>Channel 4 (16-bit)</TD>
+    <TD align=middle bgColor=#ded5d3>C0H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Offset Register</TD>
+    <TD align=middle bgColor=#ded5d3 rowSpan=3>Channel 5 (16-bit)</TD>
+    <TD align=middle bgColor=#ded5d3>C4H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Offset Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>C2H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Block Size Register</TD>
+    <TD align=middle bgColor=#ded5d3>C6H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Block Size Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>8FH</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Page Register</TD>
+    <TD align=middle bgColor=#ded5d3>8BH</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Page Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3 rowSpan=3>Channel 6 (16-bit)</TD>
+    <TD align=middle bgColor=#ded5d3>C8H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Offset Register</TD>
+    <TD align=middle bgColor=#ded5d3 rowSpan=3>Channel 7 (16-bit)</TD>
+    <TD align=middle bgColor=#ded5d3>CCH</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Offset Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>CAH</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Block Size Register</TD>
+    <TD align=middle bgColor=#ded5d3>CEH</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Block Size Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>89H</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Page Register</TD>
+    <TD align=middle bgColor=#ded5d3>8AH</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Page Register</TD></TR></TBODY></TABLE>
+<H5>Miscellaneous Registers</H5>
+<TABLE cellSpacing=2 width="90%" border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0 colSpan=3>Primary Controller</TD>
+    <TD align=middle bgColor=#c0c0c0 colSpan=3>Secondary Controller</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>I/O port</TD>
+    <TD align=middle bgColor=#c0c0c0>Access</TD>
+    <TD align=middle bgColor=#c0c0c0>Description</TD>
+    <TD align=middle bgColor=#c0c0c0>I/O port</TD>
+    <TD align=middle bgColor=#c0c0c0>Access</TD>
+    <TD align=middle bgColor=#c0c0c0>Description</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>08H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Command and Status Register</TD>
+    <TD align=middle bgColor=#ded5d3>D0H</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD>
+    <TD align=middle bgColor=#ded5d3>Command and Status Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>09H</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Request Register</TD>
+    <TD align=middle bgColor=#ded5d3>D2H</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Request Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>0AH</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Single Mask Register</TD>
+    <TD align=middle bgColor=#ded5d3>D4H</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Single Mask Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>0BH</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Mode Register</TD>
+    <TD align=middle bgColor=#ded5d3>D6H</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Mode Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>0CH</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Clear Flip-Flop Register</TD>
+    <TD align=middle bgColor=#ded5d3>D8H</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Clear Flip-Flop Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>0DH</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Master Reset Register</TD>
+    <TD align=middle bgColor=#ded5d3>DAH</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Master Reset Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>0EH</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Master Enable Register</TD>
+    <TD align=middle bgColor=#ded5d3>DCH</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Master Enable Register</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>0FH</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Master Mask Register</TD>
+    <TD align=middle bgColor=#ded5d3>DEH</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD>
+    <TD align=middle bgColor=#ded5d3>Master Mask Register</TD></TR></TBODY></TABLE>
+<H5>Mode Register</H5>
+<TABLE cellSpacing=2 width="50%" border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>7</TD>
+    <TD align=middle bgColor=#c0c0c0>6</TD>
+    <TD align=middle bgColor=#c0c0c0>5</TD>
+    <TD align=middle bgColor=#c0c0c0>4</TD>
+    <TD align=middle bgColor=#c0c0c0>3</TD>
+    <TD align=middle bgColor=#c0c0c0>2</TD>
+    <TD align=middle bgColor=#c0c0c0>1</TD>
+    <TD align=middle bgColor=#c0c0c0>0</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3 colSpan=2>MODE</TD>
+    <TD align=middle bgColor=#ded5d3>INC</TD>
+    <TD align=middle bgColor=#ded5d3>AI</TD>
+    <TD align=middle bgColor=#ded5d3 colSpan=2>TYPE</TD>
+    <TD align=middle bgColor=#ded5d3 colSpan=2>CHANNEL</TD></TR></TBODY></TABLE>
+<P>
+<UL>
+  <LI>Bits 6 and 7 are used to select the transfer mode: 00b = Demand mode, 01b 
+  = Single mode, 10b = Block mode, 11b = Cascade mode 
+  <LI>Setting INC selects <I>address decrement</I>, clearing INC selects 
+  <I>address increment</I> 
+  <LI>Setting AI enables auto-initialization 
+  <LI>Bits 2 and 3 are used to select the transfer type: 00b = Verify, 01b = 
+  Write to memory, 10b = Read from memory, 11b = Undefined 
+  <LI>Bits 0 and 1 are used to select the channel: 00b = channel 0, 01b = 
+  channel 1 10b = channel 2 and 11b = channel 3 </LI></UL>
+<H5>Single Mask Register</H5>
+<TABLE cellSpacing=2 width="50%" border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>7</TD>
+    <TD align=middle bgColor=#c0c0c0>6</TD>
+    <TD align=middle bgColor=#c0c0c0>5</TD>
+    <TD align=middle bgColor=#c0c0c0>4</TD>
+    <TD align=middle bgColor=#c0c0c0>3</TD>
+    <TD align=middle bgColor=#c0c0c0>2</TD>
+    <TD align=middle bgColor=#c0c0c0>1</TD>
+    <TD align=middle bgColor=#c0c0c0>0</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3 colSpan=5>Unused</TD>
+    <TD align=middle bgColor=#ded5d3>SRST</TD>
+    <TD align=middle bgColor=#ded5d3 colSpan=2>CHANNEL</TD></TR></TBODY></TABLE>
+<P>
+<UL>
+  <LI>SRST (Set/Reset Mask) = 1 disables the selected channel. SRST = 0 will 
+  enable the selected channel 
+  <LI>Bits 0 and 1 are used to select the channel: 00b = channel 0, 01b = 
+  channel 1, 10b = channel 2 and 11b = channel 3 </LI></UL>
+<H5>Block Size/Countdown Register</H5>The Block Size/Countdown Register is 
+16-bits wide for both 8-bit and 16-bit DMA operations. However, the I/O port is 
+only 8-bits wide and will require two successive read or write operations to the 
+I/O port. The low order bits must be sent first, followed by the high order bits 
+of the block length when writing to this I/O port. The length of the block being 
+transferred, decremented by 1, can be set by writing to this I/O port. Reading 
+from this I/O port returns the remaining block size, decremented by 1. The value 
+of the Countdown Register will be set to -1 when a transfer has been completed. 
+For 16-bit transactions, the value written to the countdown register is the 
+number of 16-bit word transfers. 
+<H5>Offset Register</H5>The Offset Register is 16-bits wide for both 8-bit and 
+16-bit DMA operations and contains the starting offset of the buffer used in the 
+DMA transaction. The low order bits must be sent first, followed by the high 
+order bits of the offset when writing to this register. For 16-bit transactions, 
+the value written to the offset register must be aligned on a 16-bit boundary. 
+<H5>Page Registers</H5>The Page Register specifies the base address of the page 
+in memory where the DMA buffer resides. A page can be either 64K (8-bit 
+transactions) or 128K (16-bit transaction) in size. The Page Register is very 
+similar to the Segment Registers used by the PC to compute a physical address. 
+For 8-bit transactions, only the lower 4 bits of the page register is used, 
+thereby restricting the DMA buffer to reside below the first 1Mb of memory 
+(<I>address of buffer SHR 16</I>). 
+<H2>Initiating a DMA transaction</H2>Initiating a DMA transaction is quite 
+simple and only requires the following steps: 
+<OL>
+  <LI>Save the current interrupt status and disable interrupts by executing the 
+  <CODE>CLI</CODE> instruction 
+  <LI>Disable the channel that will be used for the transaction 
+  <LI>Reset the flip-flop by writing a value of 0X to the register 
+  <LI>Set the Mode Register 
+  <LI>Set the Page Register 
+  <LI>Set the Offset Register 
+  <LI>Set the Block Size Register 
+  <LI>Enable the channel that will be used for the transaction 
+  <LI>Restore the interrupt status </LI></OL>
+<H2>Example: I/O to Memory Transfer</H2>In this example, we will consider a DMA 
+transfer from an I/O device (the diskette drive) to memory, also referred to as 
+a DMA write operation. 
+<OL>
+  <LI>The diskette driver receives a request to read data from a specific sector 
+  and transfer the information to a specific buffer. The diskette drive uses DMA 
+  channel 2, which means that the DMA buffer must fall within the first 1MB of 
+  memory and can not exceed 64K, nor cross a 64K page. We will assume that the 
+  diskette driver has already allocated a suitable DMA buffer as part of its 
+  initialization. 
+  <LI>The diskette driver now performs the necessary operations to position its 
+  read/write head on the correct sector and track before sending the necessary 
+  information to the DMA controller including the following: 
+  <UL>
+    <LI>The base address in memory where the DMA buffer is located. 
+    <LI>The number of bytes to transfer minus one. 
+    <LI>The offset within the buffer. 
+    <LI>The DMA operation (in this case a write operation). </LI></UL>
+  <LI>The diskette driver updates the DMA mask to allow recognition of DMA 
+  channel 2 requests before sending the <I>read</I> command to the diskette 
+  controller. In a multi-processing operating system, the kernel will block the 
+  user process that requested the diskette operation and schedule a new process 
+  for execution. 
+  <LI>The diskette drive, under the supervision of its controller card, will 
+  begin to read data from the diskette surface before transferring it to its 
+  data register. Once data becomes available, the diskette controller will 
+  request DMA service by asserting a high on DMA request line 2 (DREQ2). 
+  <LI>The DMA controller verifies that DREQ2 may be allowed (by examining its 
+  mask register) and requests the CPU to enter a hold mode. This is done by 
+  asserting the <I>hold request</I> line (HRQ). 
+  <LI>The CPU will respond by asserting <I>hold acknowledge</I> (HLDA) and now 
+  enters a bus holding state. 
+  <LI>The DMA controller will generate an address before passing it to the bus 
+  and activating the memory write and I/O read control lines. The DMA 
+  acknowledge signal (DACK2) is activated to inform the diskette controller that 
+  the DMA transfer is in progress. 
+  <LI>The data is transferred from the diskette controller's data register to 
+  memory without passing through the DMA controller. After every transfer, the 
+  DMA controller will decrement the countdown register associated with channel 
+  2. During the transfer, the CPU effectively shares the bus with the diskette 
+  controller by interleaving bus hold cycles and normal cycles under the 
+  supervision of the DMA controller (sometime referred to as cycle stealing). 
+  <LI>If the transfer completes, the DMA controller will assert the <I>terminal 
+  count</I> line signal (TC). Note that the DMA controller may temporarily stop 
+  the transfer by dropping DREQ2 if the transfer rate is too fast to handle. The 
+  TC signal indicates to the diskette controller that the operation has been 
+  completed and the HRQ and DACK2 lines are deactivated before dropping DREQ2. 
+  <LI>At this point the CPU will resume normal bus control, but the diskette 
+  controller will signal the operating system through the PIC that the operation 
+  is complete by asserting IRQ6. Control will typically be transferred to the 
+  interrupt handler of the diskette driver to verify the controller results 
+  before copying the data from the DMA buffer to the buffer supplied by the user 
+  processes. </LI></OL>
+<H2>Further Reading</H2>
+<UL>
+  <LI><I>8237A High Performance Programmable DMA Controller Datasheet</I>, 
+  September 1993, Intel Corporation, Order number: 231466-005. 
+  <LI><I>IBM Microcomputer Architecture and Assembly Language</I>, Norman S. 
+  Matloff, 1992, Prentice Hall. 
+  <LI><I>Linux Device Drivers</I>, Alessandro Rubini, O'Reilly, 1998. 
+  <LI><A 
+  href="http://www.freebsd.org/doc/en_US.ISO8859-1/books/developers-handbook/dma.html" 
+  target=_BLANK>FreeBSD Developer's Handbook</A> 
+  <LI><I>The Undocumented PC</I>, Frank van Gilluwe, Addison Wesley, 1997. 
+</LI></UL>
+<HR>
+
+<ADDRESS>Page developed by <A href="mailto:eloff@cs.sun.ac.za">Jacques 
+Eloff</A><BR>Last updated: 25.04.2003 </ADDRESS></BODY></HTML>

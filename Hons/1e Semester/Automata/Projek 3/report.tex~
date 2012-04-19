@@ -1,0 +1,19 @@
+\documentclass[a4paper,11pt,titlepage]{article}
+\author{Abrie Greeff\\B.Sc Hons (Computer Science)\\Department of Computer Science\\University of Stellenbosch}
+\title{Path Planning with Cellular Automata}
+\begin{document}
+\maketitle
+\section{Introduction}
+\section {Virtual Clay Modelling}
+\section{Implementation}
+\section{Testing}
+\section{Conclusion}
+The dependant CA was implemented first and therefore took a bit longer than the path planning CA. The path planning CA was adapted from the dependant CA and no conclusion can be made which system was more difficult to code. The path planning CA did however give a much better visual representation when it was running. This made it possible to easier identify possible problems in the implementation of the algorithm.
+\section{References}
+\begin{enumerate}
+\item C. Behring, M. Bracho, M.Castro and J.A. Moreno.
+\emph {An Algorithm for Robot Path Planning with Cellular Automata}
+\item Eric W. Weisstein et al.
+\emph {Taxicab Metric} From \emph{MathWorld}--A Wolfram Web Resource. http://mathworld.wolfram.com/TaxicabMetric.html
+\end{enumerate}
+\end{document}

@@ -1,0 +1,10 @@
+function calculate(x,v_x,y,v_y,dt)
+while 1
+r = sqrt(x^2+y^2);
+v_x = v_x - (4*pi^2 * x * dt) / r^3;
+v_y = v_y - (4*pi^2 * y * dt) / r^3;
+plot(x,y,'r');
+x = x + v_x * dt;
+y = y + v_y * dt;
+plot(x,y,'r');
+end

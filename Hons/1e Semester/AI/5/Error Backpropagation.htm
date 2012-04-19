@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://www.willamette.edu/~gorr/classes/cs449/backprop.html -->
+<HTML><HEAD><TITLE>Error Backpropagation</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1"><LINK 
+href="Error Backpropagation_files/annstyle.css" type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2900.2873" name=GENERATOR></HEAD>
+<BODY><A name=top></A>
+<H1>Error Backpropagation</H1>
+<HR width="50%">
+
+<P>We have already seen how to train <A 
+href="http://www.willamette.edu/~gorr/classes/cs449/linear2.html#gradient">linear 
+networks</A> by gradient descent. In trying to do the same for multi-layer 
+networks we encounter a difficulty: we don't have any target values for the 
+hidden units. This seems to be an insurmountable problem - how could we tell the 
+hidden units just what to do? This unsolved question was in fact the reason why 
+neural networks fell out of favor after an initial period of high popularity in 
+the 1950s. It took 30 years before the <B>error backpropagation</B> (or in 
+short: <B>backprop</B>) algorithm popularized a way to train hidden units, 
+leading to a new wave of neural network research and applications. 
+<P>
+<CENTER><IMG alt="multi-layer network" src="Error Backpropagation_files/mlp.gif" 
+width=400 border=5> &nbsp; (Fig. 1) </CENTER>
+<P>In principle, backprop provides a way to train networks with any number of 
+hidden units arranged in any number of layers. (There are clear practical 
+limits, which we will discuss later.) In fact, the network does not have to be 
+organized in layers - any pattern of connectivity that permits a <B>partial 
+ordering</B> of the nodes from input to output is allowed. In other words, there 
+must be a way to order the units such that all connections go from "earlier" 
+(closer to the input) to "later" ones (closer to the output). This is equivalent 
+to stating that their connection pattern must not contain any cycles. Networks 
+that respect this constraint are called <B>feedforward</B> networks; their 
+connection pattern forms a <B>directed acyclic graph</B> or <B>dag</B>. 
+<P>
+<HR width="50%">
+
+<P>
+<H3>The Algorithm</H3>We want to train a multi-layer feedforward network by 
+gradient descent to approximate an unknown function, based on some training data 
+consisting of pairs (<B>x,t</B>). The vector <B>x</B> represents a pattern of 
+input to the network, and the vector <B>t</B> the corresponding <B>target</B> 
+(desired output). As we have seen before, the overall gradient with respect to 
+the entire training set is just the sum of the gradients for each pattern; in 
+what follows we will therefore describe how to compute the gradient for just a 
+single training pattern. As before, we will number the units, and denote the 
+weight from unit j to unit i by w<SUB>ij</SUB>. 
+<P>
+<OL>
+  <LI><B>Definitions:</B> 
+  <TABLE>
+    <TBODY>
+    <TR>
+      <TD>
+        <UL>
+          <LI>the <B>error</B> signal for unit j: </LI></UL>
+      <TD>
+      <TD align=right><IMG height=36 alt="delta_j = - partial E/partial net_j" 
+        src="Error Backpropagation_files/img1.gif" width=118 align=absMiddle> 
+</TD>
+    <TR>
+      <TD>
+        <UL>
+          <LI>the (negative) <B>gradient</B> for weight w<SUB>ij</SUB>: </LI></UL>
+      <TD>
+      <TD align=right><IMG height=36 
+        alt="Delta w_{ij} = -partial E/partial w_ij" 
+        src="Error Backpropagation_files/img2.gif" width=132 align=absMiddle> 
+        &nbsp; </TD>
+    <TR>
+      <TD>
+        <UL>
+          <LI>the set of nodes <B>anterior</B> to unit i: </LI></UL>
+      <TD>
+      <TD align=right><IMG height=36 alt="A_i = {j : exists w_ij}" 
+        src="Error Backpropagation_files/img3.gif" width=108> &nbsp; </TD>
+    <TR>
+      <TD>
+        <UL>
+          <LI>the set of nodes <B>posterior</B> to unit j: </LI></UL>
+      <TD>
+      <TD align=right><IMG height=29 alt="P_j = {i : exists w_ij}" 
+        src="Error Backpropagation_files/img4.gif" width=106> &nbsp; 
+    </TD></TR></TBODY></TABLE>
+  <P></P>
+  <LI><B>The gradient.</B> As we did for <A 
+  href="http://www.willamette.edu/~gorr/classes/cs449/linear2.html#gradient">linear 
+  networks</A> before, we expand the gradient into two factors by use of the 
+  chain rule: 
+  <P>
+  <DIV align=center><IMG height=44 
+  alt="Delta w_ij = -(partial E/partial net_i) (partial net_i/partial w_ij)" 
+  src="Error Backpropagation_files/img5.gif" width=170> </DIV>The first factor 
+  is the error of unit i. The second is 
+  <P>
+  <DIV align=center><IMG height=51 
+  alt="partial net_i/partial w_ij =&#10;(partial/partial w_ij) sum_{k in A_i} y_i w_ik = y_j" 
+  src="Error Backpropagation_files/img6.gif" width=224> </DIV>Putting the two 
+  together, we get 
+  <DIV align=center><IMG height=29 alt="Delta w_ij = delta_i y_j" 
+  src="Error Backpropagation_files/img7.gif" width=96 align=abscenter>. </DIV>
+  <P>To compute this gradient, we thus need to know the activity and the error 
+  for all relevant nodes in the network. 
+  <P></P>
+  <LI><B>Forward activaction.</B> The activity of the input units is determined 
+  by the network's external input <B>x</B>. For all other units, the activity is 
+  propagated forward: 
+  <P>
+  <DIV align=center><IMG height=47 alt="y_i = f_i(sum_{j in A_i} w_ij y_j)" 
+  src="Error Backpropagation_files/img8.gif" width=138> </DIV>
+  <P>Note that before the activity of unit i can be calculated, the activity of 
+  all its anterior nodes (forming the set A<SUB>i</SUB>) must be known. Since 
+  feedforward networks do not contain cycles, there is an ordering of nodes from 
+  input to output that respects this condition. 
+  <P></P>
+  <LI><B>Calculating output error.</B> Assuming that we are using the 
+  sum-squared loss 
+  <P>
+  <DIV align=center><IMG height=47 alt="E = 1/2 sum_o (t_o - y_o)^2" 
+  src="Error Backpropagation_files/img9.gif" width=148> </DIV>the error for 
+  output unit o is simply 
+  <DIV align=center><IMG height=27 alt="delta_o = t_o - y_o" 
+  src="Error Backpropagation_files/img10.gif" width=92> </DIV>
+  <P></P>
+  <LI><B>Error backpropagation.</B> For hidden units, we must propagate the 
+  error back from the output nodes (hence the name of the algorithm). Again 
+  using the chain rule, we can expand the error of a hidden unit in terms of its 
+  posterior nodes: 
+  <P>
+  <DIV align=center><IMG height=52 
+  alt="delta_j = -sum_{i in P_j} (partial E/partial net_i)&#10; (partial net_i/partial y_j) (partial y_j/partial net_j)" 
+  src="Error Backpropagation_files/img11.gif" width=218> </DIV>
+  <P>Of the three factors inside the sum, the first is just the error of node i. 
+  The second is 
+  <P>
+  <DIV align=center><IMG height=51 
+  alt="partial net_i/partial y_j = (partial/partial y_j)&#10; sum_{k in A_i} w_ik y_k = w_ij" 
+  src="Error Backpropagation_files/img12.gif" width=226> </DIV>
+  <P>while the third is the derivative of node j's activation function: 
+  <P>
+  <DIV align=center><IMG height=45 
+  alt="partial y_j/partial net_j =&#10; partial f_j(net_j)/partial net_j = f'_j(net_j)" 
+  src="Error Backpropagation_files/img13.gif" width=228> </DIV>
+  <P>For hidden units h that use the tanh activation function, we can make use 
+  of the special identity<BR>tanh(u)' = 1 - tanh(u)<SUP>2</SUP>, giving us 
+  <DIV align=center><IMG height=28 alt="f'_h(net_h) = 1 - y_h^2" 
+  src="Error Backpropagation_files/img15.gif" width=124> </DIV>
+  <P>Putting all the pieces together we get 
+  <DIV align=center><IMG height=48 
+  alt="delta_j = f'_j(net_j) sum_{i in P_j} delta_i w_{ij}" 
+  src="Error Backpropagation_files/img14.gif" width=167> </DIV>
+  <P>Note that in order to calculate the error for unit j, we must first know 
+  the error of all its posterior nodes (forming the set P<SUB>j</SUB>). Again, 
+  as long as there are no cycles in the network, there is an ordering of nodes 
+  from the output back to the input that respects this condition. For example, 
+  we can simply use the reverse of the order in which activity was propagated 
+  forward. 
+  <P></P></LI></OL>
+<HR width="50%">
+
+<P>
+<H3>Matrix Form</H3>For layered feedforward networks that are <B>fully 
+connected</B> - that is, each node in a given layer connects to <I>every</I> 
+node in the next layer - it is often more convenient to write the backprop 
+algorithm in matrix notation rather than using more general graph form given 
+above. In this notation, the biases weights, net inputs, activations, and error 
+signals for all units in a layer are combined into vectors, while all the 
+non-bias weights from one layer to the next form a matrix W. Layers are numbered 
+from 0 (the input layer) to L (the output layer). The backprop algorithm then 
+looks as follows: 
+<P>
+<OL>
+  <LI>Initialize the input layer: 
+  <DIV align=center><IMG height=27 alt="vec{y}_0 = vec{x}" 
+  src="Error Backpropagation_files/img16.gif" width=46> </DIV>
+  <P></P>
+  <LI>Propagate activity forward: for l = 1, 2, ..., L, 
+  <DIV align=center><IMG height=28 
+  alt="vec{y}_l = f_l(W_l vec{y}_{l-1} + vec{b}_l)" 
+  src="Error Backpropagation_files/img17.gif" width=151> </DIV>where 
+  b<SUB>l</SUB> is the vector of bias weights. 
+  <P></P>
+  <LI>Calculate the error in the output layer: 
+  <DIV align=center><IMG height=27 alt="vec{delta}_L = vec{t} - vec{y}_L" 
+  src="Error Backpropagation_files/img18.gif" width=90> </DIV>
+  <P></P>
+  <LI>Backpropagate the error: for l = L-1, L-2, ..., 1, 
+  <DIV align=center><IMG height=29 
+  alt="vec{delta}_l = (W_{l+1}^T vec{delta}_{l+1}) . f'_l(vec{net}_l)" 
+  src="Error Backpropagation_files/img19.gif" width=187> </DIV>where T is the 
+  matrix transposition operator. 
+  <P></P>
+  <LI>Update the weights and biases: 
+  <DIV align=center><IMG height=29 
+  alt="Delta W_l = vec{delta}_l vec{y}_{l-1}^T, Delta vec{b}_l = vec{delta}_l" 
+  src="Error Backpropagation_files/img20.gif" width=219> </DIV>
+  <P></P></LI></OL>You can see that this notation is significantly more compact 
+than the graph form, even though it describes exactly the same sequence of 
+operations. 
+<P>
+<HR width="50%">
+
+<P>
+<CENTER><A 
+href="http://www.willamette.edu/~gorr/classes/cs449/backprop.html#top">[Top]</A> 
+<IMG height=20 src="Error Backpropagation_files/pixel.gif" width=100> <A 
+href="http://www.willamette.edu/~gorr/classes/cs449/bpexample.html">[Next: A 
+first example]</A> <IMG height=20 src="Error Backpropagation_files/pixel.gif" 
+width=100> <A 
+href="http://www.willamette.edu/~gorr/classes/cs449/intro.html">[Back to the 
+first page] </CENTER></A></BODY></HTML>

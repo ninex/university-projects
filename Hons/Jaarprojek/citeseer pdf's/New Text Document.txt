@@ -1,0 +1,12 @@
+
+detection of movement
+=====================
+bregler-malik98.pdf linear stuff
+
+background detection
+====================
+695.pdf least square matching
+
+velocity
+=========
+pavlovic00dynamic velocity!

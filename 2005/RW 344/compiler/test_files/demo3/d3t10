@@ -1,0 +1,14 @@
+begin (* should display 3 2 0 and then a run-time error: division by 0 *)
+  integer x;
+  proc P
+  begin
+    x := x - 1;
+    write x;
+    x := 2 / x;
+    P;
+  end;
+
+  x := 3;
+  write x;
+  P;
+end.

@@ -1,0 +1,43 @@
+function temperatuur(n,iter)
+%linker sy 20C
+links = 20;
+%regter sy 80C
+regter = 80;
+%onder sy 0C
+onder = 0;
+%bo adiabaties
+rows = n-1;
+cols = n;
+
+%input
+%n rooster dimensie
+%iter aantal volle iterasies
+
+%==============init==============
+for i=1:rows
+    for j=1:cols
+        if j == 1
+            rooster(i,j) = links;
+        else
+            if j==cols
+                rooster(i,j) = regs;
+            else
+                rooster(i,j) = 0;
+            end
+        end
+    end
+end
+
+%===============itereer===========
+for k=1:iter
+    for i=2:rows-1
+        for j=1:cols-1
+            if i == 2
+            else
+                rooster(i,j) = 
+            end
+        
+        end
+    end
+    
+end

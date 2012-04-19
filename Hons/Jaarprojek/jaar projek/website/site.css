@@ -1,0 +1,24 @@
+A.navref {
+	 PADDING: 0px; DISPLAY: block; FONT-WEIGHT: bold; MARGIN: 0px;  COLOR: #0000FF; Font-size:11pt
+}
+a:hover.navref {
+	COLOR: white; BACKGROUND-COLOR: #333399; 
+}
+A {
+	FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+body {
+	background-color: #FFFFFF;
+}
+td.header{
+vertical-align: top;width:100%;text-align: center;background-color: #333399;valign:center;
+}
+table{
+  text-align: left;margin-left: auto; margin-right: auto;
+}
+td{
+vertical-align: top; white-space: wrap;
+}
+iframe{
+border: 0px none;
+}

@@ -1,0 +1,74 @@
+import java.util.*;
+
+public class node {
+	
+	private ArrayList transitions, children;
+	private boolean finalState;
+	private node failure,parent;
+	private String str;
+	private int len;
+	
+	public node(node parent) {
+		finalState = false;
+		failure = null;
+		transitions = new ArrayList();
+		children = new ArrayList();
+		this.parent = parent;
+		str = null;	
+	}
+	
+	public node addChild(String option) {
+		char cur = option.charAt(0);
+		//System.out.println("Looking at char "+cur);
+		Character tempChar = new Character(option.charAt(0));
+		node temp;
+		
+		if (transitions.contains(tempChar)) {
+			//System.out.println("Transition exists");
+			temp = (node)children.get(transitions.indexOf(tempChar));
+		}else {
+			transitions.add(tempChar);
+			temp = new node(this);
+			children.add(temp);
+		}
+		temp.setString(option.substring(1));
+		//System.out.println("Adding "+option);
+		//System.out.println("Transition on "+option.charAt(0));
+		return temp;
+	}
+	
+	public boolean isFinal() {
+		return finalState;
+	}
+	public void setFinal() {
+		finalState = true;
+	}
+	
+	public node getFailure() {
+		return failure;
+	}
+	public void setFailure(node target, int len) {
+		failure = target;
+		this.len = len;
+	}
+	
+	public void setString(String option) {
+		str = option;
+	}
+	
+	public String getString() {
+		return str;
+	}
+	
+	public ArrayList getChildren() {
+		return children;
+	}
+	public ArrayList getTransitions() {
+		return transitions;
+	}
+	
+	public int getLength() {
+		return len;
+	}
+	
+}

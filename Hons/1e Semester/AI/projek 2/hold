@@ -1,0 +1,5 @@
+Urban,Terrace,Low,No,Responded
+Suburban,Terrace,Low,Yes,Responded
+Rural,Terrace,High,Yes,Responded
+Rural,Detached,Low,No,Responded
+Urban,Terrace,High,Yes,Nothing

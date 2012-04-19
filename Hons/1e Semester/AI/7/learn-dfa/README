@@ -1,0 +1,18 @@
+
+
+format of input:
+
+n-examples alphabet-size
+label string-len sym0 sym1 ...
+.
+.
+.
+
+
+format of output:
+
+n-states alphabet-size
+state-no label trans0 trans1 ...
+.
+.
+.

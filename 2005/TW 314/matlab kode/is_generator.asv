@@ -1,0 +1,7 @@
+function is_generator(alpha,n)
+f = factor(n-1);
+k=1;
+mul = 1;
+for i=k:size(f,2)
+   mul=mulf(i)
+end

@@ -1,0 +1,122 @@
+This is pdfTeX, Version 3.14159-14f-released-20000525 (MiKTeX 2.1) (preloaded format=latex 2000.11.28)  14 APR 2006 05:20
+**F:/Hons/Automata/Projek*4/report.tex
+(F:/Hons/Automata/Projek 4/report.tex{pdftex.cfg}
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for english, french, german, ngerman, du
+mylang, nohyphenation, loaded.
+(C:\texmf\tex\latex\base\article.cls
+Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
+(C:\texmf\tex\latex\base\size11.clo
+File: size11.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (C:\texmf\tex\latex\graphics\graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+(C:\texmf\tex\latex\graphics\keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(C:\texmf\tex\latex\graphics\graphics.sty
+Package: graphics 2001/07/07 v1.0n Standard LaTeX Graphics (DPC,SPQR)
+ (C:\texmf\tex\latex\graphics\trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+) (C:\texmf\tex\latex\00miktex\graphics.cfg)
+Package graphics Info: Driver file: pdftex.def on input line 80.
+
+(C:\texmf\tex\latex\graphics\pdftex.def
+File: pdftex.def 2001/11/29 v0.03i graphics/color for pdftex
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+) (report.aux
+
+LaTeX Warning: Label `Figure:figex' multiply defined.
+
+
+LaTeX Warning: Label `Figure:figex' multiply defined.
+
+
+LaTeX Warning: Label `Figure:figex' multiply defined.
+
+)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+ (C:\texmf\tex\context\base\supp-pdf.tex
+(C:\texmf\tex\context\base\supp-mis.tex
+loading : Context Support Macros / Missing
+\protectiondepth=\count88
+\scratchcounter=\count89
+\scratchdimen=\dimen105
+\scratchskip=\skip43
+\scratchmuskip=\muskip10
+\scratchbox=\box26
+\scratchread=\read1
+\scratchwrite=\write3
+\nextbox=\box27
+\nextdepth=\dimen106
+\everyline=\toks15
+\!!counta=\count90
+\!!countb=\count91
+\recursecounter=\count92
+)
+loading : Context Support Macros / PDF
+\nofMPsegments=\count93
+\nofMParguments=\count94
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 6.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 6.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 6.
+ [1
+
+{psfonts.map}] (report.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 3.
+)
+\tf@toc=\write4
+ [1] <bure.png, id=23, 642.4pt x 481.8pt>
+File: bure.png Graphic file (type png)
+
+<use bure.png> <even.png, id=24, 642.4pt x 481.8pt>
+File: even.png Graphic file (type png)
+ <use even.png>
+<odd.png, id=25, 642.4pt x 481.8pt>
+File: odd.png Graphic file (type png)
+ <use odd.png> [2]
+Underfull \hbox (badness 10000) in paragraph at lines 45--55
+
+ []
+
+[3 <bure.png>] [4 <even.png> <odd.png>] [5]
+<example1.png, id=53, 385.44pt x 307.1475pt>
+File: example1.png Graphic file (type png)
+ <use example1.png> [6 <example1.png>] [7] [8] (report.aux)
+
+LaTeX Warning: There were multiply-defined labels.
+
+ )<cmr8.pfb><cmsy10.pfb><cmmi8.pfb><cmmi10.pfb><cmti10.pfb><cmr10.pfb><cmbx10.p
+fb><cmbx12.pfb><cmr12.pfb><cmr17.pfb>
+Output written on report.pdf (9 pages, 102225 bytes).

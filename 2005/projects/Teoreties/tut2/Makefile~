@@ -1,0 +1,8 @@
+calc: calc.tab.c lex.yy.c
+	gcc calc.tab.c lex.yy.c -lm -lfl -o calc
+
+calc.tab.c: calc.y
+	bison -vd calc.y
+
+lex.yy.c : calc.l calc.tab.h
+	flex calc.l

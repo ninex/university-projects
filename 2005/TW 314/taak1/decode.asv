@@ -1,0 +1,45 @@
+function [ret] = decode(kriptoteks,key)
+
+s = size(key,2)/4;
+key = bin2dec(num2str(key));
+
+e_vect = bitxor(double(kriptoteks),key);
+
+n = size(e_vect,2);
+amount = ceil(n/s^2);
+index = 0;
+
+for i = 0:(amount-1)
+
+    %compute a matrix
+    for row = 1:s
+        for col = 1:s            
+            m(row,col) = e_vect(s^2*i + col + s*(row - 1));
+        end
+    end
+
+    %do operations
+    m = m';
+    %m = bitxor(m,key);
+    char(diag(m))
+    op = subkey(diag(m),key)  
+    
+    m = bitxor(m,op);
+    char(m)
+    for i=1:s
+        m(i,i) = bitxor(m(i,i),op);
+    end
+    char(m)
+    disp('
+    %m(1,1) = bitxor(m(1,1),op);
+    %m(s,s) = bitxor(m(s,s),op);
+    
+    %add to decoded vector    
+    for row = 1:s
+        for col = 1:s
+            index = index+1;
+            vect(index) = m(row,col);            
+        end
+    end
+end
+ret = char(vect);

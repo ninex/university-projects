@@ -1,0 +1,7 @@
+The next seed is ((current seed) xor (current seed shifted 13 bits to the right) xor (current seed shifted 18 bits to the left)) and 0x7FFFFFFF [31 bits]
+
+
+P. L'Ecuyer, "Maximally Equidistributed Combined Tausworthe Generators", `Mathematics of Computation', 65, 213 (1996), 203-213. 
+P. L'Ecuyer, "Tables of Maximally Equidistributed Combined LFSR Generators", `Mathematics of Computation', 68, 225 (1999), 261-269 
+
+http://diana.gl.nps.navy.mil/Simkit/doc/simkit/random/Tausworthe.html

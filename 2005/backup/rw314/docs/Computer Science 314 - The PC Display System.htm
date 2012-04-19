@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0053)http://www.cs.sun.ac.za/~eloff/rw314/doc_display.html -->
+<HTML><HEAD><TITLE>Computer Science 314 - The PC Display System</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1"><LINK 
+media=screen href="Computer Science 314 - The PC Display System_files/style.css" 
+type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2800.1479" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff background="">
+<H1 align=left>The PC Display System</H1>
+<H2>Introduction</H2>PC display systems are fairly complex, because each adapter 
+is different to its predescessor. The original <I>colour graphics adapter</I> 
+(CGA) could only support 4 colours when operating in a graphical mode. The 
+<I>enhanced graphics adapter</I> (EGA) extended this by allowing up to 16 
+colours selected from a 64-colour palette at a higher resolution (640x350). The 
+<I>virtual graphics array</I> (VGA) offered even higher resolutions and the 
+ability to display up to 256 different colours. After the VGA adapter, the Super 
+VGA and XGA adapter cards were introduced along with an industry standard called 
+VESA. The latest adapters contain their own processors and implement industry 
+standards such as OpenGL, DirectDraw and Direct3D at the hardware level, making 
+it easier for programmers to exploit the adapter's full potential, but like many 
+other hardware, the cards are still compatible with features found in the first 
+display adapters. The operating system or runtime environment must provide the 
+services offered by the display adapter to programmers. At the very least, these 
+services should include basic output to the display adapter in alphanumeric mode 
+(text). 
+<H2>The Monochrome Display Adapter</H2>The <I>monochrome display adapter</I> 
+(MDA) is probably the simplest of all the display adapters to program, 
+especially in alphanumeric (text) mode. All PC and PS/2 video systems use the 
+same alternating pattern of characters and attributes when displaying data in 
+alphanumeric mode. Data can be displayed by simply writing the characters and 
+attributes to the display memory. The base address for the display memory of the 
+MDA is located at physical address <CODE>B0000H</CODE>. For example, the 
+character string "HELLO" is stored in the display memory as <PRE>B0000 48 07 45 07 4C 07 4C 07 4F 07
+    </PRE>
+<H3>Attributes</H3>The interpretation of the attribute byte varies from system 
+to system, but is usually divided into 2 nibbles (a nibble is equal to 4 bits). 
+The high order nibble (bits 4 through 7) controls the background colour of the 
+character while the low order nibble (bits 0 through 3) controls the foreground 
+colour. In some instances bit 7 can be used to control character blinking. The 
+MDA accepts all 16 attribute combinations for the foreground and background 
+colour, but does not recognize all 16. The table below lists the various 
+combinations that are recognized by the adapter. 
+<P>
+<TABLE cellSpacing=2 width="50%" border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0 colSpan=5><B>Foreground</B></TD></TR>
+  <TR>
+    <TD bgColor=#c0c0c0>&nbsp;</TD>
+    <TD align=middle bgColor=#c0c0c0>Black</TD>
+    <TD align=middle bgColor=#c0c0c0>Dim</TD>
+    <TD align=middle bgColor=#c0c0c0>Normal Intensity</TD>
+    <TD align=middle bgColor=#c0c0c0>High Intensity</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0><B>Background</B></TD>
+    <TD bgColor=#c0c0c0 colSpan=4></TD>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>Black</TD>
+    <TD align=middle bgColor=#ded5d3><CODE>00</CODE></TD>
+    <TD align=middle bgColor=#ded5d3>n/a</TD>
+    <TD align=middle bgColor=#ded5d3><CODE>07</CODE></TD>
+    <TD align=middle bgColor=#ded5d3><CODE>0F</CODE></TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>Dim</TD>
+    <TD align=middle bgColor=#ded5d3>n/a</TD>
+    <TD align=middle bgColor=#ded5d3><CODE>88</CODE></TD>
+    <TD align=middle bgColor=#ded5d3><CODE>87</CODE></TD>
+    <TD align=middle bgColor=#ded5d3><CODE>8F</CODE></TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>Normal Intensity</TD>
+    <TD align=middle bgColor=#ded5d3><CODE>70</CODE></TD>
+    <TD align=middle bgColor=#ded5d3><CODE>78</CODE></TD>
+    <TD align=middle bgColor=#ded5d3>n/a</TD>
+    <TD align=middle bgColor=#ded5d3>n/a</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>High Intensity</TD>
+    <TD align=middle bgColor=#ded5d3><CODE>F0</CODE></TD>
+    <TD align=middle bgColor=#ded5d3><CODE>F8</CODE></TD>
+    <TD align=middle bgColor=#ded5d3>n/a</TD>
+    <TD align=middle bgColor=#ded5d3>n/a</TD></TR></TBODY></TABLE><CITE>Programmer's 
+Guide to PC &amp; PS/2 Video Systems</CITE> 
+<H3>Registers</H3>The MDA uses a Motorola 6845 CRT controller and contains 19, 
+8-bit internal registers than can be programmed to alter the behaviour of the 
+adapter. The data registers can be accessed by first writing the register number 
+to the 6845's address register, located at I/O port <CODE>3B4H</CODE>. The 
+specific register can then be accessed by reading or writing to I/O port 
+<CODE>3B5H</CODE> which contains the adapter's data register. The table below 
+lists the 18 registers supported by the MDA and presents a brief description of 
+their functions. 
+<P>
+<TABLE cellSpacing=2 width="50%" border=0>
+  <TBODY>
+  <TR>
+    <TD align=middle bgColor=#c0c0c0>Register</TD>
+    <TD align=middle bgColor=#c0c0c0>Name</TD>
+    <TD align=middle bgColor=#c0c0c0>Access</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>00H</TD>
+    <TD align=middle bgColor=#ded5d3>Horizontal Total</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>01H</TD>
+    <TD align=middle bgColor=#ded5d3>Horizontal Displayed</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>02H</TD>
+    <TD align=middle bgColor=#ded5d3>Horizontal Sync Position</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>03H</TD>
+    <TD align=middle bgColor=#ded5d3>Horizontal Sync Pulse Width</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>04H</TD>
+    <TD align=middle bgColor=#ded5d3>Vertical Total</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>05H</TD>
+    <TD align=middle bgColor=#ded5d3>Vertical Total Adjust</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>06H</TD>
+    <TD align=middle bgColor=#ded5d3>Vertical Displayed</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>07H</TD>
+    <TD align=middle bgColor=#ded5d3>Vertical Sync Position</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>08H</TD>
+    <TD align=middle bgColor=#ded5d3>Interlace Mode</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>09H</TD>
+    <TD align=middle bgColor=#ded5d3>Maximum Scan Line</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>0AH</TD>
+    <TD align=middle bgColor=#ded5d3>Cursor Start</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>0BH</TD>
+    <TD align=middle bgColor=#ded5d3>Cursor End</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>0CH</TD>
+    <TD align=middle bgColor=#ded5d3>Start Address High</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>0DH</TD>
+    <TD align=middle bgColor=#ded5d3>Start Address Low</TD>
+    <TD align=middle bgColor=#ded5d3>Write only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>0EH</TD>
+    <TD align=middle bgColor=#ded5d3>Cursor Location High</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>0FH</TD>
+    <TD align=middle bgColor=#ded5d3>Cursor Location Low</TD>
+    <TD align=middle bgColor=#ded5d3>Read/Write</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>10H</TD>
+    <TD align=middle bgColor=#ded5d3>Light Pen High</TD>
+    <TD align=middle bgColor=#ded5d3>Read only</TD></TR>
+  <TR>
+    <TD align=middle bgColor=#ded5d3>11H</TD>
+    <TD align=middle bgColor=#ded5d3>Light Pen Low</TD>
+    <TD align=middle bgColor=#ded5d3>Read 
+only</TD></TR></TBODY></TABLE><CITE>Programmer's Guide to PC &amp; PS/2 Video 
+Systems</CITE> 
+<P>It is rarely required to change the values of these registers because they 
+control various timing functions as well as the mapping of the adapter's display 
+memory. The only registers that may be of interest are <CODE>0EH</CODE> and 
+<CODE>0FH</CODE> to control the location of the cursor on the display. These 
+registers specify a 16-bit offset of the cursor location relative to the display 
+base address. 
+<H2>Further Reading</H2>
+<UL>
+  <LI><I>Programmer's Guide to PC and PS/2 Video Systems</I>, Richard Wilton, 
+  Microsoft Press, 1987. 
+  <LI><I>Zen of Graphics Programming</I>, Michael Abrash, Coriolis Group, 1995. 
+  </LI></UL>
+<HR>
+
+<ADDRESS>Page developed by <A href="mailto:eloff@cs.sun.ac.za">Jacques 
+Eloff</A><BR>Last updated: 10.02.2004 </ADDRESS></BODY></HTML>

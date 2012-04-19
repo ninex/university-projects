@@ -1,0 +1,9 @@
+
+t = 1;
+p = 0.05;
+ps = p;
+pc = 1ps / 2;
+path = 0.01;
+n = 100;
+captured = 0;
+scattered = 0;

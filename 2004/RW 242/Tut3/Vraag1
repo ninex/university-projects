@@ -1,0 +1,29 @@
+a)
+select * from painting where pntg_price < 1000;
+
+b)
+select ptr.ptr_firstname,ptr.ptr_lastname,pnt.pntg_title,pnt.pntg_price from
+painter ptr,painting pnt
+where ptr.ptr_num = pnt.ptr_num;
+
+c)
+select pntg_title from painting
+where ptr_num =(select ptr_num from painter where ptr_lastname = 'Itero');
+
+d)
+select sum(pntg_price) from painting
+where ptr_num = (select ptr_num from painter where ptr_lastname = 'Itero');
+
+e)
+select gallery.gal_owner, count(*) from gallery,painting
+where (gallery.gal_num = painting.gal_num)
+group by gal_owner;
+
+f)
+select pntg_title from painting
+where gal_num is NULL;
+
+g)
+select gal_num from gallery where gal_num not in(
+select gal_num from painting
+where ptr_num = (select ptr_num from painter where ptr_lastname = 'Itero'));

@@ -1,0 +1,5 @@
+begin
+   integer x;
+   x:=3
+   write x;
+end.

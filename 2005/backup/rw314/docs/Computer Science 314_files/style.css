@@ -1,0 +1,24 @@
+BODY {
+	BACKGROUND: white
+}
+H1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 16pt; COLOR: maroon
+}
+H2 {
+	FONT-WEIGHT: normal; FONT-SIZE: 14pt; COLOR: maroon
+}
+H3 {
+	FONT-WEIGHT: normal; FONT-SIZE: 12pt; COLOR: maroon
+}
+A:link {
+	TEXT-DECORATION: none
+}
+A:visited {
+	TEXT-DECORATION: none
+}
+A:active {
+	TEXT-DECORATION: none
+}
+P {
+	TEXT-ALIGN: justify; mso-layout-grid-align: none
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0046)http://www.cs.sun.ac.za/~eloff/rw314/tut1.html -->
+<HTML><HEAD><TITLE>Computer Science 314</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1"><LINK 
+media=screen href="tut1_files/style.css" type=text/css rel=stylesheet>
+<META content="MSHTML 6.00.2800.1491" name=GENERATOR></HEAD>
+<BODY bgColor=#ffffff background="">
+<TABLE cellSpacing=12 cellPadding=0 width="100%">
+  <TBODY><!-- Banner -->
+  <TR>
+    <TD class=banner colSpan=3>Computer Science 314 - Operating Systems </TD></TR><!-- Navigation bar (left) -->
+  <TR>
+    <TD class=navbar vAlign=top>
+      <DIV class=navhead>CS314 </DIV>
+      <DIV class=navtext><A class=navref 
+      href="http://www.cs.sun.ac.za/~eloff/rw314/index.html">Home</A> <A 
+      class=navref href="http://www.cs.sun.ac.za/~eloff/rw314/exams.html">Tests 
+      and Examinations</A> <A class=navref 
+      href="http://www.cs.sun.ac.za/~eloff/rw314/schedule.html">Class 
+      Schedule</A> <A class=navref 
+      href="http://www.cs.sun.ac.za/~eloff/rw314/outline.html">Course 
+      Outline</A> <A class=navref 
+      href="http://www.cs.sun.ac.za/~eloff/rw314/doc.html">Documentation and 
+      Notes</A> <A class=navref 
+      href="http://www.cs.sun.ac.za/~eloff/rw314/tuts.html">Tutorials</A> <A 
+      class=navref 
+      href="http://www.cs.sun.ac.za/~eloff/rw314/reading.html">Further 
+      Reading</A> <A class=navref title=eloff@cs.sun.ac.za 
+      href="mailto:eloff@cs.sun.ac.za">E-mail the Lecturer</A> </DIV></TD><!-- main text: centre bar -->
+    <TD class=MAIN vAlign=top>
+      <H1 align=left>Tutorial 1 - Introduction to interrupt handling</H1>
+      <H2 align=left>Motivation</H2>The processing of interrupts is an important 
+      function of operating and control systems because most devices interact 
+      with the system through this mechanism. This tutorial serves as an 
+      introduction to interrupt processing on PCs and deals with the 8259 
+      <I>programmable interrupt controller</I> (PIC) that is responsible for 
+      managing the interrupt signals received from certain peripherals such as 
+      the system clock, keyboard, disk drives en network cards. 
+      <P>It is important to manage interrupts efficiently because it will 
+      increase the amount of CPU time that can be allocated to user processes. 
+      Certain software mechanisms must also be in place to accomplish this. The 
+      most imporant mechanism is the </I>interrupt descriptor table</I> (IDT). 
+      This table contains the information associated with every interrupt 
+      handler and will be accessed by the CPU whenever it decides to process an 
+      interrupt signal from a hardware device or executes a software interrupt 
+      instruction (<CODE>INT</CODE>). The operating system must also provide a 
+      good abstraction of the hardware and provide the necessary mechanisms to 
+      manage the installation and removal of interrupt handlers. 
+      <H2 align=left>Outcomes</H2>If you have successfully completed this 
+      tutorial, you 
+      <UL>
+        <LI>should have a basic understanding of how the IDT works in resolving 
+        interrupts and invoking the appropriate handler 
+        <LI>should be familiar with the 8259A interrupt controller that is 
+        responsible for managing hardware interrupts on the PC </LI></UL>
+      <H2 align=left>Background Information</H2>Before continuing with the 
+      tutorial, make sure that you have familiarized yourself with the <A 
+      href="http://www.cs.sun.ac.za/~eloff/rw314/doc_8259.html">8259A (PIC)</A> 
+      and the IDT (Sections 6 from the notes that discuss the protected mode 
+      model). 
+      <P>A number of bit manipulation routines are provided in 
+      <CODE>asm.h</CODE> to assist with programming the various registers. These 
+      routines have been designed to exploit the native bit manipulation 
+      instructions provided by the 80386 processor (<CODE>bt</CODE>, 
+      <CODE>bts</CODE>, <CODE>btr</CODE> and <CODE>bsf</CODE>). Communication 
+      with the PIC through the various I/O ports can be performed using the 
+      routines in <CODE>io.h</CODE>, specifically the <CODE>inb</CODE> and 
+      <CODE>outb</CODE> macro's. <B>PLEASE NOTE THAT ALL REGISTERS RELATED TO 
+      THE 8259 ARE 8 BITS WIDE (ONLY USE THE inb() AND outb() MACRO'S).</B> 
+      <P>Manipulation of the underlying descriptors and the IDT can be 
+      facilitated by using the functions provided in <CODE>i386.c</CODE>, 
+      specifically <CODE>i386_initialize_idt_entry</CODE>. 
+      <P>The source code for the system is located in 
+      <CODE>/misc/stuff/2005/cs314/os314.tar</CODE>. Copy the file into a 
+      directory where you would like to work and extract the system by executing 
+      the command <CODE>tar -xvf os314.tar</CODE>. 
+      <H2 align=left>Instructions</H2>An outline for the 8259A driver is 
+      provided in <CODE>i8259.c</CODE> along with an interface definition in 
+      <CODE>i8259.h</CODE>. A macro to support debug output is also provided 
+      (<CODE>PRINT_8259</CODE>) and output from this macro can be controlled 
+      using the <CODE>DEBUG_I8259</CODE> flag (refer to the Makefile). You will 
+      be required to complete the following functions: 
+      <UL>
+        <LI><B><CODE>unsigned char i8259_installed(int 
+        vector);</CODE></B><BR>This function is used to determine whether or not 
+        an interrupt handler is currently installed within the IDT at the 
+        specified vector. The function must return <B>1</B> if a handler is 
+        already present or <B>0</B> otherwise. You should use the vector number 
+        to access the bit position within the <CODE>idt_bitmap</CODE> structure 
+        to determine whether or not a handler is present. 
+        <LI><B><CODE>int i8259_install_interrupt_handler(int vector, 
+        interrupt_handler handler, int p_level);</CODE></B><BR>This function 
+        will be used to install an interrupt handler for the specified vector. 
+        The function must return <CODE>OK</CODE> if the installation was 
+        successful or otherwise an error code (see <CODE>error.h</CODE>). The 
+        interrupt mask register should be updated if the vector number refers to 
+        an entry associated with IRQ0..IRQ15. The function must return 
+        <CODE>-ERR_I8259_INVALID_VECTOR</CODE> if the vector is out of bounds or 
+        <CODE>-ERR_I8259_INSTALLED</CODE> if a handler is already present. 
+        <LI><B><CODE>int i8259_remove_interrupt_handler(int 
+        vector);</CODE></B><BR>This function will be used to remove an interrupt 
+        handler previously installed with the 
+        <CODE>i8259_install_interrupt_handler()</CODE> function and must return 
+        <CODE>OK</CODE> if the operation was successful, otherwise an error code 
+        to indicate why the operation failed (see <CODE>error.h</CODE>). The 
+        function must return <CODE>-ERR_I8259_INVALID_VECTOR</CODE> if the 
+        vector is out of bounds or <CODE>-ERR_I8259_REMOVED</CODE> if there is 
+        no vector present that can be removed</CODE>. 
+        <LI><B><CODE>void initialize_8259();</CODE></B><BR>This function is an 
+        internal function that is used to initialize the 8259A PIC and performs 
+        the necessary initialization operations for both the primary and 
+        secondary controllers. <CODE>i8259.c</CODE> contains the necessary 
+        definitions for the various register fields. </LI></UL>Once you have 
+      completed the four functions you may test your system by performing the 
+      following tasks: 
+      <UL>
+        <LI>Compile and link all the files by executing the command <CODE>make 
+        all</CODE>. The makefile will automatically generate a link script 
+        (<CODE>os314.ld</CODE>) that will be used to link the individual object 
+        files into a single image called <CODE>os314</CODE>. Please note that 
+        only the object code for the system clock is provided in 
+        <CODE>i8253.o</CODE>. If you execute the command <CODE>make 
+        clean</CODE>, this file will also be removed, so you must first copy it 
+        back to your working directory before executing the <CODE>make 
+        all</CODE> command. 
+        <LI>Write the image to disk by using the command <B><CODE>dd if=os314 
+        of=/dev/fd0 seek=18 bs=512</CODE></B>. The <B><CODE>dd</CODE></B> 
+        command (Copy and Convert file) copies the file specified as input 
+        (<B><CODE>if</CODE></B> parameter) to the file specified as output 
+        (<B><CODE>of</CODE></B> parameter). The <B><CODE>seek</CODE></B> 
+        parameter instructs the command to skip the first 18 blocks before 
+        writing to the output file. The last parameter, <B><CODE>bs</CODE></B>, 
+        tells <B><CODE>dd</CODE></B> the size of a single block. The output file 
+        <B><CODE>/dev/fd0</CODE></B> refers to the first floppy disk device 
+        (Other systems such as Windows and MS-DOS refers to this device as 
+        <B><CODE>A:</CODE></B>). For more information on <B><CODE>dd</CODE></B>, 
+        refer to the man pages or info pages by executing the command 
+        <B><CODE>man dd</CODE></B> or <B><CODE>info dd</CODE></B> from the 
+        command prompt in Linux. 
+        <LI>Copy the bootstrap loader to the disk by executing the command 
+        <CODE>dd if=boot of=/dev/fd0 bs=512</CODE>. The bootstrap loader is 
+        located in the <CODE>bootstraploader</CODE> directory. You must first 
+        assemble the loader by executing the command <CODE>nasm -f bin 
+        boot.nasm</CODE> 
+        <LI>If the system is working, a running counter should appear on the 
+        display. The counter is incremented every 20ms. 
+</LI></UL></TD></TR></TBODY></TABLE></BODY></HTML>

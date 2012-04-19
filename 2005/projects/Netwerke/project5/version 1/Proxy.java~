@@ -1,0 +1,54 @@
+
+public class ProxyServer extends Thread implements Runnable
+{
+	static final int proxyPort = 5060;
+	static final int callPort = 5061;
+	static final int listenPort = 5062;
+	
+	static UAC client = null;
+	static UAS server = null;
+	/*public Proxy()
+	{
+	}
+	public void run()
+	{
+	}*/
+	
+	public void waitForCalls()
+	{
+		//wait for invite from a client
+		//send trying=100 to client
+		//do lookup of address of server
+		
+		//if address difference after lookup
+			//send moved=302 to client
+			//wait for ACK
+		//else
+			//send invite to server
+			//wait for trying=100 from server
+			//wait for ringing=180 from server
+			//send ringing=180 to client
+			//wait for possible 182=queued messages from server
+			//wait for OK from server
+			//send OK to client
+	}
+	
+	
+	public static void main(String args[])
+	{
+		
+		
+		DatagramSocket outgoing = null,incoming = null, proxy = null;
+		try
+		{
+			outgoing = new DatagramSocket(proxyPort);
+			incoming = new DatagramSocket(listenPort);
+			proxy = new DatagramSocket(proxyPort);
+		}catch (Exception e){e.printStackTrace();}
+		client = new UAC(outgoing,proxy);
+		server = new UAS(incoming,proxy);
+		client.start();
+		server.start();
+		
+	}
+}

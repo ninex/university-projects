@@ -1,0 +1,42 @@
+import java.io.*;
+import java.util.*;
+import java.net.*;
+
+public class msg extends Thread implements Runnable
+{
+	ClientGUI gui;
+	public msg(ClientGUI gui)
+	{
+		this.gui = gui;
+	}
+	public void run()
+	{
+			//the port this server is listening on
+		int PORT = 3000;
+	
+		
+		ServerSocket connection = null;
+		
+		//get a socket for the server
+		try
+		{
+			connection = new ServerSocket(PORT);
+		}catch (Exception e){System.out.println("error: "+e.toString());System.exit(1);}
+                
+		//while the connection is bound to a specific adress (isBound returns true if bound)
+		while (connection.isBound())
+		{	
+			System.out.println("Listening for messages...");
+			/* listen for a new connection to the server and accept it.
+                         * this socket is passed to a thread which will now be created
+                         * and the thread will handle the connection leaving this server
+                         * to wait, listening for other attempted connections.
+			 */
+			try
+			{
+				new msgThread(connection.accept(),gui).start();
+			}catch (Exception e){}
+		}
+	}
+	
+}

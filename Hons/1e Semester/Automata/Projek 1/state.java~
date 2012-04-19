@@ -1,0 +1,12 @@
+public class state {
+	private int first,second;
+	
+	public state(int first, int second) {
+		this.first = first;
+		this.second = second;
+	}
+	
+	public int getSecond() {
+		return second;
+	}
+}

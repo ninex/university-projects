@@ -1,0 +1,283 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+clear_display       0x4               trace.o
+get_attribute       0x4               trace.o
+gotoxy              0x4               trace.o
+write_string        0x4               trace.o
+set_attribute       0x4               trace.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD boottable.o
+LOAD trace.o
+LOAD i386.o
+LOAD i8259.o
+LOAD exceptions.o
+LOAD i8253.o
+LOAD init.o
+LOAD stdlib.o
+LOAD mem.o
+LOAD keyboard.o
+LOAD floppy.o
+LOAD cmos.o
+LOAD dma.o
+LOAD tty.o
+LOAD sys.o
+LOAD process.o
+LOAD loader.o
+LOAD comms.o
+                0x0000000000001000                _link_base = 0x1000
+
+.text           0x0000000000001000     0x6b6f
+                0x0000000000001000        0x1 BYTE 0xe8
+                0x0000000000001001        0x4 LONG 0x1c57 _main_offset
+                0x0000000000001005                _main_call = .
+                0x0000000000001008                . = ALIGN (0x4)
+ *fill*         0x0000000000001005        0x3 00
+                0x0000000000001008        0x4 LONG 0x1000 _link_base
+                0x000000000000100c        0x4 LONG 0xc989 _heap_base
+                0x0000000000001010                . = ALIGN (0x4)
+ *(.text)
+ .text          0x0000000000001010      0x303 boottable.o
+                0x000000000000129c                bt_read_smap_entry
+                0x0000000000001010                sort_smap_entries
+                0x000000000000126f                bt_entry
+                0x000000000000119c                bt_initialize
+ *fill*         0x0000000000001313        0x1 00
+ .text          0x0000000000001314      0x8a0 trace.o
+                0x0000000000001ad2                __gotoxy
+                0x0000000000001a9a                __set_attribute
+                0x0000000000001ac8                trace_get_offset
+                0x0000000000001ab9                __get_attribute
+                0x0000000000001b33                trace_initialize
+                0x0000000000001a12                __clear_display
+                0x000000000000169b                printk
+                0x0000000000001436                int2string
+                0x0000000000001314                __write_string
+ .text          0x0000000000001bb4      0x3f7 i386.o
+                0x0000000000001c02                i386_display_idt_entry
+                0x0000000000001e50                i386_set_cpu_state
+                0x0000000000001d47                i386_release_GDT_entry
+                0x0000000000001bb4                load_gdtr
+                0x0000000000001bc1                load_idtr
+                0x0000000000001bce                load_segment_selectors
+                0x0000000000001d02                i386_allocate_GDT_entry
+                0x0000000000001bee                i386_align
+                0x0000000000001bda                i386_set_page_directory
+                0x0000000000001ea7                i386_initialize_descriptor_tables
+                0x0000000000001c4a                i386_initialize_idt_entry
+                0x0000000000001e9d                i386_gdt_offset
+                0x0000000000001d65                i386_initialize_tss
+ *fill*         0x0000000000001fab        0x1 00
+ .text          0x0000000000001fac      0x7c4 i8259.o
+                0x0000000000002732                i8259_initialize
+                0x0000000000001fac                rdtsc
+                0x0000000000001fc2                i8259_installed
+                0x00000000000021ed                i8259_remove_interrupt_handler
+                0x0000000000002348                field_interrupt
+                0x0000000000002337                i8259_start
+                0x0000000000002557                initialize_jump_table
+                0x00000000000026ab                initialize_8259
+                0x0000000000002029                i8259_install_interrupt_handler
+ .text          0x0000000000002770      0x34b exceptions.o
+                0x0000000000002a73                exceptions_initialize
+                0x0000000000002770                exception_handler
+ *fill*         0x0000000000002abb        0x1 00
+ .text          0x0000000000002abc      0x19e i8253.o
+                0x0000000000002bd3                timer_handler
+                0x0000000000002be3                initialize_8253
+                0x0000000000002b42                timer_expired
+                0x0000000000002c13                timer_initialize
+                0x0000000000002abc                timer_get_ticks
+                0x0000000000002ac6                timer_set
+ *fill*         0x0000000000002c5a        0x2 00
+ .text          0x0000000000002c5c       0x7b init.o
+                0x0000000000002c5c                main
+ *fill*         0x0000000000002cd7        0x1 00
+ .text          0x0000000000002cd8       0x28 stdlib.o
+                0x0000000000002cd8                abs
+ .text          0x0000000000002d00      0xc1d mem.o
+                0x0000000000003405                mem_alloc
+                0x0000000000003237                merge
+                0x00000000000034b8                mem_free_page
+                0x0000000000002ded                mem_copy_kernel_page_directory
+                0x0000000000002d8d                mem_switch_to_kernel_directory
+                0x000000000000357b                mem_initialize
+                0x0000000000003542                mem_free
+                0x0000000000002db0                mem_largest_available
+                0x0000000000002d00                print_block
+                0x0000000000002da6                mem_available
+                0x00000000000034e8                mem_free_dma
+                0x0000000000003430                mem_allocate_dma
+                0x0000000000002e07                get_align
+                0x0000000000002ed5                allocate
+                0x00000000000033e6                mem_allocate_page
+                0x0000000000002d2c                print_blocks
+                0x00000000000032ee                free
+ *fill*         0x000000000000391d        0x3 00
+ .text          0x0000000000003920      0x4c8 keyboard.o
+                0x0000000000003a01                keyboard_handler
+                0x00000000000039a9                keyboard_wait
+                0x0000000000003995                keyboard_available
+                0x0000000000003920                keyboard_read
+                0x0000000000003d41                keyboard_initialize
+                0x00000000000039cd                keyboard_set_LEDs
+ .text          0x0000000000003de8     0x1151 floppy.o
+                0x0000000000003f88                get_results
+                0x000000000000409c                cycle_media
+                0x0000000000004bef                floppy_initialize
+                0x00000000000046da                floppy_read
+                0x0000000000003ea0                put_byte
+                0x0000000000004039                handler_floppy
+                0x00000000000048e2                floppy_write
+                0x0000000000004143                do_request
+                0x0000000000003f3d                wait_for_interrupt
+                0x000000000000404a                error
+                0x0000000000003f10                stop_motor
+                0x0000000000003de8                show_dp
+                0x0000000000004aea                read_version
+ *fill*         0x0000000000004f39        0x3 00
+ .text          0x0000000000004f3c       0x49 cmos.o
+                0x0000000000004f3c                cmos_read_register
+ *fill*         0x0000000000004f85        0x3 00
+ .text          0x0000000000004f88      0x3e2 dma.o
+                0x0000000000005094                dma_start
+                0x000000000000500e                dma_release_channel
+                0x0000000000004f88                dma_request_channel
+                0x0000000000005351                dma_initialize
+ *fill*         0x000000000000536a        0x2 00
+ .text          0x000000000000536c     0x1051 tty.o
+                0x0000000000005954                tty_clear_display
+                0x0000000000005c3e                set_focus
+                0x0000000000005bba                tty_read_key
+                0x0000000000005d05                tty_handler
+                0x00000000000058c9                tty_get_attribute
+                0x0000000000005390                active
+                0x000000000000536c                wait
+                0x0000000000005840                tty_set_attribute
+                0x0000000000005b8d                tty_key_available
+                0x00000000000053ce                tty_open
+                0x0000000000005a9b                tty_gotoxy
+                0x00000000000061c3                write_string0
+                0x00000000000054f5                tty_close
+                0x0000000000006228                gotoxy0
+                0x000000000000539a                set_LED
+                0x000000000000623d                tty_initialize
+                0x00000000000061e4                set_attribute0
+                0x0000000000006214                get_attribute0
+                0x00000000000061d5                clear_display0
+                0x0000000000005cee                tty_set_kernel_focus
+                0x00000000000055e9                tty_print
+ *fill*         0x00000000000063bd        0x3 00
+ .text          0x00000000000063c0      0x2ee sys.o
+                0x0000000000006669                sys_initialize
+                0x00000000000063c0                sys_handler
+ *fill*         0x00000000000066ae        0x2 00
+ .text          0x00000000000066b0      0x4ac process.o
+                0x00000000000066db                install_process
+                0x0000000000006971                clear_busy
+                0x00000000000066cc                get_status
+                0x00000000000069bd                kill_process
+                0x000000000000688f                schedule
+                0x00000000000067a3                load_state
+                0x000000000000685f                get_current
+                0x000000000000678c                save_state
+                0x00000000000067dd                remove_running
+                0x0000000000006827                add_to_rq
+                0x00000000000068bf                set_current
+                0x00000000000066b0                processes_start
+ .text          0x0000000000006b5c      0x44b loader.o
+                0x0000000000006b5c                loader_initialize
+ *fill*         0x0000000000006fa7        0x1 00
+ .text          0x0000000000006fa8      0xbc7 comms.o
+                0x00000000000072f3                update_error
+                0x0000000000007115                update_port_error
+                0x000000000000750e                comms_send
+                0x00000000000073d7                comms_lookup_port
+                0x0000000000007aee                comms_close_port
+                0x000000000000791e                comms_reply
+                0x000000000000723d                update_all_error
+                0x000000000000701a                block_server
+                0x00000000000070b1                unblock_server
+                0x0000000000007421                comms_create_port
+                0x0000000000007043                unblock_process
+                0x0000000000006fa8                block_process
+                0x00000000000077be                comms_receive
+                0x0000000000007b70                . = ALIGN (0x4)
+
+.data           0x0000000000007b80      0x9c8
+ *(.data)
+ .data          0x0000000000007b80       0x22 trace.o
+ *fill*         0x0000000000007ba2        0x2 00
+ *fill*         0x0000000000007ba4       0x1c 00
+ .data          0x0000000000007bc0       0x50 exceptions.o
+ *fill*         0x0000000000007c10       0x10 00
+ .data          0x0000000000007c20      0x200 keyboard.o
+ .data          0x0000000000007e20      0x500 floppy.o
+ .data          0x0000000000008320       0x20 dma.o
+ .data          0x0000000000008340      0x200 tty.o
+ .data          0x0000000000008540        0x4 process.o
+ .data          0x0000000000008544        0x4 comms.o
+
+.bss            0x0000000000008560     0x3634
+ *(.bss)
+ .bss           0x0000000000008560      0x2c0 boottable.o
+ .bss           0x0000000000008820      0x420 trace.o
+ .bss           0x0000000000008c40     0x1004 i386.o
+ *fill*         0x0000000000009c44       0x1c 00
+ .bss           0x0000000000009c60     0x1440 i8259.o
+ .bss           0x000000000000b0a0        0x4 i8253.o
+ .bss           0x000000000000b0a4       0x10 mem.o
+ *fill*         0x000000000000b0b4        0xc 00
+ .bss           0x000000000000b0c0      0x411 keyboard.o
+ *fill*         0x000000000000b4d1        0xf 00
+ .bss           0x000000000000b4e0      0x140 floppy.o
+ .bss           0x000000000000b620        0x8 dma.o
+ *fill*         0x000000000000b628       0x18 00
+ .bss           0x000000000000b640      0x4ac tty.o
+ .bss           0x000000000000baec       0x10 process.o
+ *fill*         0x000000000000bafc        0x4 00
+ .bss           0x000000000000bb00       0x80 comms.o
+ COMMON         0x000000000000bb80       0x14 trace.o
+                0x000000000000bb80                clear_display
+                0x000000000000bb84                get_attribute
+                0x000000000000bb88                gotoxy
+                0x000000000000bb8c                write_string
+                0x000000000000bb90                set_attribute
+
+.rodata         0x000000000000bb94      0xdf5
+ *(.rodata)
+ .rodata        0x000000000000bb94       0x84 trace.o
+ .rodata        0x000000000000bc18       0x2e i386.o
+ *fill*         0x000000000000bc46        0x2 00
+ .rodata        0x000000000000bc48       0x82 i8259.o
+ *fill*         0x000000000000bcca        0x2 00
+ .rodata        0x000000000000bccc      0x447 exceptions.o
+ *fill*         0x000000000000c113        0x1 00
+ .rodata        0x000000000000c114       0x86 i8253.o
+ *fill*         0x000000000000c19a        0x2 00
+ .rodata        0x000000000000c19c       0x57 init.o
+ *fill*         0x000000000000c1f3        0x1 00
+ .rodata        0x000000000000c1f4       0xbe mem.o
+ *fill*         0x000000000000c2b2        0x2 00
+ .rodata        0x000000000000c2b4      0x175 keyboard.o
+ *fill*         0x000000000000c429        0x3 00
+ .rodata        0x000000000000c42c      0x1e5 floppy.o
+ *fill*         0x000000000000c611        0x3 00
+ .rodata        0x000000000000c614      0x220 tty.o
+ .rodata        0x000000000000c834       0xa0 sys.o
+ .rodata        0x000000000000c8d4       0x49 process.o
+ .rodata        0x000000000000c91d       0x6c loader.o
+                0x000000000000c989                _heap_base = .
+                0x0000000000001c57                _main_offset = (main - _main_call)
+
+/DISCARD/
+ *(.*)
+OUTPUT(os314 binary)
