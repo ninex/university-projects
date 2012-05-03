@@ -1,6 +1,7 @@
 #include <qimage.h>
 #include <qvector.h>
 #include <math.h>
+#include <cstdlib>
 
 #include "include/ptrFrame.h"
 #include "include/stats.h"

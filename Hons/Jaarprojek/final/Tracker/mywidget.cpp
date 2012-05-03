@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <qimage.h>
 #include <qpainter.h>
 #include <qpixmap.h>

@@ -1,7 +1,7 @@
 #include <qthread.h>
 class Stats : public QThread {
 	public:
-		Stats:: Stats(QVector<ptrFrame> *vectorlist);
+		Stats(QVector<ptrFrame> *vectorlist);
 		void run();
 		bool Processing();
 		void hotspots(int width, int height,double edge_thres);

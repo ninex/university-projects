@@ -2,7 +2,7 @@
 
 class Mpeg : public QThread {
 	public:
-		Mpeg:: Mpeg(QVector<ptrFrame> *vectorlist,char* inFile);
+		Mpeg(QVector<ptrFrame> *vectorlist,char* inFile);
 		void run();
 		bool Processing();
 		void load();
