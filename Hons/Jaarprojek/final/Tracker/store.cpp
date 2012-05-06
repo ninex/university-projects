@@ -166,7 +166,7 @@ static void store_uv(unsigned char *src[],int offset,int incr,int height){
 	current->h = height;
 	
 
-	int temp;
+	long temp;
 
   /* matrix coefficients */
   crv = Inverse_Table_6_9[matrix_coefficients][0];
@@ -191,8 +191,6 @@ static void store_uv(unsigned char *src[],int offset,int incr,int height){
       
 
 //this sets the rgb components of each pixel in the frame
-
-
       temp = (long)current->r + j*horizontal_size+i;
       memset((void*)temp,r,1);
       temp = (long)current->g + j*horizontal_size+i;

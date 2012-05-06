@@ -13,7 +13,7 @@
 #include <qcombobox.h>
 #include <qvector.h>
 #include <math.h>
-
+#include <iostream>
 
 #include "include/mywidget.h"
 #include "include/mpeg2dec.h"
@@ -198,7 +198,6 @@ void cleanup()
 
 void MyWidget::open_file()
 {
-
 	//pops up the dialog
 	QString s = QFileDialog::getOpenFileName("./","Mpeg files (*.mpg *.mpeg)",this,"open file dialog","Choose a file" );
 	
@@ -209,7 +208,6 @@ void MyWidget::open_file()
 	
 		char *inp = c2c(s);
 		sprintf(in,"%s",inp);
-		
 		
 		//remove previous info
 		cleanup();
@@ -353,8 +351,7 @@ void MyWidget::play(){
 		b_play->setText("Play");
 		return;
 	}
-	
-	//never play an empty file
+    //never play an empty file
 	if (list->size() == 0)
 	{
 		return;
@@ -379,7 +376,6 @@ void MyWidget::play(){
 	
 	playing = true;
 	b_play->setText("Pause");
-	
 	//move through all the frames
 	while (frameIndex < list->size() && playing)
 	{
@@ -387,20 +383,14 @@ void MyWidget::play(){
 		count++;
 		//load a picture
 		loadPic(pic,frameIndex);
-		
 		//do all tracking
 		tracker->trackFrame(pic,frameIndex,edge_t,skin_t,l_algo->currentText());
-		
 		//to make sure the frame rate is constant
 		while ( (clock() - cur)/CLOCKS_PER_SEC*100 < fps){}
-		
 		//draw the frame
 		p1.begin(this);
 			p1.drawPixmap(0,0,pic);
-		p1.end();
-		
-		
-		
+		p1.end();	
 		//get the time now
 		cur = clock();
 		
@@ -464,7 +454,7 @@ void MyWidget:: loadPic(QImage pic,int frame)
 	
 	ptr = list->at(frame);
 	
-	int r,g,b,i,j,temp;
+    long r,g,b,i,j,temp;
 	
 	pic.create(ptr->w,ptr->h,32,0,QImage::IgnoreEndian);
 	

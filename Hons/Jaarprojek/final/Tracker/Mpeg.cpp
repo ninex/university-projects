@@ -1,5 +1,6 @@
 #include <qvariant.h>
 #include <qvector.h>
+#include <iostream>
 #include "include/ptrFrame.h"
 #include "include/Mpeg.h"
 #include "include/mpeg2dec.h"

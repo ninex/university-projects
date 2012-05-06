@@ -4,8 +4,3 @@
 *.jar
 *.war
 *.ear
-
-#C++
-*.o
-*.cpp~
-

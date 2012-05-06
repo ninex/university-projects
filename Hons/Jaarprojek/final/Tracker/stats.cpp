@@ -68,7 +68,7 @@ void Stats::hotspots(int width, int height,double edge_thres)
 void Stats::calc_hotspots()
 {
 	
-	int r,g,b,i,j,temp,temp2,r1,g1,b1;
+	long r,g,b,i,j,temp,temp2,r1,g1,b1;
 	long dr,dg,db,points;
 	double rcount,gcount,bcount;
 	rcount = 0;
@@ -215,7 +215,7 @@ void Stats::calc_hotspots()
 
 void Stats:: Isolate()
 {
-	int r,g,b,i,j,temp;
+	long r,g,b,i,j,temp;
 	
 	ptrFrame *ptr = list->at(0);
 	
