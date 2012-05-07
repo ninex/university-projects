@@ -1,4 +1,0 @@
-function [ret] = enc_additive(str,a)
-
-%Zm(str);
-char(mod(Zm(str)+a,26))

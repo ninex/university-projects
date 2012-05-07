@@ -1,1 +1,0 @@
-MODULE Error;(* "Dangling Else" *) PROCEDURE proc();	VAR		a : INTEGER;BEGIN	IF a < 10 THEN		a := 10	ELSIF a < 20 THEN		IF a < 30 THEN a := 30 (* Needs END *)	ELSE		a := 20	ENDEND proc; (* ";" missing before proc *)BEGIN	proc() END Error.

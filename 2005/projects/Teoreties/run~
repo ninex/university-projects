@@ -1,7 +1,0 @@
-echo flex
-flex vraag2.flex
-echo compiling
-gcc lex.yy.c -lfl -o first.o
-echo running
-./first.o password
-echo done

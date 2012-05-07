@@ -1,9 +1,0 @@
-function gen_prime(n)
-e = sqrt(n)
-%is it even
-if mod(e,2) == 0
-    for i=1:e
-        if mod(i,2) == 1
-            l(k) =  
-else
-end

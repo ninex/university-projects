@@ -1,3 +1,0 @@
-make all
-dd if=os314 of=/dev/fd0 seek=18 bs=512
-bochs -q

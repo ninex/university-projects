@@ -1,3 +1,0 @@
-flex count.l
-gcc lex.yy.c -lfl -o count
-count dma.c

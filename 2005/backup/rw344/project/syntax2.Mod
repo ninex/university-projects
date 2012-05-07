@@ -1,1 +1,0 @@
-MODULE Error;(* SimpleExpression used as term *) PROCEDURE proc();VAR	a: INTEGER;BEGIN	a := +(+(+5)-(-5)); (* correct *)	a := 5 - -5;        (* value starts with incorrect symbol, line 7 *)END proc; BEGIN	proc() END Error.

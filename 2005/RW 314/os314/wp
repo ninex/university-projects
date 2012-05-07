@@ -1,6 +1,0 @@
-cd processes
-make all
-cd ..
-./build image process ./processes/proc3 400
-./build image process ./processes/proc4 500
-./build bochs

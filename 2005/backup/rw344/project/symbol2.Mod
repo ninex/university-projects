@@ -1,1 +1,0 @@
-MODULE Error;(* Duplicate identifier, variable and procedure with same name *)PROCEDURE proc();	VAR		a : INTEGER;			PROCEDURE b();		CONST			a = 200;	BEGIN	END b;		PROCEDURE a(); (* duplicate identifier (a) - line 14 *)	BEGIN	END a;	BEGINEND proc;BEGIN	proc() (*  *)END Error.

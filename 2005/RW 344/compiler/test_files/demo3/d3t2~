@@ -1,9 +1,0 @@
-begin
-  (* should display 3 2 *)
-  integer x, y;
-
-  x := 1;
-  y := 2;
-  x := x + y;
-  write x, y;
-end.

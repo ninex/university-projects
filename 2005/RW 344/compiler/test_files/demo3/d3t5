@@ -1,7 +1,0 @@
-begin (* should display 5 *)
-  integer x;
-
-  x := 20;
-  x := x / 19 * 5; (* testing integer division *)
-  write x;
-end.
