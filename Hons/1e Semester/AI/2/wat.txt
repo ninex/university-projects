@@ -1,3 +1,0 @@
-martin - 2 tot einde 2.1
-ripley - browse
-knn-intro - 13-23

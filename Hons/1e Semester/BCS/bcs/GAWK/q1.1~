@@ -1,3 +1,0 @@
-#! /bin/gawk -f
-# This script searches for the occurences of the pattern GGTTAA in genomedata.txt
-BEGIN /foo/ { print "Don't Panic!"}

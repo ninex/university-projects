@@ -1,7 +1,0 @@
-\contentsline {section}{\numberline {1}Introduction}{1}
-\contentsline {section}{\numberline {2}Implementing Cellular Automata with Memory Rules}{1}
-\contentsline {section}{\numberline {3}DFAs with Memory}{3}
-\contentsline {section}{\numberline {4}Improving Robot Path Planning}{4}
-\contentsline {section}{\numberline {5}Improving Random Number Generators}{5}
-\contentsline {section}{\numberline {6}Extending to a Non-Linear Case}{6}
-\contentsline {section}{\numberline {7}Statecharts with Memory Rules}{8}

@@ -1,7 +1,0 @@
-import javax.swing.*;
-
-public class gui extends JFrame{
-	public gui() {
-		super("Knn-neigbours");
-	}
-}
